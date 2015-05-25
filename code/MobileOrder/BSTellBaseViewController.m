@@ -116,7 +116,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     mainView.topBarView.backgroundColor = HexRGB(1, 159, 233);
-    mainView.backgroundColor = HexRGB(239, 239, 241);
+    mainView.backgroundColor = kViewBGColor;
     self.delegate = self;
   
 }

@@ -31,6 +31,8 @@
 
 #import "CarServiceNetDataMgr.h"
 
+#import "AppUIConfig.h"
+
 #import "AppConfig.h"
 #import "AppSetting.h"
 typedef enum noteType{
