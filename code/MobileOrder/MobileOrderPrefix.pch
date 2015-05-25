@@ -1,0 +1,42 @@
+//
+//  MobileOrderPrefix.pch
+//  MobileOrder
+//
+//  Created by cszhan on 15-5-26.
+//  Copyright (c) 2015年 com.ximalaya. All rights reserved.
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "ZCSNetClientConfig.h"
+//#import "UIFramework.h"
+#import "ZCSNotficationMgr.h"
+#import "NEDebugTool.h"
+#import "UIParamsCfg.h"
+#import "UIImage+Extend.h"
+#import "UIComUtil.h"
+#import "CarServiceNetDataMgr.h"
+//#import "AppConfig.h"
+#import "SVProgressHUD.h"
+#import "UIBaseFactory.h"
+//#import "AppMSGDef.h"
+#import "PlanformTool.h"
+
+#import "CarServiceNetDataMgr.h"
+
+#import "AppConfig.h"
+#import "AppSetting.h"
+typedef enum noteType{
+    Note_New,
+    Note_Bid,
+    Note_Info,
+}NoteType;
+
+#endif
