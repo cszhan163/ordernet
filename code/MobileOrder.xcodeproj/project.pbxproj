@@ -130,13 +130,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		044AC5451B164F6F00F7D196 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 044AC5411B164F6F00F7D196 /* JsonLib.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 043D9AD117F9C73A00BE0C31;
-			remoteInfo = JsonLib;
-		};
 		04A3535A1B1381B6003A80AA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 04A353381B1381B6003A80AA /* Project object */;
@@ -192,7 +185,6 @@
 		044AC5301B1648F900F7D196 /* OrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderTableViewCell.xib; sourceTree = "<group>"; };
 		044AC5311B1648F900F7D196 /* UICarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICarTableViewCell.h; sourceTree = "<group>"; };
 		044AC5321B1648F900F7D196 /* UICarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICarTableViewCell.m; sourceTree = "<group>"; };
-		044AC5411B164F6F00F7D196 /* JsonLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JsonLib.xcodeproj; path = ../BaseLib/JSON/JsonLib/JsonLib.xcodeproj; sourceTree = "<group>"; };
 		044AC5471B1650EE00F7D196 /* VendorListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VendorListViewController.h; path = Order/VendorListViewController.h; sourceTree = "<group>"; };
 		044AC5481B1650EE00F7D196 /* VendorListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VendorListViewController.m; path = Order/VendorListViewController.m; sourceTree = "<group>"; };
 		04913E951B196E8800179567 /* MGBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGBox.h; sourceTree = "<group>"; };
@@ -389,14 +381,6 @@
 			path = CellView;
 			sourceTree = "<group>";
 		};
-		044AC5421B164F6F00F7D196 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				044AC5461B164F6F00F7D196 /* libJsonLib.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		04913E941B196E8800179567 /* MGBox */ = {
 			isa = PBXGroup;
 			children = (
@@ -430,7 +414,6 @@
 				042C7DD91B1B811700E8A53C /* libZCSUIFrameWork.a */,
 				042C7DBB1B19BBEB00E8A53C /* AudioToolbox.framework */,
 				042C7DB91B19BBE100E8A53C /* CoreAudio.framework */,
-				044AC5411B164F6F00F7D196 /* JsonLib.xcodeproj */,
 				04A3539D1B139243003A80AA /* MobileCoreServices.framework */,
 				04A3539B1B139238003A80AA /* libMobileGestaltExtensions.dylib */,
 				04A353981B139215003A80AA /* CoreTelephony.framework */,
@@ -746,12 +729,6 @@
 			mainGroup = 04A353371B1381B6003A80AA;
 			productRefGroup = 04A353411B1381B6003A80AA /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 044AC5421B164F6F00F7D196 /* Products */;
-					ProjectRef = 044AC5411B164F6F00F7D196 /* JsonLib.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				04A3533F1B1381B6003A80AA /* MobileOrder */,
@@ -759,16 +736,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		044AC5461B164F6F00F7D196 /* libJsonLib.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libJsonLib.a;
-			remoteRef = 044AC5451B164F6F00F7D196 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		04A3533E1B1381B6003A80AA /* Resources */ = {
