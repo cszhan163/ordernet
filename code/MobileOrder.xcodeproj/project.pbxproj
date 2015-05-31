@@ -18,6 +18,7 @@
 		042C7DD31B1B73CF00E8A53C /* title_big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 042C7DCA1B1B73CF00E8A53C /* title_big@2x.png */; };
 		042C7DD41B1B73CF00E8A53C /* uhuo_default_l@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 042C7DCB1B1B73CF00E8A53C /* uhuo_default_l@2x.png */; };
 		042C7DD51B1B73CF00E8A53C /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 042C7DCC1B1B73CF00E8A53C /* whiteArrow@2x.png */; };
+		042C7DDA1B1B811700E8A53C /* libZCSUIFrameWork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 042C7DD91B1B811700E8A53C /* libZCSUIFrameWork.a */; };
 		044AC50E1B14D4DD00F7D196 /* titlebar.png in Resources */ = {isa = PBXBuildFile; fileRef = 044AC50D1B14D4DD00F7D196 /* titlebar.png */; };
 		044AC5141B16472E00F7D196 /* BSTellNetListBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 044AC5131B16472E00F7D196 /* BSTellNetListBaseViewController.m */; };
 		044AC5171B16484F00F7D196 /* GoodsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 044AC5161B16484F00F7D196 /* GoodsListViewController.m */; };
@@ -58,7 +59,6 @@
 		04A353851B138898003A80AA /* BaoCarNetBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A353841B138898003A80AA /* BaoCarNetBaseViewController.m */; };
 		04A3538B1B138FAA003A80AA /* CarServiceNetDataMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A3538A1B138FAA003A80AA /* CarServiceNetDataMgr.m */; };
 		04A353901B139142003A80AA /* AppSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A3538F1B139142003A80AA /* AppSetting.m */; };
-		04A353911B139185003A80AA /* libZCSUIFrameWork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A3536E1B1382F4003A80AA /* libZCSUIFrameWork.a */; };
 		04A353951B1391AE003A80AA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A353941B1391AE003A80AA /* CFNetwork.framework */; };
 		04A353971B1391C3003A80AA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A353961B1391C3003A80AA /* libz.dylib */; };
 		04A3539A1B139220003A80AA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A353921B1391A9003A80AA /* SystemConfiguration.framework */; };
@@ -144,13 +144,6 @@
 			remoteGlobalIDString = 04A3533F1B1381B6003A80AA;
 			remoteInfo = MobileOrder;
 		};
-		04A3536D1B1382F4003A80AA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 04A353691B1382F4003A80AA /* ZCSUIFrameWork.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 044E74C7158C8A590048CB70;
-			remoteInfo = ZCSUIFrameWork;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -167,6 +160,7 @@
 		042C7DCA1B1B73CF00E8A53C /* title_big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "title_big@2x.png"; sourceTree = "<group>"; };
 		042C7DCB1B1B73CF00E8A53C /* uhuo_default_l@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uhuo_default_l@2x.png"; sourceTree = "<group>"; };
 		042C7DCC1B1B73CF00E8A53C /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
+		042C7DD91B1B811700E8A53C /* libZCSUIFrameWork.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libZCSUIFrameWork.a; sourceTree = "<group>"; };
 		044AC50D1B14D4DD00F7D196 /* titlebar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titlebar.png; sourceTree = "<group>"; };
 		044AC5121B16472E00F7D196 /* BSTellNetListBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTellNetListBaseViewController.h; sourceTree = "<group>"; };
 		044AC5131B16472E00F7D196 /* BSTellNetListBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTellNetListBaseViewController.m; sourceTree = "<group>"; };
@@ -229,7 +223,6 @@
 		04A353591B1381B6003A80AA /* MobileOrderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileOrderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A3535E1B1381B6003A80AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04A3535F1B1381B6003A80AA /* MobileOrderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobileOrderTests.m; sourceTree = "<group>"; };
-		04A353691B1382F4003A80AA /* ZCSUIFrameWork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZCSUIFrameWork.xcodeproj; path = ../BaseLib/UIFramework/ZCSUIFrameWork/ZCSUIFrameWork.xcodeproj; sourceTree = "<group>"; };
 		04A3536F1B1385F4003A80AA /* BSTellBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTellBaseViewController.h; sourceTree = "<group>"; };
 		04A353701B1385F4003A80AA /* BSTellBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTellBaseViewController.m; sourceTree = "<group>"; };
 		04A353721B138644003A80AA /* BSTellTimerReflushDataProcotol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSTellTimerReflushDataProcotol.h; sourceTree = "<group>"; };
@@ -330,9 +323,9 @@
 				042C7DBC1B19BBEB00E8A53C /* AudioToolbox.framework in Frameworks */,
 				04A3539E1B139243003A80AA /* MobileCoreServices.framework in Frameworks */,
 				04A3539A1B139220003A80AA /* SystemConfiguration.framework in Frameworks */,
+				042C7DDA1B1B811700E8A53C /* libZCSUIFrameWork.a in Frameworks */,
 				04A353971B1391C3003A80AA /* libz.dylib in Frameworks */,
 				04A353951B1391AE003A80AA /* CFNetwork.framework in Frameworks */,
-				04A353911B139185003A80AA /* libZCSUIFrameWork.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +427,7 @@
 		04A353371B1381B6003A80AA = {
 			isa = PBXGroup;
 			children = (
+				042C7DD91B1B811700E8A53C /* libZCSUIFrameWork.a */,
 				042C7DBB1B19BBEB00E8A53C /* AudioToolbox.framework */,
 				042C7DB91B19BBE100E8A53C /* CoreAudio.framework */,
 				044AC5411B164F6F00F7D196 /* JsonLib.xcodeproj */,
@@ -443,7 +437,6 @@
 				04A353961B1391C3003A80AA /* libz.dylib */,
 				04A353941B1391AE003A80AA /* CFNetwork.framework */,
 				04A353921B1391A9003A80AA /* SystemConfiguration.framework */,
-				04A353691B1382F4003A80AA /* ZCSUIFrameWork.xcodeproj */,
 				04A353421B1381B6003A80AA /* MobileOrder */,
 				04A3535C1B1381B6003A80AA /* MobileOrderTests */,
 				04A353411B1381B6003A80AA /* Products */,
@@ -509,14 +502,6 @@
 				04A3535E1B1381B6003A80AA /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		04A3536A1B1382F4003A80AA /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				04A3536E1B1382F4003A80AA /* libZCSUIFrameWork.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		04A353741B138801003A80AA /* ResignAndLogin */ = {
@@ -766,10 +751,6 @@
 					ProductGroup = 044AC5421B164F6F00F7D196 /* Products */;
 					ProjectRef = 044AC5411B164F6F00F7D196 /* JsonLib.xcodeproj */;
 				},
-				{
-					ProductGroup = 04A3536A1B1382F4003A80AA /* Products */;
-					ProjectRef = 04A353691B1382F4003A80AA /* ZCSUIFrameWork.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -785,13 +766,6 @@
 			fileType = archive.ar;
 			path = libJsonLib.a;
 			remoteRef = 044AC5451B164F6F00F7D196 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		04A3536E1B1382F4003A80AA /* libZCSUIFrameWork.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libZCSUIFrameWork.a;
-			remoteRef = 04A3536D1B1382F4003A80AA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1043,6 +1017,10 @@
 				INFOPLIST_FILE = MobileOrder/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1062,6 +1040,10 @@
 				INFOPLIST_FILE = MobileOrder/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
