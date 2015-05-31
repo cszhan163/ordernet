@@ -6,13 +6,17 @@
 //  Copyright (c) 2014年 cszhan. All rights reserved.
 //
 
-#define kLeftPendingX  10
-#define kTopPendingY  8
-#define kHeaderItemPendingY 8
+#define kLeftPendingX           10
+#define kTopPendingY            8
+#define kHeaderItemPendingY     8
+
+#define kSectionHeight          35.f
+
+#define kCellHeight             100.f
 
 
 
-#import "BidItemCell.h"
+#import "FoodItemCell.h"
 #import "GoodsListViewController.h"
 #import "NSDate+Ex.h"
 
@@ -218,12 +222,12 @@
     return [self.goodsListArray count];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 25.f;
+    return kSectionHeight;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
    
     NSString *title = [self.goodsListArray objectAtIndex:section];
-    UILabel *titleLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:10.f] withTextColor:kGoodCatagorySelectedTextColor withText:title withFrame:CGRectMake(0.f, 0.f,kDeviceScreenWidth, 25.f)];
+    UILabel *titleLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:15.f] withTextColor:kGoodCatagorySelectedTextColor withText:title withFrame:CGRectMake(0.f, 0.f,kDeviceScreenWidth, kSectionHeight)];
     titleLabel.textAlignment = NSTextAlignmentLeft;
     titleLabel.backgroundColor = [UIColor whiteColor];
     return titleLabel;
@@ -240,18 +244,28 @@
 	static NSString *CellIdentifier = @"Cell";
    
     
-    BidItemCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    FoodItemCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
         
-#if 0
-        NSArray *nibArr = [[NSBundle mainBundle] loadNibNamed:@"BidItemCell"
+#if 1
+        NSArray *nibArr = [[NSBundle mainBundle] loadNibNamed:@"FoodItemCell"
                                                         owner:self options:nil];
-        for (id oneObject in nibArr)
-            if ([oneObject isKindOfClass:[BidItemCell class]])
-                cell = (BidItemCell*)oneObject;
+        /*
+        for (id oneObject in nibArr){
+            if ([oneObject isKindOfClass:[FoodItemCell class]])
+                cell = (FoodItemCell*)oneObject;
+        */
+        NSInteger index = 0;
+        
+        if(kDeviceCheckIphone6){
+            index = 1;
+        }else if(kDeviceCheckIphone6Plus){
+            index = 2;
+        }
+        cell = nibArr[index];
 #else
-        cell = [[BidItemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[FoodItemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 #endif
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor whiteColor];
@@ -265,7 +279,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return 140.f;
+    return kCellHeight;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

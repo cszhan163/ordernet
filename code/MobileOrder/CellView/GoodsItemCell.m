@@ -6,7 +6,7 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "BidItemCell.h"
+#import "GoodsItemCell.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define kLeftCellPendingX     10.f
@@ -23,14 +23,14 @@
 
 static  NSString* kTitleTextArray[] = {@"场次名称",@"",@"场次编号",@"保证金",@"卖方单位",@"参加状态",@"竞买时间",@""};
 
-@implementation BidItemCell
-@synthesize userIconImageView;
+@implementation GoodsItemCell
+@synthesize goodsIconImageView;
 @synthesize locationLabel;
 @synthesize nickNameLabel;
 @synthesize relationBtn;
 @synthesize indictTextLabel;
 -(void)dealloc{
-    self.userIconImageView = nil;
+    self.goodsIconImageView = nil;
     self.locationLabel = nil;
     self.nickNameLabel = nil;
     self.relationBtn = nil;
@@ -106,7 +106,7 @@ static  NSString* kTitleTextArray[] = {@"场次名称",@"",@"场次编号",@"保
 +(id)getFromNibFile
 {
     NSArray *nibItems = [[NSBundle mainBundle] loadNibNamed:@"BidItemCell" owner:nil options:nil];
-    BidItemCell *instance = [nibItems objectAtIndex:0];
+    GoodsItemCell *instance = [nibItems objectAtIndex:0];
     /*
     instance.userIconImageView.layer.borderWidth = 2.5f;
     instance.userIconImageView.layer.borderColor = [[UIColor whiteColor]CGColor];

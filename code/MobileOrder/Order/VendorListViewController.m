@@ -8,7 +8,7 @@
 
 #import "VendorListViewController.h"
 
-#import "BidItemCell.h"
+#import "GoodsItemCell.h"
 
 #import "GoodsListViewController.h"
 
@@ -62,7 +62,7 @@
     static NSString *CellIdentifier = @"Cell";
     
     
-    BidItemCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    GoodsItemCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
         
@@ -73,7 +73,7 @@
             if ([oneObject isKindOfClass:[BidItemCell class]])
                 cell = (BidItemCell*)oneObject;
 #else
-        cell = [[BidItemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[GoodsItemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 #endif
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor clearColor];

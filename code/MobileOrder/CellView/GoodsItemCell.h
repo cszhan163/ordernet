@@ -10,7 +10,7 @@
 //#import "UINetActiveIndicatorButton.h"
 #import "UICarTableViewCell.h"
 @class UINetActiveIndicatorButton;
-@interface BidItemCell : UICarTableViewCell{
+@interface GoodsItemCell : UICarTableViewCell{
     
 }
 @property(nonatomic,strong)NSMutableArray *labelArray;
@@ -18,7 +18,7 @@
 @property(nonatomic,retain)IBOutlet UILabel *locationLabel;
 @property(nonatomic,strong)IBOutlet UILabel *indictTextLabel;
 @property(nonatomic,retain)IBOutlet UINetActiveIndicatorButton *relationBtn;
-@property(nonatomic,retain)IBOutlet UIImageView *userIconImageView;
+@property(nonatomic,retain)IBOutlet UIImageView *goodsIconImageView;
 +(id)getFromNibFile;
 - (BOOL)setCellItemValue:(NSString*)value withIndex:(NSInteger)index;
 @end

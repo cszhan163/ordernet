@@ -34,19 +34,19 @@
 		<key>5E6300B33454B03CD516E3390A5DB2B69262C8C4</key>
 		<string>../../..</string>
 		<key>93af662d-0e5f-4780-8b18-11e6931d3652++3940</key>
-		<string>../../..BaseLib/Utility/</string>
+		<string>../../..BaseLib/Utility</string>
 		<key>93af662d-0e5f-4780-8b18-11e6931d3652++4026</key>
-		<string>../../..BaseLib/NetWork/</string>
+		<string>../../..BaseLib/NetWork</string>
 		<key>93af662d-0e5f-4780-8b18-11e6931d3652++5120</key>
-		<string>../../..BaseLib/UIFramework/</string>
+		<string>../../..BaseLib/UIFramework</string>
 		<key>93af662d-0e5f-4780-8b18-11e6931d3652++5901</key>
-		<string>../../..BaseLib/ASIHTTPRequest/</string>
+		<string>../../..BaseLib/ASIHTTPRequest</string>
 		<key>93af662d-0e5f-4780-8b18-11e6931d3652++8760</key>
-		<string>../../..BaseLib/UICommon/</string>
+		<string>../../..BaseLib/UICommon</string>
 		<key>93af662d-0e5f-4780-8b18-11e6931d3652++9829</key>
-		<string>../../..BaseLib/SVProgressHUD/</string>
+		<string>../../..BaseLib/SVProgressHUD</string>
 		<key>93af662d-0e5f-4780-8b18-11e6931d3652++989</key>
-		<string>../../..BaseLib/XML/</string>
+		<string>../../..BaseLib/XML</string>
 	</dict>
 	<key>IDESourceControlProjectRepositoryRootDictionary</key>
 	<dict>

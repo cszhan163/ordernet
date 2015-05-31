@@ -10,7 +10,10 @@
 #define MobileOrder_APPUIConfig_h
 
 /*
-
+ 750 x 1334 (@2x) for portrait
+ 1334 x 750 (@2x) for landscape
+ For iPhone 6 Plus:
+ 1242 x 2208 (@3x) for portrait
  2toobar(241,241,241)
  3 background (212,212,212)
  */
