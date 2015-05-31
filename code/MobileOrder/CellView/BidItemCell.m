@@ -8,13 +8,14 @@
 
 #import "BidItemCell.h"
 #import <QuartzCore/QuartzCore.h>
-#define kLeftCellPendingX 10.f
-#define kTopCellPendingY  10.f
 
-#define kTitleLabelWidth   60.f
-#define kTitleLabelHeight   20.f
+#define kLeftCellPendingX     10.f
+#define kTopCellPendingY      10.f
 
-#define kValueLabelWidth   80.f
+#define kTitleLabelWidth      60.f
+#define kTitleLabelHeight     20.f
+
+#define kValueLabelWidth      80.f
 
 
 #define kCellItemPending  30.f
@@ -33,7 +34,7 @@ static  NSString* kTitleTextArray[] = {@"场次名称",@"",@"场次编号",@"保
     self.locationLabel = nil;
     self.nickNameLabel = nil;
     self.relationBtn = nil;
-    [super dealloc];
+    SuperDealloc;
 }
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -42,7 +43,7 @@ static  NSString* kTitleTextArray[] = {@"场次名称",@"",@"场次编号",@"保
     {
         // Initialization code
         UIImageWithFileName(UIImage* image, @"bid_cell_bg.png");
-        assert(image);
+        //assert(image);
         CGFloat startX = kLeftCellPendingX;
         CGFloat startY = kTopCellPendingY;
         self.layer.contents = (id)image.CGImage;

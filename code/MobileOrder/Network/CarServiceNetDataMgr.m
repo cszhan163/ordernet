@@ -11,6 +11,7 @@
 #import "ZCSNetClientConfig.h"
 #import "ZCSNetClient.h"
 #import "ZCSNotficationMgr.h"
+#import "JSON.h"
 //#import "JQConnect_bsteelPay.h"
 //#import "AppSetting.h"
 //#import <iPlat4M_framework/iPlat4M_framework.h>

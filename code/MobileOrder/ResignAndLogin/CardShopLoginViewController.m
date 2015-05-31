@@ -171,7 +171,7 @@
     frmobj.type = self.type;
      */
     [self.navigationController pushViewController:frmobj animated:YES];
-    [frmobj release];
+    SafeRelease(frmobj);
 #endif
 }
 -(IBAction)findpw_click:(id)sender

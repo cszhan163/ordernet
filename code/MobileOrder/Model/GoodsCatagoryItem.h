@@ -10,4 +10,7 @@
 
 @interface GoodsCatagoryItem : NSObject
 
+@property (nonatomic, strong) NSString *name;
+
+@property (nonatomic, assign) CGFloat cellHeight;
 @end

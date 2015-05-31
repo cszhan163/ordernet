@@ -10,4 +10,15 @@
 
 @interface GoodsCatagoryTableViewCell : UITableViewCell
 
+@property (nonatomic, strong) UILabel   *titleLable;
+
+
++ (CGFloat)getCellDefaultHeight;
+
++ (CGFloat)getCellHeightWithText:(NSString*)txt;
+
+- (void)setCellHeight:(CGFloat)height;
+
+- (void)setCellSelectedStatus:(BOOL)status;
+
 @end

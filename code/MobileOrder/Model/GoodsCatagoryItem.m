@@ -10,4 +10,9 @@
 
 @implementation GoodsCatagoryItem
 
+- (void)dealloc {
+    self.name = nil;
+    SuperDealloc;
+}
+
 @end

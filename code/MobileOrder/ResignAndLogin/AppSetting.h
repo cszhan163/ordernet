@@ -18,4 +18,8 @@
 + (void)setFirstOpen:(BOOL)status;
 
 +(void)setLogoutUser;
+
++(void)setLoginUserId:(NSString*)userId;
+
++(void)setLoginUserPassword:(NSString*)password;
 @end

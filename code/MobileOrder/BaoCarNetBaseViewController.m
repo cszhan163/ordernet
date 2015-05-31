@@ -77,6 +77,6 @@
 -(void)dealloc
 {
     [ZCSNotficationMgr removeObserver:self];
-    [super dealloc];
+    SuperDealloc;
 }
 @end

@@ -8,6 +8,25 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GoodCatogoryTableViewController : UITableViewController
+@protocol GooodsCatagoryDeleagte <NSObject>
+
+@optional
+
+- (void)didSelectorItemIndex:(NSInteger)index;
+
+@end
+
+@interface GoodsCatagoryView : UIView
+
+
+@property (nonatomic, strong) id<GooodsCatagoryDeleagte> delegate;
+
+- (id)initWithFrame:(CGRect)frame ;
+
+@property (nonatomic,strong)NSArray *dataArray;
+
+- (void)scrollViewToIndex:(NSInteger)index;
+
++ (CGFloat) getCatagoryCellHeight:(NSString*)txt ;
 
 @end

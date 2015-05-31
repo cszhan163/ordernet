@@ -10,20 +10,38 @@
 #define kTopPendingY  8
 #define kHeaderItemPendingY 8
 
+
+
 #import "BidItemCell.h"
-#import "BidViewController.h"
+#import "GoodsListViewController.h"
+#import "NSDate+Ex.h"
 
-#import "BidDetailViewController.h"
+#import "GoodsCatagoryView.h"
+#import "GoodsCatagoryItem.h"
+#import "GoodsCatagoryTableViewCell.h"
 
-#import "BidMainViewController.h"
 
-@interface BidViewController(){
+//#import "BidDetailViewController.h"
+
+//#import "BidMainViewController.h"
+
+@interface GoodsListViewController()<GooodsCatagoryDeleagte>{
     UIView *tbHeaderView;
+    NSInteger currSection;
+    
 }
-@property(nonatomic,strong)NSDictionary *locationDict;
+@property(nonatomic, strong)  NSDictionary *locationDict;
+
+@property (nonatomic, strong) NSArray      *goodsListArray;
+@property(nonatomic, strong)   GoodsCatagoryView *catogoryView;
 @end
 
-@implementation BidViewController
+@implementation GoodsListViewController
+
+- (void)dealloc {
+    self.catogoryView = nil;
+    SuperDealloc;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -69,11 +87,7 @@
 
     
 }
-- (void)switchToBidMain{
-    BidMainViewController *bidMainVc = [[BidMainViewController alloc]init];
-    [self.navigationController pushViewController:bidMainVc animated:YES];
-    SafeRelease(bidMainVc);
-}
+
 - (void)setNavgationBarRightButton{
 
     UIImageWithFileName(UIImage *bgImage, @"bid_btn.png");
@@ -88,11 +102,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    /*
-    tweetieTableView.bounces = YES;
-    [tweetieTableView setDragEffect:YES];
-    tweetieTableView.hasDownDragEffect = YES;
-     */
+    
+    
+    //[tweetieTableView setDragEffect:YES];
+    //tweetieTableView.hasDownDragEffect = YES;
     //[[DBManage getSingletone]setDelegate:self];
     //    CGPoint insertPoint = CGPointMake(167,50);
     //    int width = 300;
@@ -121,49 +134,48 @@
     [self setNavgationBarRightButton];
     //[self setRightTextContent:NSLocalizedString(@"Done", @"")];
 	// Do any additional setup after loading the view.
-    tweetieTableView.frame = CGRectMake(kLeftPendingX,kMBAppTopToolBarHeight+kTopPendingY,kDeviceScreenWidth-2*kLeftPendingX,kMBAppRealViewHeight-kTopPendingY);
-    //mainView.topBarView.backgroundColor = HexRGB(1, 159, 233);
-    /*
-    UIImageWithFileName(bgImage, @"car_plant_bg.png");
-    UIImageView *tableViewBg = [[UIImageView alloc]initWithImage:bgImage];
-    [self.view  addSubview:tableViewBg];
-    SafeRelease(tableViewBg);
-    tableViewBg.frame = tweetieTableView.frame;
-    [tweetieTableView removeFromSuperview];
-    [tableViewBg addSubview:tweetieTableView];
-    tweetieTableView.frame = CGRectMake(0.f,0.f,tableViewBg.frame.size.width,tableViewBg.frame.size.height);
+    CGRect originRect = tweetieTableView.frame;
+    originRect.origin.x = originRect.origin.x+(kDeviceScreenWidth)/4;
+    tweetieTableView.frame = originRect;
     
-    tableViewBg.clipsToBounds = YES;
-    tableViewBg.userInteractionEnabled = YES;
-     */
     tweetieTableView.delegate = self;
     tweetieTableView.backgroundColor = [UIColor clearColor];
     tweetieTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tweetieTableView.clipsToBounds = YES;
     
-    /*
-    tbHeaderView = [self addHeaderView:tableViewBg   withArrayData:nil];
-    tweetieTableView.normalEdgeInset = UIEdgeInsetsMake(tbHeaderView.frame.size.height,0.f,0.f,0.f);
-    */
-#if 0
-    NSError *error = nil;
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"plantData" ofType:@"geojson"];
-    NSString *dataStr = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
-    //[NSJSONSerialization]
+    self.goodsListArray = @[@"面",@"凉菜",@"肉夹馍",@"肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍",@"肉夹馍肉夹馍",@"肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍",@"肉夹馍",@"面",@"凉菜"];
     
-    NSDictionary *restData = [NSJSONSerialization   JSONObjectWithData:[dataStr dataUsingEncoding:NSUTF8StringEncoding ]options:NSJSONReadingMutableContainers  error:&error];
+    _catogoryView = [[GoodsCatagoryView alloc]initWithFrame:CGRectMake(0.f,originRect.origin.y, kDeviceScreenWidth/4,originRect.size.height)];
     
-    self.dataArray = [[restData objectForKey:@"info"] objectForKey:@"data"];
-    
-    [tweetieTableView reloadData];
+    [_catogoryView setDelegate:self];
+    _catogoryView.dataArray = [self convertToModelData:self.goodsListArray];
+    [self.view addSubview:_catogoryView];
+    [self.catogoryView scrollViewToIndex:0];
     
     
-#else
-    //[self  ]
-    
-#endif
     
 }
+
+- (NSArray*)convertToModelData:(NSArray*)data{
+
+    NSMutableArray *result = [NSMutableArray array];
+    for(id item in data){
+    
+        if([item isKindOfClass:[NSDictionary class]]){
+        
+            
+        } else if([item isKindOfClass:[NSString class]]){
+            
+            GoodsCatagoryItem *modelItem = [[GoodsCatagoryItem alloc]init];
+            modelItem.name = item;
+            modelItem.cellHeight = [GoodsCatagoryView getCatagoryCellHeight:item];
+            [result addObject:modelItem];
+            SafeRelease(modelItem);
+        }
+    }
+    return result;
+}
+
 - (UIView*)addHeaderView:(UIView*)parentView withArrayData:(NSArray*)dataArr{
     UIImage *bgImage = nil;
     UIImageWithFileName(bgImage, @"car_plant_header.png");
@@ -200,10 +212,27 @@
 }
 #pragma mark -
 #pragma mark tableview
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+
+    return [self.goodsListArray count];
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 25.f;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+   
+    NSString *title = [self.goodsListArray objectAtIndex:section];
+    UILabel *titleLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:10.f] withTextColor:kGoodCatagorySelectedTextColor withText:title withFrame:CGRectMake(0.f, 0.f,kDeviceScreenWidth, 25.f)];
+    titleLabel.textAlignment = NSTextAlignmentLeft;
+    titleLabel.backgroundColor = [UIColor whiteColor];
+    return titleLabel;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	//return  5;
-    return [self.dataArray count];
+	return  5;
+    //return [self.dataArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -225,68 +254,12 @@
         cell = [[BidItemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 #endif
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [UIColor clearColor];
+        cell.backgroundColor = [UIColor whiteColor];
         cell.clipsToBounds = YES;
         
     }
-    /*
-     返回JSON数据参数	参数名称	参数类型
-     wtid	场次Id
-     ggmc	公告title
-     ggid	公告id
-     joinStatus	参加状态	1 参加
-     0 未参加
-     hzjc	卖家简称
-     dfyj	买家保证金
-     kssj	竞价开始时间
-     jssj	竞价结束时间
-     isCanJoin	可参加状态	1 可参加
-     0 不可参加
-     ssdl	所属大类	
-
-     */
-    NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row];
-    int index = 0;
-    NSString *value = @"";
     
-    
-    value = [item objectForKey:@"wtmc"];
-    [cell setCellItemValue:value withIndex:index++];
-    //id
-    value = [item objectForKey:@"wtid"];
-    [cell setCellItemValue:value withIndex:index++];
-    
-
-    //起拍价
-    value = [item objectForKey:@"dfyj"];
-    value = [NSString stringWithFormat:@"%0.2lf元",[value floatValue]];
-    [cell setCellItemValue:value withIndex:index++];
-    
-    //
-    //sell company
-    value = [item objectForKey:@"hzjc"];
-    
-    [cell setCellItemValue:value withIndex:index++];
-    
-  
-    
-    //是否参加
-    value = [item objectForKey:@"joinStatus"];
-    if([value intValue]){
-        [cell setCellItemValue:@"已参加" withIndex:index++];
-    }
-    else{
-        [cell setCellItemValue:@"未参加" withIndex:index++];
-    }
-    //[cell setCellItemValue:value withIndex:index++];
-    //time
-    NSString *startString = [item  objectForKey:@"kssj"];
-    NSString *endString = [item objectForKey:@"jssj"];
-    startString  = [NSDate  dateFormart:startString fromFormart:@"yyMMddHHmm" toFormart:@"yyyy-MM-dd    HH:mm"];
-    endString  = [NSDate  dateFormart:endString fromFormart:@"yyMMddHHmm" toFormart:@"HH:mm"];
-    value  = [NSString  stringWithFormat:@"%@ - %@",startString,endString];
-    [cell setCellItemValue:value withIndex:index++];
-    
+    currSection = indexPath.section;
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -297,48 +270,70 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    BidDetailViewController *vc = [[BidDetailViewController alloc]initWithNibName:nil bundle:nil];
-    
-    [vc  setNavgationBarTitle:@"场次详情"];
-    
-
-    if([self.dataArray count]){
-        NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row];
-        //NSDictionary *data = [item objectForKey:@"DayDetailInfo"];
-        vc.data = item;
-        vc.wtid = [item objectForKey:@"wtid"];
-   
-    if(![[item objectForKey:@"isCanJoin"]intValue]){
-        
-        [vc  setJoinButtonHiddenStatus:YES];
-        
-    }
-    /*
+        /*
     vc.delegate = self;
     NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row];
     //NSDictionary *data = [item objectForKey:@"DayDetailInfo"];
     vc.mData = item;
      */
-#if 1
-    [self.navigationController pushViewController:vc animated:YES];
-#else
-    
-    [ZCSNotficationMgr postMSG:kPushNewViewController obj:vc];
-#endif
-    //[self.navigationController pushViewController:vc animated:YES];
-   
-    SafeRelease(vc);
-         }
+
     
 }
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section NS_AVAILABLE_IOS(6_0) {
+    if(section==0 ){
+         [self.catogoryView scrollViewToIndex:0];
+        return;
+    }
+    CGRect oldRect = [tableView rectForSection:section];
+    UITableViewHeaderFooterView *headerview = [tableView headerViewForSection:section+1];
+    //CGRect boxRect = CGRectMake(0.f,0.f,view.frame.size.width,view.frame.size.height);
+    //if(rect.origin.y == view.frame.size.height)
+    //if(currSection != section)
+    {
+    
+        [self.catogoryView scrollViewToIndex:section];
+        
+    }
+
+    
+}
+- (void)tableView:(UITableView *)tableView didEndDisplayingHeaderView:(UIView *)view forSection:(NSInteger)section NS_AVAILABLE_IOS(6_0){
+    if(section+1>=[self.goodsListArray count])
+        return;
+    CGRect rect = [[UIApplication sharedApplication].keyWindow convertRect:view.frame fromView:view];
+    CGRect nextRect = [tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section+1]];
+    CGRect  size = [tableView rectForSection:section];
+    
+    //CGRect boxRect = CGRectMake(0.f,0.f,view.frame.size.width,view.frame.size.height);
+    if(rect.origin.y == view.frame.size.height)
+        //if(currSection != section)
+    {
+        
+        [self.catogoryView scrollViewToIndex:section];
+        
+    }
+}
+
+#pragma mark -
+
+- (void)didSelectorItemIndex:(NSInteger)index {
+
+    [tweetieTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:index] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+}
+
 -(void)didSelectorTopNavigationBarItem:(id)sender{
    
+    if([sender tag] == 0) {
+    
+        [self.navigationController popViewControllerAnimated:YES];
+    }
     
     if([sender tag] == 1){
     
-        BidMainViewController *bidMainVc = [[BidMainViewController alloc]init];
-        [self.navigationController pushViewController:bidMainVc animated:YES];
-        SafeRelease(bidMainVc);
+//        BidMainViewController *bidMainVc = [[BidMainViewController alloc]init];
+//        [self.navigationController pushViewController:bidMainVc animated:YES];
+//        SafeRelease(bidMainVc);
     }
 }
 #pragma mark -
@@ -360,6 +355,7 @@
      rqStart	竞价日期1
      rqEnd	竞价日期2
      */
+    return;
     NSDate *date = [NSDate date];
     NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:
                            //catStr,@"cat",
@@ -372,17 +368,17 @@
                            @"20991231",@"rqEnd",
                            nil];
     CarServiceNetDataMgr *carServiceNetDataMgr = [CarServiceNetDataMgr getSingleTone];
-    self.request = [carServiceNetDataMgr  queryAuctionWts4Move:param];
+    //self.request = [carServiceNetDataMgr  queryAuctionWts4Move:param];
 }
 - (NSString*)formartDateTime:(NSDate*)date withFormat:(NSString*)formart{
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
 	[formatter setLocale:locale];
-	[locale release];
+    SafeRelease(locale);
 	[formatter setDateFormat:formart];
 	NSString *string = [formatter stringFromDate:date];
-	[formatter release];
+	SafeRelease(locale);
     return string;
 }
 -(void)didNetDataOK:(NSNotification*)ntf

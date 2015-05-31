@@ -25,7 +25,7 @@
     self.mClounmWidthArray = nil;
     self.mCellTitleArray  = nil;
     self.mCellItemArray = nil;
-    [super dealloc];
+    SuperDealloc;
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

@@ -30,7 +30,7 @@
     self.confirmPasswordTextFied = nil;
     self.radomCodeTextFied  = nil;
     self.mobilePhoneNumStr = nil;
-    [super dealloc];
+    SuperDealloc;
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -164,11 +164,11 @@
 {
     //if([self check])
     if(type == 0){
-        kNetStartShow(@"注册中...",self.view);
+        //kNetStartShow(@"注册中...",self.view);
     }
     else
     {
-        kNetStartShow(@"发送中...",self.view);
+        //kNetStartShow(@"发送中...",self.view);
     }
     CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
     
@@ -195,7 +195,7 @@
                  self.confirmPasswordTextFied.text,@"repassword",
                  self.radomCodeTextFied.text,@"sms",
                  nil];
-        self.request = [cardShopMgr userResetPassword:param];
+        //self.request = [cardShopMgr userResetPassword:param];
     }
    
     

@@ -11,6 +11,7 @@
 #import "CarServiceNetDataMgr.h"
 //#import "ZCSNetClientDataMgr.h"
 #import "SVProgressHUD.h"
+#import "ZCSNetClient.h"
 
 #import "CardShopResignViewController.h"
 
@@ -28,7 +29,7 @@
 {
     self.subClassInputTextField = nil;
     
-    [super dealloc];
+   SuperDealloc
 }
 - (void)loadView
 {
@@ -58,7 +59,7 @@
     //mainView.topBarView.frame = CGRectMake(0.f,0.f,320.f,44.f);
    
     
-    self.subClassInputTextField = [[[UITextField alloc]initWithFrame:CGRectMake(KLoginAndResignPendingX,KLoginAndResignPendingX+kMBAppTopToolBarHeight,kDeviceScreenWidth-2*KLoginAndResignPendingX,44.f)]autorelease];
+    self.subClassInputTextField = [[UITextField alloc]initWithFrame:CGRectMake(KLoginAndResignPendingX,KLoginAndResignPendingX+kMBAppTopToolBarHeight,kDeviceScreenWidth-2*KLoginAndResignPendingX,44.f)];
     subClassInputTextField.borderStyle = UITextBorderStyleRoundedRect;
     subClassInputTextField.delegate = self;
     subClassInputTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
@@ -67,6 +68,7 @@
     subClassInputTextField.adjustsFontSizeToFitWidth = NO;
     subClassInputTextField.text = @"";
     subClassInputTextField.delegate = self;
+    SafeAutoRelease(self.subClassInputTextField);
     //subClassInputTextField.keyboardType = UIKeyboardTypeNumberPad;
     if(userEmail)
     {
@@ -124,7 +126,7 @@
 			break;
 		case 1:
 		{
-            [self startNetwork];
+            //[self startNetwork];
 			break;
 		}
 	}
@@ -145,11 +147,11 @@
     CarServiceNetDataMgr *netClientMgr = [CarServiceNetDataMgr getSingleTone];
     if(type == 0)
     {
-        self.request = [netClientMgr  userResignRandomCode:param];
+        //self.request = [netClientMgr  userResignRandomCode:param];
     }
     else
     {
-        self.request = [netClientMgr  userResetPwdRadomCode:param];
+        //self.request = [netClientMgr  userResetPwdRadomCode:param];
     }
     //[self ];
 }
@@ -160,7 +162,7 @@
     id obj = [ntf object];
     id respRequest = [obj objectForKey:@"request"];
     id data = [obj objectForKey:@"data"];
-    NSString *resKey = [respRequest resourceKey];
+    NSString *resKey = [(ZCSNetClient*)respRequest resourceKey];
    if(self.request == respRequest&&([resKey isEqualToString:@"getsms"]|| [resKey isEqualToString:@"getsmsfindpassword"]))
     {
         self.request = nil;
@@ -178,7 +180,7 @@
     frmobj.mobilePhoneNumStr = subClassInputTextField.text;
     frmobj.type = self.type;
     [self.navigationController pushViewController:frmobj animated:YES];
-    [frmobj release];
+    SafeAutoRelease(frmobj);
 }
 -(void)didNetDataFailed:(NSNotification*)ntf
 {

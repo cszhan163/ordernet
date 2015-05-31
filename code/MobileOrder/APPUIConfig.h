@@ -21,4 +21,16 @@
 
 #define  kNavBarTextColor              HexRGB(251,53,29)
 
+#define  kGoodCatagoryTextColor         HexRGB(0,0,0)
+#define  kGoodCatagorySelectedTextColor  HexRGB(251,53,29)
+
+
+#define  kGoodCatagoryTextFont          [UIFont systemFontOfSize:12]
+
+
+#define kMenuTitle        @"私人厨房"
+#define kMenuTitleArray   @[@"候餐",@"点餐",@"我"]
+#define kVendorTitle      @"餐馆选择"
+#define kOrderMenuTitle   @"点餐"
+
 #endif

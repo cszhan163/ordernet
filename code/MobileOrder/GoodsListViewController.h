@@ -11,6 +11,6 @@
 #import "BSTellNetListBaseViewController.h"
 //@class UIImageNetBaseViewController;
 //@protocol UIBaseViewControllerDelegate;
-@interface BidViewController:BSTellNetListBaseViewController
+@interface GoodsListViewController:BSTellNetListBaseViewController
 
 @end

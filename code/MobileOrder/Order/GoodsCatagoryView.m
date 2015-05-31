@@ -6,52 +6,124 @@
 //  Copyright (c) 2015年 com.ximalaya. All rights reserved.
 //
 
-#import "GoodCatogoryTableViewController.h"
+#import "GoodsCatagoryView.h"
+#import "GoodsCatagoryTableViewCell.h"
+#import "GoodsCatagoryItem.h"
 
-@interface GoodCatogoryTableViewController ()
+
+ static NSString *cellId = @"resumeCellId";
+
+@interface GoodsCatagoryView () <UITableViewDataSource,UITableViewDelegate>{
+
+  
+}
+@property (nonatomic, strong) UITableView *tableView;
 
 @end
 
-@implementation GoodCatogoryTableViewController
+@implementation GoodsCatagoryView
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+- (void)dealloc {
+
+    self.tableView = nil;
+    SuperDealloc;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (id)initWithFrame:(CGRect)frame {
+    
+    if(self = [super initWithFrame:frame]){
+    _tableView  = [[UITableView alloc]initWithFrame:CGRectMake(0.f, 0.f, frame.size.width, frame.size.height) style:UITableViewStylePlain];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+        _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+        _tableView.separatorColor = nil;
+    [_tableView registerClass:[GoodsCatagoryTableViewCell class] forCellReuseIdentifier:cellId];
+    [self addSubview:_tableView];
+    }
+    return self;
+}
+
+- (void)scrollViewToIndex:(NSInteger)index {
+    if(index>=[self.dataArray count])
+        return;
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0] ;
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
+    GoodsCatagoryTableViewCell *indexCell = (GoodsCatagoryTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+    [indexCell setCellSelectedStatus:YES];
+    for(int i =0;i<[self.dataArray count];i++){
+        if(i == index)
+            continue;
+        indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+        indexCell = (GoodsCatagoryTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+        [indexCell setCellSelectedStatus:NO];
+    }
+    
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
+    //#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
+    //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [self.dataArray count];
 }
 
-/*
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    GoodsCatagoryItem *item = [self.dataArray objectAtIndex:indexPath.row];
+    return item.cellHeight;
+}
+
+
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+   
+    GoodsCatagoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId forIndexPath:indexPath];
     
-    // Configure the cell...
-    
+    if(cell == nil){
+        
+        cell = [[GoodsCatagoryTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+        
+    }
+#if 1
+    GoodsCatagoryItem *item = [self.dataArray objectAtIndex:indexPath.row];
+    cell.titleLable.text =  item.name;
+   
+#else
+    cell.titleLable.text =  [self.dataArray objectAtIndex:indexPath.row];
+#endif
     return cell;
 }
-*/
+
+
++ (CGFloat) getCatagoryCellHeight:(NSString*)txt {
+
+    return [GoodsCatagoryTableViewCell getCellHeightWithText:txt];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if(self.delegate && [self.delegate respondsToSelector:@selector(didSelectorItemIndex:)]) {
+    
+        [self.delegate didSelectorItemIndex:indexPath.row];
+    }
+    /*
+     vc.delegate = self;
+     NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row];
+     //NSDictionary *data = [item objectForKey:@"DayDetailInfo"];
+     vc.mData = item;
+     */
+    
+    
+}
+
 
 /*
 // Override to support conditional editing of the table view.

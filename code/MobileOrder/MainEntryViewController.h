@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MainEntryViewController : UIViewController
+#import "BSTellBaseViewController.h"
+@interface MainEntryViewController : BSTellBaseViewController
 
 
 @end

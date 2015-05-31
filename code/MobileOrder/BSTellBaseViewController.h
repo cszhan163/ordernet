@@ -27,6 +27,11 @@
 
 @property   (nonatomic,strong) NSString *czy;
 
+
 - (void)setNavgationBarRightButton:(NSString*)title;
+
+- (void)setHiddenLeftBtn:(BOOL)hidden;
+
+- (void)setLeftNavigationBarItem;
 
 @end
