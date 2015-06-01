@@ -24,12 +24,14 @@
 #import "GoodsCatagoryItem.h"
 #import "GoodsCatagoryTableViewCell.h"
 
+#import "LeveyPopListView.h"
+
 
 //#import "BidDetailViewController.h"
 
 //#import "BidMainViewController.h"
 
-@interface GoodsListViewController()<GooodsCatagoryDeleagte>{
+@interface GoodsListViewController()<GooodsCatagoryDeleagte,FoodItemCellDelegate>{
     UIView *tbHeaderView;
     NSInteger currSection;
     
@@ -273,6 +275,39 @@
         
     }
     
+#if 1
+    if(indexPath.row%2){
+        GoodsCatagoryItem *goodItem = [[GoodsCatagoryItem alloc]init];
+        goodItem.name = @"肉夹馍";
+        goodItem.number = 2;
+        NSMutableArray *subArray = [NSMutableArray array];
+        for(id key in  @[@"红烧",@"水煮",@"油炸",@"乱炖"]){
+        
+            SubCatagoryItem *subItem = [[SubCatagoryItem alloc]init];
+            subItem.name = key;
+            subItem.number = 0;
+            [subArray addObject:subItem];
+            SafeRelease(subItem);
+        }
+        goodItem.subCatogoryArray =subArray;
+        [cell setCellItem:goodItem];
+    
+    }else{
+    
+        GoodsCatagoryItem *goodItem = [[GoodsCatagoryItem alloc]init];
+        goodItem.name = @"臊子面";
+        goodItem.number = 2;
+        goodItem.subCatogoryArray=@[];
+        [cell setCellItem:goodItem];
+    }
+#else
+    GoodsCatagoryItem *goodItem = [[self.goodsListArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    [cell setCellItem:goodItem];
+    
+#endif
+    [cell setIndexPath:indexPath];
+    [cell setDelegate:self];
+    
     currSection = indexPath.section;
     return cell;
 }
@@ -350,6 +385,32 @@
 //        SafeRelease(bidMainVc);
     }
 }
+
+
+#pragma  mark -
+
+#pragma mark CellActionDelegate
+
+- (void)cellDidClickOrderBtn:(id)sender  withIndexPath:(NSIndexPath*)indexPath {
+
+    
+}
+
+- (void)cellDidClickOrderDetailBtn:(id)sender withIndexPath:(NSIndexPath *)indexPath {
+    
+    GoodsCatagoryItem *goodItem = nil;
+#if 0
+    goodItem = [[self.goodsListArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+#else
+    goodItem = sender;
+#endif
+    LeveyPopListView *lplv = [[LeveyPopListView alloc] initWithTitle:goodItem.name options:goodItem.subCatogoryArray];
+    lplv.delegate = self;
+    [lplv showInView:self.view animated:YES];
+    SafeRelease(lplv);
+}
+
+
 #pragma mark -
 #pragma mark -network
 - (void) shouldLoadNewerData:(NTESMBTweetieTableView *) tweetieTableView{

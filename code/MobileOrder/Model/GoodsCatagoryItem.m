@@ -8,10 +8,20 @@
 
 #import "GoodsCatagoryItem.h"
 
+@implementation SubCatagoryItem
+
+- (void)dealloc {
+
+    self.name = nil;
+    SuperDealloc;
+}
+
+@end
+
 @implementation GoodsCatagoryItem
 
 - (void)dealloc {
-    self.name = nil;
+    self.subCatogoryArray = nil;
     SuperDealloc;
 }
 
