@@ -16,7 +16,7 @@
 //#define APPTEST //use test data
 //#define NE_NETCLIENT_DEBUG_
 //App DEBUG 
-#ifdef DEBUG
+#ifdef _DEBUG_
 //_IPHONE_
 #undef NE_LOG
 #define NE_LOG(...)		NSLog(__VA_ARGS__)
@@ -30,6 +30,5 @@
 #define NE_LOGRECT(r)
 #define NE_LOGFUN
 #define NE_FUNNAME
-#define NE_LOGPOINT 
 #define verbose			0
 #endif

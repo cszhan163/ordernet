@@ -19,5 +19,7 @@
 //相对时间
 - (NSString *) timeIntervalStringSinceNow;
 - (NSString *) setDateFormat;
-
++ (NSString*)dateFormart:(NSString*)dateStr fromFormart:(NSString*)fromFormat toFormart:(NSString*)toFormat;
++ (NSDate*) dateFromFormartString:(NSString *) dateString;
++(NSString*)formartDateTime:(NSDate*)date withFormat:(NSString*)formart;
 @end

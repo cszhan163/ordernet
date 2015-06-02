@@ -17,4 +17,7 @@
 - (NSString *)YoudaoImageUrlWithWidth:(NSUInteger) maxWidth AndHeight:(NSUInteger)maxHeight ;
 +(NSString*)HTMLtoText:(NSString*)string;
 +(NSString*)generateNonce;
+
+- (CGSize)sizeWithWidth:(CGFloat)width withTextAttribute:(NSDictionary*)attr;
+
 @end
