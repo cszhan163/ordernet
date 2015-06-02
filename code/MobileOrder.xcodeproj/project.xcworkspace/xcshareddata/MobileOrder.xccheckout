@@ -5,27 +5,13 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>BC0B5348-EF29-4E01-A841-8944A461B150</string>
+	<string>CADEEDFE-57B1-411C-B3A8-F685111BD2B7</string>
 	<key>IDESourceControlProjectName</key>
 	<string>MobileOrder</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>5E6300B33454B03CD516E3390A5DB2B69262C8C4</key>
 		<string>https://github.com/cszhan163/ordernet.git</string>
-		<key>93af662d-0e5f-4780-8b18-11e6931d3652++3940</key>
-		<string>svn://isabelle.mycloudnas.com:1217/CardShop/BaseLib/Utility</string>
-		<key>93af662d-0e5f-4780-8b18-11e6931d3652++4026</key>
-		<string>svn://isabelle.mycloudnas.com:1217/CardShop/BaseLib/NetWork</string>
-		<key>93af662d-0e5f-4780-8b18-11e6931d3652++5120</key>
-		<string>svn://isabelle.mycloudnas.com:1217/CardShop/BaseLib/UIFramework</string>
-		<key>93af662d-0e5f-4780-8b18-11e6931d3652++5901</key>
-		<string>svn://isabelle.mycloudnas.com:1217/CardShop/BaseLib/ASIHTTPRequest</string>
-		<key>93af662d-0e5f-4780-8b18-11e6931d3652++8760</key>
-		<string>svn://isabelle.mycloudnas.com:1217/CardShop/BaseLib/UICommon</string>
-		<key>93af662d-0e5f-4780-8b18-11e6931d3652++9829</key>
-		<string>svn://isabelle.mycloudnas.com:1217/CardShop/BaseLib/SVProgressHUD</string>
-		<key>93af662d-0e5f-4780-8b18-11e6931d3652++989</key>
-		<string>svn://isabelle.mycloudnas.com:1217/CardShop/BaseLib/XML</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>code/MobileOrder.xcodeproj</string>
@@ -33,37 +19,6 @@
 	<dict>
 		<key>5E6300B33454B03CD516E3390A5DB2B69262C8C4</key>
 		<string>../../..</string>
-		<key>93af662d-0e5f-4780-8b18-11e6931d3652++3940</key>
-		<string>../../..BaseLib/Utility</string>
-		<key>93af662d-0e5f-4780-8b18-11e6931d3652++4026</key>
-		<string>../../..BaseLib/NetWork</string>
-		<key>93af662d-0e5f-4780-8b18-11e6931d3652++5120</key>
-		<string>../../..BaseLib/UIFramework</string>
-		<key>93af662d-0e5f-4780-8b18-11e6931d3652++5901</key>
-		<string>../../..BaseLib/ASIHTTPRequest</string>
-		<key>93af662d-0e5f-4780-8b18-11e6931d3652++8760</key>
-		<string>../../..BaseLib/UICommon</string>
-		<key>93af662d-0e5f-4780-8b18-11e6931d3652++9829</key>
-		<string>../../..BaseLib/SVProgressHUD</string>
-		<key>93af662d-0e5f-4780-8b18-11e6931d3652++989</key>
-		<string>../../..BaseLib/XML</string>
-	</dict>
-	<key>IDESourceControlProjectRepositoryRootDictionary</key>
-	<dict>
-		<key>93af662d-0e5f-4780-8b18-11e6931d3652++3940</key>
-		<string>svn://isabelle.mycloudnas.com:1217/CardShop</string>
-		<key>93af662d-0e5f-4780-8b18-11e6931d3652++4026</key>
-		<string>svn://isabelle.mycloudnas.com:1217/CardShop</string>
-		<key>93af662d-0e5f-4780-8b18-11e6931d3652++5120</key>
-		<string>svn://isabelle.mycloudnas.com:1217/CardShop</string>
-		<key>93af662d-0e5f-4780-8b18-11e6931d3652++5901</key>
-		<string>svn://isabelle.mycloudnas.com:1217/CardShop</string>
-		<key>93af662d-0e5f-4780-8b18-11e6931d3652++8760</key>
-		<string>svn://isabelle.mycloudnas.com:1217/CardShop</string>
-		<key>93af662d-0e5f-4780-8b18-11e6931d3652++9829</key>
-		<string>svn://isabelle.mycloudnas.com:1217/CardShop</string>
-		<key>93af662d-0e5f-4780-8b18-11e6931d3652++989</key>
-		<string>svn://isabelle.mycloudnas.com:1217/CardShop</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/cszhan163/ordernet.git</string>
@@ -75,67 +30,11 @@
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.subversion</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>93af662d-0e5f-4780-8b18-11e6931d3652++5901</string>
-			<key>IDESourceControlWCCName</key>
-			<string>ASIHTTPRequest</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>5E6300B33454B03CD516E3390A5DB2B69262C8C4</string>
 			<key>IDESourceControlWCCName</key>
-			<string>MobileOrder</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.subversion</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>93af662d-0e5f-4780-8b18-11e6931d3652++4026</string>
-			<key>IDESourceControlWCCName</key>
-			<string>NetWork</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.subversion</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>93af662d-0e5f-4780-8b18-11e6931d3652++9829</string>
-			<key>IDESourceControlWCCName</key>
-			<string>SVProgressHUD</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.subversion</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>93af662d-0e5f-4780-8b18-11e6931d3652++8760</string>
-			<key>IDESourceControlWCCName</key>
-			<string>UICommon</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.subversion</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>93af662d-0e5f-4780-8b18-11e6931d3652++5120</string>
-			<key>IDESourceControlWCCName</key>
-			<string>UIFramework</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.subversion</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>93af662d-0e5f-4780-8b18-11e6931d3652++3940</string>
-			<key>IDESourceControlWCCName</key>
-			<string>Utility</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.subversion</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>93af662d-0e5f-4780-8b18-11e6931d3652++989</string>
-			<key>IDESourceControlWCCName</key>
-			<string>XML</string>
+			<string>ordernet</string>
 		</dict>
 	</array>
 </dict>

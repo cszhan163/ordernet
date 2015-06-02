@@ -1000,7 +1000,7 @@
 				HEADER_SEARCH_PATHS = (
 					"../BaseLib/**",
 					"$(inherited)",
-					./include,
+					"../include/**",
 				);
 				INFOPLIST_FILE = MobileOrder/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -1024,7 +1024,7 @@
 				HEADER_SEARCH_PATHS = (
 					"../BaseLib/**",
 					"$(inherited)",
-					./include,
+					"../include/**",
 				);
 				INFOPLIST_FILE = MobileOrder/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
