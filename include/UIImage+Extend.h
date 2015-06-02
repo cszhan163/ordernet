@@ -22,4 +22,5 @@
 +(UIImage *)makeRoundCornerImage:(UIImage*)img :(int) cornerWidth :(int) cornerHeight;
 +(UIImage *)imageWithColor:(UIColor *)color;
 +(UIImage *)imageWithColor:(UIColor *)color  withImage:(UIImage*)contentImage withSize:(CGSize)size;
++(UIImage *)imageWithColor:(UIColor *)color  withImage:(UIImage*)contentImage withSize:(CGSize)size withOffsetPoint:(CGPoint)offsetPoint;
 @end

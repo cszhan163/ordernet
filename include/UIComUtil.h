@@ -20,7 +20,7 @@
 +(UIButton*)createButtonWithNormalBGImage:(UIImage*)normaliconImage withHightBGImage:(UIImage*)hightIconImage withTitle:(NSString*)text withTag:(NSInteger)tag;
 
 
-+(UIButton*)createButtonWithNormalBGImage:(UIImage*)normaliconImage withHightBGImage:(UIImage*)hightIconImage withTitle:(NSString*)text withTag:(NSInteger)tag withTarget:(id)target withTouchEvent:(SEL)event;
++(UIButton*)createButtonWithNormalBGImageName:(NSString*)normaliconImage withHightBGImageName:(NSString*)hightIconImage  withTitle:(NSString*)text withTag:(NSInteger)tag withTarget:(id)target withTouchEvent:(SEL)event;
 
 
 +(UIButton*)createButtonWithNormalBGImage:(UIImage*)normaliconImage withHightBGImage:(UIImage*)hightIconImage withTitle:(NSString*)text withTag:(NSInteger)tag withTarget:(id)target withTouchEvent:(SEL)event;
@@ -38,4 +38,7 @@
 + (id)instanceFromNibWithName:(NSString*)nibName;
 + (UIImage*)getCurrentViewShortCut:(UIView*)view ;
 + (NSMutableAttributedString*)getCustomAttributeString:(NSString*)text withFont:(UIFont*)font withColor:(UIColor*)color;
+
+- (CGSize)sizeWithWidth:(CGFloat)width withTextAttribute:(NSDictionary*)attr ;
+
 @end

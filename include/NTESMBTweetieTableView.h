@@ -48,6 +48,7 @@
 @property (nonatomic, readonly) BOOL isRefreshing;
 @property (nonatomic, readonly) UISearchBar *searchBar;
 @property (nonatomic,assign)BOOL hasDownDragEffect;
+
 @property (nonatomic,assign)int scrollDirection;
 - (id)initWithFrame:(CGRect)frame hasDragEffect:(BOOL)has hasSearchBar:(BOOL) _hasSearchbar;
 - (id)initWithFrame:(CGRect)frame hasDragEffect:(BOOL)has hasSearchBar:(BOOL) _hasSearchbar withStyle:(UITableViewStyle)_style;
@@ -58,5 +59,6 @@
 - (void) showBottomView;
 - (void) closeBottomView;
 - (void) closeBottomViewWhenError;
+- (void) setDragEffect:(BOOL)status;
 
 @end

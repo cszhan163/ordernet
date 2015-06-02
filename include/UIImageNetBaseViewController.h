@@ -62,4 +62,10 @@ typedef enum reflushType
 - (void) loadImagesForOnscreenRows;
 - (void) reloadAllData;
 -(void)processReturnData:(id)data;
+
+- (void) shouldLoadNewerData:(NTESMBTweetieTableView *) tweetieTableView;
+
+- (void) shouldLoadOlderData:(NTESMBTweetieTableView *) tweetieTableView;
+
+-(void)didNetDataOK:(NSNotification*)ntf;
 @end

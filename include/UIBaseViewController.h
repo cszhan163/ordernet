@@ -43,6 +43,7 @@
 
 @property(nonatomic,assign) UILabel *leftText;
 @property(nonatomic,assign) UILabel *rightText;
+@property(nonatomic,strong,readonly)NSString *navTitle;
 -(void)setNavgationBarRightBtnImage:(UIImage*)image forStatus:(UIControlState)status;
 -(void)addObservers;
 -(void)removeObservers;

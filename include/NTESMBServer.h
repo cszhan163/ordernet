@@ -33,7 +33,8 @@
 - (void) cancelRequest:(NTESMBRequest *) request;
 - (void) logout;
 - (void) setupLogonInfo;
-- (ASIHTTPRequest *) initLogonRequest;
+
+//- (ASIHTTPRequest *)initLogonRequest;
 
 
 @end

@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "NETopNavBar.h"
 #import "NETabNavBar.h"
-//@protocol NENavItemControllerDelegate<
-
+@protocol NENavItemControllerDelegate
+- (void)didSelectorNavItem:(id)sender;
+@end
 @interface NENavItemController : UIViewController<NETopNavBarDelegate,UINavigationControllerDelegate>{
 	NETopNavBar			*_topNavBar;
 	NSMutableArray			*_navControllersArr;

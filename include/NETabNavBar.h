@@ -26,9 +26,11 @@
 -(void)setBgImage:(UIImage*)bgImage;
 -(NSInteger)getTabNavSelectIndex;
 -(id)initWithFrame:(CGRect)frame	withNavItem:(NSArray*)navBtn withSplitTag:(UIImage*)splitTag;
+-(id)initWithFrame:(CGRect)frame	withNavItem:(NSArray*)navBtn withNavTextLabelArray:(NSArray*)lableArray withSplitTag:(UIImage*)splitTag;
 -(id)getCurrentSelItem;
 @property(nonatomic,retain)NSArray* topBarViewArr;
 @property(nonatomic,readonly)NSArray *navBarArr;
+@property (nonatomic,readonly)NSArray *navTabTextArr;
 //@property(nonatomic,retain)NENavItemController *navItemVc;
 @property(nonatomic,retain) UITabBarController *tabNavBarcontroller;
 @property(nonatomic,readonly)UIView *curtopBarItemView;

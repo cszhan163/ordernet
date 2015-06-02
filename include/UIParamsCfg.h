@@ -29,7 +29,7 @@
 #define kDeviceScreenWidth			[[UIScreen mainScreen]bounds].size.width
 #define kDeviceScreenHeight			[[UIScreen mainScreen]bounds].size.height
 #define kMBAppStatusBar						20.f  
-#define kMBAppTopToolBarHeight				38.f
+#define kMBAppTopToolBarHeight				44.f
 #define kMBAppBottomToolBarHeght			49.f
 
 
@@ -44,7 +44,7 @@
 
 #define kMBAppRealViewRadius				0.f
 
-#define kMBAppRealViewWidth					320.f-kMBAppRealViewXLeftPending - kMBAppRealViewXRightPending
+#define kMBAppRealViewWidth					kDeviceScreenWidth-kMBAppRealViewXLeftPending - kMBAppRealViewXRightPending
 #define kMBAppRealViewHeight				kDeviceScreenHeight-kMBAppTopToolBarHeight-kMBAppBottomToolBarHeght-kMBAppStatusBar
 
 #define UIImageScaleWithFileName(image,filename) \
@@ -58,6 +58,13 @@ else \
 #define UIImageWithNibName(filename)   [UIImage imageNamed:filename]
 
 #define UIImageWithFileName(image,filename) image = [UIImage imageNamed:filename]
+
+#define UIImageAutoScaleWithFileName(image,filename) \
+{ \
+NSData *data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:filename  ofType:@"png"]]; \
+image = [UIImage imageWithData:data scale:[UIScreen mainScreen].scale];\
+}
+
 /*
  * hometimelineviewController
  */
