@@ -13,7 +13,7 @@
 #import "GoodsCatagoryItem.h"
 
 #define kPendingX 10
-#define kPendingY 10
+#define kPendingY 20
 
 
 @interface FoodSubItemCell() {
@@ -78,7 +78,10 @@
             self.item.number = self.item.number+1;
             break;
         case 1:
-            self.item.number = self.item.number+1;
+            
+            self.item.number = self.item.number-1;
+            if(self.item.number<=0)
+                self.item.number = 0;
             break;
         default:
             break;
@@ -95,7 +98,7 @@
 {
     [super layoutSubviews];
     self.textLabel.text = _item.name;
-    numberLabel.text = [NSString stringWithFormat:@"ld",_item.number];
+    numberLabel.text = [NSString stringWithFormat:@"%ld",_item.number];
     //self.imageView.frame = CGRectOffset(self.imageView.frame, 6, 0);
     //self.textLabel.frame = CGRectOffset(self.textLabel.frame, 6, 0);
 }

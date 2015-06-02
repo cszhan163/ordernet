@@ -14,6 +14,8 @@
 
 @property (nonatomic, assign) NSInteger number;
 
+@property (nonatomic, assign) CGFloat   price;
+
 @property (nonatomic, assign) CGFloat cellHeight;
 
 @end

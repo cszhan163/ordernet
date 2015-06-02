@@ -25,6 +25,7 @@
 @property(nonatomic,retain)IBOutlet UILabel *foodNameLabel;
 @property(nonatomic,retain)IBOutlet UILabel *priceLabel;
 @property(nonatomic,strong)IBOutlet UILabel *indictTextLabel;
+@property (nonatomic, strong) IBOutlet UILabel *numberLabel;
 @property(nonatomic,retain)IBOutlet UIButton *addNumBtn;
 @property(nonatomic,retain)IBOutlet UIButton *minNumBtn;
 @property(nonatomic,retain)IBOutlet UIButton *markBtn;

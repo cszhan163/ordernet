@@ -8,6 +8,7 @@
 
 
 @protocol LeveyPopListViewDelegate;
+
 @interface LeveyPopListView : UIView <UITableViewDataSource, UITableViewDelegate>
 {
     UITableView *_tableView;
@@ -16,6 +17,8 @@
 }
 
 @property (nonatomic, assign) id<LeveyPopListViewDelegate> delegate;
+
+@property (nonatomic, strong) NSIndexPath *indexPath;
 
 // The options is a NSArray, contain some NSDictionaries, the NSDictionary contain 2 keys, one is "img", another is "text".
 - (id)initWithTitle:(NSString *)aTitle options:(NSArray *)aOptions;

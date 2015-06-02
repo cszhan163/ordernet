@@ -48,7 +48,24 @@
 }
 - (void)setCellItem:(GoodsCatagoryItem*)item {
 
+#if 1
     self.item = item;
+    self.priceLabel.text = [NSString stringWithFormat:@"¥ %0.2lf",self.item.price];
+    self.foodNameLabel.text = item.name;
+    NSInteger number = 0;
+    if([self.item.subCatogoryArray count]){
+        
+        for (SubCatagoryItem *item in self.item.subCatogoryArray){
+            
+            number = number+item.number;
+        }
+        
+    }else {
+        
+        number = self.item.number;
+    }
+    self.numberLabel.text = [NSString stringWithFormat:@"%ld",number];
+#endif
 }
 
 @end

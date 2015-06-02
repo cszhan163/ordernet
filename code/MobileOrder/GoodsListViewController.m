@@ -39,6 +39,8 @@
 @property(nonatomic, strong)  NSDictionary *locationDict;
 
 @property (nonatomic, strong) NSArray      *goodsListArray;
+
+@property (nonatomic, strong) NSArray      *titleArray;
 @property(nonatomic, strong)   GoodsCatagoryView *catogoryView;
 @end
 
@@ -149,12 +151,55 @@
     tweetieTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tweetieTableView.clipsToBounds = YES;
     
-    self.goodsListArray = @[@"面",@"凉菜",@"肉夹馍",@"肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍",@"肉夹馍肉夹馍",@"肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍",@"肉夹馍",@"面",@"凉菜"];
     
+#if 1
+    
+    
+    self.titleArray = @[@"面",@"凉菜",@"肉夹馍",@"肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍",@"肉夹馍肉夹馍",@"肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍",@"肉夹馍",@"面",@"凉菜"];
+    NSMutableArray *dataArray = [NSMutableArray arrayWithCapacity:100];
+    
+    for(int i = 0;i< [self.titleArray count];i++){
+        NSMutableArray *subDataArray = [NSMutableArray array];
+        for(int i = 0;i< 8; i++){
+           GoodsCatagoryItem *goodItem = [[GoodsCatagoryItem alloc]init];
+            if(i %2){
+                
+                goodItem.name = @"特色菜";
+                goodItem.number = 0;
+                goodItem.price = 10.f;
+                NSMutableArray *subArray = [NSMutableArray array];
+                for(id key in  @[@"红烧",@"水煮",@"油炸",@"乱炖"]){
+                    
+                    SubCatagoryItem *subItem = [[SubCatagoryItem alloc]init];
+                    subItem.name = key;
+                    subItem.number = 0;
+                    subItem.price = 10.f;
+                    [subArray addObject:subItem];
+                    SafeRelease(subItem);
+                }
+                goodItem.subCatogoryArray =subArray;
+                
+                
+                
+            }else{
+                
+                goodItem.name = @"特色肉夹馍";
+                goodItem.number = 0;
+                goodItem.price = 20.f;
+                goodItem.subCatogoryArray=@[];
+            }
+           [subDataArray addObject:goodItem];
+        }
+        [dataArray addObject:subDataArray];
+    }
+    self.goodsListArray = dataArray;
+#else
+    
+#endif
     _catogoryView = [[GoodsCatagoryView alloc]initWithFrame:CGRectMake(0.f,originRect.origin.y, kDeviceScreenWidth/4,originRect.size.height)];
     
     [_catogoryView setDelegate:self];
-    _catogoryView.dataArray = [self convertToModelData:self.goodsListArray];
+    _catogoryView.dataArray = [self convertToModelData:_titleArray];
     [self.view addSubview:_catogoryView];
     [self.catogoryView scrollViewToIndex:0];
     
@@ -220,15 +265,15 @@
 #pragma mark tableview
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
-    return [self.goodsListArray count];
+    NSInteger section = [self.goodsListArray count];
+    return section;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return kSectionHeight;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
    
-    NSString *title = [self.goodsListArray objectAtIndex:section];
+    NSString *title = [self.titleArray objectAtIndex:section];
     UILabel *titleLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:15.f] withTextColor:kGoodCatagorySelectedTextColor withText:title withFrame:CGRectMake(0.f, 0.f,kDeviceScreenWidth, kSectionHeight)];
     titleLabel.textAlignment = NSTextAlignmentLeft;
     titleLabel.backgroundColor = [UIColor whiteColor];
@@ -237,8 +282,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return  5;
-    //return [self.dataArray count];
+	//return  5;
+    NSInteger rows = [self.goodsListArray[section] count];
+    return rows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -275,35 +321,12 @@
         
     }
     
-#if 1
-    if(indexPath.row%2){
-        GoodsCatagoryItem *goodItem = [[GoodsCatagoryItem alloc]init];
-        goodItem.name = @"肉夹馍";
-        goodItem.number = 2;
-        NSMutableArray *subArray = [NSMutableArray array];
-        for(id key in  @[@"红烧",@"水煮",@"油炸",@"乱炖"]){
-        
-            SubCatagoryItem *subItem = [[SubCatagoryItem alloc]init];
-            subItem.name = key;
-            subItem.number = 0;
-            [subArray addObject:subItem];
-            SafeRelease(subItem);
-        }
-        goodItem.subCatogoryArray =subArray;
-        [cell setCellItem:goodItem];
-    
-    }else{
-    
-        GoodsCatagoryItem *goodItem = [[GoodsCatagoryItem alloc]init];
-        goodItem.name = @"臊子面";
-        goodItem.number = 2;
-        goodItem.subCatogoryArray=@[];
-        [cell setCellItem:goodItem];
-    }
+#if 0
+
 #else
+    
     GoodsCatagoryItem *goodItem = [[self.goodsListArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     [cell setCellItem:goodItem];
-    
 #endif
     [cell setIndexPath:indexPath];
     [cell setDelegate:self];
@@ -406,9 +429,18 @@
 #endif
     LeveyPopListView *lplv = [[LeveyPopListView alloc] initWithTitle:goodItem.name options:goodItem.subCatogoryArray];
     lplv.delegate = self;
+    lplv.indexPath = indexPath;
     [lplv showInView:self.view animated:YES];
     SafeRelease(lplv);
 }
+
+- (void)leveyPopListView:(LeveyPopListView *)popListView didSelectedIndex:(NSInteger)anIndex {
+
+    NSIndexPath *indexPath= [popListView indexPath];
+    [tweetieTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    
+}
+
 
 
 #pragma mark -

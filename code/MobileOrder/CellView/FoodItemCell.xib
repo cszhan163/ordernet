@@ -27,7 +27,7 @@
                         </state>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="dline.png" id="12">
-                        <rect key="frame" x="0.0" y="13" width="320" height="1"/>
+                        <rect key="frame" x="0.0" y="99" width="320" height="1"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_default_s.png" id="BJk-MO-TXb">
@@ -35,14 +35,14 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="鱼香肉丝鱼香肉丝" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="4">
-                        <rect key="frame" x="80" y="9" width="61" height="20"/>
+                        <rect key="frame" x="80" y="9" width="152" height="20"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="11" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="vkw-Mf-ScM">
-                        <rect key="frame" x="167" y="60" width="19" height="20"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="11" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="vkw-Mf-ScM">
+                        <rect key="frame" x="161" y="60" width="25" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -82,9 +82,10 @@
                 <outlet property="foodNameLabel" destination="4" id="a8l-pv-NMF"/>
                 <outlet property="markBtn" destination="JRL-mq-FEd" id="BV5-CO-MNS"/>
                 <outlet property="minNumBtn" destination="6" id="J5Q-YU-aGJ"/>
+                <outlet property="numberLabel" destination="vkw-Mf-ScM" id="DXA-P1-pNd"/>
                 <outlet property="priceLabel" destination="5" id="uhY-0d-Z61"/>
             </connections>
-            <point key="canvasLocation" x="133.5" y="6"/>
+            <point key="canvasLocation" x="133" y="6"/>
         </tableViewCell>
         <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" rowHeight="100" id="6Gx-hC-dmw" userLabel="Food Item Cell_io6" customClass="FoodItemCell">
             <rect key="frame" x="0.0" y="0.0" width="280" height="100"/>
@@ -101,7 +102,7 @@
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="dline.png" id="MEN-5M-AcM">
-                        <rect key="frame" x="0.0" y="25" width="320" height="1"/>
+                        <rect key="frame" x="0.0" y="99" width="320" height="1"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_default_s.png" id="V9V-kB-A8l">
@@ -109,20 +110,14 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="鱼香肉丝鱼香肉丝" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="BPn-Rj-dQr">
-                        <rect key="frame" x="98" y="9" width="131" height="20"/>
+                        <rect key="frame" x="98" y="9" width="173" height="20"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="11" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="YdH-32-VtC">
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="orF-xe-nZQ" userLabel="add">
-                        <rect key="frame" x="244" y="65" width="27" height="29"/>
+                        <rect key="frame" x="244" y="63" width="27" height="29"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                         <state key="normal" title="Button" image="auto_add.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -152,6 +147,13 @@
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="11" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="YdH-32-VtC">
+                        <rect key="frame" x="208" y="66" width="25" height="25"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </label>
                 </subviews>
             </tableViewCellContentView>
             <connections>
@@ -160,6 +162,7 @@
                 <outlet property="foodNameLabel" destination="BPn-Rj-dQr" id="3lo-ZV-Y3b"/>
                 <outlet property="markBtn" destination="qNF-0u-Zaz" id="hOF-LO-81M"/>
                 <outlet property="minNumBtn" destination="P4w-yw-Hut" id="Zsi-JR-tOA"/>
+                <outlet property="numberLabel" destination="YdH-32-VtC" id="xi3-PT-T1k"/>
                 <outlet property="priceLabel" destination="8ea-34-yFd" id="gc7-BC-bJu"/>
             </connections>
             <point key="canvasLocation" x="148" y="181"/>
@@ -191,7 +194,7 @@
                         </state>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="dline.png" id="ITS-qF-aKn">
-                        <rect key="frame" x="0.0" y="101" width="320" height="1"/>
+                        <rect key="frame" x="0.0" y="100" width="320" height="1"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_default_s.png" id="wTC-Tj-DaY">
@@ -199,15 +202,15 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="鱼香肉丝鱼香肉丝" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="96X-cj-Nas">
-                        <rect key="frame" x="98" y="9" width="214" height="20"/>
+                        <rect key="frame" x="98" y="9" width="211" height="20"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="11" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="Pov-vs-PVU">
-                        <rect key="frame" x="260" y="69" width="22" height="20"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                        <rect key="frame" x="259" y="71" width="19" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -239,6 +242,7 @@
                 <outlet property="foodNameLabel" destination="96X-cj-Nas" id="2r7-kv-OCj"/>
                 <outlet property="markBtn" destination="aLN-Ne-ab4" id="hyf-8C-tAJ"/>
                 <outlet property="minNumBtn" destination="uam-D0-dhB" id="imn-KK-pqL"/>
+                <outlet property="numberLabel" destination="Pov-vs-PVU" id="h36-XH-qTn"/>
                 <outlet property="priceLabel" destination="XTo-4H-32j" id="9YU-Us-EoE"/>
             </connections>
             <point key="canvasLocation" x="173" y="379"/>

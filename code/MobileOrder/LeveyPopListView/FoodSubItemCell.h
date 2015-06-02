@@ -8,6 +8,7 @@
 
 @class SubCatagoryItem;
 
+
 @interface FoodSubItemCell : UITableViewCell
 
 - (void)setCellItem:(SubCatagoryItem*)item;

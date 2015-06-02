@@ -19,6 +19,8 @@
 		042C7DD41B1B73CF00E8A53C /* uhuo_default_l@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 042C7DCB1B1B73CF00E8A53C /* uhuo_default_l@2x.png */; };
 		042C7DD51B1B73CF00E8A53C /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 042C7DCC1B1B73CF00E8A53C /* whiteArrow@2x.png */; };
 		042C7DDA1B1B811700E8A53C /* libZCSUIFrameWork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 042C7DD91B1B811700E8A53C /* libZCSUIFrameWork.a */; };
+		04402E9F1B1CC250003393B4 /* LeveyPopListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04402E9C1B1CC250003393B4 /* LeveyPopListView.m */; };
+		04402EA01B1CC250003393B4 /* FoodSubItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04402E9E1B1CC250003393B4 /* FoodSubItemCell.m */; };
 		044AC50E1B14D4DD00F7D196 /* titlebar.png in Resources */ = {isa = PBXBuildFile; fileRef = 044AC50D1B14D4DD00F7D196 /* titlebar.png */; };
 		044AC5141B16472E00F7D196 /* BSTellNetListBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 044AC5131B16472E00F7D196 /* BSTellNetListBaseViewController.m */; };
 		044AC5171B16484F00F7D196 /* GoodsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 044AC5161B16484F00F7D196 /* GoodsListViewController.m */; };
@@ -154,6 +156,10 @@
 		042C7DCB1B1B73CF00E8A53C /* uhuo_default_l@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uhuo_default_l@2x.png"; sourceTree = "<group>"; };
 		042C7DCC1B1B73CF00E8A53C /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		042C7DD91B1B811700E8A53C /* libZCSUIFrameWork.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libZCSUIFrameWork.a; sourceTree = "<group>"; };
+		04402E9B1B1CC250003393B4 /* LeveyPopListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeveyPopListView.h; sourceTree = "<group>"; };
+		04402E9C1B1CC250003393B4 /* LeveyPopListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeveyPopListView.m; sourceTree = "<group>"; };
+		04402E9D1B1CC250003393B4 /* FoodSubItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FoodSubItemCell.h; path = ../LeveyPopListView/FoodSubItemCell.h; sourceTree = "<group>"; };
+		04402E9E1B1CC250003393B4 /* FoodSubItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FoodSubItemCell.m; path = ../LeveyPopListView/FoodSubItemCell.m; sourceTree = "<group>"; };
 		044AC50D1B14D4DD00F7D196 /* titlebar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titlebar.png; sourceTree = "<group>"; };
 		044AC5121B16472E00F7D196 /* BSTellNetListBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTellNetListBaseViewController.h; sourceTree = "<group>"; };
 		044AC5131B16472E00F7D196 /* BSTellNetListBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTellNetListBaseViewController.m; sourceTree = "<group>"; };
@@ -331,9 +337,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04402E9A1B1CC250003393B4 /* LeveyPopListView */ = {
+			isa = PBXGroup;
+			children = (
+				04402E9B1B1CC250003393B4 /* LeveyPopListView.h */,
+				04402E9C1B1CC250003393B4 /* LeveyPopListView.m */,
+			);
+			path = LeveyPopListView;
+			sourceTree = "<group>";
+		};
 		044AC5101B16465200F7D196 /* order */ = {
 			isa = PBXGroup;
 			children = (
+				04402E9A1B1CC250003393B4 /* LeveyPopListView */,
 				044AC5471B1650EE00F7D196 /* VendorListViewController.h */,
 				044AC5481B1650EE00F7D196 /* VendorListViewController.m */,
 				044AC5151B16484F00F7D196 /* GoodsListViewController.h */,
@@ -347,15 +363,17 @@
 		044AC5181B1648F900F7D196 /* CellView */ = {
 			isa = PBXGroup;
 			children = (
+				04402E9D1B1CC250003393B4 /* FoodSubItemCell.h */,
+				04402E9E1B1CC250003393B4 /* FoodSubItemCell.m */,
+				044AC51F1B1648F900F7D196 /* FoodItemCell.xib */,
+				042C7DC11B1B664E00E8A53C /* FoodItemCell.h */,
+				042C7DC21B1B664E00E8A53C /* FoodItemCell.m */,
 				044AC5191B1648F900F7D196 /* BidDetailTableViewCell.h */,
 				044AC51A1B1648F900F7D196 /* BidDetailTableViewCell.m */,
 				044AC51B1B1648F900F7D196 /* BidDetailTableViewCell_V2.h */,
 				044AC51C1B1648F900F7D196 /* BidDetailTableViewCell_V2.m */,
 				044AC51D1B1648F900F7D196 /* GoodsItemCell.h */,
 				044AC51E1B1648F900F7D196 /* GoodsItemCell.m */,
-				044AC51F1B1648F900F7D196 /* FoodItemCell.xib */,
-				042C7DC11B1B664E00E8A53C /* FoodItemCell.h */,
-				042C7DC21B1B664E00E8A53C /* FoodItemCell.m */,
 				044AC5201B1648F900F7D196 /* BidPrepareTableViewCell.h */,
 				044AC5211B1648F900F7D196 /* BidPrepareTableViewCell.m */,
 				044AC5221B1648F900F7D196 /* BidStartedTableViewCell.h */,
@@ -862,7 +880,9 @@
 				04A3538B1B138FAA003A80AA /* CarServiceNetDataMgr.m in Sources */,
 				044AC53D1B1648F900F7D196 /* OrderListCell.m in Sources */,
 				04A353491B1381B6003A80AA /* AppDelegate.m in Sources */,
+				04402EA01B1CC250003393B4 /* FoodSubItemCell.m in Sources */,
 				04913EA01B196E8800179567 /* MGBox.m in Sources */,
+				04402E9F1B1CC250003393B4 /* LeveyPopListView.m in Sources */,
 				04913EA41B196E8800179567 /* MGStyledBox.m in Sources */,
 				04913EA21B196E8800179567 /* MGButton.m in Sources */,
 				044AC53B1B1648F900F7D196 /* LeftTitleListCell.m in Sources */,
@@ -980,6 +1000,7 @@
 				HEADER_SEARCH_PATHS = (
 					"../BaseLib/**",
 					"$(inherited)",
+					./include,
 				);
 				INFOPLIST_FILE = MobileOrder/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -1003,6 +1024,7 @@
 				HEADER_SEARCH_PATHS = (
 					"../BaseLib/**",
 					"$(inherited)",
+					./include,
 				);
 				INFOPLIST_FILE = MobileOrder/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
