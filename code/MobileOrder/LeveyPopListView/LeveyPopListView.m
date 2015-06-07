@@ -8,6 +8,7 @@
 
 #import "LeveyPopListView.h"
 #import "FoodSubItemCell.h"
+#import "GoodsCatagoryItem.h"
 
 #define POPLISTVIEW_SCREENINSET 0.
 #define POPLISTVIEW_HEADER_HEIGHT 50.
@@ -24,9 +25,15 @@
 
 #define kLeftPendingX  10.f
 
-#define  kSize  CGSizeMake(300,400)
+#define  kSize  CGSizeMake(300,300)
 
-@interface LeveyPopListView (private)
+@interface LeveyPopListView () <CellDelegate>{
+
+    NSInteger    _number;
+    UILabel     *_numberLabel;
+}
+@property (nonatomic, strong) UIView *bgView;
+
 - (void)fadeIn;
 - (void)fadeOut;
 @end
@@ -46,6 +53,7 @@
      
      [super dealloc];
      */
+    self.bgView = nil;
     self.indexPath = nil;
     SuperDealloc;
 }
@@ -73,6 +81,14 @@
         
         [self addSubview:_tableView];
         
+        CGRect numberRect =  CGRectMake(_tableView.frame.size.width/2.f, POPLISTVIEW_SCREENINSET + 10 + 5,
+                                _tableView.frame.size.width/2.f,20);
+        
+        _numberLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:12] withTextColor:[UIColor blackColor] withText:[NSString stringWithFormat:@"共 %ld 份",_number] withFrame:numberRect];
+        
+        [self addSubview:_numberLabel];
+        
+        
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0.f,_tableView.frame.size.height+_tableView.frame.origin.y,_tableView.frame.size.width, POPButtomViewHeight)];
         
         CGFloat currY = 20.f;
@@ -92,6 +108,14 @@
 
     }
     return self;    
+}
+
+- (id)initWithTitle:(NSString *)aTitle  withNumber:(NSInteger)number options:(NSArray *)aOptions {
+     _number = number;
+    if(self = [self initWithTitle:aTitle options:aOptions]) {
+       
+    }
+    return self;
 }
 
 - (void)didPressButtonAction:(id)sender {
@@ -130,12 +154,14 @@
 }
 - (void)fadeOut
 {
+    
     [UIView animateWithDuration:.35 animations:^{
         self.transform = CGAffineTransformMakeScale(1.3, 1.3);
         self.alpha = 0.0;
     } completion:^(BOOL finished) {
         if (finished) {
-            [self removeFromSuperview];
+            
+            [_bgView removeFromSuperview];
         }
     }];
 }
@@ -143,10 +169,27 @@
 #pragma mark - Instance Methods
 - (void)showInView:(UIView *)aView animated:(BOOL)animated
 {
-    [aView addSubview:self];
+    UIWindow *keyWnd= [[UIApplication sharedApplication]keyWindow];
+    CGRect rect = [[UIScreen mainScreen] bounds];
+    
+    _bgView = [[UIView alloc]initWithFrame:rect];
+    _bgView.backgroundColor = HexRGBA(0, 0, 0, 0.7);
+    [_bgView addSubview:self];
+    UITapGestureRecognizer *tapGuesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
+    [_bgView addGestureRecognizer:tapGuesture];
+    
+    SafeRelease(tapGuesture);
+    
+    [keyWnd addSubview:_bgView];
+    
     if (animated) {
         [self fadeIn];
     }
+}
+
+- (void)tapAction:(id)sender {
+
+    [self touchesEnded:nil withEvent:nil];
 }
 
 #pragma mark - Tableview datasource & delegates
@@ -173,8 +216,11 @@
     subItem = _options[row];
 #endif
     [cell setCellItem:subItem];
+    [cell setDelegate:self];
+    
     return cell;
 }
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -188,6 +234,26 @@
     // dismiss self
     [self fadeOut];
 }
+
+- (void)cellDidClickOrderAddBtn:(id)sender  withNumber:(NSInteger)number {
+    
+    [self updtePriceUI];
+}
+
+- (void)cellDidClickOrderSubBtn:(id)sender  withNumber:(NSInteger)number {;
+    [self updtePriceUI];
+}
+
+- (void)updtePriceUI {
+
+    _number = 0;
+    for(SubCatagoryItem *item in _options){
+        _number += item.number;
+    }
+    _numberLabel.text = [NSString stringWithFormat:@"共 %ld 份",_number];
+    //[self setNeedsDisplayInRect:_numberLabel.frame];
+}
+
 #pragma mark - TouchTouchTouch
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -245,7 +311,10 @@
     //CGContextSetShadowWithColor(ctx, CGSizeMake(0, 1), 0.5f, [UIColor blackColor].CGColor);
     [[UIColor colorWithRed:0.020 green:0.549 blue:0.961 alpha:1.] setFill];
     [_title drawInRect:titleRect withFont:[UIFont systemFontOfSize:16.]];
+   
     CGContextFillRect(ctx, separatorRect);
+    
+    
 }
 
 @end

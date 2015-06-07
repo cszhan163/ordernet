@@ -6,9 +6,9 @@
 //  Copyright (c) 2014年 cszhan. All rights reserved.
 //
 
-#import "UICarTableViewCell.h"
+#import "UIBaseTableViewCell.h"
 
-@interface NoteItemCell : UICarTableViewCell
+@interface NoteItemCell : UIBaseTableViewCell
 
 @property(nonatomic,strong)UILabel *noteTextLabel;
 @property(nonatomic,strong)UILabel *noteDetailTextLabel;

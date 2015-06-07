@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 //#import "UINetActiveIndicatorButton.h"
-#import "UICarTableViewCell.h"
+#import "UIBaseTableViewCell.h"
 @class UINetActiveIndicatorButton;
-@interface GoodsItemCell : UICarTableViewCell{
+@interface GoodsItemCell : UIBaseTableViewCell{
     
 }
 @property(nonatomic,strong)NSMutableArray *labelArray;

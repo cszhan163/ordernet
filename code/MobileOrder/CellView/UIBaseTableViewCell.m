@@ -1,21 +1,21 @@
 //
-//  UICarTableViewCell.m
+//  UIBaseTableViewCell.m
 //  BodCarManger
 //
 //  Created by cszhan on 13-12-19.
 //  Copyright (c) 2013年 cszhan. All rights reserved.
 //
 
-#import "UICarTableViewCell.h"
+#import "UIBaseTableViewCell.h"
 
-@implementation UICarTableViewCell
+@implementation UIBaseTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        inset = 9.f;
+        inset = 0.f;
         insetY = 0.f;
     }
     return self;

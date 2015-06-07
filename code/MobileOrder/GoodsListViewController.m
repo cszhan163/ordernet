@@ -430,7 +430,8 @@
     LeveyPopListView *lplv = [[LeveyPopListView alloc] initWithTitle:goodItem.name options:goodItem.subCatogoryArray];
     lplv.delegate = self;
     lplv.indexPath = indexPath;
-    [lplv showInView:self.view animated:YES];
+   
+    [lplv showInView:self animated:YES];
     SafeRelease(lplv);
 }
 

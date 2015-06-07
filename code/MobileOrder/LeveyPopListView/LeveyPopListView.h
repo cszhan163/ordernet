@@ -20,6 +20,8 @@
 
 @property (nonatomic, strong) NSIndexPath *indexPath;
 
+- (id)initWithTitle:(NSString *)aTitle  withNumber:(NSInteger)number options:(NSArray *)aOptions;
+
 // The options is a NSArray, contain some NSDictionaries, the NSDictionary contain 2 keys, one is "img", another is "text".
 - (id)initWithTitle:(NSString *)aTitle options:(NSArray *)aOptions;
 // If animated is YES, PopListView will be appeared with FadeIn effect.

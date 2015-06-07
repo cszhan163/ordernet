@@ -6,10 +6,11 @@
 //  Copyright (c) 2012 Levey. All rights reserved.
 //
 
+#import "UIBaseTableViewCell.h"
 @class SubCatagoryItem;
 
 
-@interface FoodSubItemCell : UITableViewCell
+@interface FoodSubItemCell : UIBaseTableViewCell
 
 - (void)setCellItem:(SubCatagoryItem*)item;
 

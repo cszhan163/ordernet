@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-#import "UICarTableViewCell.h"
+#import "UIBaseTableViewCell.h"
 
-@interface ExcellLikeCellBase : UICarTableViewCell
+@interface ExcellLikeCellBase : UIBaseTableViewCell
 
 @property (nonatomic, strong) NSMutableArray    *mCellTitleArray;
 

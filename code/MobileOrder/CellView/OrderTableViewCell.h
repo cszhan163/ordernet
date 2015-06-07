@@ -6,9 +6,9 @@
 //  Copyright (c) 2014年 cszhan. All rights reserved.
 //
 
-#import "UICarTableViewCell.h"
+#import "UIBaseTableViewCell.h"
 
-@interface OrderTableViewCell : UICarTableViewCell
+@interface OrderTableViewCell : UIBaseTableViewCell
 @property(nonatomic,weak)IBOutlet UILabel *orderIdLabel;
 @property(nonatomic,weak)IBOutlet UILabel *goodsIdLabel;
 @property(nonatomic,weak)IBOutlet UILabel *classNameLabel;

@@ -21,6 +21,7 @@
 		042C7DDA1B1B811700E8A53C /* libZCSUIFrameWork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 042C7DD91B1B811700E8A53C /* libZCSUIFrameWork.a */; };
 		04402E9F1B1CC250003393B4 /* LeveyPopListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04402E9C1B1CC250003393B4 /* LeveyPopListView.m */; };
 		04402EA01B1CC250003393B4 /* FoodSubItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04402E9E1B1CC250003393B4 /* FoodSubItemCell.m */; };
+		04402EA61B1F57E5003393B4 /* MobileOrderNetDataMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 04402EA51B1F57E5003393B4 /* MobileOrderNetDataMgr.m */; };
 		044AC50E1B14D4DD00F7D196 /* titlebar.png in Resources */ = {isa = PBXBuildFile; fileRef = 044AC50D1B14D4DD00F7D196 /* titlebar.png */; };
 		044AC5141B16472E00F7D196 /* BSTellNetListBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 044AC5131B16472E00F7D196 /* BSTellNetListBaseViewController.m */; };
 		044AC5171B16484F00F7D196 /* GoodsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 044AC5161B16484F00F7D196 /* GoodsListViewController.m */; };
@@ -37,7 +38,7 @@
 		044AC53D1B1648F900F7D196 /* OrderListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 044AC52D1B1648F900F7D196 /* OrderListCell.m */; };
 		044AC53E1B1648F900F7D196 /* OrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 044AC52F1B1648F900F7D196 /* OrderTableViewCell.m */; };
 		044AC53F1B1648F900F7D196 /* OrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044AC5301B1648F900F7D196 /* OrderTableViewCell.xib */; };
-		044AC5401B1648F900F7D196 /* UICarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 044AC5321B1648F900F7D196 /* UICarTableViewCell.m */; };
+		044AC5401B1648F900F7D196 /* UIBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 044AC5321B1648F900F7D196 /* UIBaseTableViewCell.m */; };
 		044AC5491B1650EE00F7D196 /* VendorListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 044AC5481B1650EE00F7D196 /* VendorListViewController.m */; };
 		04913EA01B196E8800179567 /* MGBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 04913E961B196E8800179567 /* MGBox.m */; };
 		04913EA11B196E8800179567 /* MGBoxLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 04913E981B196E8800179567 /* MGBoxLine.m */; };
@@ -129,6 +130,7 @@
 		04A354251B13A510003A80AA /* user_pwd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A353E51B13A510003A80AA /* user_pwd@2x.png */; };
 		04A354261B13A510003A80AA /* userBg-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A353E61B13A510003A80AA /* userBg-568h@2x~iphone.png */; };
 		04A354271B13A510003A80AA /* userBg@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A353E71B13A510003A80AA /* userBg@2x~iphone.png */; };
+		04C15C191B23460E0031E3CF /* GoodsOrderMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C15C181B23460E0031E3CF /* GoodsOrderMenuView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +162,8 @@
 		04402E9C1B1CC250003393B4 /* LeveyPopListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeveyPopListView.m; sourceTree = "<group>"; };
 		04402E9D1B1CC250003393B4 /* FoodSubItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FoodSubItemCell.h; path = ../LeveyPopListView/FoodSubItemCell.h; sourceTree = "<group>"; };
 		04402E9E1B1CC250003393B4 /* FoodSubItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FoodSubItemCell.m; path = ../LeveyPopListView/FoodSubItemCell.m; sourceTree = "<group>"; };
+		04402EA41B1F57E5003393B4 /* MobileOrderNetDataMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileOrderNetDataMgr.h; sourceTree = "<group>"; };
+		04402EA51B1F57E5003393B4 /* MobileOrderNetDataMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileOrderNetDataMgr.m; sourceTree = "<group>"; };
 		044AC50D1B14D4DD00F7D196 /* titlebar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titlebar.png; sourceTree = "<group>"; };
 		044AC5121B16472E00F7D196 /* BSTellNetListBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSTellNetListBaseViewController.h; sourceTree = "<group>"; };
 		044AC5131B16472E00F7D196 /* BSTellNetListBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSTellNetListBaseViewController.m; sourceTree = "<group>"; };
@@ -169,7 +173,7 @@
 		044AC51A1B1648F900F7D196 /* BidDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BidDetailTableViewCell.m; sourceTree = "<group>"; };
 		044AC51B1B1648F900F7D196 /* BidDetailTableViewCell_V2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BidDetailTableViewCell_V2.h; sourceTree = "<group>"; };
 		044AC51C1B1648F900F7D196 /* BidDetailTableViewCell_V2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BidDetailTableViewCell_V2.m; sourceTree = "<group>"; };
-		044AC51D1B1648F900F7D196 /* GoodsItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsItemCell.h; sourceTree = "<group>"; };
+		044AC51D1B1648F900F7D196 /* GoodsItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GoodsItemCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		044AC51E1B1648F900F7D196 /* GoodsItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsItemCell.m; sourceTree = "<group>"; };
 		044AC51F1B1648F900F7D196 /* FoodItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FoodItemCell.xib; sourceTree = "<group>"; };
 		044AC5201B1648F900F7D196 /* BidPrepareTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BidPrepareTableViewCell.h; sourceTree = "<group>"; };
@@ -178,19 +182,19 @@
 		044AC5231B1648F900F7D196 /* BidStartedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BidStartedTableViewCell.m; sourceTree = "<group>"; };
 		044AC5241B1648F900F7D196 /* ExcellLikeCellBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExcellLikeCellBase.h; sourceTree = "<group>"; };
 		044AC5251B1648F900F7D196 /* ExcellLikeCellBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExcellLikeCellBase.m; sourceTree = "<group>"; };
-		044AC5261B1648F900F7D196 /* InfoClassTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoClassTableViewCell.h; sourceTree = "<group>"; };
+		044AC5261B1648F900F7D196 /* InfoClassTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = InfoClassTableViewCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		044AC5271B1648F900F7D196 /* InfoClassTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoClassTableViewCell.m; sourceTree = "<group>"; };
 		044AC5281B1648F900F7D196 /* LeftTitleListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftTitleListCell.h; sourceTree = "<group>"; };
 		044AC5291B1648F900F7D196 /* LeftTitleListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftTitleListCell.m; sourceTree = "<group>"; };
-		044AC52A1B1648F900F7D196 /* NoteItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteItemCell.h; sourceTree = "<group>"; };
+		044AC52A1B1648F900F7D196 /* NoteItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = NoteItemCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		044AC52B1B1648F900F7D196 /* NoteItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteItemCell.m; sourceTree = "<group>"; };
 		044AC52C1B1648F900F7D196 /* OrderListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderListCell.h; sourceTree = "<group>"; };
 		044AC52D1B1648F900F7D196 /* OrderListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderListCell.m; sourceTree = "<group>"; };
-		044AC52E1B1648F900F7D196 /* OrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderTableViewCell.h; sourceTree = "<group>"; };
+		044AC52E1B1648F900F7D196 /* OrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = OrderTableViewCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		044AC52F1B1648F900F7D196 /* OrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderTableViewCell.m; sourceTree = "<group>"; };
 		044AC5301B1648F900F7D196 /* OrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderTableViewCell.xib; sourceTree = "<group>"; };
-		044AC5311B1648F900F7D196 /* UICarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICarTableViewCell.h; sourceTree = "<group>"; };
-		044AC5321B1648F900F7D196 /* UICarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICarTableViewCell.m; sourceTree = "<group>"; };
+		044AC5311B1648F900F7D196 /* UIBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = UIBaseTableViewCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		044AC5321B1648F900F7D196 /* UIBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UIBaseTableViewCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		044AC5471B1650EE00F7D196 /* VendorListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VendorListViewController.h; path = Order/VendorListViewController.h; sourceTree = "<group>"; };
 		044AC5481B1650EE00F7D196 /* VendorListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VendorListViewController.m; path = Order/VendorListViewController.m; sourceTree = "<group>"; };
 		04913E951B196E8800179567 /* MGBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGBox.h; sourceTree = "<group>"; };
@@ -311,6 +315,8 @@
 		04A353E51B13A510003A80AA /* user_pwd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_pwd@2x.png"; sourceTree = "<group>"; };
 		04A353E61B13A510003A80AA /* userBg-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userBg-568h@2x~iphone.png"; sourceTree = "<group>"; };
 		04A353E71B13A510003A80AA /* userBg@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userBg@2x~iphone.png"; sourceTree = "<group>"; };
+		04C15C171B23460E0031E3CF /* GoodsOrderMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoodsOrderMenuView.h; path = Order/GoodsOrderMenuView.h; sourceTree = "<group>"; };
+		04C15C181B23460E0031E3CF /* GoodsOrderMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoodsOrderMenuView.m; path = Order/GoodsOrderMenuView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -356,6 +362,8 @@
 				044AC5161B16484F00F7D196 /* GoodsListViewController.m */,
 				04913EA71B196F7400179567 /* GoodsCatagoryView.h */,
 				04913EA81B196F7400179567 /* GoodsCatagoryView.m */,
+				04C15C171B23460E0031E3CF /* GoodsOrderMenuView.h */,
+				04C15C181B23460E0031E3CF /* GoodsOrderMenuView.m */,
 			);
 			name = order;
 			sourceTree = "<group>";
@@ -391,8 +399,8 @@
 				044AC52E1B1648F900F7D196 /* OrderTableViewCell.h */,
 				044AC52F1B1648F900F7D196 /* OrderTableViewCell.m */,
 				044AC5301B1648F900F7D196 /* OrderTableViewCell.xib */,
-				044AC5311B1648F900F7D196 /* UICarTableViewCell.h */,
-				044AC5321B1648F900F7D196 /* UICarTableViewCell.m */,
+				044AC5311B1648F900F7D196 /* UIBaseTableViewCell.h */,
+				044AC5321B1648F900F7D196 /* UIBaseTableViewCell.m */,
 				04913EAA1B19878400179567 /* GoodsCatagoryTableViewCell.h */,
 				04913EAB1B19878400179567 /* GoodsCatagoryTableViewCell.m */,
 			);
@@ -537,6 +545,8 @@
 		04A353881B138FAA003A80AA /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				04402EA41B1F57E5003393B4 /* MobileOrderNetDataMgr.h */,
+				04402EA51B1F57E5003393B4 /* MobileOrderNetDataMgr.m */,
 				04A353891B138FAA003A80AA /* CarServiceNetDataMgr.h */,
 				04A3538A1B138FAA003A80AA /* CarServiceNetDataMgr.m */,
 			);
@@ -864,6 +874,7 @@
 				04A353851B138898003A80AA /* BaoCarNetBaseViewController.m in Sources */,
 				042C7DC31B1B664E00E8A53C /* FoodItemCell.m in Sources */,
 				044AC53E1B1648F900F7D196 /* OrderTableViewCell.m in Sources */,
+				04402EA61B1F57E5003393B4 /* MobileOrderNetDataMgr.m in Sources */,
 				04913EA11B196E8800179567 /* MGBoxLine.m in Sources */,
 				044AC5331B1648F900F7D196 /* BidDetailTableViewCell.m in Sources */,
 				044AC5371B1648F900F7D196 /* BidPrepareTableViewCell.m in Sources */,
@@ -876,13 +887,14 @@
 				04913EAC1B19878400179567 /* GoodsCatagoryTableViewCell.m in Sources */,
 				04913EA31B196E8800179567 /* MGScrollView.m in Sources */,
 				044AC5381B1648F900F7D196 /* BidStartedTableViewCell.m in Sources */,
-				044AC5401B1648F900F7D196 /* UICarTableViewCell.m in Sources */,
+				044AC5401B1648F900F7D196 /* UIBaseTableViewCell.m in Sources */,
 				04A3538B1B138FAA003A80AA /* CarServiceNetDataMgr.m in Sources */,
 				044AC53D1B1648F900F7D196 /* OrderListCell.m in Sources */,
 				04A353491B1381B6003A80AA /* AppDelegate.m in Sources */,
 				04402EA01B1CC250003393B4 /* FoodSubItemCell.m in Sources */,
 				04913EA01B196E8800179567 /* MGBox.m in Sources */,
 				04402E9F1B1CC250003393B4 /* LeveyPopListView.m in Sources */,
+				04C15C191B23460E0031E3CF /* GoodsOrderMenuView.m in Sources */,
 				04913EA41B196E8800179567 /* MGStyledBox.m in Sources */,
 				04913EA21B196E8800179567 /* MGButton.m in Sources */,
 				044AC53B1B1648F900F7D196 /* LeftTitleListCell.m in Sources */,
