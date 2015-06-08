@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>CADEEDFE-57B1-411C-B3A8-F685111BD2B7</string>
+	<string>D3435687-63F1-45F6-A413-F91F4DA3F70D</string>
 	<key>IDESourceControlProjectName</key>
 	<string>MobileOrder</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -34,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>5E6300B33454B03CD516E3390A5DB2B69262C8C4</string>
 			<key>IDESourceControlWCCName</key>
-			<string>ordernet</string>
+			<string>MobileOrder</string>
 		</dict>
 	</array>
 </dict>
