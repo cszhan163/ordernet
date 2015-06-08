@@ -39,13 +39,14 @@
         //self.tableView.center = CGPointMake(frame.size.width/2.f, frame.size.height/2.f);
         
     }
+    return self;
 }
 
 - (void)showInView:(UIView*)view {
     NSInteger number= [self.dataArray count];
     if(number * 44.f>self.frame.size.height/2.f){
         
-        self.tableView.frame = CGRectMake(0.f,self.frame.size.height/2.f,,)
+        //self.tableView.frame = CGRectMake(0.f,self.frame.size.height/2.f,,);
     }
 }
 

@@ -32,6 +32,7 @@
 
 - (void)dealloc {
     self.item = nil;
+    self.foodName = nil;
     SuperDealloc;
 }
 
@@ -122,7 +123,11 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.textLabel.text = _item.name;
+    NSString *titleName = _item.name;
+    if(self.foodName && ![self.foodName isEqualToString:@""]) {
+        titleName = [NSString stringWithFormat:@"%@+%@",self.foodName,_item.name];
+    }
+    self.textLabel.text = titleName;
     _numberLabel.text = [NSString stringWithFormat:@"%ld",_item.number];
     _priceLabel.text =  [NSString stringWithFormat:@"¥ %0.2lf 元",_item.price];
     //self.imageView.frame = CGRectOffset(self.imageView.frame, 6, 0);

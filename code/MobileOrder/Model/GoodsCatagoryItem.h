@@ -28,3 +28,15 @@
 
 
 @end
+
+@interface GoodsOrderItem : SubCatagoryItem
+
+
+@property (nonatomic, strong) NSString *goodsName;
+
+@property (nonatomic, strong) SubCatagoryItem *subCatagoryItem;
+
+- (id)initWithGoodsName:(NSString*)name withCatagoryItem:(SubCatagoryItem*)item;
+
+
+@end

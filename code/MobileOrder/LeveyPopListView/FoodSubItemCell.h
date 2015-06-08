@@ -12,6 +12,8 @@
 
 @interface FoodSubItemCell : UIBaseTableViewCell
 
+@property (nonatomic, strong) NSString *foodName;
+
 - (void)setCellItem:(SubCatagoryItem*)item;
 
 @end
