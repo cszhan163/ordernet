@@ -19,6 +19,8 @@
 @interface GoodsCatagoryView : UIView
 
 
+@property (nonatomic, strong) UITableView *tableView;
+
 @property (nonatomic, strong) id<GooodsCatagoryDeleagte> delegate;
 
 - (id)initWithFrame:(CGRect)frame ;

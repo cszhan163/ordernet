@@ -8,7 +8,46 @@
 
 #import "GoodsOrderMenuView.h"
 
+#import "FoodSubItemCell.h"
+
+#import "GoodsCatagoryItem.h"
+
+
+ static NSString *cellId = @"resumeFoodCellId";
+
 @implementation GoodsOrderMenuView
+
+
+- (void)updateDataByOrderListArray:(NSArray*)data {
+
+    NSMutableArray *orderArray = [NSMutableArray array];
+    for(GoodsCatagoryItem *item in data) {
+        NSString *foodName = item.name;
+        for(SubCatagoryItem *subItem in item.subCatogoryArray) {
+            GoodsOrderItem *goodOrderItem = [[GoodsOrderItem alloc]initWithGoodsName:foodName withCatagoryItem:subItem];
+            [orderArray addObject:goodOrderItem];
+            SafeRelease(goodOrderItem);
+        }
+    }
+    self.dataArray = orderArray;
+}
+
+- (id)initWithFrame:(CGRect)frame  {
+
+    if(self = [super initWithFrame:frame]) {
+        
+        //self.tableView.center = CGPointMake(frame.size.width/2.f, frame.size.height/2.f);
+        
+    }
+}
+
+- (void)showInView:(UIView*)view {
+    NSInteger number= [self.dataArray count];
+    if(number * 44.f>self.frame.size.height/2.f){
+        
+        self.tableView.frame = CGRectMake(0.f,self.frame.size.height/2.f,,)
+    }
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -31,27 +70,22 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    GoodsCatagoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId forIndexPath:indexPath];
+    FoodSubItemCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId forIndexPath:indexPath];
     
     if(cell == nil){
         
-        cell = [[GoodsCatagoryTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+        cell = [[FoodSubItemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
         
     }
 #if 1
-    GoodsCatagoryItem *item = [self.dataArray objectAtIndex:indexPath.row];
-    cell.titleLable.text =  item.name;
-    
+    GoodsOrderItem *item = [self.dataArray objectAtIndex:indexPath.row];
+    //cell.titleLable.text =  [NSString stringWithFormat:@"%@+%@",item.goodsName,item.name];
+    [cell setFoodName:item.goodsName];
+    [cell setCellItem:item];
 #else
     cell.titleLable.text =  [self.dataArray objectAtIndex:indexPath.row];
 #endif
     return cell;
-}
-
-
-+ (CGFloat) getCatagoryCellHeight:(NSString*)txt {
-    
-    return [GoodsCatagoryTableViewCell getCellHeightWithText:txt];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

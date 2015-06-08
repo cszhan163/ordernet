@@ -12,4 +12,6 @@
 
 @interface GoodsOrderMenuView : GoodsCatagoryView
 
+- (void)updateDataByOrderListArray:(NSArray*)data;
+
 @end
