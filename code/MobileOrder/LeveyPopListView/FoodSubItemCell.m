@@ -123,6 +123,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    
     NSString *titleName = _item.name;
     if(self.foodName && ![self.foodName isEqualToString:@""]) {
         titleName = [NSString stringWithFormat:@"%@+%@",self.foodName,_item.name];

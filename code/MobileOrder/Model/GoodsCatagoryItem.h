@@ -29,7 +29,7 @@
 
 @end
 
-@interface GoodsOrderItem : SubCatagoryItem
+@interface GoodsOrderItem : NSObject
 
 
 @property (nonatomic, strong) NSString *goodsName;

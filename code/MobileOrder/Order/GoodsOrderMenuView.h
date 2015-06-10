@@ -14,4 +14,11 @@
 
 - (void)updateDataByOrderListArray:(NSArray*)data;
 
+@property (nonatomic, strong) UIView *bgView;
+
+
+- (void)showInView:(UIView*)view  withOffsetY:(CGFloat)offsetY animated:(BOOL) animated;
+
+- (void)disMiss:(BOOL)animated;
+
 @end

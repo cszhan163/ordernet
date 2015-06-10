@@ -14,7 +14,10 @@
 
 #define kCellHeight             100.f
 
+#define kOrderPanelHeight       80.f
 
+
+#import "GoodsOrderMenuView.h"
 
 #import "FoodItemCell.h"
 #import "GoodsListViewController.h"
@@ -36,12 +39,14 @@
     NSInteger currSection;
     
 }
-@property(nonatomic, strong)  NSDictionary *locationDict;
+@property (nonatomic, strong)  NSDictionary *locationDict;
 
 @property (nonatomic, strong) NSArray      *goodsListArray;
 
 @property (nonatomic, strong) NSArray      *titleArray;
-@property(nonatomic, strong)   GoodsCatagoryView *catogoryView;
+@property (nonatomic, strong) GoodsCatagoryView *catogoryView;
+
+@property (nonatomic, strong) GoodsOrderMenuView *goodsOrderMenuView;
 @end
 
 @implementation GoodsListViewController
@@ -144,6 +149,7 @@
 	// Do any additional setup after loading the view.
     CGRect originRect = tweetieTableView.frame;
     originRect.origin.x = originRect.origin.x+(kDeviceScreenWidth)/4;
+    originRect.size.height = originRect.size.height - kOrderPanelHeight;
     tweetieTableView.frame = originRect;
     
     tweetieTableView.delegate = self;
@@ -203,8 +209,52 @@
     [self.view addSubview:_catogoryView];
     [self.catogoryView scrollViewToIndex:0];
     
+    CGFloat currY = self.view.frame.size.height - kOrderPanelHeight;
+    UIView *orderPanel = [[UIView alloc]initWithFrame:CGRectMake(0.f,currY,kDeviceScreenWidth,kOrderPanelHeight)];
+    
+    orderPanel.backgroundColor = [UIColor greenColor];
+    
+    UIImage *image = nil;
+    UIButton *orderBtn = [UIComUtil createButtonWithNormalBGImage:nil withHightBGImage:nil withTitle:@"下单" withTag:0 withTarget:self  withTouchEvent:@selector(didOrderPress:)];
+    
+    orderBtn.frame = CGRectMake(orderPanel.frame.size.width-40.f-kLeftPendingX,kOrderPanelHeight- kTopPendingY-25.f,40.f,25.f);
+    orderBtn.backgroundColor = [UIColor redColor];
+    [orderPanel addSubview:orderBtn];
+    
+    UIImageAutoScaleWithFileName(image, @"book_arrow_up@2x");
     
     
+    UIButton *showOrderBtn = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"" withTag:0 withTarget:self  withTouchEvent:@selector(showOrderMenu:)];
+    showOrderBtn.backgroundColor = [UIColor redColor];
+    [orderPanel addSubview:showOrderBtn];
+    CGSize size = CGSizeMake(22,22);
+    showOrderBtn.frame = CGRectMake(orderPanel.frame.size.width-size.width-kLeftPendingX,kTopPendingY,size.width,size.height);
+    [orderPanel addSubview:showOrderBtn];
+    
+    [self.view addSubview:orderPanel];
+    
+    SafeRelease(orderPanel);
+    
+    
+    //for order menu
+    
+    _goodsOrderMenuView = [[GoodsOrderMenuView alloc]initWithFrame:self.view.frame];
+
+    
+}
+
+#pragma mark -
+
+#pragma mark - List order Fun
+
+- (void)didOrderPress:(id)sender {
+
+    
+}
+
+- (void)showOrderMenu:(id)sender {
+
+    [_goodsOrderMenuView showInView:self.view  withOffsetY:kOrderPanelHeight animated:YES];
 }
 
 - (NSArray*)convertToModelData:(NSArray*)data{
@@ -409,15 +459,60 @@
     }
 }
 
+#pragma mark -
+
+#pragma mark - Order Menu
+
+- (NSArray *)filertOrderData {
+
+    NSMutableArray *filterArray = [NSMutableArray array];
+    for (NSArray *sectionArray in self.goodsListArray) {
+        
+        for(GoodsCatagoryItem *item in sectionArray) {
+            // one kind
+            if([item.subCatogoryArray count] == 0){
+                if(item.number >0){
+                    
+                    [filterArray addObject:item];
+                    continue;
+                }
+            } else {
+                BOOL hasOrder = NO;
+                for(SubCatagoryItem *subItem in item.subCatogoryArray) {
+                    if(subItem.number>0){
+                        
+                        hasOrder = YES;
+                        break;
+                    }
+                }
+                if(hasOrder){
+                    
+                    [filterArray addObject:item];
+                }
+            }
+        }
+    }
+    return filterArray;
+}
+
+- (void)updateOrderMenu {
+    [_goodsOrderMenuView updateDataByOrderListArray:[self filertOrderData]];
+}
+
+
+
 
 #pragma  mark -
 
 #pragma mark CellActionDelegate
 
+// for only one kind
 - (void)cellDidClickOrderBtn:(id)sender  withIndexPath:(NSIndexPath*)indexPath {
 
-    
+    [self updateOrderMenu];
+    [tweetieTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
+// may choose mutiple kind
 
 - (void)cellDidClickOrderDetailBtn:(id)sender withIndexPath:(NSIndexPath *)indexPath {
     
@@ -439,7 +534,7 @@
 
     NSIndexPath *indexPath= [popListView indexPath];
     [tweetieTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    
+    [self updateOrderMenu];
 }
 
 

@@ -21,7 +21,10 @@
 - (void)awakeFromNib {
     // Initialization code
     [self.addNumBtn addTarget:self action:@selector(numberBtnPress:) forControlEvents:UIControlEventTouchUpInside];
+    [self.addNumBtn setTag:1];
     [self.minNumBtn addTarget:self action:@selector(numberBtnPress:) forControlEvents:UIControlEventTouchUpInside];
+    [self.minNumBtn setTag:0];
+    
 }
 
 - (void)numberBtnPress:(id)sender{
@@ -36,7 +39,23 @@
     
         if(self.delegate && [self.delegate respondsToSelector:@selector(cellDidClickOrderBtn:withIndexPath:)]){
             
+            switch ([sender tag]) {
+                    //min
+                case 0:
+                    self.item.number = self.item.number-1;
+                    if(self.item.number<=0)
+                        self.item.number = 0;
+                    break;
+                    //add
+                case 1:
+                    self.item.number = self.item.number+1;
+                    break;
+                default:
+                    break;
+            }
+            
             [self.delegate cellDidClickOrderBtn:self.item withIndexPath:self.indexPath];
+            [self setNeedsLayout];
         }
     }
 }

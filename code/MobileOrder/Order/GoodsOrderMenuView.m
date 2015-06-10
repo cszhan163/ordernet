@@ -15,21 +15,45 @@
 
  static NSString *cellId = @"resumeFoodCellId";
 
+@interface GoodsOrderMenuView(){
+
+      CGRect targeFrame;
+}
+@end
+
 @implementation GoodsOrderMenuView
+
+- (void)dealloc {
+    self.bgView = nil;
+    SuperDealloc;
+}
 
 
 - (void)updateDataByOrderListArray:(NSArray*)data {
 
-    NSMutableArray *orderArray = [NSMutableArray array];
+   
+#if 1
+   NSMutableArray *orderArray = [NSMutableArray array];
     for(GoodsCatagoryItem *item in data) {
-        NSString *foodName = item.name;
-        for(SubCatagoryItem *subItem in item.subCatogoryArray) {
-            GoodsOrderItem *goodOrderItem = [[GoodsOrderItem alloc]initWithGoodsName:foodName withCatagoryItem:subItem];
+        if([item.subCatogoryArray count]){
+            NSString *foodName = item.name;
+            for(SubCatagoryItem *subItem in item.subCatogoryArray) {
+                GoodsOrderItem *goodOrderItem = [[GoodsOrderItem alloc]initWithGoodsName:foodName withCatagoryItem:subItem];
+                [orderArray addObject:goodOrderItem];
+                SafeRelease(goodOrderItem);
+            }
+        } else {
+            //no sub kind
+            GoodsOrderItem *goodOrderItem = [[GoodsOrderItem alloc]initWithGoodsName:@"" withCatagoryItem:item];
             [orderArray addObject:goodOrderItem];
             SafeRelease(goodOrderItem);
         }
     }
     self.dataArray = orderArray;
+#else
+    self.dataArray = data;
+#endif
+   
 }
 
 - (id)initWithFrame:(CGRect)frame  {
@@ -37,17 +61,68 @@
     if(self = [super initWithFrame:frame]) {
         
         //self.tableView.center = CGPointMake(frame.size.width/2.f, frame.size.height/2.f);
-        
+        [self.tableView registerClass:[FoodSubItemCell class] forCellReuseIdentifier:cellId];
     }
     return self;
 }
 
-- (void)showInView:(UIView*)view {
+- (void)showInView:(UIView*)view  withOffsetY:(CGFloat)offsetY animated:(BOOL) animated {
+    
+    UIWindow *keyWnd= [[UIApplication sharedApplication]keyWindow];
+    CGRect rect = [[UIScreen mainScreen] bounds];
+    
+    _bgView = [[UIView alloc]initWithFrame:rect];
+    _bgView.backgroundColor = HexRGBA(0, 0, 0, 0.7);
+    [_bgView addSubview:self];
+    UITapGestureRecognizer *tapGuesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
+    [_bgView addGestureRecognizer:tapGuesture];
+    
+    SafeRelease(tapGuesture);
+    
+    [keyWnd addSubview:_bgView];
+    
     NSInteger number= [self.dataArray count];
+    CGSize size  = CGSizeMake(view.frame.size.width, view.frame.size.height-offsetY/2.f);
     if(number * 44.f>self.frame.size.height/2.f){
-        
-        //self.tableView.frame = CGRectMake(0.f,self.frame.size.height/2.f,,);
+        targeFrame= CGRectMake(0.f,(self.frame.size.height-offsetY)/2.f,size.width,size.height);
+    } else {
+        size.height = number*44.f;
+        targeFrame = CGRectMake(0.f,self.frame.size.height-size.height-offsetY,size.width, size.height);
     }
+    //[view addSubview:_bgView];
+    if(animated){
+        _bgView.alpha = 0;
+        self.tableView.frame = CGRectOffset(targeFrame, 0,targeFrame.size.height);
+        [UIView animateWithDuration:.35 animations:^{
+            _bgView.alpha = 1;
+            self.tableView.frame = targeFrame;
+        }];
+    } else {
+    
+        _bgView.alpha = 0;
+        self.tableView.frame = targeFrame;
+    }
+    [self.tableView reloadData];
+}
+- (void)disMiss:(BOOL)animated {
+    
+    if(animated){
+        _bgView.alpha = 1;
+        //self.tableView.frame = targeFrame;
+        [UIView animateWithDuration:.35 animations:^{
+            _bgView.alpha = 0;
+            self.tableView.frame = CGRectOffset(targeFrame, 0,targeFrame.size.height);
+        }];
+    } else {
+        
+        _bgView.alpha = 0;
+        self.tableView.frame = CGRectOffset(targeFrame, 0,targeFrame.size.height);
+    }
+}
+
+- (void)tapAction:(id)sender {
+
+    [self disMiss:YES];
 }
 
 /*
@@ -82,7 +157,8 @@
     GoodsOrderItem *item = [self.dataArray objectAtIndex:indexPath.row];
     //cell.titleLable.text =  [NSString stringWithFormat:@"%@+%@",item.goodsName,item.name];
     [cell setFoodName:item.goodsName];
-    [cell setCellItem:item];
+    [cell setCellItem:item.subCatagoryItem];
+    [cell setDelegate:self];
 #else
     cell.titleLable.text =  [self.dataArray objectAtIndex:indexPath.row];
 #endif
@@ -105,6 +181,8 @@
     
     
 }
+
+
 
 
 @end

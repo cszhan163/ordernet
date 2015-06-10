@@ -16,6 +16,7 @@
     SuperDealloc;
 }
 
+
 @end
 
 @implementation GoodsCatagoryItem
