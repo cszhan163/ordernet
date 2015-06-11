@@ -18,8 +18,7 @@
 
 @interface FoodSubItemCell() {
 
-    UILabel *_numberLabel;
-    UILabel *_priceLabel;
+   
     
 }
 
@@ -45,38 +44,37 @@
         self.textLabel.textColor = kGoodCatagoryTextColor;//[UIColor whiteColor];
         self.textLabel.font = kGoodsSubCatagoryTextFont;
         
-      
-        
+    
         UIImage *image = nil;
         UIImageAutoScaleWithFileName(image, @"auto_add");
-        UIButton *addBtn  = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"" withTag:0 withTarget:self withTouchEvent:@selector(didPrecessBtn:)];
-        [self addSubview:addBtn];
+        _addBtn  = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"" withTag:0 withTarget:self withTouchEvent:@selector(didPrecessBtn:)];
+        [self addSubview:_addBtn];
         //[addBtn sizeToFit];
-        CGSize  btnSize = addBtn.frame.size;
-        CGFloat currX = self.frame.size.width-kPendingX-addBtn.frame.size.width;
-        CGFloat currY = self.frame.size.height-kPendingY-addBtn.frame.size.height;
-        addBtn.frame = CGRectMake(currX,currY,btnSize.width, btnSize.height);
+        CGSize  btnSize = _addBtn.frame.size;
+        CGFloat currX = self.frame.size.width-kPendingX-_addBtn.frame.size.width;
+        CGFloat currY = self.frame.size.height-kPendingY-_addBtn.frame.size.height;
+        _addBtn.frame = CGRectMake(currX,currY,btnSize.width, btnSize.height);
        
         currX = currX-kPendingX;
         CGSize labelSize = CGSizeMake(40.f,20.f);
         
-        _numberLabel = [UIComUtil createLabelWithFont:kGoodsSubCatagoryTextFont withTextColor:[UIColor blackColor] withText:@"11" withFrame:CGRectMake(currX-labelSize.width,currY-5.f,labelSize.width,labelSize.height)];
+        _numberLabel = [UIComUtil createLabelWithFont:kGoodsSubCatagoryTextFont withTextColor:[UIColor blackColor] withText:@"11" withFrame:CGRectMake(currX-labelSize.width,currY-3.f,labelSize.width,labelSize.height)];
         [self addSubview:_numberLabel];
         _numberLabel.backgroundColor = [UIColor greenColor];
         
         
         UIImageAutoScaleWithFileName(image, @"auto_sub");
-        UIButton *subBtn  = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"" withTag:1 withTarget:self withTouchEvent:@selector(didPrecessBtn:)];
-        [self addSubview:subBtn];
+        _subBtn  = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"" withTag:1 withTarget:self withTouchEvent:@selector(didPrecessBtn:)];
+        [self addSubview:_subBtn];
       
         currX =  currX-2*kPendingX-labelSize.width;
-        btnSize = subBtn.frame.size;
+        btnSize = _subBtn.frame.size;
         
-        subBtn.frame = CGRectMake(currX,currY,btnSize.width, btnSize.height);
+        _subBtn.frame = CGRectMake(currX,currY,btnSize.width, btnSize.height);
         
      
-        _priceLabel = [UIComUtil createLabelWithFont:kGoodsSubCatagoryTextFont withTextColor:[UIColor blackColor] withText:@"11" withFrame:CGRectMake(currX-labelSize.width-100.f,currY,100.f,labelSize.height)];
-        _priceLabel.textAlignment = NSTextAlignmentLeft;
+        _priceLabel = [UIComUtil createLabelWithFont:kGoodsSubCatagoryTextFont withTextColor:[UIColor blackColor] withText:@"11" withFrame:CGRectMake(currX-labelSize.width-80.f,currY-3.f,100.f,labelSize.height)];
+        _priceLabel.textAlignment = NSTextAlignmentRight;
         
         [self addSubview:_priceLabel];
         _priceLabel.backgroundColor = [UIColor greenColor];
@@ -84,6 +82,7 @@
     }
     return self;
 }
+
 
 - (void)didPrecessBtn:(id)sender {
     switch ([sender tag]) {
@@ -128,7 +127,8 @@
     if(self.foodName && ![self.foodName isEqualToString:@""]) {
         titleName = [NSString stringWithFormat:@"%@+%@",self.foodName,_item.name];
     }
-    self.textLabel.text = titleName;
+    self.textLabel.text = @"很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长";//titleName;
+    self.textLabel.frame = CGRectMake(0.f, 0.f,self.frame.size.width/2.f, 40);
     _numberLabel.text = [NSString stringWithFormat:@"%ld",_item.number];
     _priceLabel.text =  [NSString stringWithFormat:@"¥ %0.2lf 元",_item.price];
     //self.imageView.frame = CGRectOffset(self.imageView.frame, 6, 0);

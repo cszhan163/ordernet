@@ -10,7 +10,13 @@
 @class SubCatagoryItem;
 
 
-@interface FoodSubItemCell : UIBaseTableViewCell
+@interface FoodSubItemCell : UIBaseTableViewCell {
+
+    UILabel     *_numberLabel;
+    UILabel     *_priceLabel;
+    UIButton    *_addBtn;
+    UIButton    *_subBtn;
+}
 
 @property (nonatomic, strong) NSString *foodName;
 

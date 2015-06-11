@@ -55,7 +55,7 @@
             }
             
             [self.delegate cellDidClickOrderBtn:self.item withIndexPath:self.indexPath];
-            [self setNeedsLayout];
+            //[self setNeedsLayout];
         }
     }
 }

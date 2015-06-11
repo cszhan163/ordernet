@@ -21,14 +21,14 @@
 
 @interface FoodItemCell : UITableViewCell
 
-@property(nonatomic,retain)IBOutlet UIImageView *foodIconImageView;
-@property(nonatomic,retain)IBOutlet UILabel *foodNameLabel;
-@property(nonatomic,retain)IBOutlet UILabel *priceLabel;
+@property(nonatomic,strong)IBOutlet UIImageView *foodIconImageView;
+@property(nonatomic,strong)IBOutlet UILabel *foodNameLabel;
+@property(nonatomic,strong)IBOutlet UILabel *priceLabel;
 @property(nonatomic,strong)IBOutlet UILabel *indictTextLabel;
 @property (nonatomic, strong) IBOutlet UILabel *numberLabel;
-@property(nonatomic,retain)IBOutlet UIButton *addNumBtn;
-@property(nonatomic,retain)IBOutlet UIButton *minNumBtn;
-@property(nonatomic,retain)IBOutlet UIButton *markBtn;
+@property(nonatomic,strong)IBOutlet UIButton *addNumBtn;
+@property(nonatomic,strong)IBOutlet UIButton *minNumBtn;
+@property(nonatomic,strong)IBOutlet UIButton *markBtn;
 
 @property(nonatomic, strong) NSIndexPath *indexPath;
 

@@ -8,12 +8,15 @@
 
 #import "GoodsOrderMenuView.h"
 
-#import "FoodSubItemCell.h"
+#import "FoodMenuCell.h"
 
 #import "GoodsCatagoryItem.h"
 
 
- static NSString *cellId = @"resumeFoodCellId";
+#define  kOrderMenuCellHeight      44.f
+
+
+ static NSString *cellId = @"resumeMenuCellId";
 
 @interface GoodsOrderMenuView(){
 
@@ -61,7 +64,7 @@
     if(self = [super initWithFrame:frame]) {
         
         //self.tableView.center = CGPointMake(frame.size.width/2.f, frame.size.height/2.f);
-        [self.tableView registerClass:[FoodSubItemCell class] forCellReuseIdentifier:cellId];
+        [self.tableView registerClass:[FoodMenuCell class] forCellReuseIdentifier:cellId];
     }
     return self;
 }
@@ -82,11 +85,11 @@
     [keyWnd addSubview:_bgView];
     
     NSInteger number= [self.dataArray count];
-    CGSize size  = CGSizeMake(view.frame.size.width, view.frame.size.height-offsetY/2.f);
-    if(number * 44.f>self.frame.size.height/2.f){
+    CGSize size  = CGSizeMake(view.frame.size.width, (view.frame.size.height-offsetY)/2.f);
+    if(number * kOrderMenuCellHeight >(self.frame.size.height-offsetY)/2.f){
         targeFrame= CGRectMake(0.f,(self.frame.size.height-offsetY)/2.f,size.width,size.height);
     } else {
-        size.height = number*44.f;
+        size.height = number*kOrderMenuCellHeight;
         targeFrame = CGRectMake(0.f,self.frame.size.height-size.height-offsetY,size.width, size.height);
     }
     //[view addSubview:_bgView];
@@ -138,7 +141,7 @@
     GoodsCatagoryItem *item = [self.dataArray objectAtIndex:indexPath.row];
     return item.cellHeight;
     */
-    return 44.f;
+    return kOrderMenuCellHeight;
 }
 
 
@@ -146,11 +149,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    FoodSubItemCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId forIndexPath:indexPath];
+    FoodMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId forIndexPath:indexPath];
     
     if(cell == nil){
         
-        cell = [[FoodSubItemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+        cell = [[FoodMenuCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
         
     }
 #if 1

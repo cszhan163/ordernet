@@ -11,7 +11,7 @@
 #import "GoodsCatagoryItem.h"
 
 
- static NSString *cellId = @"resumeCellId";
+static NSString *cellId = @"resumeCellId";
 
 @interface GoodsCatagoryView () <UITableViewDataSource,UITableViewDelegate>{
 

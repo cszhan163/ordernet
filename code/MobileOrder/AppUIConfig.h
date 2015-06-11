@@ -31,6 +31,8 @@
 #define  kGoodCatagoryTextFont          [UIFont systemFontOfSize:12]
 #define  kGoodsSubCatagoryTextFont          [UIFont systemFontOfSize:10]
 
+#define  kGoodsOrderMenuTextFont        [UIFont   systemFontOfSize:14]
+
 
 #define kMenuTitle        @"私人厨房"
 #define kMenuTitleArray   @[@"候餐",@"点餐",@"我"]

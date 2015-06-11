@@ -35,8 +35,12 @@
 //#import "BidMainViewController.h"
 
 @interface GoodsListViewController()<GooodsCatagoryDeleagte,FoodItemCellDelegate>{
-    UIView *tbHeaderView;
-    NSInteger currSection;
+    UIView      *tbHeaderView;
+    NSInteger   currSection;
+    
+    UILabel     *_priceLabel;
+    
+    UILabel     *_numberLabel;
     
 }
 @property (nonatomic, strong)  NSDictionary *locationDict;
@@ -223,7 +227,7 @@
     
     UIImageAutoScaleWithFileName(image, @"book_arrow_up@2x");
     
-    
+    //for order
     UIButton *showOrderBtn = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"" withTag:0 withTarget:self  withTouchEvent:@selector(showOrderMenu:)];
     showOrderBtn.backgroundColor = [UIColor redColor];
     [orderPanel addSubview:showOrderBtn];
@@ -231,12 +235,30 @@
     showOrderBtn.frame = CGRectMake(orderPanel.frame.size.width-size.width-kLeftPendingX,kTopPendingY,size.width,size.height);
     [orderPanel addSubview:showOrderBtn];
     
+    
+    CGSize labelSize = CGSizeMake(40.f,40.f);
+    
+    
+    _numberLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,orderPanel.frame.size.height/2.f-40,orderPanel.frame.size.width/2.f,labelSize.height)];
+    _numberLabel.backgroundColor = [UIColor redColor];
+    _numberLabel.textAlignment = NSTextAlignmentLeft;
+    
+    [orderPanel addSubview:_numberLabel];
+    
+    _priceLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,orderPanel.frame.size.height/2.f,orderPanel.frame.size.width/2.f,labelSize.height)];
+    _priceLabel.backgroundColor = [UIColor redColor];
+    _priceLabel.textAlignment = NSTextAlignmentLeft;
+    
+     [orderPanel addSubview:_priceLabel];
+   
+    
     [self.view addSubview:orderPanel];
     
     SafeRelease(orderPanel);
     
     
     //for order menu
+    
     
     _goodsOrderMenuView = [[GoodsOrderMenuView alloc]initWithFrame:self.view.frame];
 
@@ -497,6 +519,18 @@
 
 - (void)updateOrderMenu {
     [_goodsOrderMenuView updateDataByOrderListArray:[self filertOrderData]];
+    
+    [tweetieTableView reloadData];
+    
+    NSInteger totalNumber = 0;
+    CGFloat   totalPrice = 0.f;
+    for(GoodsOrderItem *item in [_goodsOrderMenuView dataArray]){
+        totalNumber = totalNumber + item.subCatagoryItem.number;
+        totalPrice = totalPrice + item.subCatagoryItem.price * item.subCatagoryItem.number;
+    }
+    _numberLabel.text = [NSString stringWithFormat:@"点了:  %ld   道菜",totalNumber];
+    _priceLabel.text  = [NSString stringWithFormat:@"总计: ¥%0.2lf 元",totalPrice];
+    
 }
 
 
