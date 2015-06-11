@@ -19,6 +19,7 @@
 		042C7DD41B1B73CF00E8A53C /* uhuo_default_l@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 042C7DCB1B1B73CF00E8A53C /* uhuo_default_l@2x.png */; };
 		042C7DD51B1B73CF00E8A53C /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 042C7DCC1B1B73CF00E8A53C /* whiteArrow@2x.png */; };
 		042C7DDA1B1B811700E8A53C /* libZCSUIFrameWork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 042C7DD91B1B811700E8A53C /* libZCSUIFrameWork.a */; };
+		042DA2371B29DCAA0029CE85 /* FoodMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042DA2361B29DCAA0029CE85 /* FoodMenuCell.m */; };
 		04402E9F1B1CC250003393B4 /* LeveyPopListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04402E9C1B1CC250003393B4 /* LeveyPopListView.m */; };
 		04402EA01B1CC250003393B4 /* FoodSubItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04402E9E1B1CC250003393B4 /* FoodSubItemCell.m */; };
 		04402EA61B1F57E5003393B4 /* MobileOrderNetDataMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 04402EA51B1F57E5003393B4 /* MobileOrderNetDataMgr.m */; };
@@ -158,6 +159,8 @@
 		042C7DCB1B1B73CF00E8A53C /* uhuo_default_l@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uhuo_default_l@2x.png"; sourceTree = "<group>"; };
 		042C7DCC1B1B73CF00E8A53C /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		042C7DD91B1B811700E8A53C /* libZCSUIFrameWork.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libZCSUIFrameWork.a; sourceTree = "<group>"; };
+		042DA2351B29DCAA0029CE85 /* FoodMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodMenuCell.h; sourceTree = "<group>"; };
+		042DA2361B29DCAA0029CE85 /* FoodMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodMenuCell.m; sourceTree = "<group>"; };
 		04402E9B1B1CC250003393B4 /* LeveyPopListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeveyPopListView.h; sourceTree = "<group>"; };
 		04402E9C1B1CC250003393B4 /* LeveyPopListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeveyPopListView.m; sourceTree = "<group>"; };
 		04402E9D1B1CC250003393B4 /* FoodSubItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FoodSubItemCell.h; path = ../LeveyPopListView/FoodSubItemCell.h; sourceTree = "<group>"; };
@@ -371,6 +374,8 @@
 		044AC5181B1648F900F7D196 /* CellView */ = {
 			isa = PBXGroup;
 			children = (
+				042DA2351B29DCAA0029CE85 /* FoodMenuCell.h */,
+				042DA2361B29DCAA0029CE85 /* FoodMenuCell.m */,
 				04402E9D1B1CC250003393B4 /* FoodSubItemCell.h */,
 				04402E9E1B1CC250003393B4 /* FoodSubItemCell.m */,
 				044AC51F1B1648F900F7D196 /* FoodItemCell.xib */,
@@ -874,6 +879,7 @@
 				04A353851B138898003A80AA /* BaoCarNetBaseViewController.m in Sources */,
 				042C7DC31B1B664E00E8A53C /* FoodItemCell.m in Sources */,
 				044AC53E1B1648F900F7D196 /* OrderTableViewCell.m in Sources */,
+				042DA2371B29DCAA0029CE85 /* FoodMenuCell.m in Sources */,
 				04402EA61B1F57E5003393B4 /* MobileOrderNetDataMgr.m in Sources */,
 				04913EA11B196E8800179567 /* MGBoxLine.m in Sources */,
 				044AC5331B1648F900F7D196 /* BidDetailTableViewCell.m in Sources */,
