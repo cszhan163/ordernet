@@ -33,6 +33,8 @@
 
 #define  kGoodsOrderMenuTextFont        [UIFont   systemFontOfSize:14]
 
+#define  kGoodsOrderShopTitle         [UIFont   systemFontOfSize:16]
+
 
 #define kMenuTitle        @"私人厨房"
 #define kMenuTitleArray   @[@"候餐",@"点餐",@"我"]

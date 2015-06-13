@@ -14,6 +14,8 @@
 
 #import "BSPreviewScrollView.h"
 
+#import "OrderConfirmViewController.h"
+
 #define  kIphone4ImageSize  CGSizeMake(kDeviceScreenWidth, 200.f)
 
 #define  kIphone5ImageSize  CGSizeMake(kDeviceScreenWidth, 200.f+100.f)
@@ -175,7 +177,16 @@
         
             }
             break;
-        case 2:
+        case 2: {
+            
+            OrderConfirmViewController *orderConfirmCtlr =  [[OrderConfirmViewController alloc]init];
+            
+            [self.navigationController pushViewController:orderConfirmCtlr animated:YES];
+            
+            SafeRelease(orderConfirmCtlr);
+
+        
+        }
             
             break;
         default:

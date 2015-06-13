@@ -27,7 +27,7 @@
                         </state>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="dline.png" id="12">
-                        <rect key="frame" x="0.0" y="-147" width="320" height="1"/>
+                        <rect key="frame" x="0.0" y="-229" width="320" height="1"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_default_s.png" id="BJk-MO-TXb">
