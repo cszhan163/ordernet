@@ -18,4 +18,7 @@
 
 @property (nonatomic, strong) NSDictionary *otherInfo;
 
+
+- (id)initWithDictionary:(NSDictionary*)data ;
+
 @end

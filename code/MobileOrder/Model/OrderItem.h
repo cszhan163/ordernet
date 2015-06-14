@@ -19,11 +19,6 @@
 @end
 
 
-@interface OrderDetailItem : NSObject
-
-
-
-@end
 
 @interface OrderItem : NSObject
 
@@ -36,6 +31,10 @@
 @property (nonatomic, strong) UserItem *userItem;
 
 @property (nonatomic, strong) NSString  *orderId;
+
+@property (nonatomic, assign) CGFloat consumePoints;
+
+@property (nonatomic, assign) CGFloat totalPrice;
 
 
 @end

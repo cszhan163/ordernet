@@ -16,11 +16,13 @@
 #define  kOrderMenuCellHeight      44.f
 
 
- static NSString *cellId = @"resumeMenuCellId";
+
 
 @interface GoodsOrderMenuView(){
 
-      CGRect targeFrame;
+    CGRect targeFrame;
+    CGSize _bgSize;
+    CGFloat _offsetY;
 }
 @end
 
@@ -28,6 +30,7 @@
 
 - (void)dealloc {
     self.bgView = nil;
+    self.orderDelegate = nil;
     SuperDealloc;
 }
 
@@ -41,9 +44,12 @@
         if([item.subCatogoryArray count]){
             NSString *foodName = item.name;
             for(SubCatagoryItem *subItem in item.subCatogoryArray) {
-                GoodsOrderItem *goodOrderItem = [[GoodsOrderItem alloc]initWithGoodsName:foodName withCatagoryItem:subItem];
-                [orderArray addObject:goodOrderItem];
-                SafeRelease(goodOrderItem);
+                //only not zero number
+                if(subItem.number){
+                    GoodsOrderItem *goodOrderItem = [[GoodsOrderItem alloc]initWithGoodsName:foodName withCatagoryItem:subItem];
+                    [orderArray addObject:goodOrderItem];
+                    SafeRelease(goodOrderItem);
+                }
             }
         } else {
             //no sub kind
@@ -53,10 +59,32 @@
         }
     }
     self.dataArray = orderArray;
+    [self updateOrderMenuUI];
 #else
     self.dataArray = data;
 #endif
    
+}
+
+- (void)updateOrderMenuUI {
+    
+    NSInteger number= [self.dataArray count];
+    CGSize size  = _bgSize;
+    
+    if(number * kOrderMenuCellHeight >size.height){
+        targeFrame= CGRectMake(0.f,size.height,size.width,size.height);
+        [self.tableView reloadData];
+        return;
+    } else {
+        size.height = number*kOrderMenuCellHeight;
+        targeFrame = CGRectMake(0.f,self.frame.size.height-size.height-_offsetY,size.width, size.height);
+    }
+    [self.tableView reloadData];
+    [UIView animateWithDuration:.35 animations:
+     ^{
+        self.tableView.frame = targeFrame;
+    }];
+    //self.tableView.frame = targeFrame;
 }
 
 - (id)initWithFrame:(CGRect)frame  {
@@ -64,16 +92,16 @@
     if(self = [super initWithFrame:frame]) {
         
         //self.tableView.center = CGPointMake(frame.size.width/2.f, frame.size.height/2.f);
-        [self.tableView registerClass:[FoodMenuCell class] forCellReuseIdentifier:cellId];
+        //[self.tableView registerClass:[FoodMenuCell class] forCellReuseIdentifier:cellId];
     }
     return self;
 }
 
 - (void)showInView:(UIView*)view  withOffsetY:(CGFloat)offsetY animated:(BOOL) animated {
-    
+    [self disMiss:NO];
     UIWindow *keyWnd= [[UIApplication sharedApplication]keyWindow];
     CGRect rect = [[UIScreen mainScreen] bounds];
-    
+    rect.size.height = rect.size.height-offsetY;
     _bgView = [[UIView alloc]initWithFrame:rect];
     _bgView.backgroundColor = HexRGBA(0, 0, 0, 0.7);
     [_bgView addSubview:self];
@@ -86,6 +114,10 @@
     
     NSInteger number= [self.dataArray count];
     CGSize size  = CGSizeMake(view.frame.size.width, (view.frame.size.height-offsetY)/2.f);
+    
+    _bgSize = size;
+    _offsetY = offsetY;
+    
     if(number * kOrderMenuCellHeight >(self.frame.size.height-offsetY)/2.f){
         targeFrame= CGRectMake(0.f,(self.frame.size.height-offsetY)/2.f,size.width,size.height);
     } else {
@@ -149,11 +181,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    FoodMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId forIndexPath:indexPath];
+     static NSString *cellId = @"resumeMenuCellId";
+    FoodMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
     if(cell == nil){
         
         cell = [[FoodMenuCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+        SafeAutoRelease(cell);
         
     }
 #if 1
@@ -186,6 +220,28 @@
 }
 
 
+#pragma mark -
+#pragma mark - cell click Delegate
+
+- (void)cellDidClickOrderAddBtn:(id)sender  withNumber:(NSInteger)number {
+
+    
+    [self didchangeOrderData];
+}
+
+- (void)cellDidClickOrderSubBtn:(id)sender  withNumber:(NSInteger)number {
+
+     [self didchangeOrderData];
+}
+
+- (void)didchangeOrderData {
+
+    if(self.orderDelegate && [self.orderDelegate respondsToSelector:@selector(didChangeOrderMenu:)]) {
+    
+        [self.orderDelegate didChangeOrderMenu:self];
+    }
+    
+}
 
 
 @end

@@ -29,18 +29,23 @@
 
 #import "LeveyPopListView.h"
 
+#import "OrderConfirmViewController.h"
+
 
 //#import "BidDetailViewController.h"
 
 //#import "BidMainViewController.h"
 
-@interface GoodsListViewController()<GooodsCatagoryDeleagte,FoodItemCellDelegate>{
+@interface GoodsListViewController()<GooodsCatagoryDeleagte,
+                                    GoodsOrderMenuDelegate,
+                                    FoodItemCellDelegate>{
     UIView      *tbHeaderView;
     NSInteger   currSection;
     
     UILabel     *_priceLabel;
     
     UILabel     *_numberLabel;
+    CGFloat     _totalPrice;
     
 }
 @property (nonatomic, strong)  NSDictionary *locationDict;
@@ -261,6 +266,8 @@
     
     
     _goodsOrderMenuView = [[GoodsOrderMenuView alloc]initWithFrame:self.view.frame];
+    
+    [_goodsOrderMenuView setOrderDelegate:self];
 
     
 }
@@ -271,6 +278,32 @@
 
 - (void)didOrderPress:(id)sender {
 
+    OrderConfirmViewController *orderConfirmCtlr =  [[OrderConfirmViewController alloc]init];
+    
+    OrderItem *orderItem = [[OrderItem alloc]init];
+    
+    orderItem.menuData = [_goodsOrderMenuView dataArray];
+    
+    UserItem *useItem = [[UserItem alloc]initWithDictionary:@{@"phoneNumber":@"18964598393",
+                                                              @"name":@"王驼",
+                                                              @"totalPoints":@"123",
+                                                              }];
+    
+    orderItem.userItem = useItem;
+    
+    ShopItem *shopItem = [[ShopItem alloc]init];
+    shopItem.name = @"xx肉夹馍软件园店";
+    shopItem.position = @"上海张江高科汇智商务中心广场5楼";
+    
+    orderItem.shopItem = shopItem;
+    orderItem.consumePoints = 51.f;
+    orderItem.totalPrice = _totalPrice;
+    
+    [orderConfirmCtlr setOrderItem:orderItem];
+    
+    [self.navigationController pushViewController:orderConfirmCtlr animated:YES];
+    
+    SafeRelease(orderConfirmCtlr);
     
 }
 
@@ -333,6 +366,9 @@
     }
     return SafeAutoRelease(headerView);
 }
+
+
+
 #pragma mark -
 #pragma mark tableview
 
@@ -516,6 +552,12 @@
     }
     return filterArray;
 }
+#pragma mark -
+#pragma mark - ordermenu delegate
+- (void)didChangeOrderMenu:(id)sender {
+
+    [self updateOrderMenu];
+}
 
 - (void)updateOrderMenu {
     [_goodsOrderMenuView updateDataByOrderListArray:[self filertOrderData]];
@@ -523,13 +565,12 @@
     [tweetieTableView reloadData];
     
     NSInteger totalNumber = 0;
-    CGFloat   totalPrice = 0.f;
     for(GoodsOrderItem *item in [_goodsOrderMenuView dataArray]){
         totalNumber = totalNumber + item.subCatagoryItem.number;
-        totalPrice = totalPrice + item.subCatagoryItem.price * item.subCatagoryItem.number;
+        _totalPrice = _totalPrice + item.subCatagoryItem.price * item.subCatagoryItem.number;
     }
     _numberLabel.text = [NSString stringWithFormat:@"点了:  %ld   道菜",totalNumber];
-    _priceLabel.text  = [NSString stringWithFormat:@"总计: ¥%0.2lf 元",totalPrice];
+    _priceLabel.text  = [NSString stringWithFormat:@"总计: ¥%0.2lf 元",_totalPrice];
     
 }
 

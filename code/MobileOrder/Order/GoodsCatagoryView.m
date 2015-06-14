@@ -11,7 +11,7 @@
 #import "GoodsCatagoryItem.h"
 
 
-static NSString *cellId = @"resumeCellId";
+
 
 @interface GoodsCatagoryView () <UITableViewDataSource,UITableViewDelegate>{
 
@@ -37,7 +37,7 @@ static NSString *cellId = @"resumeCellId";
     _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
         _tableView.separatorColor = nil;
-    [_tableView registerClass:[GoodsCatagoryTableViewCell class] forCellReuseIdentifier:cellId];
+    //[_tableView registerClass:[GoodsCatagoryTableViewCell class] forCellReuseIdentifier:cellId];
     [self addSubview:_tableView];
     }
     return self;
@@ -84,7 +84,8 @@ static NSString *cellId = @"resumeCellId";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
    
-    GoodsCatagoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId forIndexPath:indexPath];
+    static NSString *cellId = @"resumeCellId";
+    GoodsCatagoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
     if(cell == nil){
         

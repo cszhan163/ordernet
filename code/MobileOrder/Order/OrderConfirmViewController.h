@@ -6,12 +6,13 @@
 //  Copyright (c) 2015年 com.ximalaya. All rights reserved.
 //
 
-#import "BSTellNetListBaseViewController.h"
+#import "BSTellBaseViewController.h"
 
 #import "OrderItem.h"
 
-@interface OrderConfirmViewController : BSTellNetListBaseViewController
+@interface OrderConfirmViewController : BSTellBaseViewController
 
-@property(nonatomic,strong)  OrderItem *orderItem;
+@property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic,strong)  OrderItem *orderItem;
 
 @end

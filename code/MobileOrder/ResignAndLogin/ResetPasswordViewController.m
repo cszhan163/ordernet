@@ -29,7 +29,7 @@
 {
     self.subClassInputTextField = nil;
     
-   SuperDealloc
+    SuperDealloc;
 }
 - (void)loadView
 {

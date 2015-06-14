@@ -12,13 +12,13 @@
 
 #import "GoodsCatagoryItem.h"
 
-#define kPendingY    20.f
+#define kPendingY    10.f
 
-#define kLeftPendingX  20.f
+#define kLeftPendingX  10.f
 
 #define kCellHeight  44.f
 
-static NSString *cellId = @"OrderListCell";
+
 
 @interface OrderConfirmViewController () {
 
@@ -38,20 +38,26 @@ static NSString *cellId = @"OrderListCell";
 
 @implementation OrderConfirmViewController
 
+- (void)dealloc {
+
+    SuperDealloc;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    CGFloat currY = kPendingY;
+    CGFloat currY = kMBAppTopToolBarHeight+kMBAppStatusBar;
     
     CGFloat orderHeaderHeight = 160.f;
     
-    CGFloat labelHeight = 40.f;
+    CGFloat labelHeight = 30.f;
     
-    UIView *orderHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0.f, kPendingY,kDeviceScreenWidth,orderHeaderHeight)];
+    UIView *orderHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0.f, currY,kDeviceScreenWidth,orderHeaderHeight)];
+    orderHeaderView.backgroundColor = [UIColor blackColor];
     
-    CGFloat currHeightY = kLeftPendingX;
-    _shopLabel = [UIComUtil createLabelWithFont:kGoodsOrderShopTitle withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currHeightY,orderHeaderView.frame.size.width,labelHeight)];
+    CGFloat currHeightY = 0.f;
+    _shopLabel = [UIComUtil createLabelWithFont:kGoodsOrderShopTitle withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currHeightY,orderHeaderView.frame.size.width,40.f)];
     _shopLabel.backgroundColor = [UIColor redColor];
     _shopLabel.textAlignment = NSTextAlignmentCenter;
     
@@ -59,8 +65,9 @@ static NSString *cellId = @"OrderListCell";
     
     currHeightY = currHeightY+labelHeight;
     
+#if 1
     _priceLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currHeightY,orderHeaderView.frame.size.width,labelHeight)];
-    _priceLabel.backgroundColor = [UIColor redColor];
+    _priceLabel.backgroundColor = [UIColor greenColor];
     _priceLabel.textAlignment = NSTextAlignmentLeft;
     
     [orderHeaderView addSubview:_priceLabel];
@@ -68,7 +75,7 @@ static NSString *cellId = @"OrderListCell";
     currHeightY = currHeightY+labelHeight;
     
     _pointsTotalLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currHeightY,orderHeaderView.frame.size.width,labelHeight)];
-    _pointsTotalLabel.backgroundColor = [UIColor redColor];
+    _pointsTotalLabel.backgroundColor = [UIColor greenColor];
     _pointsTotalLabel.textAlignment = NSTextAlignmentLeft;
     
     [orderHeaderView addSubview:_pointsTotalLabel];
@@ -76,7 +83,7 @@ static NSString *cellId = @"OrderListCell";
     currHeightY = currHeightY+labelHeight;
     
     _consumePointsLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currHeightY,orderHeaderView.frame.size.width,labelHeight)];
-    _consumePointsLabel.backgroundColor = [UIColor redColor];
+    _consumePointsLabel.backgroundColor = [UIColor greenColor];
     _consumePointsLabel.textAlignment = NSTextAlignmentLeft;
     
     [orderHeaderView addSubview:_consumePointsLabel];
@@ -84,25 +91,37 @@ static NSString *cellId = @"OrderListCell";
     currHeightY = currHeightY+labelHeight;
     
     _discountPriceLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currHeightY,orderHeaderView.frame.size.width,labelHeight)];
-    _discountPriceLabel.backgroundColor = [UIColor redColor];
+    _discountPriceLabel.backgroundColor = [UIColor greenColor];
     _discountPriceLabel.textAlignment = NSTextAlignmentLeft;
     
     [orderHeaderView addSubview:_discountPriceLabel];
+#else
+    LeftTitleListCell *orderInfoView = [[LeftTitleListCell alloc]initWithGoodsDetailFrame:CGRectMake(kPendingX,20.f,width,height) withTitleArray:kOrderTitleArray withTitle:@"" withValueAtrArray:@[] withItemPending:25.f];
+    [orderInfoView setXStartLeftPendingX:20.f];
+    //[orderInfoView   ];
+    orderInfoView.backgroundColor = [UIColor clearColor];
+    [bgScrollerView addSubview:orderInfoView];
+    SafeRelease(orderInfoView);
+    
+#endif
+    
+    [self.view addSubview:orderHeaderView];
     
     
-    CGSize orderSize = CGSizeMake(kDeviceScreenWidth-20*2,400.f);
+    CGSize orderSize = CGSizeMake(kDeviceScreenWidth-2*kLeftPendingX,350);
     
      currY = currY+ orderHeaderView.frame.size.height;
-    _tableView  = [[UITableView alloc]initWithFrame:CGRectMake(0.f,currY,orderSize.width,orderSize.height) style:UITableViewStyleGrouped];
+    _tableView  = [[UITableView alloc]initWithFrame:CGRectMake(kLeftPendingX,currY,orderSize.width,orderSize.height) style:UITableViewStyleGrouped];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     _tableView.separatorColor = nil;
-    [_tableView registerClass:[OrderListItemCell class] forCellReuseIdentifier:cellId];
+    //[_tableView registerClass:[OrderListItemCell class] forCellReuseIdentifier:cellId];
     [self.view addSubview:_tableView];
 
+    currY = currY+ _tableView.frame.size.height+1*kPendingY;
     
-    _totalPersonNumLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currHeightY,orderHeaderView.frame.size.width,labelHeight)];
+    _totalPersonNumLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currY,orderHeaderView.frame.size.width,labelHeight)];
     _totalPersonNumLabel.backgroundColor = [UIColor redColor];
     _totalPersonNumLabel.textAlignment = NSTextAlignmentLeft;
     
@@ -110,7 +129,19 @@ static NSString *cellId = @"OrderListCell";
     
     [self.view addSubview:_totalPersonNumLabel];
     
+    self.dataArray = self.orderItem.menuData;
+    [self upConfirmOrderView];
+}
 
+- (void)upConfirmOrderView {
+
+    _shopLabel.text =  self.orderItem.shopItem.name; //[NSString stringWithFormat:@""]
+    _totalPersonNumLabel.text = [NSString stringWithFormat:@"%ld",self.orderItem.personNum];
+    _pointsTotalLabel.text = [NSString stringWithFormat:@"可用积分:%ld",self.orderItem.userItem.totalPoints];
+    _consumePointsLabel.text = [NSString stringWithFormat:@"抵扣积分: %ld",(NSInteger)self.orderItem.consumePoints];
+    _priceLabel.text = [NSString stringWithFormat:@"订单金额: ¥ %0.2lf 元",self.orderItem.totalPrice];
+    CGFloat payPrice = self.orderItem.totalPrice - self.orderItem.consumePoints;
+    _discountPriceLabel.text = [NSString stringWithFormat:@"应付金额: ¥ %0.2lf 元",payPrice];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -138,22 +169,22 @@ static NSString *cellId = @"OrderListCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return  5;
+    //return  5;
     //NSInteger rows = [self.goodsListArray[section] count];
-    //return rows;
+    return [self.dataArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //static NSString *CellIdentifier = @"Cell";
-    
+    static NSString *cellId = @"OrderListItemCell";
     
     OrderListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
-    if (cell == nil) {
+    if (cell == nil || [cell isKindOfClass:[NSNull class]]) {
         
 #if 1
-        NSArray *nibArr = [[NSBundle mainBundle] loadNibNamed:@"OrderListCell"
+        NSArray *nibArr = [[NSBundle mainBundle] loadNibNamed:@"OrderListItemCell"
                                                         owner:self options:nil];
         /*
          for (id oneObject in nibArr){
@@ -171,7 +202,7 @@ static NSString *cellId = @"OrderListCell";
 #else
         cell = [[FoodItemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 #endif
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
         cell.backgroundColor = [UIColor whiteColor];
         cell.clipsToBounds = YES;
         
@@ -211,8 +242,8 @@ static NSString *cellId = @"OrderListCell";
 #pragma mark -
 
 - (void)didSelectorItemIndex:(NSInteger)index {
+   
     
-    [tweetieTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:index] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 -(void)didSelectorTopNavigationBarItem:(id)sender{
