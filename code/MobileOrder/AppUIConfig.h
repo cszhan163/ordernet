@@ -41,4 +41,8 @@
 #define kVendorTitle      @"餐馆选择"
 #define kOrderMenuTitle   @"点餐"
 
+#define kOrderConfirmTitle @"下单确认"
+#define kOrderPayTitle      @"订单支付"
+
+
 #endif

@@ -69,6 +69,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        [self setNavgationBarTitle:kOrderMenuTitle];
         // Custom initialization
         [ZCSNotficationMgr addObserver:self call:@selector(switchToBidMain) msgName:kTabMainSwitchMSG];
     }

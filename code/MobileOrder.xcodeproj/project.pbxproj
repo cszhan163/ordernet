@@ -42,6 +42,7 @@
 		044AC53F1B1648F900F7D196 /* OrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044AC5301B1648F900F7D196 /* OrderTableViewCell.xib */; };
 		044AC5401B1648F900F7D196 /* UIBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 044AC5321B1648F900F7D196 /* UIBaseTableViewCell.m */; };
 		044AC5491B1650EE00F7D196 /* VendorListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 044AC5481B1650EE00F7D196 /* VendorListViewController.m */; };
+		045648BA1B3091F900233E0F /* OrderPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 045648B91B3091F900233E0F /* OrderPayViewController.m */; };
 		04913EA01B196E8800179567 /* MGBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 04913E961B196E8800179567 /* MGBox.m */; };
 		04913EA11B196E8800179567 /* MGBoxLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 04913E981B196E8800179567 /* MGBoxLine.m */; };
 		04913EA21B196E8800179567 /* MGButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04913E9B1B196E8800179567 /* MGButton.m */; };
@@ -207,6 +208,8 @@
 		044AC5321B1648F900F7D196 /* UIBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UIBaseTableViewCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		044AC5471B1650EE00F7D196 /* VendorListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VendorListViewController.h; path = Order/VendorListViewController.h; sourceTree = "<group>"; };
 		044AC5481B1650EE00F7D196 /* VendorListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VendorListViewController.m; path = Order/VendorListViewController.m; sourceTree = "<group>"; };
+		045648B81B3091F900233E0F /* OrderPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderPayViewController.h; path = Order/OrderPayViewController.h; sourceTree = "<group>"; };
+		045648B91B3091F900233E0F /* OrderPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderPayViewController.m; path = Order/OrderPayViewController.m; sourceTree = "<group>"; };
 		04913E951B196E8800179567 /* MGBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGBox.h; sourceTree = "<group>"; };
 		04913E961B196E8800179567 /* MGBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGBox.m; sourceTree = "<group>"; };
 		04913E971B196E8800179567 /* MGBoxLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGBoxLine.h; sourceTree = "<group>"; };
@@ -383,6 +386,8 @@
 				04913EA81B196F7400179567 /* GoodsCatagoryView.m */,
 				04C15C171B23460E0031E3CF /* GoodsOrderMenuView.h */,
 				04C15C181B23460E0031E3CF /* GoodsOrderMenuView.m */,
+				045648B81B3091F900233E0F /* OrderPayViewController.h */,
+				045648B91B3091F900233E0F /* OrderPayViewController.m */,
 			);
 			name = order;
 			sourceTree = "<group>";
@@ -911,6 +916,7 @@
 				04A3537F1B138801003A80AA /* CardShopResignViewController.m in Sources */,
 				044AC5171B16484F00F7D196 /* GoodsListViewController.m in Sources */,
 				04A3534C1B1381B6003A80AA /* MainEntryViewController.m in Sources */,
+				045648BA1B3091F900233E0F /* OrderPayViewController.m in Sources */,
 				042DA23A1B29F8990029CE85 /* OrderConfirmViewController.m in Sources */,
 				044AC5491B1650EE00F7D196 /* VendorListViewController.m in Sources */,
 				04A353711B1385F4003A80AA /* BSTellBaseViewController.m in Sources */,

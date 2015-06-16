@@ -12,11 +12,15 @@
 
 #import "GoodsCatagoryItem.h"
 
+#import "OrderPayViewController.h"
+
 #define kPendingY    10.f
 
 #define kLeftPendingX  10.f
 
 #define kCellHeight  44.f
+
+#define kOrderPanelHeight  60.f
 
 
 
@@ -43,10 +47,19 @@
     SuperDealloc;
 }
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    
+    if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]){
+        
+        [self setNavgationBarTitle:kOrderConfirmTitle];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    [self setNavgationBarTitle:kOrderConfirmTitle];
     CGFloat currY = kMBAppTopToolBarHeight+kMBAppStatusBar;
     
     CGFloat orderHeaderHeight = 160.f;
@@ -131,7 +144,58 @@
     
     self.dataArray = self.orderItem.menuData;
     [self upConfirmOrderView];
+    
+    
+    currY = self.view.frame.size.height - kOrderPanelHeight;
+    
+    
+    UIView *orderPanel = [[UIView alloc]initWithFrame:CGRectMake(0.f,currY,kDeviceScreenWidth,kOrderPanelHeight)];
+    
+    orderPanel.backgroundColor = [UIColor greenColor];
+    
+    CGSize size = CGSizeMake(40,25);
+    
+    UIImage *image = nil;
+    UIButton *orderBtn = [UIComUtil createButtonWithNormalBGImage:nil withHightBGImage:nil withTitle:@"确认下单" withTag:1 withTarget:self  withTouchEvent:@selector(didButtonPress:)];
+    
+    orderBtn.frame = CGRectMake(orderPanel.frame.size.width-40.f-kLeftPendingX,kPendingY+5,size.width,size.height);
+    orderBtn.backgroundColor = [UIColor redColor];
+    [orderPanel addSubview:orderBtn];
+    
+    //UIImageAutoScaleWithFileName(image, @"book_arrow_up@2x");
+    
+    //for order
+    UIButton *showOrderBtn = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"加菜" withTag:0 withTarget:self  withTouchEvent:@selector(didButtonPress:)];
+    showOrderBtn.backgroundColor = [UIColor redColor];
+    [orderPanel addSubview:showOrderBtn];
+    
+    showOrderBtn.frame = CGRectMake(kLeftPendingX,kPendingY+5,size.width,size.height);
+    [orderPanel addSubview:showOrderBtn];
+ 
+    [self.view addSubview:orderPanel];
+    
+    SafeRelease(orderPanel);
 }
+
+
+- (void)didButtonPress:(id)sender {
+
+    switch ([sender tag]) {
+        case 0:
+            [self.navigationController popViewControllerAnimated:YES];
+            break;
+        case 1: {
+            OrderPayViewController *orderPayVCtrl = [[OrderPayViewController alloc]init];
+            
+            [self.navigationController pushViewController:orderPayVCtrl animated:YES];
+            SafeRelease(orderPayVCtrl);
+            
+        }
+        default:
+            break;
+    }
+}
+
 
 - (void)upConfirmOrderView {
 
@@ -161,6 +225,32 @@
 
 #pragma mark -
 #pragma mark tableview
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+
+    return  44.f;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    NSArray *nibArr = [[NSBundle mainBundle] loadNibNamed:@"OrderListItemCell"
+                                                    owner:self options:nil];
+    /*
+     for (id oneObject in nibArr){
+     if ([oneObject isKindOfClass:[FoodItemCell class]])
+     cell = (FoodItemCell*)oneObject;
+     */
+    NSInteger index = 3;
+    
+    if(kDeviceCheckIphone6){
+        index = 4;
+    }else if(kDeviceCheckIphone6Plus){
+        index = 5;
+    }
+    UIView *sectionView = nibArr[index];
+   
+    return sectionView;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
        return 1;
