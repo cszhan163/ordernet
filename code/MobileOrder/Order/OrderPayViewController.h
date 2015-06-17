@@ -8,6 +8,6 @@
 
 #import "UIBaseViewController.h"
 
-@interface OrderPayViewController : UIBaseViewController
+@interface OrderPayViewController : BSTellBaseViewController
 
 @end
