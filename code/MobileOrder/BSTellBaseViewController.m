@@ -158,7 +158,7 @@
       UIBarButtonItem *navItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
      [self.navigationItem setLeftBarButtonItems:@[navItem]];
       
-      NSFont *font = [UIFont systemFontOfSize:16.0];
+      UIFont *font = [UIFont systemFontOfSize:16.0];
       NSDictionary *attrsDictionary =
       [NSDictionary dictionaryWithObjectsAndKeys:
                                         font,NSFontAttributeName,

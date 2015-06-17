@@ -20,7 +20,7 @@
 
 #define kCellHeight  44.f
 
-#define kOrderPanelHeight  60.f
+#define kOrderPanelHeight  50.f
 
 
 
@@ -62,9 +62,8 @@
     [self setNavgationBarTitle:kOrderConfirmTitle];
     CGFloat currY = kMBAppTopToolBarHeight+kMBAppStatusBar;
     
-    CGFloat orderHeaderHeight = 160.f;
-    
-    CGFloat labelHeight = 30.f;
+    CGFloat orderHeaderHeight = 140.f;
+    CGFloat labelHeight = 25.f;
     
     UIView *orderHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0.f, currY,kDeviceScreenWidth,orderHeaderHeight)];
     orderHeaderView.backgroundColor = [UIColor blackColor];
@@ -76,7 +75,7 @@
     
     [orderHeaderView addSubview:_shopLabel];
     
-    currHeightY = currHeightY+labelHeight;
+    currHeightY = currHeightY+_shopLabel.frame.size.height;
     
 #if 1
     _priceLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currHeightY,orderHeaderView.frame.size.width,labelHeight)];
@@ -153,12 +152,12 @@
     
     orderPanel.backgroundColor = [UIColor greenColor];
     
-    CGSize size = CGSizeMake(40,25);
+    CGSize size = CGSizeMake(60,25);
     
     UIImage *image = nil;
     UIButton *orderBtn = [UIComUtil createButtonWithNormalBGImage:nil withHightBGImage:nil withTitle:@"确认下单" withTag:1 withTarget:self  withTouchEvent:@selector(didButtonPress:)];
-    
-    orderBtn.frame = CGRectMake(orderPanel.frame.size.width-40.f-kLeftPendingX,kPendingY+5,size.width,size.height);
+    orderBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    orderBtn.frame = CGRectMake(orderPanel.frame.size.width-size.width-kLeftPendingX,kPendingY+5,size.width,size.height);
     orderBtn.backgroundColor = [UIColor redColor];
     [orderPanel addSubview:orderBtn];
     
