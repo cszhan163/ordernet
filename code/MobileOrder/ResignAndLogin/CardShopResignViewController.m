@@ -48,8 +48,22 @@
 }
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    //[super viewDidLoad];
+    if(kDeviceCheckIphone6 || kDeviceCheckIphone6Plus){
+    NSArray *nibArray = [[NSBundle  mainBundle] loadNibNamed:@"CardShopResignViewController" owner:self options:nil];
+    NSInteger index = 0;
     
+    if(kDeviceCheckIphone6){
+        index = 1;
+    }else if(kDeviceCheckIphone6Plus){
+        index = 2;
+    }
+    self.view = nibArray[index];
+    }
+
+    
+    
+    self.view.backgroundColor = kViewBGColor;
     UIScrollView *bgScrollerView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.f,0.f, kDeviceScreenWidth, kDeviceScreenHeight-kMBAppStatusBar)];
     for(id item in [self.view subviews]){
         [item removeFromSuperview];
@@ -84,7 +98,7 @@
     
     
     
-    UIButton *btn = [UIComUtil createButtonWithNormalBGImageName:@"item_change_btn.png" withHightBGImageName:@"item_default_btn.png" withTitle:@"" withTag:0];
+    UIButton *btn = [UIComUtil createButtonWithNormalBGImageName:nil withHightBGImageName:nil withTitle:@"" withTag:0];
     
     btn.titleLabel.font = [UIFont systemFontOfSize:12];
     UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0.f, 0.f, kDeviceScreenWidth,btn.frame.size.height)];
