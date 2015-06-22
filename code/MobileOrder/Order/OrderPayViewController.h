@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 com.ximalaya. All rights reserved.
 //
 
-#import "UIBaseViewController.h"
+#import "BSTellBaseViewController.h"
 
 @interface OrderPayViewController : BSTellBaseViewController
 

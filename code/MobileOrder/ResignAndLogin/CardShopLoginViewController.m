@@ -12,6 +12,7 @@
 #import "CarServiceNetDataMgr.h"
 #import "AppSetting.h"
 #import "DeviceVersion.h"
+#import "LoginView.h"
 /*
  
  
@@ -33,33 +34,90 @@
 @"shanghai_2":@{@"hydm":@"007625",@"czy":@"U64979"},\
 @"shanghai_3":@{@"hydm":@"007626",@"czy":@"U64982"}\
 }
-@interface CardShopLoginViewController ()
+@interface CardShopLoginViewController () {
+
+    BlockWithSender _doneBlock;
+    BlockWithSender _cancelBlock;
+    IBOutlet LoginView *loginView;
+}
 
 @end
 
 @implementation CardShopLoginViewController
-@synthesize txtusername;
-@synthesize txtpassword;
 @synthesize request;
+
+- (void)dealloc {
+    [self setCompleteAction:nil];
+    [self setCancelAction:nil];
+    
+    
+    SuperDealloc;
+    
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        
+                // Custom initialization
     }
     return self;
+}
+
+- (void)awakeFromNib {
+
+    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NSArray *nibArray = [[NSBundle  mainBundle] loadNibNamed:@"CardShopLoginViewController" owner:self options:nil];
+    NSInteger index = 0;
+    
+    if(kDeviceCheckIphone6){
+        index = 1;
+    }else if(kDeviceCheckIphone6Plus){
+        index = 2;
+    }
+    loginView = nibArray[index];
+    
+    
+    self.view = loginView;
+    
+
+    
     NSString  *username=@"";
     NSString  *password=@"";
+#if 0
+    UIImage *image = nil;
+    UIImageAutoScaleWithFileName(image,@"user_auto_no");
+    assert(image);
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    [btn setImage:image forState:UIControlStateNormal];
+    
+    UIImageAutoScaleWithFileName(image,@"user_auto_yes");
+    assert(image);
+    
+    [btn setImage:image forState:UIControlStateSelected];
+    
+    [btn addTarget:self action:@selector(autoLoginClick:) forControlEvents:UIControlEventTouchUpInside];
+    //[self.view addSubview:btn];
+    [btn sizeToFit];
+    [self.view addSubview:btn];
+
+    
+    self.autoLoginBtn = btn;
+#endif
+    
+   
     
 //    UIImage *bgImage = nil;
 //    UIImageWithFileName(bgImage, @"login_bg.png");
 //    self.view.layer.contents = (id)bgImage.CGImage;
-    navBarView.backgroundColor = HexRGB(1, 159, 233);
     self.view.backgroundColor = HexRGB(239, 239, 241);
     //self.txtpassword
     /*
@@ -76,47 +134,7 @@
         password=[NSString stringWithContentsOfFile:filename encoding:NSUTF8StringEncoding error:&err];
     }
     */
-    self.txtpassword.text = @"";
-    self.txtusername.text = @"";
-    if (![username isEqualToString:@""])
-    {
-        self.txtpassword.text=password;
-        self.txtusername.text=username;
-        
-        //[self login_click:nil];
-    }
-    
-  
-    if(self.txtpassword)
-    {
-        if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0")){
-            NSMutableAttributedString *ms = [[NSMutableAttributedString alloc] initWithString:self.txtpassword.placeholder];
-            UIFont *placeholderFont = self.txtpassword.font;
-            NSRange fullRange = NSMakeRange(0, ms.length);
-            NSDictionary *newProps = @{NSForegroundColorAttributeName: HexRGB(137, 137, 137), NSFontAttributeName:placeholderFont};
-            [ms setAttributes:newProps range:fullRange];
-            self.txtpassword.attributedPlaceholder = ms;
-            SafeRelease(ms);
-        }
-
-    }
-    //self.txtpassword.placeholder
-    self.txtpassword.textColor = HexRGB(137, 137, 137);
-    
-    if(self.txtusername)
-    {
-       if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0")){
-           NSMutableAttributedString *ms = [[NSMutableAttributedString alloc] initWithString:txtusername.placeholder];
-           UIFont *placeholderFont = self.txtusername.font;
-           NSRange fullRange = NSMakeRange(0, ms.length);
-           NSDictionary *newProps = @{NSForegroundColorAttributeName: HexRGB(137, 137, 137), NSFontAttributeName:placeholderFont};
-           [ms setAttributes:newProps range:fullRange];
-           self.txtusername.attributedPlaceholder = ms;
-           SafeRelease(ms);
-       }
-    }
-    
-    self.txtusername.textColor = HexRGB(137, 137, 137);
+   
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -137,22 +155,26 @@
 	[sender resignFirstResponder];
 
 }
+
+- (void)didLoginAction:(id)sender {
+
+    [self login_click:nil];
+}
+
 -(IBAction)login_click:(id)sender
 {
-    
     //[ZCSNotficationMgr postMSG:kDisMissModelViewController obj:nil];
-    
-    [self.txtusername resignFirstResponder];
-    [self.txtpassword resignFirstResponder];
-//    if([self.txtusername.text length]<11)
-//    {
-//        kUIAlertView(@"提示", @"输入的手机号码不对");
-//        [self.txtusername becomeFirstResponder];
-//        return;
-//    }
-    if([self.txtusername.text length] == 0|| [self.txtpassword.text length] ==0){
+    [loginView.txtusername resignFirstResponder];
+    [loginView.txtpassword resignFirstResponder];
+    //    if([self.txtusername.text length]<11)
+    //    {
+    //        kUIAlertView(@"提示", @"输入的手机号码不对");
+    //        [self.txtusername becomeFirstResponder];
+    //        return;
+    //    }
+    if([loginView.txtusername.text length] == 0|| [loginView.txtpassword.text length] ==0){
         kUIAlertView(@"提示", @"帐号或密码不能为空");
-        [self.txtusername becomeFirstResponder];
+        [loginView.txtusername becomeFirstResponder];
         return;
     }
     [self startLogin];
@@ -174,6 +196,14 @@
     SafeRelease(frmobj);
 #endif
 }
+
+- (IBAction)autoLoginClick:(id)sender {
+    BOOL isSelected = loginView.autoLoginBtn.selected;
+    loginView.autoLoginBtn.selected = !isSelected;
+    
+    [AppSetting setUserAutoLogin:isSelected];
+}
+
 -(IBAction)findpw_click:(id)sender
 {
     /*
@@ -208,8 +238,8 @@
     CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
     
     NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:
-                              self.txtusername.text,@"umcLoginName",
-                              self.txtpassword.text,@"loginPassword",
+                              loginView.txtusername.text,@"umcLoginName",
+                              loginView.txtpassword.text,@"loginPassword",
                               nil];
    
     self.request = [cardShopMgr  carUserLogin:param];
@@ -220,8 +250,31 @@
 }
 -(IBAction)cancelLogin:(id)sender
 {
-    [ZCSNotficationMgr postMSG:kDisMissModelViewController obj:nil];
+    //[ZCSNotficationMgr postMSG:kDisMissModelViewController obj:nil];
+    
+    if(_cancelBlock){
+        _cancelBlock(nil);
+        [self setCancelAction:nil];
+    }
+    [self setCompleteAction:nil];
 }
+
+
+- (void)setCompleteAction:(BlockWithSender) block {
+
+    Block_release(_doneBlock);
+    _doneBlock = Block_copy(block);
+    
+}
+
+- (void)setCancelAction:(BlockWithSender) block {
+    
+    Block_release(_cancelBlock);
+    _cancelBlock = Block_copy(block);
+    
+}
+
+
 #pragma mark net work respond failed
 
 -(void)didNetDataOK:(NSNotification*)ntf
@@ -274,11 +327,18 @@
         NSDictionary *userData = @{@"hydm":[data objectForKey:@"hydm"],@"czy":self.useId,@"company":self.userName};
         
         if(userData){
-            [AppSetting setLoginUserDetailInfo:userData userId:self.txtusername.text];
+            [AppSetting setLoginUserDetailInfo:userData userId:loginView.txtusername.text];
             //[AppSetting setLoginUserInfo:];
-            [AppSetting setLoginUserId:self.txtusername.text];
-            [AppSetting setLoginUserPassword:self.txtpassword.text];
+            [AppSetting setLoginUserId:loginView.txtusername.text];
+            [AppSetting setLoginUserPassword:loginView.txtpassword.text];
+            
+            if(_doneBlock) {
+                
+                _doneBlock(userData);
+            }
+            
             [ZCSNotficationMgr postMSG:kUserDidLoginOk obj:nil];
+
         }
         
     }

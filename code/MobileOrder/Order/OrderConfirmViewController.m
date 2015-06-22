@@ -14,6 +14,8 @@
 
 #import "OrderPayViewController.h"
 
+#import "CardShopLoginViewController.h"
+
 #define kPendingY    10.f
 
 #define kLeftPendingX  10.f
@@ -184,10 +186,47 @@
             [self.navigationController popViewControllerAnimated:YES];
             break;
         case 1: {
-            OrderPayViewController *orderPayVCtrl = [[OrderPayViewController alloc]init];
             
-            [self.navigationController pushViewController:orderPayVCtrl animated:YES];
-            SafeRelease(orderPayVCtrl);
+            if([AppSetting getLoginUserId]){
+            
+                
+            } else {
+                
+                
+                UINavigationController *navCtl = nil;
+                
+                CardShopLoginViewController *cardLoginVCtl = [[CardShopLoginViewController alloc]init];
+                
+                
+                
+                [cardLoginVCtl setCompleteAction:^(id sender){
+                
+                    SafeRelease(navCtl);
+                    OrderPayViewController *orderPayVCtrl = [[OrderPayViewController alloc]init];
+                    
+                    [self.navigationController pushViewController:orderPayVCtrl animated:YES];
+                    SafeRelease(orderPayVCtrl);
+                
+                }];
+                
+                [cardLoginVCtl setCancelAction:^(id sender){
+                    
+                    [cardLoginVCtl dismissViewControllerAnimated:YES completion:^(){
+                    }];
+                    SafeRelease(navCtl);
+                }];
+                
+                 navCtl = [[UINavigationController alloc]initWithRootViewController:cardLoginVCtl];
+                [navCtl setNavigationBarHidden:YES];
+                //[ZCSNotficationMgr postMSG:kPresentModelViewController obj:cardLoginVCtl];
+                [self presentViewController:navCtl animated:YES completion:^(){
+                
+                }];
+                
+              
+                SafeRelease(cardLoginVCtl);
+                
+            }
             
         }
         default:

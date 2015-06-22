@@ -60,4 +60,20 @@
     [udf removeObjectForKey:@"userId"];
     [udf synchronize];
 }
++(void)setUserAutoLogin:(BOOL)isAuto {
+    NSUserDefaults *udf = [NSUserDefaults standardUserDefaults];
+    [udf setValue:[NSNumber numberWithBool:isAuto] forKey:@"userLoginAuto"];
+    [udf synchronize];
+}
+
++ (BOOL)userAutoLogin {
+
+    NSUserDefaults *udf = [NSUserDefaults standardUserDefaults];
+    id value =  [udf valueForKey:@"userLoginAuto"];
+    if(value == nil){
+        return YES;
+    }
+    return [value boolValue];
+}
+
 @end
