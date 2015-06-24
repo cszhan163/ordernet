@@ -27,7 +27,7 @@
         [self setNavgationBarTitle:kVendorTitle];
     }
     return self;
-};
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

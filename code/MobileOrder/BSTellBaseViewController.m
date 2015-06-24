@@ -104,7 +104,7 @@
         //noteListVc.type = 1;
         //[noteListVc setNavgationBarTitle:[sender titleLabel].text];
         noteListVc.view.frame = CGRectMake(0.f,20.f, kDeviceScreenWidth, kDeviceScreenHeight);
-#if 1
+#if 0
         [self.navigationController pushViewController:noteListVc  animated:NO];
 #else
         [ZCSNotficationMgr postMSG:kPresentModelViewController  obj:noteListVc];
@@ -158,7 +158,7 @@
       UIBarButtonItem *navItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
      [self.navigationItem setLeftBarButtonItems:@[navItem]];
       
-      NSFont *font = [UIFont systemFontOfSize:16.0];
+      UIFont *font = [UIFont systemFontOfSize:16.0];
       NSDictionary *attrsDictionary =
       [NSDictionary dictionaryWithObjectsAndKeys:
                                         font,NSFontAttributeName,

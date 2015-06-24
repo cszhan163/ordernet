@@ -18,6 +18,7 @@
     UIButton    *_subBtn;
 }
 
+
 @property (nonatomic, strong) NSString *foodName;
 
 - (void)setCellItem:(SubCatagoryItem*)item;

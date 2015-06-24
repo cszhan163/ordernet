@@ -110,13 +110,13 @@
         default:
             break;
     }
-    [self setNeedsLayout];
+    //[self layoutIfNeeded];
  
 }
 - (void)setCellItem:(SubCatagoryItem*)item {
 
     self.item = item;
-    [self setNeedsLayout];
+    [self layoutIfNeeded];
 }
 
 - (void)layoutSubviews
@@ -127,7 +127,8 @@
     if(self.foodName && ![self.foodName isEqualToString:@""]) {
         titleName = [NSString stringWithFormat:@"%@+%@",self.foodName,_item.name];
     }
-    self.textLabel.text = @"很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长";//titleName;
+    //titleName= @"很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长";
+    self.textLabel.text =titleName;
     self.textLabel.frame = CGRectMake(0.f, 0.f,self.frame.size.width/2.f, 40);
     _numberLabel.text = [NSString stringWithFormat:@"%ld",_item.number];
     _priceLabel.text =  [NSString stringWithFormat:@"¥ %0.2lf 元",_item.price];

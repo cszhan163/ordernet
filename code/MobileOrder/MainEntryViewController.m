@@ -47,6 +47,7 @@
     if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]){
     
         [self setNavgationBarTitle:kMenuTitle];
+        [ZCSNotficationMgr addObserver:self call:@selector(needPresentLogin:) msgName:kPresentModelViewController];
     }
     return self;
 };
@@ -232,6 +233,15 @@
     
     return  SafeAutoRelease(imageView);
 }
+
+- (void)needPresentLogin:(NSNotification*)ntf {
+
+    UIViewController *vcCtrl = [ntf object];
+    [self.navigationController presentViewController:vcCtrl animated:YES completion:^(){
+    
+        }];
+}
+
 
 
 @end

@@ -144,7 +144,7 @@
         //[self.navigationController.navigationBar setTranslucent:YES];
         //[self.navigationBar.backItem setHidesBackButton:YES];
 
-        NSFont *font = [UIFont systemFontOfSize:16.0];
+        UIFont *font = [UIFont systemFontOfSize:16.0];
         NSDictionary *attrsDictionary =
         [NSDictionary dictionaryWithObjectsAndKeys:
          font,NSFontAttributeName,

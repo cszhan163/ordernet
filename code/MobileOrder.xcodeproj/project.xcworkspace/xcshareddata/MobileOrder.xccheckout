@@ -12,6 +12,8 @@
 	<dict>
 		<key>5E6300B33454B03CD516E3390A5DB2B69262C8C4</key>
 		<string>https://github.com/cszhan163/ordernet.git</string>
+		<key>f5e20469-18e1-424a-8dac-31e99ebc9bf5++7644</key>
+		<string>svn://118.123.13.55/Mail/kxmailiphone</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>code/MobileOrder.xcodeproj</string>
@@ -19,6 +21,13 @@
 	<dict>
 		<key>5E6300B33454B03CD516E3390A5DB2B69262C8C4</key>
 		<string>../../..</string>
+		<key>f5e20469-18e1-424a-8dac-31e99ebc9bf5++7644</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>f5e20469-18e1-424a-8dac-31e99ebc9bf5++7644</key>
+		<string>svn://118.123.13.55</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/cszhan163/ordernet.git</string>
@@ -28,6 +37,14 @@
 	<string>5E6300B33454B03CD516E3390A5DB2B69262C8C4</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>f5e20469-18e1-424a-8dac-31e99ebc9bf5++7644</string>
+			<key>IDESourceControlWCCName</key>
+			<string></string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

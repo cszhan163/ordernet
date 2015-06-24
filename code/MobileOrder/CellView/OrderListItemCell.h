@@ -10,6 +10,17 @@
 
 #import "FoodSubItemCell.h"
 
-@interface OrderListItemCell : FoodSubItemCell
+@interface OrderListItemCell : UIBaseTableViewCell
+
+@property(nonatomic,strong)IBOutlet UILabel *foodNameLabel;
+
+@property(nonatomic,strong)IBOutlet UILabel *numberLabel;
+@property(nonatomic,strong)IBOutlet UILabel *priceLabel;
+
+@property (nonatomic, strong) NSString *foodName;
+
+
+
+- (void)setCellItem:(SubCatagoryItem*)item;
 
 @end

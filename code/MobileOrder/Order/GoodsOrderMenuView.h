@@ -10,7 +10,16 @@
 
 #import "GoodsCatagoryView.h"
 
+@protocol GoodsOrderMenuDelegate <NSObject>
+
+- (void)didChangeOrderMenu:(id)sender;
+
+@end
+
+
 @interface GoodsOrderMenuView : GoodsCatagoryView
+
+@property (nonatomic, assign) id<GoodsOrderMenuDelegate> orderDelegate;
 
 - (void)updateDataByOrderListArray:(NSArray*)data;
 

@@ -238,10 +238,12 @@
 - (void)cellDidClickOrderAddBtn:(id)sender  withNumber:(NSInteger)number {
     
     [self updtePriceUI];
+    [_tableView reloadData];
 }
 
 - (void)cellDidClickOrderSubBtn:(id)sender  withNumber:(NSInteger)number {;
     [self updtePriceUI];
+    [_tableView reloadData];
 }
 
 - (void)updtePriceUI {

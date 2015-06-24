@@ -25,7 +25,7 @@
     CGSize size = [text sizeWithWidth:90.f withTextAttribute:@{kGoodCatagoryTextFont:NSFontAttributeName}];
     
     CGRect mainRect = [UIScreen mainScreen].bounds;
-   self.window = SafeRelease([[UIWindow alloc]initWithFrame:mainRect]);
+   self.window = SafeAutoRelease(([[UIWindow alloc]initWithFrame:mainRect]));
  
     MainEntryViewController *mainViewCtrl = [[MainEntryViewController alloc]init];
     

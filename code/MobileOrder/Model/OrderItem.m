@@ -8,6 +8,11 @@
 
 #import "OrderItem.h"
 
+@implementation ShopItem
+
+
+@end
+
 @implementation OrderItem
 
 
