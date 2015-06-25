@@ -22,6 +22,16 @@
 
 @implementation FoodOrderListViewController
 
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    
+    if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]){
+        
+        [self setNavgationBarTitle:kOrderListTitle];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
