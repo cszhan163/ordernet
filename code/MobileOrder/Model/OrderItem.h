@@ -18,7 +18,11 @@
 
 @end
 
-
+typedef NS_ENUM(NSInteger,OrderStatus){
+    Order_Pay,
+    Order_Cancel,
+    Order_Done,
+};
 
 @interface OrderItem : NSObject
 
@@ -32,9 +36,15 @@
 
 @property (nonatomic, strong) NSString  *orderId;
 
+@property (nonatomic, strong) NSString  *orderTime;
+
 @property (nonatomic, assign) CGFloat consumePoints;
 
 @property (nonatomic, assign) CGFloat totalPrice;
+
+@property (nonatomic, assign) CGFloat payPrice;
+
+@property (nonatomic, assign) OrderStatus status;
 
 
 @end

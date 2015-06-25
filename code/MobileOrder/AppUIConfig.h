@@ -44,5 +44,7 @@
 #define kOrderConfirmTitle @"下单确认"
 #define kOrderPayTitle      @"订单支付"
 
+#define kMeCenterTitle      @"个人中心"
+
 
 #endif

@@ -1,4 +1,4 @@
-//
+  //
 //  CardShopLoginViewController.m
 //  kkshop
 //
@@ -220,6 +220,15 @@
 //        //[self.navigationController  popToRootViewControllerAnimated:YES];
 //    }
 //
+    CardShopResignViewController *frmobj=[[CardShopResignViewController alloc] init];
+    /*
+     frmobj.mobilePhoneNumStr = subClassInputTextField.text;
+     */
+     frmobj.type = 1;
+    
+    [self.navigationController pushViewController:frmobj animated:YES];
+    SafeRelease(frmobj);
+    
     [ZCSNotficationMgr postMSG:kUserDidLoginCancel obj:nil];
 }
 

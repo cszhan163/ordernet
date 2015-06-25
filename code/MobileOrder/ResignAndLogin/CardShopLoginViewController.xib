@@ -48,7 +48,7 @@
                         <action selector="login_click:" destination="-1" eventType="touchUpInside" id="kqs-yl-z1Y"/>
                     </connections>
                 </button>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aVN-Hk-fYp">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aVN-Hk-fYp">
                     <rect key="frame" x="96" y="356" width="78" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -57,7 +57,7 @@
                         <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="regist_click:" destination="-1" eventType="touchUpInside" id="8XC-yf-rQo"/>
+                        <action selector="findpw_click:" destination="-1" eventType="touchUpInside" id="4Sw-fO-Vh1"/>
                     </connections>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入帐号" minimumFontSize="17" id="1Mb-Ms-qaz">
@@ -120,7 +120,7 @@
                         <action selector="autoLoginClick:" destination="-1" eventType="touchUpInside" id="lnf-Wu-1Y2"/>
                     </connections>
                 </button>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fe5-Dr-9OR">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fe5-Dr-9OR">
                     <rect key="frame" x="200" y="360" width="100" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
