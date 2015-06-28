@@ -18,9 +18,7 @@
 		042C7DD31B1B73CF00E8A53C /* title_big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 042C7DCA1B1B73CF00E8A53C /* title_big@2x.png */; };
 		042C7DD41B1B73CF00E8A53C /* uhuo_default_l@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 042C7DCB1B1B73CF00E8A53C /* uhuo_default_l@2x.png */; };
 		042C7DD51B1B73CF00E8A53C /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 042C7DCC1B1B73CF00E8A53C /* whiteArrow@2x.png */; };
-		042C7DDA1B1B811700E8A53C /* libZCSUIFrameWork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 042C7DD91B1B811700E8A53C /* libZCSUIFrameWork.a */; };
 		042DA2371B29DCAA0029CE85 /* FoodMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042DA2361B29DCAA0029CE85 /* FoodMenuCell.m */; };
-		042DA23A1B29F8990029CE85 /* OrderConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042DA2391B29F8990029CE85 /* OrderConfirmViewController.m */; };
 		04402E9F1B1CC250003393B4 /* LeveyPopListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04402E9C1B1CC250003393B4 /* LeveyPopListView.m */; };
 		04402EA01B1CC250003393B4 /* FoodSubItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04402E9E1B1CC250003393B4 /* FoodSubItemCell.m */; };
 		04402EA61B1F57E5003393B4 /* MobileOrderNetDataMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 04402EA51B1F57E5003393B4 /* MobileOrderNetDataMgr.m */; };
@@ -52,10 +50,15 @@
 		04689A531B38534A00D6CD55 /* user_pwd.png in Resources */ = {isa = PBXBuildFile; fileRef = 04689A491B38534A00D6CD55 /* user_pwd.png */; };
 		04689A541B38534A00D6CD55 /* userBg-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = 04689A4A1B38534A00D6CD55 /* userBg-568h.png */; };
 		04689A551B38534A00D6CD55 /* userBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 04689A4B1B38534A00D6CD55 /* userBg.png */; };
+		04859CE71B3F3123003C793A /* libZCSUIFrameWork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04859CE61B3F3123003C793A /* libZCSUIFrameWork.a */; };
 		048BE39B1B3AF86D00997846 /* FoodsOrderListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 048BE39A1B3AF86D00997846 /* FoodsOrderListCell.m */; };
 		048BE39F1B3AF8D600997846 /* FoodOrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048BE39E1B3AF8D600997846 /* FoodOrderListViewController.m */; };
 		048BE3A21B3B04E700997846 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048BE3A11B3B04E700997846 /* MeViewController.m */; };
 		048BE3A41B3B0C7F00997846 /* MeSetting.plist in Resources */ = {isa = PBXBuildFile; fileRef = 048BE3A31B3B0C7F00997846 /* MeSetting.plist */; };
+		048CE6211B3FE9E50021C5EC /* ZHPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 048CE6201B3FE9E50021C5EC /* ZHPickView.m */; };
+		048CE6231B3FEF000021C5EC /* OrderConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048CE6221B3FEF000021C5EC /* OrderConfirmViewController.m */; };
+		048CE6261B40365D0021C5EC /* DinnerWaitingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048CE6251B40365D0021C5EC /* DinnerWaitingViewController.m */; };
+		048CE6291B405A620021C5EC /* OrderWaitingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 048CE6281B405A620021C5EC /* OrderWaitingCell.m */; };
 		04913EA01B196E8800179567 /* MGBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 04913E961B196E8800179567 /* MGBox.m */; };
 		04913EA11B196E8800179567 /* MGBoxLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 04913E981B196E8800179567 /* MGBoxLine.m */; };
 		04913EA21B196E8800179567 /* MGButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04913E9B1B196E8800179567 /* MGButton.m */; };
@@ -76,7 +79,6 @@
 		04A353801B138801003A80AA /* CardShopResignViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A3537A1B138801003A80AA /* CardShopResignViewController.xib */; };
 		04A353811B138801003A80AA /* ResetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A3537C1B138801003A80AA /* ResetPasswordViewController.m */; };
 		04A353851B138898003A80AA /* BaoCarNetBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A353841B138898003A80AA /* BaoCarNetBaseViewController.m */; };
-		04A3538B1B138FAA003A80AA /* CarServiceNetDataMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A3538A1B138FAA003A80AA /* CarServiceNetDataMgr.m */; };
 		04A353901B139142003A80AA /* AppSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A3538F1B139142003A80AA /* AppSetting.m */; };
 		04A353951B1391AE003A80AA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A353941B1391AE003A80AA /* CFNetwork.framework */; };
 		04A353971B1391C3003A80AA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A353961B1391C3003A80AA /* libz.dylib */; };
@@ -166,11 +168,9 @@
 		042C7DCA1B1B73CF00E8A53C /* title_big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "title_big@2x.png"; sourceTree = "<group>"; };
 		042C7DCB1B1B73CF00E8A53C /* uhuo_default_l@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uhuo_default_l@2x.png"; sourceTree = "<group>"; };
 		042C7DCC1B1B73CF00E8A53C /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
-		042C7DD91B1B811700E8A53C /* libZCSUIFrameWork.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libZCSUIFrameWork.a; sourceTree = "<group>"; };
 		042DA2351B29DCAA0029CE85 /* FoodMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodMenuCell.h; sourceTree = "<group>"; };
 		042DA2361B29DCAA0029CE85 /* FoodMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodMenuCell.m; sourceTree = "<group>"; };
 		042DA2381B29F8980029CE85 /* OrderConfirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderConfirmViewController.h; path = Order/OrderConfirmViewController.h; sourceTree = "<group>"; };
-		042DA2391B29F8990029CE85 /* OrderConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderConfirmViewController.m; path = Order/OrderConfirmViewController.m; sourceTree = "<group>"; };
 		04402E9B1B1CC250003393B4 /* LeveyPopListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeveyPopListView.h; sourceTree = "<group>"; };
 		04402E9C1B1CC250003393B4 /* LeveyPopListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeveyPopListView.m; sourceTree = "<group>"; };
 		04402E9D1B1CC250003393B4 /* FoodSubItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FoodSubItemCell.h; path = ../LeveyPopListView/FoodSubItemCell.h; sourceTree = "<group>"; };
@@ -220,6 +220,7 @@
 		04689A491B38534A00D6CD55 /* user_pwd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_pwd.png; sourceTree = "<group>"; };
 		04689A4A1B38534A00D6CD55 /* userBg-568h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userBg-568h.png"; sourceTree = "<group>"; };
 		04689A4B1B38534A00D6CD55 /* userBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userBg.png; sourceTree = "<group>"; };
+		04859CE61B3F3123003C793A /* libZCSUIFrameWork.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libZCSUIFrameWork.a; sourceTree = "<group>"; };
 		048BE3991B3AF86D00997846 /* FoodsOrderListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodsOrderListCell.h; sourceTree = "<group>"; };
 		048BE39A1B3AF86D00997846 /* FoodsOrderListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodsOrderListCell.m; sourceTree = "<group>"; };
 		048BE39D1B3AF8D600997846 /* FoodOrderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FoodOrderListViewController.h; path = Me/FoodOrderListViewController.h; sourceTree = "<group>"; };
@@ -227,6 +228,13 @@
 		048BE3A01B3B04E700997846 /* MeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeViewController.h; sourceTree = "<group>"; };
 		048BE3A11B3B04E700997846 /* MeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeViewController.m; sourceTree = "<group>"; };
 		048BE3A31B3B0C7F00997846 /* MeSetting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = MeSetting.plist; path = Me/MeSetting.plist; sourceTree = "<group>"; };
+		048CE61F1B3FE9E50021C5EC /* ZHPickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHPickView.h; sourceTree = "<group>"; };
+		048CE6201B3FE9E50021C5EC /* ZHPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHPickView.m; sourceTree = "<group>"; };
+		048CE6221B3FEF000021C5EC /* OrderConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderConfirmViewController.m; path = Order/OrderConfirmViewController.m; sourceTree = "<group>"; };
+		048CE6241B40365D0021C5EC /* DinnerWaitingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerWaitingViewController.h; sourceTree = "<group>"; };
+		048CE6251B40365D0021C5EC /* DinnerWaitingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerWaitingViewController.m; sourceTree = "<group>"; };
+		048CE6271B405A620021C5EC /* OrderWaitingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderWaitingCell.h; sourceTree = "<group>"; };
+		048CE6281B405A620021C5EC /* OrderWaitingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderWaitingCell.m; sourceTree = "<group>"; };
 		04913E951B196E8800179567 /* MGBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGBox.h; sourceTree = "<group>"; };
 		04913E961B196E8800179567 /* MGBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGBox.m; sourceTree = "<group>"; };
 		04913E971B196E8800179567 /* MGBoxLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGBoxLine.h; sourceTree = "<group>"; };
@@ -269,8 +277,6 @@
 		04A3537C1B138801003A80AA /* ResetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPasswordViewController.m; sourceTree = "<group>"; };
 		04A353831B138898003A80AA /* BaoCarNetBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaoCarNetBaseViewController.h; sourceTree = "<group>"; };
 		04A353841B138898003A80AA /* BaoCarNetBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaoCarNetBaseViewController.m; sourceTree = "<group>"; };
-		04A353891B138FAA003A80AA /* CarServiceNetDataMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarServiceNetDataMgr.h; sourceTree = "<group>"; };
-		04A3538A1B138FAA003A80AA /* CarServiceNetDataMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarServiceNetDataMgr.m; sourceTree = "<group>"; };
 		04A3538D1B13901F003A80AA /* AppConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppConfig.h; sourceTree = "<group>"; };
 		04A3538E1B139142003A80AA /* AppSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppSetting.h; path = ResignAndLogin/AppSetting.h; sourceTree = "<group>"; };
 		04A3538F1B139142003A80AA /* AppSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppSetting.m; path = ResignAndLogin/AppSetting.m; sourceTree = "<group>"; };
@@ -353,7 +359,7 @@
 				042C7DBC1B19BBEB00E8A53C /* AudioToolbox.framework in Frameworks */,
 				04A3539E1B139243003A80AA /* MobileCoreServices.framework in Frameworks */,
 				04A3539A1B139220003A80AA /* SystemConfiguration.framework in Frameworks */,
-				042C7DDA1B1B811700E8A53C /* libZCSUIFrameWork.a in Frameworks */,
+				04859CE71B3F3123003C793A /* libZCSUIFrameWork.a in Frameworks */,
 				04A353971B1391C3003A80AA /* libz.dylib in Frameworks */,
 				04A353951B1391AE003A80AA /* CFNetwork.framework in Frameworks */,
 			);
@@ -387,7 +393,7 @@
 				044AC5151B16484F00F7D196 /* GoodsListViewController.h */,
 				044AC5161B16484F00F7D196 /* GoodsListViewController.m */,
 				042DA2381B29F8980029CE85 /* OrderConfirmViewController.h */,
-				042DA2391B29F8990029CE85 /* OrderConfirmViewController.m */,
+				048CE6221B3FEF000021C5EC /* OrderConfirmViewController.m */,
 				04913EA71B196F7400179567 /* GoodsCatagoryView.h */,
 				04913EA81B196F7400179567 /* GoodsCatagoryView.m */,
 				04C15C171B23460E0031E3CF /* GoodsOrderMenuView.h */,
@@ -412,6 +418,8 @@
 				04913EAB1B19878400179567 /* GoodsCatagoryTableViewCell.m */,
 				048BE3991B3AF86D00997846 /* FoodsOrderListCell.h */,
 				048BE39A1B3AF86D00997846 /* FoodsOrderListCell.m */,
+				048CE6271B405A620021C5EC /* OrderWaitingCell.h */,
+				048CE6281B405A620021C5EC /* OrderWaitingCell.m */,
 				04FDFAA21B2C313900920C07 /* OrderListItemCell.h */,
 				04FDFAA31B2C313900920C07 /* OrderListItemCell.m */,
 				04FDFAA01B2C2E8C00920C07 /* OrderListItemCell.xib */,
@@ -468,6 +476,15 @@
 			name = me;
 			sourceTree = "<group>";
 		};
+		048CE61E1B3FE9B60021C5EC /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				048CE61F1B3FE9E50021C5EC /* ZHPickView.h */,
+				048CE6201B3FE9E50021C5EC /* ZHPickView.m */,
+			);
+			name = UIView;
+			sourceTree = "<group>";
+		};
 		04913E941B196E8800179567 /* MGBox */ = {
 			isa = PBXGroup;
 			children = (
@@ -502,7 +519,7 @@
 		04A353371B1381B6003A80AA = {
 			isa = PBXGroup;
 			children = (
-				042C7DD91B1B811700E8A53C /* libZCSUIFrameWork.a */,
+				04859CE61B3F3123003C793A /* libZCSUIFrameWork.a */,
 				042C7DBB1B19BBEB00E8A53C /* AudioToolbox.framework */,
 				042C7DB91B19BBE100E8A53C /* CoreAudio.framework */,
 				04A3539D1B139243003A80AA /* MobileCoreServices.framework */,
@@ -529,6 +546,7 @@
 		04A353421B1381B6003A80AA /* MobileOrder */ = {
 			isa = PBXGroup;
 			children = (
+				048CE61E1B3FE9B60021C5EC /* UIView */,
 				048BE39C1B3AF8A900997846 /* me */,
 				04913EB11B199CF200179567 /* Model */,
 				04913E941B196E8800179567 /* MGBox */,
@@ -546,6 +564,8 @@
 				04A353481B1381B6003A80AA /* AppDelegate.m */,
 				04A3534A1B1381B6003A80AA /* MainEntryViewController.h */,
 				04A3534B1B1381B6003A80AA /* MainEntryViewController.m */,
+				048CE6241B40365D0021C5EC /* DinnerWaitingViewController.h */,
+				048CE6251B40365D0021C5EC /* DinnerWaitingViewController.m */,
 				04A353501B1381B6003A80AA /* Images.xcassets */,
 				04A353431B1381B6003A80AA /* Supporting Files */,
 			);
@@ -616,8 +636,6 @@
 			children = (
 				04402EA41B1F57E5003393B4 /* MobileOrderNetDataMgr.h */,
 				04402EA51B1F57E5003393B4 /* MobileOrderNetDataMgr.m */,
-				04A353891B138FAA003A80AA /* CarServiceNetDataMgr.h */,
-				04A3538A1B138FAA003A80AA /* CarServiceNetDataMgr.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -932,11 +950,11 @@
 				04913EA11B196E8800179567 /* MGBoxLine.m in Sources */,
 				044AC5331B1648F900F7D196 /* BidDetailTableViewCell.m in Sources */,
 				04A3537F1B138801003A80AA /* CardShopResignViewController.m in Sources */,
+				048CE6261B40365D0021C5EC /* DinnerWaitingViewController.m in Sources */,
 				048BE3A21B3B04E700997846 /* MeViewController.m in Sources */,
 				044AC5171B16484F00F7D196 /* GoodsListViewController.m in Sources */,
 				04A3534C1B1381B6003A80AA /* MainEntryViewController.m in Sources */,
 				045648BA1B3091F900233E0F /* OrderPayViewController.m in Sources */,
-				042DA23A1B29F8990029CE85 /* OrderConfirmViewController.m in Sources */,
 				044AC5491B1650EE00F7D196 /* VendorListViewController.m in Sources */,
 				04A353711B1385F4003A80AA /* BSTellBaseViewController.m in Sources */,
 				044AC5341B1648F900F7D196 /* BidDetailTableViewCell_V2.m in Sources */,
@@ -944,7 +962,6 @@
 				04913EA31B196E8800179567 /* MGScrollView.m in Sources */,
 				04FDFA9C1B2C20FD00920C07 /* OrderItem.m in Sources */,
 				044AC5401B1648F900F7D196 /* UIBaseTableViewCell.m in Sources */,
-				04A3538B1B138FAA003A80AA /* CarServiceNetDataMgr.m in Sources */,
 				044AC53D1B1648F900F7D196 /* OrderListCell.m in Sources */,
 				048BE39F1B3AF8D600997846 /* FoodOrderListViewController.m in Sources */,
 				04A353491B1381B6003A80AA /* AppDelegate.m in Sources */,
@@ -954,13 +971,16 @@
 				04C15C191B23460E0031E3CF /* GoodsOrderMenuView.m in Sources */,
 				04913EA41B196E8800179567 /* MGStyledBox.m in Sources */,
 				04913EA21B196E8800179567 /* MGButton.m in Sources */,
+				048CE6231B3FEF000021C5EC /* OrderConfirmViewController.m in Sources */,
 				044AC53B1B1648F900F7D196 /* LeftTitleListCell.m in Sources */,
 				04FDFA9F1B2C25C100920C07 /* UserItem.m in Sources */,
 				048BE39B1B3AF86D00997846 /* FoodsOrderListCell.m in Sources */,
 				04A3537D1B138801003A80AA /* CardShopLoginViewController.m in Sources */,
 				044AC53A1B1648F900F7D196 /* InfoClassTableViewCell.m in Sources */,
+				048CE6211B3FE9E50021C5EC /* ZHPickView.m in Sources */,
 				04A353901B139142003A80AA /* AppSetting.m in Sources */,
 				04A353461B1381B6003A80AA /* main.m in Sources */,
+				048CE6291B405A620021C5EC /* OrderWaitingCell.m in Sources */,
 				044AC53C1B1648F900F7D196 /* NoteItemCell.m in Sources */,
 				04FDFAA41B2C313900920C07 /* OrderListItemCell.m in Sources */,
 				04913EB41B199D1E00179567 /* GoodsCatagoryItem.m in Sources */,
