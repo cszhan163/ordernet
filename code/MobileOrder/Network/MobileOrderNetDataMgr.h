@@ -12,6 +12,8 @@
 @protocol ZCSNetClientNetInterfaceMgrDelegate;
 @interface MobileOrderNetDataMgr : NSObject<ZCSNetClientNetInterfaceMgrDataSource,
 ZCSNetClientNetInterfaceMgrDelegate>
+
+- (id)openSession;
 /*user*/
 +(id)getSingleTone;
 -(id)userLogin:(NSDictionary*)param;

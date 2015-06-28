@@ -9,7 +9,7 @@
 #import "CardShopLoginViewController.h"
 #import "ResetPasswordViewController.h"
 #import "CardShopResignViewController.h"
-#import "CarServiceNetDataMgr.h"
+#import "MobileOrderNetDataMgr.h"
 #import "AppSetting.h"
 #import "DeviceVersion.h"
 #import "LoginView.h"
@@ -166,12 +166,12 @@
     //[ZCSNotficationMgr postMSG:kDisMissModelViewController obj:nil];
     [loginView.txtusername resignFirstResponder];
     [loginView.txtpassword resignFirstResponder];
-    //    if([self.txtusername.text length]<11)
-    //    {
-    //        kUIAlertView(@"提示", @"输入的手机号码不对");
-    //        [self.txtusername becomeFirstResponder];
-    //        return;
-    //    }
+        if([loginView.txtusername.text length]<11)
+        {
+            kUIAlertView(@"提示", @"输入的手机号码不对");
+            [loginView.txtusername becomeFirstResponder];
+            return;
+        }
     if([loginView.txtusername.text length] == 0|| [loginView.txtpassword.text length] ==0){
         kUIAlertView(@"提示", @"帐号或密码不能为空");
         [loginView.txtusername becomeFirstResponder];
@@ -244,14 +244,14 @@
 //    }
     //kNetStartShow(@"登录中...",self.view);
 #if 1
-    CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
+    MobileOrderNetDataMgr *cardShopMgr = [MobileOrderNetDataMgr getSingleTone];
     
     NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:
                               loginView.txtusername.text,@"umcLoginName",
                               loginView.txtpassword.text,@"loginPassword",
                               nil];
    
-    self.request = [cardShopMgr  carUserLogin:param];
+    self.request = [cardShopMgr  userLogin:param];
 #else
     [self didNetDataOK:[NSNotification notificationWithName:kNetLoginRes object:[NSDictionary  dictionaryWithObjectsAndKeys:kNetLoginRes,@"key",nil]]];
 #endif
@@ -309,7 +309,7 @@
         if([[userReturnData objectForKey:@"isSuccess"] isEqualToString:@"1"]){
         
             //hydm":@"007652 ",@"czy":@"U65248"},
-            CarServiceNetDataMgr *cardShopMgr = [CarServiceNetDataMgr getSingleTone];
+            MobileOrderNetDataMgr *cardShopMgr = [MobileOrderNetDataMgr getSingleTone];
             
             self.useId = [userReturnData objectForKey:@"bspCompanyCode"];
             self.userName = [userReturnData objectForKey:@"chineseFullname"];

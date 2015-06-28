@@ -8,6 +8,8 @@
 
 #import "OrderPayViewController.h"
 
+#import "DinnerWaitingViewController.h"
+
 @interface OrderPayViewController ()
 
 @end
@@ -27,6 +29,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.orderItem.orderId = @"SD12346789110";
+    self.orderItem.orderTime = @"2015年5月1日19时20分";
+    
+    UIImage *image =nil;
+    UIImageWithFileName(image, @"pay_dis_confirm_pay.png");
+    UIButton *feedBackBtn = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"" withTag:0 withTarget:self  withTouchEvent:@selector(didButtonPress:)];
+    //showOrderBtn.backgroundColor = [UIColor redColor];
+    [self.view addSubview:feedBackBtn];
+    
+    feedBackBtn.frame = CGRectMake(40.f,300.f,image.size.width,image.size.height);
+    //[self.view addSubview:feedBackBtn];
+    
+}
+
+- (void)didButtonPress:(id)sender {
+
+    DinnerWaitingViewController *waitingViewCtrl = [[DinnerWaitingViewController alloc]init];
+    waitingViewCtrl.orderItem = self.orderItem;
+    [self.navigationController pushViewController:waitingViewCtrl animated:YES];
+    SafeRelease(waitingViewCtrl);
 }
 
 - (void)didReceiveMemoryWarning {

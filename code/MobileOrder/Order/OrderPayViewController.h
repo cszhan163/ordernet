@@ -7,7 +7,8 @@
 //
 
 #import "BSTellBaseViewController.h"
-
+#import "OrderItem.h"
 @interface OrderPayViewController : BSTellBaseViewController
 
+@property (nonatomic, strong) OrderItem *orderItem;
 @end

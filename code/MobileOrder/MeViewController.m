@@ -94,7 +94,7 @@
 
 - (void)didPressUserIconAction:(id)sender {
 
-    
+    [[MobileOrderNetDataMgr getSingleTone] userLogin:nil];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

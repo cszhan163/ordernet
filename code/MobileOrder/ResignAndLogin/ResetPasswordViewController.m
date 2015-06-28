@@ -8,7 +8,7 @@
 
 #import "ResetPasswordViewController.h"
 //#import "LoginAndSignupConfig.h"
-#import "CarServiceNetDataMgr.h"
+#import "MobileOrderNetDataMgr.h"
 //#import "ZCSNetClientDataMgr.h"
 #import "SVProgressHUD.h"
 #import "ZCSNetClient.h"
@@ -144,7 +144,7 @@
     NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:
                            subClassInputTextField.text,@"mobi",
                            nil];
-    CarServiceNetDataMgr *netClientMgr = [CarServiceNetDataMgr getSingleTone];
+    MobileOrderNetDataMgr *netClientMgr = [MobileOrderNetDataMgr getSingleTone];
     if(type == 0)
     {
         //self.request = [netClientMgr  userResignRandomCode:param];

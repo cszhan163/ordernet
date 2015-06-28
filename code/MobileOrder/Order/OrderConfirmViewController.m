@@ -25,8 +25,10 @@
 #define kOrderPanelHeight  50.f
 
 
+#import "ZHPickView.h"
 
-@interface OrderConfirmViewController () {
+
+@interface OrderConfirmViewController () <ZHPickViewDelegate>{
 
     
     UILabel *_shopLabel;
@@ -38,6 +40,7 @@
     UILabel *_totalPersonNumLabel;
     
     UITableView *_tableView;
+    ZHPickView*  _pickview;
 }
 
 @end
@@ -45,7 +48,7 @@
 @implementation OrderConfirmViewController
 
 - (void)dealloc {
-
+    SafeRelease( _pickview);
     SuperDealloc;
 }
 
@@ -139,6 +142,14 @@
     _totalPersonNumLabel.backgroundColor = [UIColor redColor];
     _totalPersonNumLabel.textAlignment = NSTextAlignmentLeft;
     
+    UIButton *personChooseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    [personChooseBtn addTarget:self action:@selector(personChooseAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [personChooseBtn setFrame:_totalPersonNumLabel.frame];
+    
+    [self.view addSubview:personChooseBtn];
+    
     [orderHeaderView addSubview:_totalPersonNumLabel];
     
     [self.view addSubview:_totalPersonNumLabel];
@@ -176,6 +187,8 @@
     [self.view addSubview:orderPanel];
     
     SafeRelease(orderPanel);
+    
+    _totalPersonNumLabel.text = [NSString stringWithFormat:@"就餐人数:%ld 人",self.orderItem.personNum];
 }
 
 
@@ -187,8 +200,19 @@
             break;
         case 1: {
             
-            if([AppSetting getLoginUserId]){
+#if 1
             
+            OrderPayViewController *orderPayVCtrl = [[OrderPayViewController alloc]init];
+            orderPayVCtrl.orderItem = self.orderItem;
+            [self.navigationController pushViewController:orderPayVCtrl animated:YES];
+            SafeRelease(orderPayVCtrl);
+            
+            return;
+#endif
+            
+            
+            if([AppSetting getLoginUserId]){
+                
                 
             } else {
                 
@@ -196,8 +220,6 @@
                 UINavigationController *navCtl = nil;
                 
                 CardShopLoginViewController *cardLoginVCtl = [[CardShopLoginViewController alloc]init];
-                
-                
                 
                 [cardLoginVCtl setCompleteAction:^(id sender){
                 
@@ -413,5 +435,27 @@
     
 }
 
+- (void)personChooseAction:(UIButton*)sender {
 
+    NSMutableArray *totalCountArray = [NSMutableArray array];
+    for (int i =1;i<200;i++){
+    
+        [totalCountArray addObject:[NSString stringWithFormat:@"%d",i]];
+    }
+    //if(_pickview == nil)
+    {
+        _pickview=[[ZHPickView alloc] initPickviewWithArray:totalCountArray isHaveNavControler:NO];
+        [_pickview  setDelegate:self];
+        [_pickview setSelectorRow:self.orderItem.personNum];
+        [_pickview show];
+    }
+    
+    
+}
+
+-(void)toobarDonBtnHaveClick:(ZHPickView *)pickView resultString:(NSString *)resultString {
+    
+    _totalPersonNumLabel.text = [NSString stringWithFormat:@"就餐人数:%@ 人",resultString];
+    self.orderItem.personNum = [resultString integerValue];
+}
 @end

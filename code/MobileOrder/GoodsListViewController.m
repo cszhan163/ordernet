@@ -646,8 +646,8 @@
                            [NSDate formartDateTime:date withFormat:@"yyyyMMdd"],@"rqStart",
                            @"20991231",@"rqEnd",
                            nil];
-    CarServiceNetDataMgr *carServiceNetDataMgr = [CarServiceNetDataMgr getSingleTone];
-    //self.request = [carServiceNetDataMgr  queryAuctionWts4Move:param];
+    MobileOrderNetDataMgr *MobileOrderNetDataMgr = [MobileOrderNetDataMgr getSingleTone];
+    //self.request = [MobileOrderNetDataMgr  queryAuctionWts4Move:param];
 }
 - (NSString*)formartDateTime:(NSDate*)date withFormat:(NSString*)formart{
 

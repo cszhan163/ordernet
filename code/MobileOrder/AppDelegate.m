@@ -25,6 +25,9 @@
     CGSize size = [text sizeWithWidth:90.f withTextAttribute:@{kGoodCatagoryTextFont:NSFontAttributeName}];
     
     CGRect mainRect = [UIScreen mainScreen].bounds;
+    
+    [[MobileOrderNetDataMgr getSingleTone] openSession];
+    
    self.window = SafeAutoRelease(([[UIWindow alloc]initWithFrame:mainRect]));
  
     MainEntryViewController *mainViewCtrl = [[MainEntryViewController alloc]init];

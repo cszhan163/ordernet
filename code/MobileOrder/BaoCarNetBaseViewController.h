@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "CarServiceNetDataMgr.h"
+//#import "MobileOrderNetDataMgr.h"
 
 @interface CardShopNetBaseViewController : UIViewController
 @property(nonatomic,assign)id request;
