@@ -50,7 +50,6 @@
 		04689A531B38534A00D6CD55 /* user_pwd.png in Resources */ = {isa = PBXBuildFile; fileRef = 04689A491B38534A00D6CD55 /* user_pwd.png */; };
 		04689A541B38534A00D6CD55 /* userBg-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = 04689A4A1B38534A00D6CD55 /* userBg-568h.png */; };
 		04689A551B38534A00D6CD55 /* userBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 04689A4B1B38534A00D6CD55 /* userBg.png */; };
-		04859CE71B3F3123003C793A /* libZCSUIFrameWork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04859CE61B3F3123003C793A /* libZCSUIFrameWork.a */; };
 		048BE39B1B3AF86D00997846 /* FoodsOrderListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 048BE39A1B3AF86D00997846 /* FoodsOrderListCell.m */; };
 		048BE39F1B3AF8D600997846 /* FoodOrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048BE39E1B3AF8D600997846 /* FoodOrderListViewController.m */; };
 		048BE3A21B3B04E700997846 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048BE3A11B3B04E700997846 /* MeViewController.m */; };
@@ -137,6 +136,7 @@
 		04A354201B13A510003A80AA /* user_msg.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A353E01B13A510003A80AA /* user_msg.png */; };
 		04A354211B13A510003A80AA /* user_msg_img@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A353E11B13A510003A80AA /* user_msg_img@2x.png */; };
 		04A354221B13A510003A80AA /* user_order.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A353E21B13A510003A80AA /* user_order.png */; };
+		04AD9EC31B444533003A0F46 /* libZCSUIFrameWork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04AD9EC21B444524003A0F46 /* libZCSUIFrameWork.a */; };
 		04C15C191B23460E0031E3CF /* GoodsOrderMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C15C181B23460E0031E3CF /* GoodsOrderMenuView.m */; };
 		04FDFA9C1B2C20FD00920C07 /* OrderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FDFA9B1B2C20FD00920C07 /* OrderItem.m */; };
 		04FDFA9F1B2C25C100920C07 /* UserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FDFA9E1B2C25C100920C07 /* UserItem.m */; };
@@ -151,6 +151,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 04A3533F1B1381B6003A80AA;
 			remoteInfo = MobileOrder;
+		};
+		04AD9EC11B444524003A0F46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04AD9EBD1B444524003A0F46 /* ZCSUIFrameWork.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 044E74C7158C8A590048CB70;
+			remoteInfo = ZCSUIFrameWork;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -220,7 +227,6 @@
 		04689A491B38534A00D6CD55 /* user_pwd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_pwd.png; sourceTree = "<group>"; };
 		04689A4A1B38534A00D6CD55 /* userBg-568h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userBg-568h.png"; sourceTree = "<group>"; };
 		04689A4B1B38534A00D6CD55 /* userBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userBg.png; sourceTree = "<group>"; };
-		04859CE61B3F3123003C793A /* libZCSUIFrameWork.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libZCSUIFrameWork.a; sourceTree = "<group>"; };
 		048BE3991B3AF86D00997846 /* FoodsOrderListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodsOrderListCell.h; sourceTree = "<group>"; };
 		048BE39A1B3AF86D00997846 /* FoodsOrderListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodsOrderListCell.m; sourceTree = "<group>"; };
 		048BE39D1B3AF8D600997846 /* FoodOrderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FoodOrderListViewController.h; path = Me/FoodOrderListViewController.h; sourceTree = "<group>"; };
@@ -340,6 +346,7 @@
 		04A353E01B13A510003A80AA /* user_msg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_msg.png; sourceTree = "<group>"; };
 		04A353E11B13A510003A80AA /* user_msg_img@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_msg_img@2x.png"; sourceTree = "<group>"; };
 		04A353E21B13A510003A80AA /* user_order.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_order.png; sourceTree = "<group>"; };
+		04AD9EBD1B444524003A0F46 /* ZCSUIFrameWork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZCSUIFrameWork.xcodeproj; path = ../BaseLib/UIFramework/ZCSUIFrameWork/ZCSUIFrameWork.xcodeproj; sourceTree = "<group>"; };
 		04C15C171B23460E0031E3CF /* GoodsOrderMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoodsOrderMenuView.h; path = Order/GoodsOrderMenuView.h; sourceTree = "<group>"; };
 		04C15C181B23460E0031E3CF /* GoodsOrderMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoodsOrderMenuView.m; path = Order/GoodsOrderMenuView.m; sourceTree = "<group>"; };
 		04FDFA9A1B2C20FD00920C07 /* OrderItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderItem.h; path = Model/OrderItem.h; sourceTree = "<group>"; };
@@ -356,10 +363,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04AD9EC31B444533003A0F46 /* libZCSUIFrameWork.a in Frameworks */,
 				042C7DBC1B19BBEB00E8A53C /* AudioToolbox.framework in Frameworks */,
 				04A3539E1B139243003A80AA /* MobileCoreServices.framework in Frameworks */,
 				04A3539A1B139220003A80AA /* SystemConfiguration.framework in Frameworks */,
-				04859CE71B3F3123003C793A /* libZCSUIFrameWork.a in Frameworks */,
 				04A353971B1391C3003A80AA /* libz.dylib in Frameworks */,
 				04A353951B1391AE003A80AA /* CFNetwork.framework in Frameworks */,
 			);
@@ -519,7 +526,7 @@
 		04A353371B1381B6003A80AA = {
 			isa = PBXGroup;
 			children = (
-				04859CE61B3F3123003C793A /* libZCSUIFrameWork.a */,
+				04AD9EBD1B444524003A0F46 /* ZCSUIFrameWork.xcodeproj */,
 				042C7DBB1B19BBEB00E8A53C /* AudioToolbox.framework */,
 				042C7DB91B19BBE100E8A53C /* CoreAudio.framework */,
 				04A3539D1B139243003A80AA /* MobileCoreServices.framework */,
@@ -759,6 +766,14 @@
 			path = user;
 			sourceTree = "<group>";
 		};
+		04AD9EBE1B444524003A0F46 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				04AD9EC21B444524003A0F46 /* libZCSUIFrameWork.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -826,6 +841,12 @@
 			mainGroup = 04A353371B1381B6003A80AA;
 			productRefGroup = 04A353411B1381B6003A80AA /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 04AD9EBE1B444524003A0F46 /* Products */;
+					ProjectRef = 04AD9EBD1B444524003A0F46 /* ZCSUIFrameWork.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				04A3533F1B1381B6003A80AA /* MobileOrder */,
@@ -833,6 +854,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		04AD9EC21B444524003A0F46 /* libZCSUIFrameWork.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libZCSUIFrameWork.a;
+			remoteRef = 04AD9EC11B444524003A0F46 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		04A3533E1B1381B6003A80AA /* Resources */ = {
