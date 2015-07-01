@@ -634,7 +634,6 @@
      rqStart	竞价日期1
      rqEnd	竞价日期2
      */
-    return;
     NSDate *date = [NSDate date];
     NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:
                            //catStr,@"cat",
@@ -646,8 +645,8 @@
                            [NSDate formartDateTime:date withFormat:@"yyyyMMdd"],@"rqStart",
                            @"20991231",@"rqEnd",
                            nil];
-    MobileOrderNetDataMgr *MobileOrderNetDataMgr = [MobileOrderNetDataMgr getSingleTone];
-    //self.request = [MobileOrderNetDataMgr  queryAuctionWts4Move:param];
+    MobileOrderNetDataMgr *mbNetMgr = [MobileOrderNetDataMgr getSingleTone];
+    self.request = [mbNetMgr  getProductsList:param];
 }
 - (NSString*)formartDateTime:(NSDate*)date withFormat:(NSString*)formart{
 

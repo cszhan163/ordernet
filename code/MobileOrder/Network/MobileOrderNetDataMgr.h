@@ -26,6 +26,7 @@ ZCSNetClientNetInterfaceMgrDelegate>
 -(id)userProfileIconUpdate:(NSDictionary*)param;
 -(id)uploadUserPhoneContactorsPhoneNumber:(NSDictionary*)param;
 /*good*/
+
 -(id)getProductDetail:(NSDictionary*)param;
 -(id)getProductDetailAd:(NSDictionary*)param;
 -(id)getProductDetailMap:(NSDictionary*)param;
@@ -37,9 +38,9 @@ ZCSNetClientNetInterfaceMgrDelegate>
 -(id)getCityData:(NSDictionary*)param;
 -(id)getAreaData:(NSDictionary*)param;
 /*order*/
--(id)getProductOrderDetailGoodsList:(NSDictionary*)param;
--(id)getProductOrderDetail:(NSDictionary*)param;
--(id)getProductsGroup:(NSDictionary*)param;
+- (id)getDingList:(NSDictionary*)param;
+- (id)getProductsList:(NSDictionary*)param;
+
 -(id)cancelProductOrder:(NSDictionary*)param;
 -(id)getOrderDelivery:(NSDictionary*)param;
 -(id)newProductOrder:(NSDictionary*)param;
@@ -48,5 +49,6 @@ ZCSNetClientNetInterfaceMgrDelegate>
 /*ad*/
 -(id)getHomePageAd:(NSDictionary*)param;
 -(id)getProductAd:(NSDictionary*)param;
+
 -(id)getProductMap:(NSDictionary*)param;
 @end

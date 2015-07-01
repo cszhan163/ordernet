@@ -72,7 +72,9 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
                                                
                                                @"login.do",        kNetLoginRes,
                                                @"register",             kNetResignRes,
-                                               @"search_goods", @"getgoodslist",
+                                               @"product/list", @"getgoodslist",
+                                               @"ding/list",    @"getdinglist",
+                                               
                                                @"search_goodDetail",@"getGoodDetail",
                                                @"search_orders_old",@"search_orders_old",
                                                @"search_orders_month",@"search_orders_month",
@@ -85,7 +87,6 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
                                                @"search_fav",@"search_fav",
                                                @"search_delivery",@"search_delivery",
                                                @"pay",@"pay",
-                                               
                                                @"search_address",@"search_address",
                                                @"add_address",@"add_address",
                                                @"edit_address",@"edit_address",
@@ -514,14 +515,14 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
                                          withData:NO];
     
 }
--(id)getProductsGroup:(NSDictionary*)param
-{
-    //search_category
-    return [dressMemoInterfaceMgr startAnRequestByResKey:@"search_category"
+- (id)getDingList:(NSDictionary*)param {
+    
+    return [dressMemoInterfaceMgr startAnRequestByResKey:@"getdinglist"
                                                needLogIn:NO
-                                               withParam:nil
+                                               withParam:param
                                               withMethod:@"GET"
                                                 withData:NO];
+    
 }
 /*
  *

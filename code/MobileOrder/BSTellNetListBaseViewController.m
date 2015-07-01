@@ -202,7 +202,7 @@
 - (void)reloadNetData:(id)data{
     id retData = nil;
     if([data isKindOfClass:[NSDictionary class]])
-        retData = [data objectForKey:@"data"];
+        retData = [data objectForKey:@"object"];
     else
         retData = data;
     if(retData){

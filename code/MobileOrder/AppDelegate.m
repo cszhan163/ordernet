@@ -26,7 +26,7 @@
     
     CGRect mainRect = [UIScreen mainScreen].bounds;
     
-    [[MobileOrderNetDataMgr getSingleTone] openSession];
+    //[[MobileOrderNetDataMgr getSingleTone] openSession];
     
    self.window = SafeAutoRelease(([[UIWindow alloc]initWithFrame:mainRect]));
  
