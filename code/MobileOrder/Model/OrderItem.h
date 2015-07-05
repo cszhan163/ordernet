@@ -14,7 +14,10 @@
 
 @property (nonatomic, strong) NSString *name;
 
+@property (nonatomic, assign) CGFloat  avPrice;
 @property (nonatomic, strong) NSString *position;
+
+- (id)initWithDictonary:(NSDictionary*)item;
 
 @end
 

@@ -9,6 +9,7 @@
 #import "MeViewController.h"
 
 #import "FoodOrderListViewController.h"
+#import "UserInfoViewController.h"
 
 #define kPendingY    20.f
 
@@ -74,6 +75,8 @@
     NSDictionary *meData = [NSDictionary dictionaryWithContentsOfFile:path];
     
     self.dataArray =  [meData objectForKey:@"data"];
+    
+    
     
 }
 
@@ -156,6 +159,15 @@
         FoodOrderListViewController *foodOrderListVCtrl = [[FoodOrderListViewController alloc]init];
         [self.navigationController pushViewController:foodOrderListVCtrl animated:YES];
         SafeRelease(foodOrderListVCtrl);
+    }
+    if([key isEqualToString:@"userInfo"]) {
+    
+        UserInfoViewController *userVctl = [[UserInfoViewController alloc]init];
+        
+        [self.navigationController pushViewController:userVctl animated:YES];
+        SafeRelease(userVctl);
+        
+        
     }
 }
 

@@ -70,10 +70,11 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
         dressMemoInterfaceMgr = [ZCSNetClientNetInterfaceMgr getSingleTone];
         NSDictionary *requestResouceMapDict = [NSDictionary dictionaryWithObjectsAndKeys:
                                                
-                                               @"login.do",        kNetLoginRes,
-                                               @"register",             kNetResignRes,
+                                               @"user/login",        kNetLoginRes,
+                                               @"user/register",             kNetResignRes,
                                                @"product/list", @"getgoodslist",
-                                               @"ding/list",    @"getdinglist",
+                                               @"dining/list",    @"getdinglist",
+                                               @"user", @"getuserInfo",
                                                
                                                @"search_goodDetail",@"getGoodDetail",
                                                @"search_orders_old",@"search_orders_old",
@@ -107,7 +108,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
                                                @"search_good_ad",@"search_good_ad",
                                                @"search_good_map",@"search_good_map",
                                                @"update_userico",@"update_userico",
-                                                @"search_deliveryDetail",@"search_deliveryDetail",
+                                              @"search_deliveryDetail",@"search_deliveryDetail",
                                                @"",@"opensession",
                                                
                                                nil];
@@ -142,8 +143,8 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     userName = [loginData objectForKey:@"username"];
     userPassword = [loginData objectForKey:@"password"];
 #else
-    userName = @"test";
-    userPassword = @"1234";
+    userName = @"admin";
+    userPassword = @"1";
 #endif
     
     NSString *pasMd5Str = [userPassword getMd5String];
@@ -216,11 +217,13 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
 {
     kUIAlertView(@"提示",@"网络好像有问题,请检查网络");
 }
+#if 0
 - (void)didGetRawRespond:(ZCSNetClient*)sender withRawData:(NSData*)data {
 
      NSLog(@"%@",SafeAutoRelease([[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]));
     
 }
+#endif
 #pragma mark -
 #pragma mark
 -(NSDictionary*)addUserIdParam:(NSDictionary*)param
@@ -261,10 +264,39 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     return [dressMemoInterfaceMgr startAnRequestByResKey:kNetLoginRes
                                         needLogIn:NO
                                         withParam:param
-                                       withMethod:@"GET"
+                                       withMethod:@"POST"
                                          withData:NO];
     
 }
+-(id)userResign:(NSDictionary*)param
+
+{
+    BOOL isHasData = NO;
+    if([param objectForKey:@"avatar"])
+    {
+        
+        isHasData  = YES;
+        
+    }
+    return [dressMemoInterfaceMgr startAnRequestByResKey:@"register"
+                                               needLogIn:NO
+                                               withParam:param
+                                              withMethod:@"POST"
+                                                withData:isHasData];
+    
+}
+
+-(id)userResetPassword:(NSDictionary*)param
+{
+    //search_category
+    //param = [self addUserIdParam:param];
+    return [dressMemoInterfaceMgr startAnRequestByResKey:@"register"
+                                               needLogIn:NO
+                                               withParam:param
+                                              withMethod:@"PUT"
+                                                withData:NO];
+}
+
 -(id)userInfoUpdate:(NSDictionary*)param
 {
     param = [self addUserIdParam:param];
@@ -285,23 +317,6 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
                                          withData:NO];
     
 }
--(id)userResign:(NSDictionary*)param
-
-{
-    BOOL isHasData = NO;
-    if([param objectForKey:@"avatar"])
-    {
-        
-        isHasData  = YES;
-        
-    }
-    return [dressMemoInterfaceMgr startAnRequestByResKey:@"register"
-                                        needLogIn:NO
-                                        withParam:param
-                                       withMethod:@"POST"
-                                         withData:isHasData];
-    
-}
 -(id)userFavProducts:(NSDictionary*)param
 {
     //search_category
@@ -317,16 +332,6 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     //search_category
     //param = [self addUserIdParam:param];
     return [dressMemoInterfaceMgr startAnRequestByResKey:@"getsmsfindpassword"
-                                               needLogIn:NO
-                                               withParam:param
-                                              withMethod:@"POST"
-                                                withData:NO];
-}
--(id)userResetPassword:(NSDictionary*)param
-{
-    //search_category
-    //param = [self addUserIdParam:param];
-    return [dressMemoInterfaceMgr startAnRequestByResKey:@"findpassword"
                                                needLogIn:NO
                                                withParam:param
                                               withMethod:@"POST"
@@ -363,6 +368,16 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
                                                withParam:param
                                               withMethod:@"POST"
                                                 withData:NO];
+}
+
+-(id)userUser:(NSDictionary*)param {
+    //param = [self addUserIdParam:param];
+    return [dressMemoInterfaceMgr startAnRequestByResKey:@"getuserInfo"
+                                               needLogIn:YES
+                                               withParam:nil
+                                              withMethod:@"GET"
+                                                withData:NO];
+    
 }
 #pragma mark -
 #pragma mark address

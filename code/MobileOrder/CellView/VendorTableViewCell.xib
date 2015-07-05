@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6724" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="68" id="sBP-FJ-qxr" userLabel="Vendor Table iphone5" customClass="VendorTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="68"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sBP-FJ-qxr" id="g5s-ec-Uok">
+                <rect key="frame" x="0.0" y="0.0" width="300" height="62"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_default_s.png" id="fvZ-EW-jn5">
+                        <rect key="frame" x="0.0" y="0.0" width="73" height="68"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </imageView>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="咆哮肉夹馍店" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2qw-MJ-HtH" userLabel="vendorName- Label">
+                        <rect key="frame" x="81" y="4" width="207" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上海八佰伴" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uHv-dI-383" userLabel="locationName- Label">
+                        <rect key="frame" x="97" y="45" width="191" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.5km" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9TT-V8-HhM" userLabel="distance - Label">
+                        <rect key="frame" x="235" y="20" width="53" height="24"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.0012730308766297212" green="0.60563979565342807" blue="0.92741593070652173" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shop_address.png" highlightedImage="shop_address.png" id="m0e-CU-0Id">
+                        <rect key="frame" x="75" y="42" width="24" height="24"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </imageView>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.5km" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qD0-Ik-DKT" userLabel="avprices-label">
+                        <rect key="frame" x="81" y="22" width="123" height="24"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.001273030877" green="0.60563979570000004" blue="0.92741593069999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="avPricesLabel" destination="qD0-Ik-DKT" id="ZU7-2u-BsK"/>
+                <outlet property="distanceLabel" destination="9TT-V8-HhM" id="GRj-d3-STL"/>
+                <outlet property="locationNameIdLabel" destination="uHv-dI-383" id="E8v-u7-S1x"/>
+                <outlet property="vendorImageView" destination="fvZ-EW-jn5" id="2sf-Ej-BBu"/>
+                <outlet property="vendorNameLabel" destination="2qw-MJ-HtH" id="Bkn-FI-lSF"/>
+            </connections>
+            <point key="canvasLocation" x="145" y="72"/>
+        </tableViewCell>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="82" id="NK3-lt-a96" userLabel="Vendor Table iphone6" customClass="VendorTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="355" height="82"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NK3-lt-a96" id="QfN-S3-Ifh">
+                <rect key="frame" x="0.0" y="0.0" width="300" height="62"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_default_s.png" id="Ccx-86-a6a">
+                        <rect key="frame" x="0.0" y="0.0" width="89" height="82"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </imageView>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="咆哮肉夹馍店" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zZF-US-hpu" userLabel="vendorName- Label">
+                        <rect key="frame" x="97" y="0.0" width="250" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上海八佰伴" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wMZ-NO-vcu" userLabel="locationName- Label">
+                        <rect key="frame" x="119" y="55" width="228" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.5km" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bhs-Jw-NDf" userLabel="distance - Label">
+                        <rect key="frame" x="285" y="20" width="53" height="24"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.001273030877" green="0.60563979570000004" blue="0.92741593069999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shop_address.png" highlightedImage="shop_address.png" id="9TX-To-Qv2">
+                        <rect key="frame" x="94" y="52" width="24" height="24"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </imageView>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.5km" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9Ut-Du-WKv" userLabel="avprices-label">
+                        <rect key="frame" x="97" y="24" width="122" height="24"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.001273030877" green="0.60563979570000004" blue="0.92741593069999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="avPricesLabel" destination="9Ut-Du-WKv" id="ZkJ-bG-fER"/>
+                <outlet property="distanceLabel" destination="bhs-Jw-NDf" id="JZq-16-dhg"/>
+                <outlet property="locationNameIdLabel" destination="wMZ-NO-vcu" id="u1v-tY-FsN"/>
+                <outlet property="vendorImageView" destination="Ccx-86-a6a" id="Xec-u8-uLb"/>
+                <outlet property="vendorNameLabel" destination="zZF-US-hpu" id="uva-QI-ukL"/>
+            </connections>
+            <point key="canvasLocation" x="172.5" y="195"/>
+        </tableViewCell>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="84" id="bmf-8F-oYo" userLabel="Vendor Table iphonePlus" customClass="VendorTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="436" height="84"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bmf-8F-oYo" id="oaW-ro-rTt">
+                <rect key="frame" x="0.0" y="0.0" width="300" height="62"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food_default_s.png" id="e11-Di-Nvv">
+                        <rect key="frame" x="0.0" y="0.0" width="89" height="84"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </imageView>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="咆哮肉夹馍店" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ifk-zo-2Hg" userLabel="vendorName- Label">
+                        <rect key="frame" x="97" y="4" width="331" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上海八佰伴" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9RF-rz-YOI" userLabel="locationName- Label">
+                        <rect key="frame" x="123" y="58" width="301" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.5km" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Iuw-4o-Duz" userLabel="distance - Label">
+                        <rect key="frame" x="371" y="20" width="53" height="24"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.001273030877" green="0.60563979570000004" blue="0.92741593069999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shop_address.png" highlightedImage="shop_address.png" id="rMo-TJ-3mU">
+                        <rect key="frame" x="97" y="56" width="24" height="24"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </imageView>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.5km" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="U7g-SB-RTr" userLabel="avprices - Label">
+                        <rect key="frame" x="97" y="29" width="188" height="24"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.001273030877" green="0.60563979570000004" blue="0.92741593069999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="avPricesLabel" destination="U7g-SB-RTr" id="wJw-RP-mCy"/>
+                <outlet property="distanceLabel" destination="Iuw-4o-Duz" id="Pld-Dm-kXK"/>
+                <outlet property="locationNameIdLabel" destination="9RF-rz-YOI" id="3jQ-lb-fFE"/>
+                <outlet property="vendorImageView" destination="e11-Di-Nvv" id="4Pl-mQ-fk1"/>
+                <outlet property="vendorNameLabel" destination="Ifk-zo-2Hg" id="4It-ce-Rnm"/>
+            </connections>
+            <point key="canvasLocation" x="213" y="320"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="food_default_s.png" width="180" height="110"/>
+        <image name="shop_address.png" width="48" height="48"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

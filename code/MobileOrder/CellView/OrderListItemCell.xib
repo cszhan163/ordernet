@@ -131,7 +131,7 @@
                 <outlet property="numberLabel" destination="LIE-VF-iFa" id="nmb-i0-Yb8"/>
                 <outlet property="priceLabel" destination="qUJ-NH-3Hr" id="kwZ-D8-QE1"/>
             </connections>
-            <point key="canvasLocation" x="187.5" y="154"/>
+            <point key="canvasLocation" x="187.5" y="40"/>
         </tableViewCell>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="HJ3-fC-nCb" userLabel="View_iphone5">

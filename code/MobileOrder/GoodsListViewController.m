@@ -168,7 +168,7 @@
     tweetieTableView.clipsToBounds = YES;
     
     
-#if 1
+#if 0
     
     
     self.titleArray = @[@"面",@"凉菜",@"肉夹馍",@"肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍",@"肉夹馍肉夹馍",@"肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍",@"肉夹馍",@"面",@"凉菜"];
@@ -568,7 +568,7 @@
     NSInteger totalNumber = 0;
     for(GoodsOrderItem *item in [_goodsOrderMenuView dataArray]){
         totalNumber = totalNumber + item.subCatagoryItem.number;
-        _totalPrice = _totalPrice + item.subCatagoryItem.price * item.subCatagoryItem.number;
+        _totalPrice = _totalPrice + (item.subCatagoryItem.price + item.subCatagoryItem.basePrice) * item.subCatagoryItem.number;
     }
     _numberLabel.text = [NSString stringWithFormat:@"点了:  %ld   道菜",totalNumber];
     _priceLabel.text  = [NSString stringWithFormat:@"总计: ¥%0.2lf 元",_totalPrice];
@@ -635,6 +635,7 @@
      rqEnd	竞价日期2
      */
     NSDate *date = [NSDate date];
+    /*
     NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:
                            //catStr,@"cat",
                            pageNumStr, @"offset",
@@ -645,8 +646,10 @@
                            [NSDate formartDateTime:date withFormat:@"yyyyMMdd"],@"rqStart",
                            @"20991231",@"rqEnd",
                            nil];
+     */
+    
     MobileOrderNetDataMgr *mbNetMgr = [MobileOrderNetDataMgr getSingleTone];
-    self.request = [mbNetMgr  getProductsList:param];
+    self.request = [mbNetMgr  getProductsList:@{}];
 }
 - (NSString*)formartDateTime:(NSDate*)date withFormat:(NSString*)formart{
 
@@ -667,23 +670,62 @@
     
     id obj = [ntf object];
     id respRequest = [obj objectForKey:@"request"];
-    id data = [obj objectForKey:@"data"];
-    NSString *resKey = [obj objectForKey:@"key"];//[respRequest resourceKey];
+    id objData = [obj objectForKey:@"data"];
+    NSString *resKey = [respRequest resourceKey];
     //NSString *resKey = [respRequest resourceKey];
-    if([resKey isEqualToString:kResBidListData])
+    if([resKey isEqualToString:@"getgoodslist"])
     {
         //        if ([self.externDelegate respondsToSelector:@selector(commentDidSendOK:)]) {
         //            [self.externDelegate commentDidSendOK:self];
         //        }
         //        kNetEndSuccStr(@"评论成功",self.view);
         //        [self dismissModalViewControllerAnimated:YES];
-#if 1
+#if 0
         [self reloadNetData:data];
 #else
 //        if([[data objectForKey:@"data"] count]<10.f){
 //            isRefreshing = YES;
 //        }
-        self.dataArray = [data objectForKey:@"data"];
+        
+        NSMutableArray *goodsList = [NSMutableArray array];
+        NSArray *data = [objData objectForKey:@"data"];
+        NE_LOG(@"data:%@",[data description]);
+        NSMutableArray *goodsTitleArray = [NSMutableArray array];
+        for(NSDictionary *item in data) {
+            [goodsTitleArray addObject:[item objectForKey:@"name"]];
+            NSArray *catagoryArray = [item objectForKey:@"products"];
+            NSMutableArray *catagoryItemsArray = [NSMutableArray array];
+            for(int i = 0;i<[catagoryArray count]; i++){
+                
+                NSDictionary *cataItem = catagoryArray[i];
+                GoodsCatagoryItem *goodItem = [[GoodsCatagoryItem alloc]init];
+
+                goodItem.name = [cataItem objectForKey:@"name"];
+                goodItem.number = 0.f;
+                goodItem.price = [[cataItem objectForKey:@"price"]floatValue];
+                NSMutableArray *subArray = [NSMutableArray array];
+                NSArray  *tastesArray  = [catagoryArray[i] objectForKey:@"tastes"];
+                for(int j = 0;j< [tastesArray count];j++){
+                    NSDictionary *tastesItem = tastesArray[j];
+                    SubCatagoryItem *subItem = [[SubCatagoryItem alloc]init];
+                    subItem.name = [tastesItem objectForKey:@"name"];
+                    subItem.number = 0;
+                    subItem.basePrice = goodItem.price;
+                    subItem.price = [[tastesItem objectForKey:@"price"]floatValue];
+                    [subArray addObject:subItem];
+                    SafeRelease(subItem);
+                }
+                goodItem.subCatogoryArray =subArray;
+                
+                [catagoryItemsArray addObject:goodItem];
+                 SafeRelease(goodItem);
+            }
+            [goodsList addObject:catagoryItemsArray];
+        }
+        
+        self.goodsListArray = goodsList;
+        
+        self.titleArray = goodsTitleArray;
 #endif
         //self.dataArray = [data objectForKey:@"data"];
 //        if([[data objectForKey:@"data"]count])
@@ -695,8 +737,9 @@
 
 - (void)updateUIData:(NSDictionary*)netData{
     kNetEnd(self.view);
-    
-    
+    self.catogoryView.dataArray = [self convertToModelData:self.titleArray];
+    [self.catogoryView setNeedsLayout];
+    [tweetieTableView reloadData];
 }
 -(void)didNetDataFailed:(NSNotification*)ntf
 {

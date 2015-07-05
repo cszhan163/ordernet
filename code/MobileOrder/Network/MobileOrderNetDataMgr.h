@@ -25,6 +25,7 @@ ZCSNetClientNetInterfaceMgrDelegate>
 -(id)userResetPassword:(NSDictionary*)param;
 -(id)userProfileIconUpdate:(NSDictionary*)param;
 -(id)uploadUserPhoneContactorsPhoneNumber:(NSDictionary*)param;
+-(id)userUser:(NSDictionary*)param;
 /*good*/
 
 -(id)getProductDetail:(NSDictionary*)param;

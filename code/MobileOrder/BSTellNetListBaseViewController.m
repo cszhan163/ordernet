@@ -195,6 +195,8 @@
         [tweetieTableView closeInfoView];
     }
     
+    
+    
 }
 #pragma mark -
 #pragma mark - override fun
@@ -202,7 +204,7 @@
 - (void)reloadNetData:(id)data{
     id retData = nil;
     if([data isKindOfClass:[NSDictionary class]])
-        retData = [data objectForKey:@"object"];
+        retData = [data objectForKey:@"data"];
     else
         retData = data;
     if(retData){

@@ -60,6 +60,11 @@
     
 }
 
+- (void)setNeedsLayout {
+    [super setNeedsLayout];
+    [self.tableView reloadData];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

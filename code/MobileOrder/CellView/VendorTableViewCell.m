@@ -6,9 +6,9 @@
 //  Copyright (c) 2014年 cszhan. All rights reserved.
 //
 
-#import "OrderTableViewCell.h"
+#import "VendorTableViewCell.h"
 
-@implementation OrderTableViewCell
+@implementation VendorTableViewCell
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -32,14 +32,14 @@
     // Drawing code
 }
 */
-- (void)awakeFromNib{
-
-    self.contentView.layer.cornerRadius = 10.f;
-    //self.contentView.
-
-}
-- (void)layoutSubviews{
-    CGRect rect = self.contentView.frame;
-    self.contentView.frame = CGRectMake(10.f, rect.origin.y+2.5, 300.f, rect.size.height-5.f);
-}
+//- (void)awakeFromNib{
+//
+//    self.contentView.layer.cornerRadius = 10.f;
+//    //self.contentView.
+//
+//}
+//- (void)layoutSubviews{
+//    CGRect rect = self.contentView.frame;
+//    self.contentView.frame = CGRectMake(10.f, rect.origin.y+2.5, 300.f, rect.size.height-5.f);
+//}
 @end

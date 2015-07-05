@@ -29,6 +29,8 @@
 
 - (void)scrollViewToIndex:(NSInteger)index;
 
+- (void)setNeedsLayout;
+
 + (CGFloat) getCatagoryCellHeight:(NSString*)txt ;
 
 @end

@@ -16,6 +16,8 @@
 
 @property (nonatomic, assign) CGFloat   price;
 
+@property (nonatomic, assign) CGFloat  basePrice;
+
 @property (nonatomic, assign) CGFloat cellHeight;
 
 @end

@@ -41,7 +41,7 @@
     //self.textLabel.frame = CGRectMake(0.f, 0.f,self.frame.size.width/2.f, 40);
     self.foodNameLabel.text = titleName;
     _numberLabel.text = [NSString stringWithFormat:@"%ld",_item.number];
-    _priceLabel.text =  [NSString stringWithFormat:@"¥ %0.2lf 元",_item.price];
+    _priceLabel.text =  [NSString stringWithFormat:@"¥ %0.2lf 元",_item.price+_item.basePrice];
     //self.imageView.frame = CGRectOffset(self.imageView.frame, 6, 0);
     //self.textLabel.frame = CGRectOffset(self.textLabel.frame, 6, 0);
 }
