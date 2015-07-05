@@ -7,11 +7,11 @@
 //
 
 #import "MobileOrderNetDataMgr.h"
-#import "ZCSNetClientNetInterfaceMgr.h"
+//#import "ZCSNetClientNetInterfaceMgr.h"
 #import "AppConfig.h"
 #import "ZCSNetClient.h"
 #import "AppSetting.h"
-
+#define  kRequestApiRoot                @"http://121.40.239.155/1.0/"
 
 #import <CommonCrypto/CommonDigest.h> // Need to import for CC_MD5 access
 
