@@ -172,4 +172,19 @@
 }
 
 
+-(void)didNetDataOK:(NSNotification*)ntf
+{
+    //kNetEnd(self.view);
+    //NE_LOG(@"warning not implemetation net respond");
+    //self.view.userInteractionEnabled = YES;
+    id obj = [ntf object];
+    id respRequest = [obj objectForKey:@"request"];
+    id _data = [obj objectForKey:@"data"];
+    NSString *resKey = [respRequest resourceKey];
+    if(resKey == @"userInfo")
+    {
+        
+    }
+}
+
 @end

@@ -10,6 +10,8 @@
 
 #import "DinnerWaitingViewController.h"
 
+#define kLeftPendingX    10.f
+
 @interface OrderPayViewController ()
 
 @end
@@ -33,6 +35,21 @@
     self.orderItem.orderId = @"SD12346789110";
     self.orderItem.orderTime = @"2015年5月1日19时20分";
     
+    CGFloat currY = 40.f;
+    CGFloat labelHeight = 40.f;
+    UIView *orderHeaderView = nil;
+    UILabel *_totalPersonNumLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currY,orderHeaderView.frame.size.width,labelHeight)];
+    _totalPersonNumLabel.backgroundColor = [UIColor redColor];
+    _totalPersonNumLabel.textAlignment = NSTextAlignmentLeft;
+    
+    UIButton *personChooseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    [personChooseBtn addTarget:self action:@selector(personChooseAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:personChooseBtn];
+    
+    
+    
     UIImage *image =nil;
     UIImageWithFileName(image, @"pay_dis_confirm_pay.png");
     UIButton *feedBackBtn = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"" withTag:0 withTarget:self  withTouchEvent:@selector(didButtonPress:)];
@@ -41,6 +58,7 @@
     
     feedBackBtn.frame = CGRectMake(40.f,300.f,image.size.width,image.size.height);
     //[self.view addSubview:feedBackBtn];
+    
     
 }
 
