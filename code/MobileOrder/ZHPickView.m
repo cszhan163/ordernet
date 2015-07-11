@@ -8,7 +8,10 @@
 #define ZHToobarHeight 40
 #import "ZHPickView.h"
 
-@interface ZHPickView ()<UIPickerViewDelegate,UIPickerViewDataSource>
+@interface ZHPickView ()<UIPickerViewDelegate,UIPickerViewDataSource> {
+
+    UILabel *_titleLabel;
+}
 @property(nonatomic,copy)NSString *plistName;
 @property(nonatomic,strong)NSArray *plistArray;
 @property(nonatomic,assign)BOOL isLevelArray;
@@ -26,6 +29,7 @@
 @property(nonatomic,strong)NSMutableArray *dicKeyArray;
 @property(nonatomic,copy)NSMutableArray *state;
 @property(nonatomic,copy)NSMutableArray *city;
+
 @end
 
 @implementation ZHPickView
@@ -161,9 +165,21 @@
     [self addSubview:datePicker];
 }
 
+- (void)setToolbarTitle:(NSString*)text {
+
+    _titleLabel.text = text;
+    
+}
+
 -(void)setUpToolBar{
     _toolbar=[self setToolbarStyle];
     [self setToolbarWithPickViewFrame];
+    _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.f, 0.f,_toolbar.frame.size.width-44*2, _toolbar.frame.size.height)];
+    _titleLabel.text  = @"";
+    _titleLabel.textAlignment = NSTextAlignmentCenter;
+    _titleLabel.font = [UIFont systemFontOfSize:14];
+    _titleLabel.center = CGPointMake(_toolbar.frame.size.width/2.f, _toolbar.frame.size.height/2.f);
+    [_toolbar addSubview:_titleLabel];
     [self addSubview:_toolbar];
 }
 -(UIToolbar *)setToolbarStyle{
@@ -181,6 +197,11 @@
     _toolbar.frame=CGRectMake(0, 0,[UIScreen mainScreen].bounds.size.width, ZHToobarHeight);
 }
 
+- (void)selectComponets:(NSInteger)componeNum withRow:(NSInteger)row {
+
+    [_pickerView selectRow:row inComponent:componeNum animated:YES];
+}
+
 #pragma mark piackView 数据源方法
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     
@@ -194,6 +215,7 @@
     }
     return component;
 }
+
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
@@ -253,21 +275,30 @@
         [pickerView selectRow:0 inComponent:1 animated:YES];
     }
     if (_isLevelString) {
-        _resultString=_plistArray[row];
+        self.resultString=_plistArray[row];
         
     }else if (_isLevelArray){
-        _resultString=@"";
+        NSMutableString *_localString = [NSMutableString stringWithString:@""];
         if (![self.componentArray containsObject:@(component)]) {
             [self.componentArray addObject:@(component)];
         }
         for (int i=0; i<_plistArray.count;i++) {
             if ([self.componentArray containsObject:@(i)]) {
+                if(i != 0){
+                    [_localString appendString:@"#"];
+                }
                 NSInteger cIndex = [pickerView selectedRowInComponent:i];
-                _resultString=[NSString stringWithFormat:@"%@%@",_resultString,_plistArray[i][cIndex]];
+                 [_localString   appendString:_plistArray[i][cIndex]];
             }else{
-                _resultString=[NSString stringWithFormat:@"%@%@",_resultString,_plistArray[i][0]];
-                          }
+                if(i != 0){
+                    [_localString appendString:@"#"];
+                }
+                [_localString appendString:_plistArray[i][0]];
+            }
+            
         }
+        self.resultString = _localString;
+        
     }else if (_isLevelDic){
         if (component==0) {
           _state =_dicKeyArray[row][0];
@@ -299,11 +330,11 @@
            
         }else{
             if (_isLevelString) {
-                _resultString=[NSString stringWithFormat:@"%@",_plistArray[0]];
+                self.resultString=[NSString stringWithFormat:@"%@",_plistArray[0]];
             }else if (_isLevelArray){
                 _resultString=@"";
                 for (int i=0; i<_plistArray.count;i++) {
-                    _resultString=[NSString stringWithFormat:@"%@%@",_resultString,_plistArray[i][0]];
+                    self.resultString=[NSString stringWithFormat:@"%@%@",_resultString,_plistArray[i][0]];
                 }
             }else if (_isLevelDic){
                 
@@ -318,12 +349,12 @@
                     _city=[dicValueDic allValues][0][0];
                     
                 }
-              _resultString=[NSString stringWithFormat:@"%@%@",_state,_city];
+              self.resultString=[NSString stringWithFormat:@"%@%@",_state,_city];
            }
         }
     }else if (_datePicker) {
       
-        _resultString=[NSString stringWithFormat:@"%@",_datePicker.date];
+        self.resultString=[NSString stringWithFormat:@"%@",_datePicker.date];
     }
     if ([self.delegate respondsToSelector:@selector(toobarDonBtnHaveClick:resultString:)]) {
         [self.delegate toobarDonBtnHaveClick:self resultString:_resultString];

@@ -501,6 +501,7 @@
 - (void)didSelectorItemIndex:(NSInteger)index {
 
     [tweetieTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:index] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    [self.catogoryView scrollViewToIndex:index];
 }
 
 -(void)didSelectorTopNavigationBarItem:(id)sender{

@@ -18,7 +18,23 @@
 			<key>text</key>
 			<string>我的信息</string>
 			<key>iconName</key>
-			<string>user_msg</string>
+			<string>user_Info</string>
+		</dict>
+		<dict>
+			<key>New item</key>
+			<string>user_resetpwd</string>
+			<key>text</key>
+			<string>修改密码</string>
+			<key>iconName</key>
+			<string>user_resetpwd</string>
+		</dict>
+		<dict>
+			<key>New item</key>
+			<string>user_protocol</string>
+			<key>text</key>
+			<string>用户协议</string>
+			<key>iconName</key>
+			<string>user_protocol</string>
 		</dict>
 		<dict>
 			<key>New item</key>

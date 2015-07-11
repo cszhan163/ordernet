@@ -51,6 +51,10 @@
  */
 -(instancetype)initDatePickWithDate:(NSDate *)defaulDate datePickerMode:(UIDatePickerMode)datePickerMode isHaveNavControler:(BOOL)isHaveNavControler;
 
+- (void)setToolbarTitle:(NSString*)text;
+
+- (void)selectComponets:(NSInteger)componeNum withRow:(NSInteger)row ;
+
 /**
  *   移除本控件
  */

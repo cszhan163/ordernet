@@ -24,6 +24,8 @@
 
 #define kOrderPanelHeight  50.f
 
+#define kArriveTimeFormat  @"到店时间:%ld 分"
+
 
 #import "ZHPickView.h"
 
@@ -38,6 +40,7 @@
     UILabel *_discountPriceLabel;
     
     UILabel *_totalPersonNumLabel;
+    UILabel *_arriveTimeLabel;
     
     UITableView *_tableView;
     ZHPickView*  _pickview;
@@ -74,7 +77,7 @@
     orderHeaderView.backgroundColor = [UIColor blackColor];
     
     CGFloat currHeightY = 0.f;
-    _shopLabel = [UIComUtil createLabelWithFont:kGoodsOrderShopTitle withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currHeightY,orderHeaderView.frame.size.width,40.f)];
+    _shopLabel = [UIComUtil createLabelWithFont:kGoodsOrderShopTitle withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currHeightY,orderHeaderView.frame.size.width-2*kLeftPendingX,40.f)];
     _shopLabel.backgroundColor = [UIColor redColor];
     _shopLabel.textAlignment = NSTextAlignmentCenter;
     
@@ -83,7 +86,7 @@
     currHeightY = currHeightY+_shopLabel.frame.size.height;
     
 #if 1
-    _priceLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currHeightY,orderHeaderView.frame.size.width,labelHeight)];
+    _priceLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currHeightY,orderHeaderView.frame.size.width-2*kLeftPendingX,labelHeight)];
     _priceLabel.backgroundColor = [UIColor greenColor];
     _priceLabel.textAlignment = NSTextAlignmentLeft;
     
@@ -91,7 +94,7 @@
     
     currHeightY = currHeightY+labelHeight;
     
-    _pointsTotalLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currHeightY,orderHeaderView.frame.size.width,labelHeight)];
+    _pointsTotalLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currHeightY,orderHeaderView.frame.size.width-2*kLeftPendingX,labelHeight)];
     _pointsTotalLabel.backgroundColor = [UIColor greenColor];
     _pointsTotalLabel.textAlignment = NSTextAlignmentLeft;
     
@@ -99,7 +102,7 @@
     
     currHeightY = currHeightY+labelHeight;
     
-    _consumePointsLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currHeightY,orderHeaderView.frame.size.width,labelHeight)];
+    _consumePointsLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currHeightY,orderHeaderView.frame.size.width-2*kLeftPendingX,labelHeight)];
     _consumePointsLabel.backgroundColor = [UIColor greenColor];
     _consumePointsLabel.textAlignment = NSTextAlignmentLeft;
     
@@ -107,7 +110,7 @@
     
     currHeightY = currHeightY+labelHeight;
     
-    _discountPriceLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currHeightY,orderHeaderView.frame.size.width,labelHeight)];
+    _discountPriceLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currHeightY,orderHeaderView.frame.size.width-2*kLeftPendingX,labelHeight)];
     _discountPriceLabel.backgroundColor = [UIColor greenColor];
     _discountPriceLabel.textAlignment = NSTextAlignmentLeft;
     
@@ -138,19 +141,27 @@
 
     currY = currY+ _tableView.frame.size.height+1*kPendingY;
     
-    _totalPersonNumLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currY,orderHeaderView.frame.size.width,labelHeight)];
+    _totalPersonNumLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currY,(orderHeaderView.frame.size.width-2*kLeftPendingX)/2.f,labelHeight)];
     _totalPersonNumLabel.backgroundColor = [UIColor redColor];
     _totalPersonNumLabel.textAlignment = NSTextAlignmentLeft;
+    
+     CGRect timeRect = CGRectOffset(_totalPersonNumLabel.frame,orderHeaderView.frame.size.width/2.f-kLeftPendingX, 0.f);
+    _arriveTimeLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:timeRect];
+    _arriveTimeLabel.backgroundColor = [UIColor redColor];
+    _arriveTimeLabel.textAlignment = NSTextAlignmentRight;
+    _arriveTimeLabel.text  = [NSString stringWithFormat:kArriveTimeFormat,self.orderItem.arriveTime];
+    
+    [self.view addSubview:_arriveTimeLabel];
     
     UIButton *personChooseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     
     [personChooseBtn addTarget:self action:@selector(personChooseAction:) forControlEvents:UIControlEventTouchUpInside];
     
-    [personChooseBtn setFrame:_totalPersonNumLabel.frame];
+    [personChooseBtn setFrame:CGRectMake(_totalPersonNumLabel.frame.origin.x, _totalPersonNumLabel.frame.origin.y, _totalPersonNumLabel.frame.size.width*2, _totalPersonNumLabel.frame.size.height)];
     
     [self.view addSubview:personChooseBtn];
     
-    [orderHeaderView addSubview:_totalPersonNumLabel];
+    //[orderHeaderView addSubview:_totalPersonNumLabel];
     
     [self.view addSubview:_totalPersonNumLabel];
     
@@ -189,6 +200,8 @@
     SafeRelease(orderPanel);
     
     _totalPersonNumLabel.text = [NSString stringWithFormat:@"就餐人数:%ld 人",self.orderItem.personNum];
+    _arriveTimeLabel.text = [NSString stringWithFormat:kArriveTimeFormat,self.orderItem.arriveTime];
+    
 }
 
 
@@ -437,16 +450,28 @@
 
 - (void)personChooseAction:(UIButton*)sender {
 
+    NSMutableArray *finalArray = [NSMutableArray array];
+    
     NSMutableArray *totalCountArray = [NSMutableArray array];
     for (int i =1;i<200;i++){
     
         [totalCountArray addObject:[NSString stringWithFormat:@"%d",i]];
     }
+    [finalArray addObject:totalCountArray];
+    
+     NSMutableArray *timeCountArray = [NSMutableArray array];
+    
+    for (int i = 0;i<120;i++){
+        
+        [timeCountArray addObject:[NSString stringWithFormat:@"%d 分",i]];
+    }
+    [finalArray addObject:timeCountArray];
     //if(_pickview == nil)
     {
-        _pickview=[[ZHPickView alloc] initPickviewWithArray:totalCountArray isHaveNavControler:NO];
+        _pickview=[[ZHPickView alloc] initPickviewWithArray:finalArray isHaveNavControler:NO];
         [_pickview  setDelegate:self];
-        [_pickview setSelectorRow:self.orderItem.personNum];
+        [_pickview selectComponets:0 withRow:self.orderItem.personNum];
+        [_pickview selectComponets:1 withRow:self.orderItem.arriveTime];
         [_pickview show];
     }
     
@@ -455,7 +480,15 @@
 
 -(void)toobarDonBtnHaveClick:(ZHPickView *)pickView resultString:(NSString *)resultString {
     
-    _totalPersonNumLabel.text = [NSString stringWithFormat:@"就餐人数:%@ 人",resultString];
-    self.orderItem.personNum = [resultString integerValue];
+    NSArray *num = [resultString componentsSeparatedByString:@"#"];
+    if([num count] == 2){
+        NSString *resultStr = num[0];
+        _totalPersonNumLabel.text = [NSString stringWithFormat:@"就餐人数:%@ 人",resultStr];
+        self.orderItem.personNum = [resultStr integerValue];
+        resultStr = num[1];
+        resultStr = [resultStr stringByReplacingOccurrencesOfString:@"分" withString:@""];
+        self.orderItem.arriveTime = [resultStr integerValue];
+        _arriveTimeLabel.text = [NSString stringWithFormat:kArriveTimeFormat,self.orderItem.arriveTime];
+    }
 }
 @end

@@ -47,6 +47,8 @@ typedef NS_ENUM(NSInteger,OrderStatus){
 
 @property (nonatomic, assign) CGFloat payPrice;
 
+@property (nonatomic, assign) NSInteger arriveTime;
+
 @property (nonatomic, assign) OrderStatus status;
 
 

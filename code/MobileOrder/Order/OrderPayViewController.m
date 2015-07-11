@@ -9,10 +9,19 @@
 #import "OrderPayViewController.h"
 
 #import "DinnerWaitingViewController.h"
+#import "ZHPickView.h"
 
 #define kLeftPendingX    10.f
 
-@interface OrderPayViewController ()
+#define kOrderHeaderHeightY       200.f
+
+#define kArriveTimeFormat  @"到店时间:%ld 分"
+
+@interface OrderPayViewController () {
+
+    ZHPickView *_pickview ;
+    UILabel    *_arriveTimeLabel;
+}
 
 @end
 
@@ -34,31 +43,82 @@
     
     self.orderItem.orderId = @"SD12346789110";
     self.orderItem.orderTime = @"2015年5月1日19时20分";
-    
     CGFloat currY = 40.f;
-    CGFloat labelHeight = 40.f;
-    UIView *orderHeaderView = nil;
-    UILabel *_totalPersonNumLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currY,orderHeaderView.frame.size.width,labelHeight)];
-    _totalPersonNumLabel.backgroundColor = [UIColor redColor];
-    _totalPersonNumLabel.textAlignment = NSTextAlignmentLeft;
+    if(kIsIOS7Check){
     
+        currY =  currY + kMBAppTopToolBarHeight + kMBAppStatusBar;
+    }
+
+    CGFloat labelHeight = 40.f;
+    UIView *orderHeaderView = [[UIView alloc]initWithFrame:CGRectMake(kLeftPendingX,currY, kDeviceScreenWidth-2*kLeftPendingX,kOrderHeaderHeightY)];
+    orderHeaderView.backgroundColor = [UIColor greenColor];
+    
+    
+    _arriveTimeLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(0,kOrderHeaderHeightY/3.f,orderHeaderView.frame.size.width,labelHeight)];
+    _arriveTimeLabel.backgroundColor = [UIColor redColor];
+    _arriveTimeLabel.textAlignment = NSTextAlignmentLeft;
+    _arriveTimeLabel.text  = [NSString stringWithFormat:kArriveTimeFormat,self.orderItem.arriveTime];
+    
+    [orderHeaderView addSubview:_arriveTimeLabel];
+    /*
     UIButton *personChooseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     
     [personChooseBtn addTarget:self action:@selector(personChooseAction:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:personChooseBtn];
+    [personChooseBtn setFrame:_arriveTimeLabel.frame];
+    
+    [orderHeaderView addSubview:personChooseBtn];
     
     
+    [self.view addSubview:orderHeaderView];
+    */
     
+
+    SafeRelease(orderHeaderView);
+    
+    currY = currY +orderHeaderView.frame.size.height+20.f;
+    
+    
+    UIView *payContentView = [[UIView alloc]initWithFrame:CGRectMake(kLeftPendingX,currY, kDeviceScreenWidth-2*kLeftPendingX,kOrderHeaderHeightY)];
+    payContentView.backgroundColor = [UIColor blueColor];
+
     UIImage *image =nil;
-    UIImageWithFileName(image, @"pay_dis_confirm_pay.png");
-    UIButton *feedBackBtn = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"" withTag:0 withTarget:self  withTouchEvent:@selector(didButtonPress:)];
+    UIImageWithFileName(image, @"pay_zfb.png");
+    UIButton *payIcon = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"" withTag:0 withTarget:self  withTouchEvent:nil];
+    payIcon.frame = CGRectMake(kLeftPendingX, kLeftPendingX*2,image.size.width, image.size.height);
     //showOrderBtn.backgroundColor = [UIColor redColor];
-    [self.view addSubview:feedBackBtn];
+    [payContentView addSubview:payIcon];
     
-    feedBackBtn.frame = CGRectMake(40.f,300.f,image.size.width,image.size.height);
+    UIImageWithFileName(image, @"pay_dis_confirm_pay.png");
+    UIButton *payBtn = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"" withTag:0 withTarget:self  withTouchEvent:@selector(didButtonPress:)];
+    //showOrderBtn.backgroundColor = [UIColor redColor];
+    [payContentView addSubview:payBtn];
+    
+    payBtn.frame = CGRectMake(40.f,payContentView.frame.size.height/3*2,image.size.width,image.size.height);
     //[self.view addSubview:feedBackBtn];
     
+    payBtn.center = CGPointMake(payContentView.frame.size.width/2.f, payBtn.center.y);
+    
+    [self.view addSubview:payContentView];
+    
+}
+
+- (void)personChooseAction:(UIButton*)sender {
+    
+    
+    NSMutableArray *totalCountArray = [NSMutableArray array];
+    for (int i = 0;i<120;i++){
+        
+        [totalCountArray addObject:[NSString stringWithFormat:@"%d 分",i]];
+    }
+    //if(_pickview == nil)
+    {
+        _pickview=[[ZHPickView alloc] initPickviewWithArray:totalCountArray isHaveNavControler:NO];
+        [_pickview  setDelegate:self];
+        [_pickview setSelectorRow:self.orderItem.arriveTime];
+        [_pickview setToolbarTitle:[NSString stringWithFormat:kArriveTimeFormat,self.orderItem.arriveTime]];
+        [_pickview show];
+    }
     
 }
 
@@ -84,5 +144,14 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(void)toobarDonBtnHaveClick:(ZHPickView *)pickView resultString:(NSString *)resultString {
+    resultString = [resultString stringByReplacingOccurrencesOfString:@"分" withString:@""];
+    self.orderItem.arriveTime = [resultString integerValue];
+    _arriveTimeLabel.text = [NSString stringWithFormat:kArriveTimeFormat,self.orderItem.arriveTime];
+//    if(self.orderItem.arriveTime == 0) {
+//        _totalPersonNumLabel.text = @"已经到店";
+//    }
+}
 
 @end

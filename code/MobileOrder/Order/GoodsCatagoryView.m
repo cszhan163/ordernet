@@ -117,7 +117,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if(self.delegate && [self.delegate respondsToSelector:@selector(didSelectorItemIndex:)]) {
-    
+        
         [self.delegate didSelectorItemIndex:indexPath.row];
     }
     /*
@@ -125,8 +125,7 @@
      NSDictionary *item = [self.dataArray objectAtIndex:indexPath.row];
      //NSDictionary *data = [item objectForKey:@"DayDetailInfo"];
      vc.mData = item;
-     */
-    
+    */
     
 }
 

@@ -54,7 +54,7 @@
         self.titleLable = titleLabel;
         CGFloat leftX = kDeviceScreenWidth*kGoodCatagoryRatio-2.f;
         UIView *selLine = [UIComUtil createSplitViewWithFrame:CGRectMake(leftX,0,2.f,titleLabel.frame.size.height)
-                                                    withColor:[UIColor redColor]];
+                                                    withColor:kGoodCatagorySelectedTextColor];
         [self.contentView addSubview:selLine];
         
         self.selLineLabel = selLine;
@@ -124,6 +124,9 @@
     if(_cellHeight == 0)
         [self updateCellUI];
     self.titleLable.frame = CGRectMake(kGoodCatagoryPendingX,kGoodCatagoryPendingY,self.frame.size.width-2*kGoodCatagoryPendingX,self.frame.size.height-2*kGoodCatagoryPendingY);
+    //self.titleLable.backgroundColor = [UIColor blueColor];
+    self.selLineLabel.center = CGPointMake(self.selLineLabel.center.x, self.frame.size.height/2.f);
+    
 }
 
 @end

@@ -81,6 +81,7 @@
             index = 2;
         }
         cell = nibArr[index];
+        cell.avPricesLabel.textColor = kNavBarTextColor;
 #else
         cell = [[GoodsItemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 #endif
