@@ -172,7 +172,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
 {
     NSLog(@"%@",[data description]);
     NSDictionary *dataDict = [data objectForKey:@"data"];
-    id userid = [dataDict objectForKey:@"username"];
+    id userid = [dataDict objectForKey:@"userName"];
     if([userid isKindOfClass:[NSNumber class]])
     {
         userid = [NSString stringWithFormat:@"%lld",[userid longLongValue]];
