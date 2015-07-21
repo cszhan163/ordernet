@@ -71,16 +71,17 @@
     
     
     [self.view addSubview:orderHeaderView];
-    */
+   
     
 
     SafeRelease(orderHeaderView);
-    
+     */
     currY = currY +orderHeaderView.frame.size.height+20.f;
     
     
     UIView *payContentView = [[UIView alloc]initWithFrame:CGRectMake(kLeftPendingX,currY, kDeviceScreenWidth-2*kLeftPendingX,kOrderHeaderHeightY)];
-    payContentView.backgroundColor = [UIColor blueColor];
+    payContentView.backgroundColor = [UIColor whiteColor];
+    payContentView.layer.cornerRadius = 5.f;
 
     UIImage *image =nil;
     UIImageWithFileName(image, @"pay_zfb.png");
