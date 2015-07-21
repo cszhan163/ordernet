@@ -18,6 +18,15 @@
 
 #import "MeViewController.h"
 
+#import "DinnerWaitingViewController.h"
+
+#import "OrderItem.h"
+
+#import "CardShopLoginViewController.h"
+
+#import "DressMemoPhotoCache.h"
+#import "MemoPhotoDownloader.h"
+
 #define  kIphone4ImageSize  CGSizeMake(kDeviceScreenWidth, 200.f)
 
 #define  kIphone5ImageSize  CGSizeMake(kDeviceScreenWidth, 200.f+100.f)
@@ -35,12 +44,18 @@
 
 @property (nonatomic,strong)  BSPreviewScrollView *scrollViewPreview;
 
+@property (nonatomic, strong) OrderItem *orderItem;
+
+@property (nonatomic, strong) NSArray *dataArray;
+
+
 @end
 
 @implementation MainEntryViewController
 
 - (void)dealloc {
     self.scrollViewPreview = nil;
+    self.dataArray = nil;
     SuperDealloc;
 }
 
@@ -160,15 +175,68 @@
 }
 
 
+- (void)didStartDinner {
+
+    DinnerWaitingViewController *waitingViewCtrl = [[DinnerWaitingViewController alloc]init];
+    waitingViewCtrl.orderItem = self.orderItem;
+    [self.navigationController pushViewController:waitingViewCtrl animated:YES];
+    SafeRelease(waitingViewCtrl);
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+
+    [super viewDidAppear:animated];
+    if([self.dataArray count] == 0 ) {
+    
+        [self startRequstAdData];
+    }
+    
+}
+
 - (void)didPressBtn:(id)sender {
 
     
     switch ([sender tag]) {
         case 0: {
-            BSTellBaseViewController *orderViewCtrl = [[BSTellBaseViewController alloc]init];
-            [self.navigationController pushViewController:orderViewCtrl animated:YES];
+#if 1
+            if([AppSetting getLoginUserId] == nil){
             
-            SafeRelease(orderViewCtrl);
+                
+                UINavigationController *navCtl = nil;
+                
+                CardShopLoginViewController *cardLoginVCtl = [[CardShopLoginViewController alloc]init];
+                
+                [cardLoginVCtl setCompleteAction:^(id sender){
+                    
+                    
+                }];
+                
+                [cardLoginVCtl setCancelAction:^(id sender){
+                    
+                    [cardLoginVCtl dismissViewControllerAnimated:YES completion:^(){
+                    }];
+                    SafeRelease(navCtl);
+                }];
+                
+                navCtl = [[UINavigationController alloc]initWithRootViewController:cardLoginVCtl];
+                [navCtl setNavigationBarHidden:YES];
+                //[ZCSNotficationMgr postMSG:kPresentModelViewController obj:cardLoginVCtl];
+                [self presentViewController:navCtl animated:YES completion:^(){
+                    
+                }];
+                
+                
+                SafeRelease(cardLoginVCtl);
+                
+                
+                return;
+            } else {
+            
+                
+                
+            }
+#endif
             }
             break;
         case 1: {
@@ -214,28 +282,46 @@
 #pragma mark BSPreviewScrollViewDelegate methods
 -(int)itemCount:(BSPreviewScrollView*)scrollView{
     
-    return  4;
+    return  [self.dataArray count];
 }
 -(UIView*)viewForItemAtIndex:(BSPreviewScrollView*)scrollView index:(int)index
 {
     
     UIImage *image  = nil;
+    NSString *fileName = nil;
     NSInteger type = 0;//self.indexType
+#if 0
     NSString *fileFormart = @"setting_help%d_%02d.png";
     if(kDeviceCheckIphone5){
         fileFormart = @"setting_help%d_%02d-568h@2x.png";
     }
     NSString *fileName  = [NSString stringWithFormat:fileFormart,type,index+1];
     UIImageWithFileName(image ,fileName);
-    //assert(image);
-    
+#else
+    fileName = [self.dataArray[index] objectForKey:@"imgpath"];
+    assert(fileName);
+#endif
     CGSize size = kIphone4ImageSize;
     if(kDeviceCheckIphone5){
         size = kIphone5ImageSize;
     }
     
+    if ([fileName length]) {
+        UIImage *photo = [[NTESMBLocalImageStorage getInstance] getOriginalImageWithUrl:fileName];
+        if (photo != nil) {
+            image = photo;
+        }else{
+            NTESMBIconDownloader *_downloader = [[NTESMBIconDownloader alloc]initWithUrlString:fileName];
+            _downloader.delegate = self;
+            _downloader.cellIndex = index;
+            [[NTESMBServer getInstance] addRequest:_downloader];
+            [_downloader release];
+            image = UIImageWithFileName(image ,@"uhuo_default_m.png");
+        }
+    }
+    
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.f, 0.f,size.width,size.height)];
-    imageView.backgroundColor = [UIColor greenColor];
+    //imageView.backgroundColor = [UIColor greenColor];
     imageView.image = image;
    
     
@@ -250,6 +336,58 @@
         }];
 }
 
+- (void)startRequstAdData {
+
+#if 0
+    self.request = [[MobileOrderNetDataMgr getSingleTone] getHomePageAd:nil];
+#else
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"adTest" ofType:@"json"];
+    NSError *error = nil;
+    NSString *str = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
+    assert(path);
+    NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingMutableLeaves error:&error];
+    if(error){
+        return;
+    }
+    [self didProcessRespondAdData:data];
+#endif
+    
+}
+
+- (void)didProcessRespondAdData:(NSDictionary*)data {
+    self.dataArray = [data objectForKey:@"body"];
+    [self.scrollViewPreview reloadData];
+}
+
+#pragma mark -
+#pragma mark - 
+
+- (void) requestCompleted:(MemoPhotoDownloader *) request{
+    //if (request == _downloader)
+    {
+        if(request.receiveData){
+            [[NTESMBLocalImageStorage getInstance] saveImageDataToOriginalDir:request.receiveData
+                                                                 urlString:request.urlString];
+        }
+
+        /*
+        UIImage *image = [UIImage imageWithData:request.receiveData];
+   
+
+        */
+        //if([self.scrollViewPreview.getPageControl currentPage] == request.cellIndex)
+        {
+        
+            [self.scrollViewPreview reloadScrollerPageViewNum:request.cellIndex];
+        }
+    }
+    request.delegate = nil;
+    request = nil;
+}
+
+- (void) requestFailed:(MemoPhotoDownloader *) request{
+
+}
 
 
 @end

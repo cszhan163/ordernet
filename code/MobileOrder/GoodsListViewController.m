@@ -31,6 +31,9 @@
 
 #import "OrderConfirmViewController.h"
 
+#import "CardShopLoginViewController.h"
+#import "OrderPayViewController.h"
+
 
 //#import "BidDetailViewController.h"
 
@@ -279,6 +282,56 @@
 
 - (void)didOrderPress:(id)sender {
 
+    
+    if([AppSetting getLoginUserId]){
+        
+        OrderPayViewController *orderPayVCtrl = [[OrderPayViewController alloc]init];
+        
+        [self.navigationController pushViewController:orderPayVCtrl animated:YES];
+        SafeRelease(orderPayVCtrl);
+        
+    } else {
+        
+        
+        __block UINavigationController *navCtl = nil;
+        
+        CardShopLoginViewController *cardLoginVCtl = [[CardShopLoginViewController alloc]init];
+        
+        [cardLoginVCtl setCompleteAction:^(id sender){
+            
+            SafeRelease(navCtl);
+            OrderPayViewController *orderPayVCtrl = [[OrderPayViewController alloc]init];
+            
+            [self.navigationController pushViewController:orderPayVCtrl animated:YES];
+            SafeRelease(orderPayVCtrl);
+            
+        }];
+        
+        [cardLoginVCtl setCancelAction:^(id sender){
+            
+            [cardLoginVCtl dismissViewControllerAnimated:YES completion:^(){
+            }];
+            SafeRelease(navCtl);
+        }];
+        
+        navCtl = [[UINavigationController alloc]initWithRootViewController:cardLoginVCtl];
+        [navCtl setNavigationBarHidden:YES];
+        //[ZCSNotficationMgr postMSG:kPresentModelViewController obj:cardLoginVCtl];
+        [self presentViewController:navCtl animated:YES completion:^(){
+            
+        }];
+        
+        
+        SafeRelease(cardLoginVCtl);
+        
+    }
+
+    
+    
+}
+
+- (void)startToConfirmOrder:(NSDictionary*)data {
+    
     OrderConfirmViewController *orderConfirmCtlr =  [[OrderConfirmViewController alloc]init];
     
     OrderItem *orderItem = [[OrderItem alloc]init];
@@ -305,8 +358,9 @@
     [self.navigationController pushViewController:orderConfirmCtlr animated:YES];
     
     SafeRelease(orderConfirmCtlr);
-    
+
 }
+
 
 - (void)showOrderMenu:(id)sender {
 
@@ -695,6 +749,8 @@
         for(NSDictionary *item in data) {
             [goodsTitleArray addObject:[item objectForKey:@"name"]];
             NSArray *catagoryArray = [item objectForKey:@"products"];
+            if(catagoryArray == nil || [catagoryArray isKindOfClass:[NSNull class]])
+                return;
             NSMutableArray *catagoryItemsArray = [NSMutableArray array];
             for(int i = 0;i<[catagoryArray count]; i++){
                 
