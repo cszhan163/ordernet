@@ -56,7 +56,7 @@
 }
 
 - (void)didUserLogin:(NSNotification*)ntf{
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    //[self.navigationController popToRootViewControllerAnimated:YES];
 }
 - (void)didUserLogout:(NSNotification*)ntf{
     
