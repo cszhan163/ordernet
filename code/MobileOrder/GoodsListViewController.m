@@ -39,6 +39,8 @@
 
 //#import "BidMainViewController.h"
 
+#define     TEST_UI      0
+
 @interface GoodsListViewController()<GooodsCatagoryDeleagte,
                                     GoodsOrderMenuDelegate,
                                     FoodItemCellDelegate>{
@@ -49,6 +51,8 @@
     
     UILabel     *_numberLabel;
     CGFloat     _totalPrice;
+    UIView      *orderPanel;
+                                        BOOL        currPanelStatus;
     
 }
 @property (nonatomic, strong)  NSDictionary *locationDict;
@@ -223,10 +227,11 @@
     [self.catogoryView scrollViewToIndex:0];
     
     CGFloat currY = self.view.frame.size.height - kOrderPanelHeight;
-    UIView *orderPanel = [[UIView alloc]initWithFrame:CGRectMake(0.f,currY,kDeviceScreenWidth,kOrderPanelHeight)];
     
-    orderPanel.backgroundColor = [UIColor greenColor];
-    
+    orderPanel = [[UIView alloc]initWithFrame:CGRectMake(0.f,currY,kDeviceScreenWidth,kOrderPanelHeight)];
+//#if TEST_UI
+    orderPanel.backgroundColor = [UIColor grayColor];
+//#endif
     UIImage *image = nil;
     UIButton *orderBtn = [UIComUtil createButtonWithNormalBGImage:nil withHightBGImage:nil withTitle:@"下单" withTag:0 withTarget:self  withTouchEvent:@selector(didOrderPress:)];
     
@@ -238,7 +243,9 @@
     
     //for order
     UIButton *showOrderBtn = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"" withTag:0 withTarget:self  withTouchEvent:@selector(showOrderMenu:)];
+#if TEST_UI
     showOrderBtn.backgroundColor = [UIColor redColor];
+#endif
     [orderPanel addSubview:showOrderBtn];
     CGSize size = CGSizeMake(22,22);
     showOrderBtn.frame = CGRectMake(orderPanel.frame.size.width-size.width-kLeftPendingX,kTopPendingY,size.width,size.height);
@@ -249,13 +256,19 @@
     
     
     _numberLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,orderPanel.frame.size.height/2.f-40,orderPanel.frame.size.width/2.f,labelSize.height)];
+#if TEST_UI
     _numberLabel.backgroundColor = [UIColor redColor];
+#endif
+    _numberLabel.textColor = kNavBarTextColor;
     _numberLabel.textAlignment = NSTextAlignmentLeft;
     
     [orderPanel addSubview:_numberLabel];
     
     _priceLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,orderPanel.frame.size.height/2.f,orderPanel.frame.size.width/2.f,labelSize.height)];
+#if TEST_UI
     _priceLabel.backgroundColor = [UIColor redColor];
+#endif
+    _priceLabel.textColor = kNavBarTextColor;
     _priceLabel.textAlignment = NSTextAlignmentLeft;
     
      [orderPanel addSubview:_priceLabel];
@@ -265,7 +278,7 @@
     
     SafeRelease(orderPanel);
     
-    
+    [self setHiddenOrderPanelStatus:YES];
     //for order menu
     
     
@@ -276,6 +289,27 @@
     
 }
 
+- (void)setHiddenOrderPanelStatus:(BOOL)status  {
+    if(currPanelStatus == status){
+    
+        return;
+    }
+    if(status){
+        [UIView animateWithDuration:0.5 animations:^(){
+            
+            orderPanel.frame = CGRectOffset(orderPanel.frame, 0, orderPanel.frame.size.height);
+        }];
+    } else {
+    
+        [UIView animateWithDuration:0.5 animations:^(){
+            
+            orderPanel.frame = CGRectOffset(orderPanel.frame, 0,-orderPanel.frame.size.height);
+        }];
+        
+    }
+    currPanelStatus = status;
+}
+
 #pragma mark -
 
 #pragma mark - List order Fun
@@ -284,11 +318,13 @@
 
     
     if([AppSetting getLoginUserId]){
-        
+        /*
         OrderPayViewController *orderPayVCtrl = [[OrderPayViewController alloc]init];
         
         [self.navigationController pushViewController:orderPayVCtrl animated:YES];
         SafeRelease(orderPayVCtrl);
+         */
+        [self startToConfirmOrder:nil];
         
     } else {
         
@@ -300,10 +336,13 @@
         [cardLoginVCtl setCompleteAction:^(id sender){
             
             SafeRelease(navCtl);
+            /*
             OrderPayViewController *orderPayVCtrl = [[OrderPayViewController alloc]init];
             
             [self.navigationController pushViewController:orderPayVCtrl animated:YES];
             SafeRelease(orderPayVCtrl);
+            */
+            [self startToConfirmOrder:nil];
             
         }];
         
@@ -621,9 +660,16 @@
     [tweetieTableView reloadData];
     
     NSInteger totalNumber = 0;
+    _totalPrice = 0.f;
     for(GoodsOrderItem *item in [_goodsOrderMenuView dataArray]){
         totalNumber = totalNumber + item.subCatagoryItem.number;
         _totalPrice = _totalPrice + (item.subCatagoryItem.price + item.subCatagoryItem.basePrice) * item.subCatagoryItem.number;
+    }
+    if(totalNumber == 0){
+        [self setHiddenOrderPanelStatus:YES];
+    } else {
+    
+        [self setHiddenOrderPanelStatus:NO];
     }
     _numberLabel.text = [NSString stringWithFormat:@"点了:  %ld   道菜",totalNumber];
     _priceLabel.text  = [NSString stringWithFormat:@"总计: ¥%0.2lf 元",_totalPrice];

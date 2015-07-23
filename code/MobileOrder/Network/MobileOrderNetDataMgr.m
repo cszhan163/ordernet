@@ -180,7 +180,9 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     [AppSetting setLoginUserId:userid];
     NSString *loginUserId = [AppSetting getLoginUserId];
     //[AppSetting setLoginUserInfo:[sender requestParam]];
-    [AppSetting setLoginUserDetailInfo:dataDict userId:loginUserId];
+    if(0){
+        [AppSetting setLoginUserDetailInfo:dataDict userId:loginUserId];
+    }
     [ZCSNotficationMgr postMSG:kUserDidLoginOk obj:nil];
 
 }

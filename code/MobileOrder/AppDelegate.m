@@ -24,7 +24,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     NSString *text = @"士大夫偶家啊大噶说士大夫偶家啊大噶说士大夫偶家啊大噶说士大夫偶家啊大噶说士大夫偶家啊大噶说士大夫偶家啊大噶说士大夫偶家啊大噶说";
-    CGSize size = [text sizeWithWidth:90.f withTextAttribute:@{kGoodCatagoryTextFont:NSFontAttributeName}];
+    CGSize size = [text sizeWithWidth:90.f withTextAttribute:@{NSFontAttributeName:kGoodCatagoryTextFont}];
     
     CGRect mainRect = [UIScreen mainScreen].bounds;
     

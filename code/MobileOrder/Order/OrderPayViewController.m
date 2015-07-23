@@ -22,6 +22,12 @@
 
 #define kArriveTimeFormat  @"到店时间:%ld 分"
 
+#define kAliPayPartner             @"2088911644524097"
+
+#define kAliPaySaller              @"dashang@ximalaya.com"
+
+#define kAliPayKey                 @"MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBANLcFE2Xcc7Meoja8x+FGdSnsiqBRqEUChfVN74LplEUvI7eT41zOpwg/mBOHcT0VfN4UwbL1znz0eCEaFdWL9iUy5lsaIKL+qm7iCOfpXMhbp3cLkbESXYtmoTQOhy1yFVXK0irh3d+QDym3A7e5HERq5DwE1t3RvNmDBxdk7ZPAgMBAAECgYAXiDwz1Jz86VEbiOPtNpuFYhm+KKNLQsNFmaQY74/mKJxKjYDvVlbKKdx5vv4Phv04qMsLTSB99ToNBnnmlVXNcCG0ujTzzwSGJOK8GH9AT6IfvVMsFY8GGP9wWbnPFz7K0MHxXGEDjCiaKFje+sO1Is2tPh0DHCpyaXZI62tpkQJBAOlz6Kda/Ok6RSZiJXT/KCQnJu0JrUK1dteCawjS0m8Y8a1Mj+uLzsxTmQLjdg3E0DKrGhwiZU0cZSXO/oupKEUCQQDnOY8r5eZhbWYksXlUC0dReisj9o767JAZ6HOfJXWAO0CtjblwTot2fJ+v59HhwpknJWyLesEPuIBA6hRzMN+DAkAI11zuSaHea1iHFZx5i9hHVjxBKean6htwGf5XvTQ/BODSQV4J+6d/UYMv+tFTwCpqYNSCUEMp4nNqNSaqv2NJAkAZhACIl5YUqj3bTrpUy+nS0+huz4Z3qiM8uKoJpdiRjfhVLo6IFiLNsHLutmYyw4ajCz4vJhyn33RHtY0MKRiBAkBGexJdyu5XuJSVCYYEEOqiPAdSw3gbb9abSslMBN6u2LVJsDk/mHQwH8QgBy9XDC3woD0sjeKmskMYS0psazIW"
+
 @interface OrderPayViewController () {
 
     ZHPickView *_pickview ;
@@ -85,13 +91,14 @@
     
     
     UIView *payContentView = [[UIView alloc]initWithFrame:CGRectMake(kLeftPendingX,currY, kDeviceScreenWidth-2*kLeftPendingX,kOrderHeaderHeightY)];
-    payContentView.backgroundColor = [UIColor blueColor];
+    payContentView.backgroundColor = [UIColor whiteColor];
 
     UIImage *image =nil;
     UIImageWithFileName(image, @"pay_zfb.png");
     UIButton *payIcon = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"" withTag:0 withTarget:self  withTouchEvent:nil];
     payIcon.frame = CGRectMake(kLeftPendingX, kLeftPendingX*2,image.size.width, image.size.height);
     //showOrderBtn.backgroundColor = [UIColor redColor];
+     payIcon.center = CGPointMake(payIcon.frame.size.width/2.f, payIcon.center.y);
     [payContentView addSubview:payIcon];
     
     UIImageWithFileName(image, @"pay_dis_confirm_pay.png");
@@ -134,9 +141,9 @@
     /*============================================================================*/
     /*=======================需要填写商户app申请的===================================*/
     /*============================================================================*/
-    NSString *partner = @"";
-    NSString *seller = @"alipayrisk10@alipay.com";
-    NSString *privateKey = @"";
+    NSString *partner = kAliPayPartner;
+    NSString *seller = kAliPaySaller;
+    NSString *privateKey = kAliPayKey;
     /*============================================================================*/
     /*============================================================================*/
     /*============================================================================*/

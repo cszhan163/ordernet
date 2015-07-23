@@ -29,6 +29,7 @@
 
 #import "ZHPickView.h"
 
+#define     TEST_UI      0
 
 @interface OrderConfirmViewController () <ZHPickViewDelegate>{
 
@@ -74,11 +75,16 @@
     CGFloat labelHeight = 25.f;
     
     UIView *orderHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0.f, currY,kDeviceScreenWidth,orderHeaderHeight)];
+#if TEST_UI
     orderHeaderView.backgroundColor = [UIColor blackColor];
-    
+#else
+    orderHeaderView.backgroundColor = [UIColor clearColor];
+#endif
     CGFloat currHeightY = 0.f;
     _shopLabel = [UIComUtil createLabelWithFont:kGoodsOrderShopTitle withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currHeightY,orderHeaderView.frame.size.width-2*kLeftPendingX,40.f)];
+#if TEST_UI
     _shopLabel.backgroundColor = [UIColor redColor];
+#endif
     _shopLabel.textAlignment = NSTextAlignmentCenter;
     
     [orderHeaderView addSubview:_shopLabel];
@@ -87,7 +93,9 @@
     
 #if 1
     _priceLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currHeightY,orderHeaderView.frame.size.width-2*kLeftPendingX,labelHeight)];
+#if TEST_UI
     _priceLabel.backgroundColor = [UIColor greenColor];
+#endif
     _priceLabel.textAlignment = NSTextAlignmentLeft;
     
     [orderHeaderView addSubview:_priceLabel];
@@ -95,7 +103,9 @@
     currHeightY = currHeightY+labelHeight;
     
     _pointsTotalLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currHeightY,orderHeaderView.frame.size.width-2*kLeftPendingX,labelHeight)];
+#if TEST_UI
     _pointsTotalLabel.backgroundColor = [UIColor greenColor];
+#endif
     _pointsTotalLabel.textAlignment = NSTextAlignmentLeft;
     
     [orderHeaderView addSubview:_pointsTotalLabel];
@@ -111,7 +121,9 @@
     currHeightY = currHeightY+labelHeight;
     
     _discountPriceLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currHeightY,orderHeaderView.frame.size.width-2*kLeftPendingX,labelHeight)];
+#if TEST_UI
     _discountPriceLabel.backgroundColor = [UIColor greenColor];
+#endif
     _discountPriceLabel.textAlignment = NSTextAlignmentLeft;
     
     [orderHeaderView addSubview:_discountPriceLabel];
@@ -142,12 +154,16 @@
     currY = currY+ _tableView.frame.size.height+1*kPendingY;
     
     _totalPersonNumLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currY,(orderHeaderView.frame.size.width-2*kLeftPendingX)/2.f,labelHeight)];
+#if TEST_UI
     _totalPersonNumLabel.backgroundColor = [UIColor redColor];
+#endif
     _totalPersonNumLabel.textAlignment = NSTextAlignmentLeft;
     
      CGRect timeRect = CGRectOffset(_totalPersonNumLabel.frame,orderHeaderView.frame.size.width/2.f-kLeftPendingX, 0.f);
     _arriveTimeLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:timeRect];
+#if TEST_UI
     _arriveTimeLabel.backgroundColor = [UIColor redColor];
+#endif
     _arriveTimeLabel.textAlignment = NSTextAlignmentRight;
     _arriveTimeLabel.text  = [NSString stringWithFormat:kArriveTimeFormat,self.orderItem.arriveTime];
     
@@ -173,8 +189,9 @@
     
     
     UIView *orderPanel = [[UIView alloc]initWithFrame:CGRectMake(0.f,currY,kDeviceScreenWidth,kOrderPanelHeight)];
-    
+#if TEST_UI
     orderPanel.backgroundColor = [UIColor greenColor];
+#endif
     
     CGSize size = CGSizeMake(60,25);
     
@@ -189,7 +206,9 @@
     
     //for order
     UIButton *showOrderBtn = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"加菜" withTag:0 withTarget:self  withTouchEvent:@selector(didButtonPress:)];
+#if 1 || TEST_UI
     showOrderBtn.backgroundColor = [UIColor redColor];
+#endif
     [orderPanel addSubview:showOrderBtn];
     
     showOrderBtn.frame = CGRectMake(kLeftPendingX,kPendingY+5,size.width,size.height);
