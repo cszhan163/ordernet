@@ -257,6 +257,7 @@
     _consumePointsLabel.text = [NSString stringWithFormat:@"抵扣积分: %ld",(NSInteger)self.orderItem.consumePoints];
     _priceLabel.text = [NSString stringWithFormat:@"订单金额: ¥ %0.2lf 元",self.orderItem.totalPrice];
     CGFloat payPrice = self.orderItem.totalPrice - self.orderItem.consumePoints;
+    self.orderItem.payPrice = payPrice;
     _discountPriceLabel.text = [NSString stringWithFormat:@"应付金额: ¥ %0.2lf 元",payPrice];
 }
 

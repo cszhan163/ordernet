@@ -18,9 +18,17 @@
 
 #define kLeftPendingX    10.f
 
-#define kOrderHeaderHeightY       200.f
 
-#define kArriveTimeFormat  @"到店时间:%ld 分"
+
+#define kArriveTimeFormat   @"到店时间:    %ld 分"
+
+#define kPayTotalFormat     @"支付金额:    %0.2lf 元"
+
+#define kUserNameFormat     @"姓       名:     %@"
+
+#define kPhoneNumberFormat  @"手机号   :     %@"
+
+
 
 #define kAliPayPartner             @"2088911644524097"
 
@@ -32,6 +40,10 @@
 
     ZHPickView *_pickview ;
     UILabel    *_arriveTimeLabel;
+    UILabel    *_userNameLabel;
+    UILabel    *_phoneNumberLabel;
+    UILabel    *_totalPayLabel;
+    
 }
 
 @end
@@ -54,19 +66,53 @@
     
     self.orderItem.orderId = @"SD12346789110";
     self.orderItem.orderTime = @"2015年5月1日19时20分";
-    CGFloat currY = 40.f;
+    self.orderItem.userItem.name = @"王某某";
+    
+    CGFloat orderHeaderViewHeight = 140.f;
+    CGFloat orderPayViewHeight = 180.f;
+    CGFloat currY = 20.f;
     if(kIsIOS7Check){
     
         currY =  currY + kMBAppTopToolBarHeight + kMBAppStatusBar;
     }
 
-    CGFloat labelHeight = 40.f;
-    UIView *orderHeaderView = [[UIView alloc]initWithFrame:CGRectMake(kLeftPendingX,currY, kDeviceScreenWidth-2*kLeftPendingX,kOrderHeaderHeightY)];
-    orderHeaderView.backgroundColor = [UIColor greenColor];
+    CGFloat labelHeight = 30.f;
+    UIView *orderHeaderView = [[UIView alloc]initWithFrame:CGRectMake(kLeftPendingX,currY, kDeviceScreenWidth-2*kLeftPendingX,orderHeaderViewHeight)];
     
     
-    _arriveTimeLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(0,kOrderHeaderHeightY/3.f,orderHeaderView.frame.size.width,labelHeight)];
-    _arriveTimeLabel.backgroundColor = [UIColor redColor];
+    CGFloat headerCurrY = kLeftPendingX;
+    orderHeaderView.backgroundColor = [UIColor whiteColor];
+    orderHeaderView.layer.cornerRadius = 5.f;
+    
+    _totalPayLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(0,headerCurrY,orderHeaderView.frame.size.width,labelHeight)];
+    //_totalPayLabel.backgroundColor = [UIColor clearColor];
+    _totalPayLabel.textAlignment = NSTextAlignmentLeft;
+    _totalPayLabel.text  = [NSString stringWithFormat:kPayTotalFormat,self.orderItem.payPrice];
+
+     [orderHeaderView addSubview:_totalPayLabel];
+    
+    headerCurrY = headerCurrY+ labelHeight;
+    
+    _userNameLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(0,headerCurrY,orderHeaderView.frame.size.width,labelHeight)];
+    //_userNameLabel.backgroundColor = [UIColor redColor];
+    _userNameLabel.textAlignment = NSTextAlignmentLeft;
+    _userNameLabel.text  = [NSString stringWithFormat:kUserNameFormat,self.orderItem.userItem.name];
+    
+    [orderHeaderView addSubview:_userNameLabel];
+    
+    headerCurrY = headerCurrY+ labelHeight;
+    
+    _phoneNumberLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(0,headerCurrY,orderHeaderView.frame.size.width,labelHeight)];
+    //_phoneNumberLabel.backgroundColor = [UIColor redColor];
+    _phoneNumberLabel.textAlignment = NSTextAlignmentLeft;
+    _phoneNumberLabel.text  = [NSString stringWithFormat:kPhoneNumberFormat,self.orderItem.userItem.phoneNum];
+    
+    [orderHeaderView addSubview:_phoneNumberLabel];
+    
+     headerCurrY = headerCurrY+ labelHeight;
+    
+    _arriveTimeLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(0,headerCurrY,orderHeaderView.frame.size.width,labelHeight)];
+    //_arriveTimeLabel.backgroundColor = [UIColor redColor];
     _arriveTimeLabel.textAlignment = NSTextAlignmentLeft;
     _arriveTimeLabel.text  = [NSString stringWithFormat:kArriveTimeFormat,self.orderItem.arriveTime];
     
@@ -79,18 +125,16 @@
     [personChooseBtn setFrame:_arriveTimeLabel.frame];
     
     [orderHeaderView addSubview:personChooseBtn];
-    
+    */
     
     [self.view addSubview:orderHeaderView];
-   
-    
-
     SafeRelease(orderHeaderView);
-     */
+    
+    
     currY = currY +orderHeaderView.frame.size.height+20.f;
     
     
-    UIView *payContentView = [[UIView alloc]initWithFrame:CGRectMake(kLeftPendingX,currY, kDeviceScreenWidth-2*kLeftPendingX,kOrderHeaderHeightY)];
+    UIView *payContentView = [[UIView alloc]initWithFrame:CGRectMake(kLeftPendingX,currY, kDeviceScreenWidth-2*kLeftPendingX,orderPayViewHeight)];
     payContentView.backgroundColor = [UIColor whiteColor];
     payContentView.layer.cornerRadius = 5.f;
 
@@ -99,7 +143,7 @@
     UIButton *payIcon = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"" withTag:0 withTarget:self  withTouchEvent:nil];
     payIcon.frame = CGRectMake(kLeftPendingX, kLeftPendingX*2,image.size.width, image.size.height);
     //showOrderBtn.backgroundColor = [UIColor redColor];
-     payIcon.center = CGPointMake(payIcon.frame.size.width/2.f, payIcon.center.y);
+     payIcon.center = CGPointMake(payContentView.frame.size.width/2.f, payIcon.center.y);
     [payContentView addSubview:payIcon];
     
     UIImageWithFileName(image, @"pay_dis_confirm_pay.png");
