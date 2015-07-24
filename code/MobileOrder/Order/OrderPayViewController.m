@@ -43,6 +43,7 @@
     UILabel    *_userNameLabel;
     UILabel    *_phoneNumberLabel;
     UILabel    *_totalPayLabel;
+    UIScrollView *contentView;
     
 }
 
@@ -68,9 +69,23 @@
     self.orderItem.orderTime = @"2015年5月1日19时20分";
     self.orderItem.userItem.name = @"王某某";
     
+    contentView =[[UIScrollView alloc]initWithFrame:CGRectMake(0.f, 0.f, kDeviceScreenWidth, kDeviceScreenHeight)];
+    
+    [self.view addSubview:contentView];
+    
+    SafeRelease(contentView);
+    
     CGFloat orderHeaderViewHeight = 140.f;
-    CGFloat orderPayViewHeight = 180.f;
-    CGFloat currY = 20.f;
+    CGFloat orderPayViewHeight = 140.f;
+    CGFloat orderNoteViewHeigt = 80.f;
+    CGFloat itemPendinxY = 10.f;
+    if(kDeviceCheckIphone5){
+        
+        orderNoteViewHeigt = 120.f;
+        itemPendinxY = 30.f;
+    }
+
+    CGFloat currY = itemPendinxY+10.f;
     if(kIsIOS7Check){
     
         currY =  currY + kMBAppTopToolBarHeight + kMBAppStatusBar;
@@ -127,12 +142,23 @@
     [orderHeaderView addSubview:personChooseBtn];
     */
     
-    [self.view addSubview:orderHeaderView];
+    [contentView addSubview:orderHeaderView];
     SafeRelease(orderHeaderView);
     
+ 
     
-    currY = currY +orderHeaderView.frame.size.height+20.f;
     
+    currY = currY +orderHeaderView.frame.size.height+itemPendinxY;
+    
+    UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake(kLeftPendingX, currY, kDeviceScreenWidth-2*kLeftPendingX,orderNoteViewHeigt)];
+    
+    textView.text = @"1. 本店网络订餐须知第一条本店网络订餐须知第一条本店网络订餐须知第一条本店网络订餐须知第一条\n 2. 本店网络订餐须知第一条本店网络订餐须知第一条本店网络订餐须知第一条本店网络订餐须知第一条\n 3.本店网络订餐须知第一条本店网络订餐须知第一条本店网络订餐须知第一条";
+    textView.layer.cornerRadius = 5.f;
+    [contentView addSubview:textView];
+    
+    SafeRelease(textView);
+    
+    currY = currY +textView.frame.size.height+itemPendinxY;
     
     UIView *payContentView = [[UIView alloc]initWithFrame:CGRectMake(kLeftPendingX,currY, kDeviceScreenWidth-2*kLeftPendingX,orderPayViewHeight)];
     payContentView.backgroundColor = [UIColor whiteColor];
@@ -156,7 +182,7 @@
     
     payBtn.center = CGPointMake(payContentView.frame.size.width/2.f, payBtn.center.y);
     
-    [self.view addSubview:payContentView];
+    [contentView addSubview:payContentView];
     
 }
 

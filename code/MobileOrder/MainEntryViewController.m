@@ -27,6 +27,8 @@
 #import "DressMemoPhotoCache.h"
 #import "MemoPhotoDownloader.h"
 
+#import "OrderPayViewController.h"
+
 #define  kIphone4ImageSize  CGSizeMake(kDeviceScreenWidth, 200.f)
 
 #define  kIphone5ImageSize  CGSizeMake(kDeviceScreenWidth, 200.f+100.f)
@@ -234,7 +236,7 @@
             } else {
             
                 
-                
+                [self didStartDinner];
             }
 #endif
             }
@@ -257,6 +259,15 @@
             
             SafeRelease(orderConfirmCtlr);
 #else
+
+#if 1
+            OrderPayViewController *orderPayVCtrl = [[OrderPayViewController alloc]init];
+            
+            [self.navigationController pushViewController:orderPayVCtrl animated:YES];
+            SafeRelease(orderPayVCtrl);
+            return;
+            
+#endif
             MeViewController *meVCtl = [[MeViewController alloc]init];
             [self.navigationController pushViewController:meVCtl animated:YES];
             

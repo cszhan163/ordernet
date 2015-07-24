@@ -28,6 +28,15 @@
 
 @implementation DinnerWaitingViewController
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    
+    if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]){
+        
+        [self setNavgationBarTitle:kMenuTitleArray[0]];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     //[super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -38,6 +47,8 @@
     UIView *orderHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0.f, 0,kDeviceScreenWidth,80.f)];
     
     currY = orderHeaderView.frame.size.height;
+    
+    orderHeaderView.layer.cornerRadius = 5.f;
     
     CGFloat currX = 60.f;
     UILabel *_orderdHintLable =  [UIComUtil createLabelWithFont:kOrderDetailTextFont withTextColor:[UIColor redColor] withText:@"单号:" withFrame:CGRectMake(0.f,0,currX, 30.f)];
