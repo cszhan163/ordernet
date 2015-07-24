@@ -12,6 +12,8 @@
 
 #import "GoodsCatagoryItem.h"
 
+#import "UserFeedBackViewController.h"
+
 #define kLeftPendingX           10.f
 
 #define kCellHeight             40.f
@@ -106,6 +108,10 @@
 
 - (void)didButtonPress:(id)sender {
 
+    UserFeedBackViewController *feedBackCtrl = [[UserFeedBackViewController alloc]init];
+    
+    [self.navigationController pushViewController:feedBackCtrl animated:YES];
+    SafeRelease(feedBackCtrl);
     
 }
 
