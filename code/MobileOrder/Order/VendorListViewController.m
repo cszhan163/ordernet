@@ -16,6 +16,7 @@
 
 
 
+
 @interface VendorListViewController ()
 
 @end
@@ -108,6 +109,9 @@
     cell.avPricesLabel.text = [NSString stringWithFormat:@"人均:%0.2lf 元",item.avPrice];
     cell.distanceLabel.text = @"";
 #endif
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [self  performSelector:@selector(startloadVisibleCellImageData:) withObject:indexPath afterDelay:0.f];
+    
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -171,5 +175,76 @@
     }
 }
 
+#pragma mark -
+#pragma mark - image
 
+-(void)startloadVisibleCellImageData:(NSIndexPath*)indexPath
+{
+    //NE_LOG(@"warning load visibleCellImagedata not implementation");
+    UIImage *image = UIImageWithFileName(image ,@"food_default_s.png");
+    ShopItem *shopItem = self.dataArray[indexPath.row];
+    if(shopItem.imageURL == nil){
+    
+        shopItem.imageURL = @"http://picvideo.uhuocn.com:65102//Data/MenuImg/541704/l20150706/20150706041603408.jpg";
+    }
+    UIImage *photo = [[NTESMBLocalImageStorage getInstance] getSmallImageWithUrl:shopItem.imageURL];
+    if (photo != nil) {
+        image = photo;
+    }else{
+        NTESMBIconDownloader *_downloader = [[NTESMBIconDownloader alloc]initWithUrlString:shopItem.imageURL];
+        _downloader.delegate = self;
+        _downloader.indexPath = indexPath;
+        [[NTESMBServer getInstance] addRequest:_downloader];
+        [allIconDownloaders setValue:_downloader forKey:shopItem.imageURL];
+        [_downloader release];
+    }
+    [self setImageData:image withIndexPath:indexPath];
+}
+
+- (void)setImageData:(UIImage*)imageData withIndexPath:(NSIndexPath*)indexPath {
+
+    ShopItem *item = [self.dataArray objectAtIndex:indexPath.row];
+    VendorTableViewCell *vendorCell = [tweetieTableView cellForRowAtIndexPath:indexPath];
+    [vendorCell.vendorImageView setImage:imageData];
+}
+
+-(void)updatesegmentTitle:(NSInteger)icount
+{
+    
+}
+- (void) cancelAllIconDownloads
+{
+    //NE_LOG(@"warning not emplementation icon downloads cancell");
+    for(NTESMBIconDownloader *_downloader in allIconDownloaders){
+    
+        [_downloader setDelegate:nil];
+    }
+    [allIconDownloaders removeAllObjects];
+}
+
+
+- (void) requestCompleted:(NTESMBIconDownloader *) request{
+    //if (request == _downloader)
+    {
+        if(request.receiveData){
+            [[NTESMBLocalImageStorage getInstance] saveImageDataToSmallDir:request.receiveData
+                                                                    urlString:request.urlString];
+        }
+        
+        NSIndexPath *indexPath= request.indexPath;
+        
+        UIImage *image = [[NTESMBLocalImageStorage getInstance] getSmallImageWithUrl:request.urlString];
+        //if([self.scrollViewPreview.getPageControl currentPage] == request.cellIndex)
+        {
+           [self setImageData:image withIndexPath:indexPath];
+        }
+    }
+    [allIconDownloaders removeObjectForKey:request.urlString];
+    request.delegate = nil;
+    request = nil;
+}
+
+- (void) requestFailed:(NTESMBIconDownloader *) request{
+    
+}
 @end

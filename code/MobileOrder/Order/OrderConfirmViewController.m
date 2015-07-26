@@ -69,8 +69,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setNavgationBarTitle:kOrderConfirmTitle];
-    CGFloat currY = kMBAppTopToolBarHeight+kMBAppStatusBar;
+    if(kIsIOS7Check){
     
+        offsetY =  kMBAppTopToolBarHeight+kMBAppStatusBar;
+    }
+    contentView =[[UIScrollView alloc]initWithFrame:CGRectMake(0.f, 0.f, kDeviceScreenWidth, kDeviceScreenHeight)];
+    [self.view addSubview:contentView];
+    [self initUIView];
+    [self startNewOrder];
+}
+
+- (void)initUIView {
+
+    CGFloat currY = offsetY;
     CGFloat orderHeaderHeight = 140.f;
     CGFloat labelHeight = 25.f;
     
@@ -113,7 +124,9 @@
     currHeightY = currHeightY+labelHeight;
     
     _consumePointsLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currHeightY,orderHeaderView.frame.size.width-2*kLeftPendingX,labelHeight)];
+#if TEST_UI
     _consumePointsLabel.backgroundColor = [UIColor greenColor];
+#endif
     _consumePointsLabel.textAlignment = NSTextAlignmentLeft;
     
     [orderHeaderView addSubview:_consumePointsLabel];
@@ -137,29 +150,39 @@
     
 #endif
     
-    [self.view addSubview:orderHeaderView];
+    [contentView addSubview:orderHeaderView];
     
     
     CGSize orderSize = CGSizeMake(kDeviceScreenWidth-2*kLeftPendingX,350);
     
-     currY = currY+ orderHeaderView.frame.size.height;
+    currY = currY+ orderHeaderView.frame.size.height;
+    
     _tableView  = [[UITableView alloc]initWithFrame:CGRectMake(kLeftPendingX,currY,orderSize.width,orderSize.height) style:UITableViewStyleGrouped];
+    _tableView.layer.cornerRadius = 5.f;
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     _tableView.separatorColor = nil;
     //[_tableView registerClass:[OrderListItemCell class] forCellReuseIdentifier:cellId];
-    [self.view addSubview:_tableView];
-
+    [contentView addSubview:_tableView];
+    
+    
+    
+    //[_tableView setTableHeaderView:orderHeaderView];
+    
+    
     currY = currY+ _tableView.frame.size.height+1*kPendingY;
     
-    _totalPersonNumLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,currY,(orderHeaderView.frame.size.width-2*kLeftPendingX)/2.f,labelHeight)];
+    CGFloat footerY = kLeftPendingX;
+    UIView *orderFootView = [[UIView alloc]initWithFrame:CGRectMake(0.f, currY,kDeviceScreenWidth,orderHeaderHeight)];
+    
+    _totalPersonNumLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,footerY,(orderHeaderView.frame.size.width-2*kLeftPendingX)/2.f,labelHeight)];
 #if TEST_UI
     _totalPersonNumLabel.backgroundColor = [UIColor redColor];
 #endif
     _totalPersonNumLabel.textAlignment = NSTextAlignmentLeft;
     
-     CGRect timeRect = CGRectOffset(_totalPersonNumLabel.frame,orderHeaderView.frame.size.width/2.f-kLeftPendingX, 0.f);
+    CGRect timeRect = CGRectOffset(_totalPersonNumLabel.frame,orderHeaderView.frame.size.width/2.f-kLeftPendingX, 0.f);
     _arriveTimeLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:timeRect];
 #if TEST_UI
     _arriveTimeLabel.backgroundColor = [UIColor redColor];
@@ -167,7 +190,7 @@
     _arriveTimeLabel.textAlignment = NSTextAlignmentRight;
     _arriveTimeLabel.text  = [NSString stringWithFormat:kArriveTimeFormat,self.orderItem.arriveTime];
     
-    [self.view addSubview:_arriveTimeLabel];
+    [orderFootView addSubview:_arriveTimeLabel];
     
     UIButton *personChooseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     
@@ -175,11 +198,16 @@
     
     [personChooseBtn setFrame:CGRectMake(_totalPersonNumLabel.frame.origin.x, _totalPersonNumLabel.frame.origin.y, _totalPersonNumLabel.frame.size.width*2, _totalPersonNumLabel.frame.size.height)];
     
-    [self.view addSubview:personChooseBtn];
+    [orderFootView addSubview:personChooseBtn];
     
     //[orderHeaderView addSubview:_totalPersonNumLabel];
     
-    [self.view addSubview:_totalPersonNumLabel];
+    [orderFootView addSubview:_totalPersonNumLabel];
+    
+    [contentView addSubview:orderFootView];
+    //[_tableView setTableFooterView:orderFootView];
+    
+    SafeRelease(orderFootView);
     
     self.dataArray = self.orderItem.menuData;
     [self upConfirmOrderView];
@@ -189,6 +217,7 @@
     
     
     UIView *orderPanel = [[UIView alloc]initWithFrame:CGRectMake(0.f,currY,kDeviceScreenWidth,kOrderPanelHeight)];
+    orderPanel.backgroundColor = [UIColor grayColor];
 #if TEST_UI
     orderPanel.backgroundColor = [UIColor greenColor];
 #endif
@@ -213,14 +242,19 @@
     
     showOrderBtn.frame = CGRectMake(kLeftPendingX,kPendingY+5,size.width,size.height);
     [orderPanel addSubview:showOrderBtn];
- 
-    [self.view addSubview:orderPanel];
     
+#if 1
+    [self.view addSubview:orderPanel];
+#else
+    [_tableView setTableFooterView:orderPanel];
+#endif
     SafeRelease(orderPanel);
     
     _totalPersonNumLabel.text = [NSString stringWithFormat:@"就餐人数:%ld 人",self.orderItem.personNum];
     _arriveTimeLabel.text = [NSString stringWithFormat:kArriveTimeFormat,self.orderItem.arriveTime];
     
+    contentView.contentSize = CGSizeMake(kDeviceScreenWidth,offsetY+orderHeaderHeight+orderSize.height+orderFootView.frame.size.height);
+
 }
 
 
@@ -471,4 +505,73 @@
         _arriveTimeLabel.text = [NSString stringWithFormat:kArriveTimeFormat,self.orderItem.arriveTime];
     }
 }
+
+#pragma mark -
+
+#pragma mark - network
+
+- (void)startNewOrder{
+    /*
+    {
+        "serialNum": "SN432423424",
+        "totalPrice": "20",
+        "status": "1",
+        "userId": "1",
+        "payType": "1",
+        "paySerialNum": "2",
+        "orderDetail":[{"price":5,"totalPrice":10,"num":2,"status":1,"productId":1}]
+    }
+    */
+    self.orderItem.orderId = [NSString stringWithFormat:@"SD12346789110%02d",rand()%100];
+    self.orderItem.orderTime = @"2015年5月1日19时20分";
+    self.orderItem.userItem.name = @"王某某";
+    
+    [[MobileOrderNetDataMgr getSingleTone] newOrder:[self.orderItem getOrderDictionaryData]];
+    
+}
+
+-(void)didNetDataOK:(NSNotification*)ntf
+{
+    //return;
+    [super didNetDataOK:ntf];
+    
+    
+    id obj = [ntf object];
+    id respRequest = [obj objectForKey:@"request"];
+    id objData = [obj objectForKey:@"data"];
+    NSString *resKey = [respRequest resourceKey];
+    //NSString *resKey = [respRequest resourceKey];
+    if([resKey isEqualToString:@"getgoodslist"])
+    {
+        //        if ([self.externDelegate respondsToSelector:@selector(commentDidSendOK:)]) {
+        //            [self.externDelegate commentDidSendOK:self];
+        //        }
+        //        kNetEndSuccStr(@"评论成功",self.view);
+        //        [self dismissModalViewControllerAnimated:YES];
+#if 0
+        [self reloadNetData:data];
+#else
+        //        if([[data objectForKey:@"data"] count]<10.f){
+        //            isRefreshing = YES;
+        //        }
+        
+        NSDictionary *data = objData;
+#endif
+        //self.dataArray = [data objectForKey:@"data"];
+        //        if([[data objectForKey:@"data"]count])
+        //            self.pageNum = self.pageNum +1;
+        [self performSelectorOnMainThread:@selector(updateUIData:) withObject:data waitUntilDone:NO];
+        
+    }
+}
+
+- (void)updateUIData:(NSDictionary*)netData{
+    kNetEnd(self.view);
+}
+-(void)didNetDataFailed:(NSNotification*)ntf
+{
+    //kNetEndWithErrorAutoDismiss
+}
+
+
 @end

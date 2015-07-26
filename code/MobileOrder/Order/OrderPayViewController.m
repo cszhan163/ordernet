@@ -65,10 +65,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.orderItem.orderId = @"SD12346789110";
-    self.orderItem.orderTime = @"2015年5月1日19时20分";
-    self.orderItem.userItem.name = @"王某某";
-    
     contentView =[[UIScrollView alloc]initWithFrame:CGRectMake(0.f, 0.f, kDeviceScreenWidth, kDeviceScreenHeight)];
     
     [self.view addSubview:contentView];
@@ -182,6 +178,8 @@
     
     payBtn.center = CGPointMake(payContentView.frame.size.width/2.f, payBtn.center.y);
     
+    
+    
     [contentView addSubview:payContentView];
     
 }
@@ -207,6 +205,14 @@
 
 - (void)didButtonPress:(id)sender {
 
+    
+#if 1
+    
+    [ZCSNotficationMgr postMSG:kOrderFoodDidSuccessMSG obj:self.orderItem];
+    
+    return;
+    
+#endif
     
 
     /*============================================================================*/

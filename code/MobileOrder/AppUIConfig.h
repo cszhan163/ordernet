@@ -35,13 +35,14 @@
 
 #define  kGoodsOrderShopTitle         [UIFont   systemFontOfSize:16]
 
-#define  kOrderDetailTextFont         [UIFont   systemFontOfSize:20]
+#define  kOrderDetailTextFont         [UIFont   systemFontOfSize:18]
 
 
 #define kMenuTitle        @"私人厨房"
 #define kMenuTitleArray   @[@"候餐",@"点餐",@"我"]
 #define kVendorTitle      @"餐馆选择"
 #define kOrderMenuTitle   @"点餐"
+#define kOrderFeedBackTitle  @"意见反馈"
 
 #define kOrderConfirmTitle @"下单确认"
 #define kOrderPayTitle      @"订单支付"

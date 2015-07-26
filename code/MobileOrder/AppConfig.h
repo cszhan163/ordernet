@@ -119,6 +119,8 @@
 #define kUploadPhotoPickChooseEditMSG @"uploadPhotoPickChooseEditMSG"
 #define kUploadActionSheetViewAlertMSG @"uploadActionSheetViewAlertMSG"
 
+#define kOrderFoodDidSuccessMSG            @"OrderFoodDidSuccessMSG"
+
 #define kBidReflushTimer       30
 #define OneLine                 1
 #define kUrlVer                 @"v1"

@@ -6,43 +6,19 @@
 	<array>
 		<dict>
 			<key>key</key>
-			<string>order</string>
+			<string>push</string>
 			<key>text</key>
-			<string>我的订单</string>
+			<string>推送</string>
 			<key>iconName</key>
 			<string>user_order</string>
 		</dict>
 		<dict>
 			<key>key</key>
-			<string>userInfo</string>
+			<string>autologin</string>
 			<key>text</key>
-			<string>我的信息</string>
+			<string>自动登录</string>
 			<key>iconName</key>
 			<string>user_Info</string>
-		</dict>
-		<dict>
-			<key>New item</key>
-			<string>user_resetpwd</string>
-			<key>text</key>
-			<string>修改密码</string>
-			<key>iconName</key>
-			<string>user_resetpwd</string>
-		</dict>
-		<dict>
-			<key>New item</key>
-			<string>user_protocol</string>
-			<key>text</key>
-			<string>用户协议</string>
-			<key>iconName</key>
-			<string>user_protocol</string>
-		</dict>
-		<dict>
-			<key>New item</key>
-			<string>setting</string>
-			<key>text</key>
-			<string>设置</string>
-			<key>iconName</key>
-			<string>user_setting</string>
 		</dict>
 	</array>
 </dict>

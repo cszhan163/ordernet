@@ -8,6 +8,11 @@
 
 #import "UIImageNetBaseViewController.h"
 #import "BSTellTimerReflushDataProcotol.h"
+
+#import "NTESMBLocalImageStorage.h"
+#import "NTESMBIconDownloader.h"
+
+
 @class BSTellBaseViewController;
 @protocol BSTellTimerReflushDataProcotol;
 @interface BSTellNetListBaseViewController : UIImageNetBaseViewController<BSTellTimerReflushDataProcotol>{

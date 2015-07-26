@@ -17,6 +17,8 @@
 @property (nonatomic, assign) CGFloat  avPrice;
 @property (nonatomic, strong) NSString *position;
 
+@property (nonatomic, strong) NSString *imageURL;
+
 - (id)initWithDictonary:(NSDictionary*)item;
 
 @end
@@ -50,6 +52,8 @@ typedef NS_ENUM(NSInteger,OrderStatus){
 @property (nonatomic, assign) NSInteger arriveTime;
 
 @property (nonatomic, assign) OrderStatus status;
+
+- (NSDictionary*)getOrderDictionaryData;
 
 
 @end

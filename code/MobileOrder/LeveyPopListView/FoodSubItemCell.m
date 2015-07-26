@@ -52,15 +52,15 @@
         //[addBtn sizeToFit];
         CGSize  btnSize = _addBtn.frame.size;
         CGFloat currX = self.frame.size.width-kPendingX-_addBtn.frame.size.width;
-        CGFloat currY = self.frame.size.height-kPendingY-_addBtn.frame.size.height;
+        CGFloat currY =(self.frame.size.height-_addBtn.frame.size.height)/2.f;
         _addBtn.frame = CGRectMake(currX,currY,btnSize.width, btnSize.height);
        
-        currX = currX-kPendingX;
+        currX = currX-kPendingX+6.f;
         CGSize labelSize = CGSizeMake(40.f,20.f);
         
-        _numberLabel = [UIComUtil createLabelWithFont:kGoodsSubCatagoryTextFont withTextColor:[UIColor blackColor] withText:@"11" withFrame:CGRectMake(currX-labelSize.width,currY-3.f,labelSize.width,labelSize.height)];
+        _numberLabel = [UIComUtil createLabelWithFont:kGoodsSubCatagoryTextFont withTextColor:[UIColor blackColor] withText:@"11" withFrame:CGRectMake(currX-labelSize.width,currY+2.f,labelSize.width,labelSize.height)];
         [self addSubview:_numberLabel];
-        _numberLabel.backgroundColor = [UIColor greenColor];
+        _numberLabel.backgroundColor = [UIColor redColor];
         
         
         UIImageAutoScaleWithFileName(image, @"auto_sub");
@@ -73,7 +73,7 @@
         _subBtn.frame = CGRectMake(currX,currY,btnSize.width, btnSize.height);
         
      
-        _priceLabel = [UIComUtil createLabelWithFont:kGoodsSubCatagoryTextFont withTextColor:[UIColor blackColor] withText:@"11" withFrame:CGRectMake(currX-labelSize.width-80.f,currY-3.f,100.f,labelSize.height)];
+        _priceLabel = [UIComUtil createLabelWithFont:kGoodsSubCatagoryTextFont withTextColor:[UIColor blackColor] withText:@"11" withFrame:CGRectMake(currX-labelSize.width-80.f,currY+2.f,100.f,labelSize.height)];
         _priceLabel.textAlignment = NSTextAlignmentRight;
         
         [self addSubview:_priceLabel];
@@ -128,6 +128,7 @@
         titleName = [NSString stringWithFormat:@"%@+%@",self.foodName,_item.name];
     }
     //titleName= @"很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长";
+    self.textLabel.font = [UIFont systemFontOfSize:14];
     self.textLabel.text =titleName;
     self.textLabel.frame = CGRectMake(0.f, 0.f,self.frame.size.width/2.f, 40);
     _numberLabel.text = [NSString stringWithFormat:@"%ld",_item.number];

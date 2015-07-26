@@ -12,6 +12,15 @@
 
 @implementation UserFeedBackViewController
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    
+    if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]){
+        
+        [self setNavgationBarTitle:kOrderFeedBackTitle];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
 
     [super viewDidLoad];
@@ -29,9 +38,11 @@
     UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake(kLeftPendingX, currY, kDeviceScreenWidth-2*kLeftPendingX,textViewHeight)];
     
     textView.editable = YES;
-    textView.text = @"1. 本店网络订餐须知第一条本店网络订餐须知第一条本店网络订餐须知第一条本店网络订餐须知第一条\n 2. 本店网络订餐须知第一条本店网络订餐须知第一条本店网络订餐须知第一条本店网络订餐须知第一条\n 3.本店网络订餐须知第一条本店网络订餐须知第一条本店网络订餐须知第一条";
+    textView.text = @"";
     textView.layer.cornerRadius = 5.f;
     [self.view addSubview:textView];
+    
+    [textView becomeFirstResponder];
     
     SafeRelease(textView);
     currY = currY + textView.frame.size.height+ 20.f;
@@ -42,9 +53,14 @@
     //showOrderBtn.backgroundColor = [UIColor redColor];
     [self.view addSubview:feedBackBtn];
     
-    feedBackBtn.frame = CGRectMake(0.f,currY,80,40);
+    feedBackBtn.frame = CGRectMake(0.f,currY,120,40);
     feedBackBtn.center = CGPointMake(kDeviceScreenWidth/2.f,feedBackBtn.center.y);
     [self.view addSubview:feedBackBtn];
 
+}
+
+- (void)didButtonPress:(id)sender {
+
+    
 }
 @end

@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "BSTellNetListBaseViewController.h"
+#import "BSTellBaseViewController.h"
 
-@interface UserFeedBackViewController : BSTellNetListBaseViewController
+@interface UserFeedBackViewController :BSTellBaseViewController
 
 
 @end

@@ -10,6 +10,7 @@
 
 @interface SubCatagoryItem:NSObject
 
+@property (nonatomic, assign) long long itemId;
 @property (nonatomic, strong) NSString *name;
 
 @property (nonatomic, assign) NSInteger number;
@@ -18,7 +19,13 @@
 
 @property (nonatomic, assign) CGFloat  basePrice;
 
+@property (nonatomic, assign) long long catagoryId;
+
+@property (nonatomic, assign) long long tasteId;
+
 @property (nonatomic, assign) CGFloat cellHeight;
+
+@property (nonatomic, strong) NSString *imageURL;
 
 @end
 

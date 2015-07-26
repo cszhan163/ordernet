@@ -24,7 +24,7 @@ ZCSNetClientNetInterfaceMgrDelegate>
 /*order*/
 - (id)getDingList:(NSDictionary*)param;
 - (id)getProductsList:(NSDictionary*)param;
-
+- (id)newOrder:(NSDictionary*)param;
 
 -(id)userInfoUpdate:(NSDictionary*)param;
 -(id)userResignRandomCode:(NSDictionary*)param;

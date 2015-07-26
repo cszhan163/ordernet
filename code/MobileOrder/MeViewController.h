@@ -10,4 +10,6 @@
 
 @interface MeViewController : BSTellBaseViewController
 
+@property (nonatomic, strong) NSArray *dataArray;
+
 @end

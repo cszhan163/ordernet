@@ -45,6 +45,8 @@
             NSString *foodName = item.name;
             for(SubCatagoryItem *subItem in item.subCatogoryArray) {
                 //only not zero number
+                subItem.catagoryId = item.catagoryId;
+                subItem.itemId = item.itemId;
                 if(subItem.number){
                     GoodsOrderItem *goodOrderItem = [[GoodsOrderItem alloc]initWithGoodsName:foodName withCatagoryItem:subItem];
                     [orderArray addObject:goodOrderItem];
@@ -156,7 +158,10 @@
 }
 
 - (void)tapAction:(id)sender {
-
+    if(self.orderDelegate && [self.orderDelegate respondsToSelector:@selector(didDismissView:)]){
+    
+        [self.orderDelegate didDismissView:self];
+    }
     [self disMiss:YES];
 }
 

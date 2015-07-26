@@ -9,7 +9,8 @@
 #import "UISimpleNetBaseViewController.h"
 #import "BSTellTimerReflushDataProcotol.h"
 @interface BSTellBaseViewController : UISimpleNetBaseViewController<UIBaseViewControllerDelegate,BSTellTimerReflushDataProcotol>{
-   
+    CGFloat offsetY;
+    UIScrollView *contentView;
 }
 @property(nonatomic,strong)NSString *wtid;
 

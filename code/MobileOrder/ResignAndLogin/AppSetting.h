@@ -27,4 +27,7 @@
 
 + (BOOL)userAutoLogin;
 
++ (BOOL)pushEnable;
+
++ (void)setPushEnable:(BOOL)status;
 @end

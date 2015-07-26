@@ -14,6 +14,8 @@
 
 - (void)didChangeOrderMenu:(id)sender;
 
+- (void)didDismissView:(id)sender;
+
 @end
 
 

@@ -10,6 +10,7 @@
 
 #import "FoodOrderListViewController.h"
 #import "UserInfoViewController.h"
+#import "SettingViewController.h"
 
 #define kPendingY    20.f
 
@@ -24,7 +25,7 @@
     UITableView     *_tableView;
 }
 
-@property (nonatomic, strong) NSArray *dataArray;
+
 
 @end
 
@@ -71,7 +72,7 @@
     headerView.layer.contents = (id)image.CGImage;
     [_tableView setTableHeaderView:headerView];
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"MeSetting" ofType:@"plist"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"MeMenu" ofType:@"plist"];
     NSDictionary *meData = [NSDictionary dictionaryWithContentsOfFile:path];
     
     self.dataArray =  [meData objectForKey:@"data"];
@@ -135,7 +136,7 @@
     NSString *iconName = [item objectForKey:@"iconName"];
     UIImage *image = nil;
     UIImageAutoScaleWithFileName(image,iconName);
-    assert(image);
+    //assert(image);
     cell.imageView.image = image;
     cell.textLabel.text = [item objectForKey:@"text"];
 #endif
@@ -167,6 +168,14 @@
         [self.navigationController pushViewController:userVctl animated:YES];
         SafeRelease(userVctl);
         
+        
+    }
+    if([key isEqualToString:@""]) {
+    
+        SettingViewController *setVctl = [[UserInfoViewController alloc]init];
+        
+        [self.navigationController pushViewController:setVctl animated:YES];
+        SafeRelease(setVctl);
         
     }
 }

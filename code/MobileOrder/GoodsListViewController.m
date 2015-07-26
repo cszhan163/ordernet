@@ -44,15 +44,19 @@
 @interface GoodsListViewController()<GooodsCatagoryDeleagte,
                                     GoodsOrderMenuDelegate,
                                     FoodItemCellDelegate>{
-    UIView      *tbHeaderView;
-    NSInteger   currSection;
-    
-    UILabel     *_priceLabel;
-    
-    UILabel     *_numberLabel;
-    CGFloat     _totalPrice;
-    UIView      *orderPanel;
+                                        
+                                        UIView      *tbHeaderView;
+                                        NSInteger   currSection;
+                                        
+                                        UILabel     *_priceLabel;
+                                        
+                                        UILabel     *_numberLabel;
+                                        CGFloat     _totalPrice;
+                                        UIView      *orderPanel;
+                                        BOOL isOrderMenuShow;
                                         BOOL        currPanelStatus;
+                                        UIButton *showOrderBtn;
+                                        
     
 }
 @property (nonatomic, strong)  NSDictionary *locationDict;
@@ -93,13 +97,14 @@
 
     [super viewWillAppear:animated];
     [self setNavgationBarRightButton];
-    self.pageNum = 1;
-    [self.dataArray removeAllObjects];
+    //self.pageNum = 1;
+    //[self.dataArray removeAllObjects];
 }
 - (void)viewDidAppear:(BOOL)animated{
     
-    [super viewDidAppear:animated];
-    
+    if([self.goodsListArray count] == 0)
+        [super viewDidAppear:animated];
+    //self.dataArray = self.goodsListArray;
     /*
     if([self.dataArray count]==0){
         
@@ -175,7 +180,7 @@
     tweetieTableView.clipsToBounds = YES;
     
     
-#if 0
+#if 1
     
     
     self.titleArray = @[@"面",@"凉菜",@"肉夹馍",@"肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍",@"肉夹馍肉夹馍",@"肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍",@"肉夹馍",@"面",@"凉菜"];
@@ -242,7 +247,7 @@
     UIImageAutoScaleWithFileName(image, @"book_arrow_up@2x");
     
     //for order
-    UIButton *showOrderBtn = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"" withTag:0 withTarget:self  withTouchEvent:@selector(showOrderMenu:)];
+    showOrderBtn = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"" withTag:0 withTarget:self  withTouchEvent:@selector(showOrderMenu:)];
 #if TEST_UI
     showOrderBtn.backgroundColor = [UIColor redColor];
 #endif
@@ -285,6 +290,8 @@
     _goodsOrderMenuView = [[GoodsOrderMenuView alloc]initWithFrame:self.view.frame];
     
     [_goodsOrderMenuView setOrderDelegate:self];
+    
+    [self shouldLoadOlderData:tweetieTableView];
 
     
 }
@@ -295,15 +302,32 @@
         return;
     }
     if(status){
+        
         [UIView animateWithDuration:0.5 animations:^(){
             
             orderPanel.frame = CGRectOffset(orderPanel.frame, 0, orderPanel.frame.size.height);
+            CGFloat offsetY = orderPanel.frame.size.height;
+            CGRect rect = tweetieTableView.frame;
+            rect.size.height = rect.size.height+ offsetY;
+            [tweetieTableView setFrame:rect];
+            rect = _catogoryView.frame;
+            rect.size.height = rect.size.height+ offsetY;
+            [_catogoryView setFrame:rect];
         }];
+        //[self showOrderMenu:showOrderBtn];
     } else {
     
         [UIView animateWithDuration:0.5 animations:^(){
             
             orderPanel.frame = CGRectOffset(orderPanel.frame, 0,-orderPanel.frame.size.height);
+            CGFloat offsetY = orderPanel.frame.size.height;
+            CGRect rect = tweetieTableView.frame;
+            rect.size.height = rect.size.height- offsetY;
+            [tweetieTableView setFrame:rect];
+            
+            rect = _catogoryView.frame;
+            rect.size.height = rect.size.height-offsetY;
+            [_catogoryView setFrame:rect];
         }];
         
     }
@@ -315,14 +339,14 @@
 #pragma mark - List order Fun
 
 - (void)didOrderPress:(id)sender {
-
     
+    [self setOrderMenuHiddenStatus:YES];
     if([AppSetting getLoginUserId]){
         /*
-        OrderPayViewController *orderPayVCtrl = [[OrderPayViewController alloc]init];
-        
-        [self.navigationController pushViewController:orderPayVCtrl animated:YES];
-        SafeRelease(orderPayVCtrl);
+         OrderPayViewController *orderPayVCtrl = [[OrderPayViewController alloc]init];
+         
+         [self.navigationController pushViewController:orderPayVCtrl animated:YES];
+         SafeRelease(orderPayVCtrl);
          */
         [self startToConfirmOrder:nil];
         
@@ -337,11 +361,11 @@
             
             SafeRelease(navCtl);
             /*
-            OrderPayViewController *orderPayVCtrl = [[OrderPayViewController alloc]init];
-            
-            [self.navigationController pushViewController:orderPayVCtrl animated:YES];
-            SafeRelease(orderPayVCtrl);
-            */
+             OrderPayViewController *orderPayVCtrl = [[OrderPayViewController alloc]init];
+             
+             [self.navigationController pushViewController:orderPayVCtrl animated:YES];
+             SafeRelease(orderPayVCtrl);
+             */
             [self startToConfirmOrder:nil];
             
         }];
@@ -401,9 +425,39 @@
 }
 
 
-- (void)showOrderMenu:(id)sender {
+- (void)showOrderMenu:(UIButton*)sender {
+    
+    if(!isOrderMenuShow){
+        
+        [self setOrderMenuHiddenStatus:NO];
+        //isOrderMenuShow = YES;
+    } else {
+        // isOrderMenuShow = NO;
+        [self setOrderMenuHiddenStatus:YES];
+       
+    }
+    //[self setOrderMenumStatus:];
+}
 
-    [_goodsOrderMenuView showInView:self.view  withOffsetY:kOrderPanelHeight animated:YES];
+- (void)setOrderMenuHiddenStatus:(BOOL)status {
+    if(status != isOrderMenuShow)
+        return;
+    if(status){
+        [_goodsOrderMenuView disMiss:YES];
+        
+        [UIView animateWithDuration:0.3 animations:^(){
+            showOrderBtn.transform = CGAffineTransformMakeRotation(3.14);
+        }];
+        isOrderMenuShow = NO;
+        //[self setHiddenOrderPanelStatus:NO];
+    } else {
+        [_goodsOrderMenuView showInView:self.view  withOffsetY:kOrderPanelHeight animated:YES];
+        [UIView animateWithDuration:0.3 animations:^(){
+            showOrderBtn.transform = CGAffineTransformIdentity;
+        }];
+        isOrderMenuShow = YES;
+        //[self setHiddenOrderPanelStatus:NO];
+    }
 }
 
 - (NSArray*)convertToModelData:(NSArray*)data{
@@ -534,6 +588,10 @@
     [cell setDelegate:self];
     
     currSection = indexPath.section;
+    
+    //[NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [self  performSelector:@selector(startloadVisibleCellImageData:) withObject:indexPath afterDelay:0.f];
+    
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -654,6 +712,11 @@
     [self updateOrderMenu];
 }
 
+- (void)didDismissView:(id)sender{
+    [self showOrderMenu:showOrderBtn];
+    //[self setHiddenOrderPanelStatus:YES];
+}
+
 - (void)updateOrderMenu {
     [_goodsOrderMenuView updateDataByOrderListArray:[self filertOrderData]];
     
@@ -667,9 +730,15 @@
     }
     if(totalNumber == 0){
         [self setHiddenOrderPanelStatus:YES];
+        //if(isOrderMenuShow)
+        {
+            [self setOrderMenuHiddenStatus:YES];
+        }
     } else {
     
         [self setHiddenOrderPanelStatus:NO];
+        //if(isOrderMenuShow)
+        //[self setOrderMenuHiddenStatus:NO];
     }
     _numberLabel.text = [NSString stringWithFormat:@"点了:  %ld   道菜",totalNumber];
     _priceLabel.text  = [NSString stringWithFormat:@"总计: ¥%0.2lf 元",_totalPrice];
@@ -765,7 +834,7 @@
 }
 -(void)didNetDataOK:(NSNotification*)ntf
 {
-    
+    //return;
     [super didNetDataOK:ntf];
     
     
@@ -793,6 +862,7 @@
         NE_LOG(@"data:%@",[data description]);
         NSMutableArray *goodsTitleArray = [NSMutableArray array];
         for(NSDictionary *item in data) {
+            long long  catagoryId = [[item objectForKey:@"id"]longLongValue];
             [goodsTitleArray addObject:[item objectForKey:@"name"]];
             NSArray *catagoryArray = [item objectForKey:@"products"];
             if(catagoryArray == nil || [catagoryArray isKindOfClass:[NSNull class]])
@@ -802,10 +872,12 @@
                 
                 NSDictionary *cataItem = catagoryArray[i];
                 GoodsCatagoryItem *goodItem = [[GoodsCatagoryItem alloc]init];
-
+                goodItem.catagoryId = catagoryId;
                 goodItem.name = [cataItem objectForKey:@"name"];
                 goodItem.number = 0.f;
+                goodItem.itemId = [[cataItem objectForKey:@"id"]longLongValue];
                 goodItem.price = [[cataItem objectForKey:@"price"]floatValue];
+                goodItem.imageURL = [cataItem objectForKey:@"url"];
                 NSMutableArray *subArray = [NSMutableArray array];
                 NSArray  *tastesArray  = [catagoryArray[i] objectForKey:@"tastes"];
                 for(int j = 0;j< [tastesArray count];j++){
@@ -814,6 +886,7 @@
                     subItem.name = [tastesItem objectForKey:@"name"];
                     subItem.number = 0;
                     subItem.basePrice = goodItem.price;
+                    subItem.tasteId = [[tastesItem objectForKey:@"id"]longLongValue];
                     subItem.price = [[tastesItem objectForKey:@"price"]floatValue];
                     [subArray addObject:subItem];
                     SafeRelease(subItem);
@@ -864,4 +937,83 @@
 
     
 }
+
+#pragma mark -
+#pragma mark - images
+
+-(void)startloadVisibleCellImageData:(NSIndexPath*)indexPath
+{
+    //NE_LOG(@"warning load visibleCellImagedata not implementation");
+    UIImage *image = UIImageWithFileName(image ,@"food_default_s.png");
+    if(indexPath.section>=[self.goodsListArray count])
+        return;
+    if(indexPath.row >= [self.goodsListArray[indexPath.section] count])
+        return;
+    GoodsCatagoryItem *goodsItem = self.goodsListArray[indexPath.section][indexPath.row];
+    if(goodsItem.imageURL == nil){
+        
+        goodsItem.imageURL = @"http://picvideo.uhuocn.com:65102//Data/MenuImg/541704/l20150706/20150706041603408.jpg";
+    }
+    UIImage *photo = [[NTESMBLocalImageStorage getInstance] getSmallImageWithUrl:goodsItem.imageURL];
+    if (photo != nil) {
+        image = photo;
+    }else{
+        NTESMBIconDownloader *_downloader = [[NTESMBIconDownloader alloc]initWithUrlString:goodsItem.imageURL];
+        _downloader.delegate = self;
+        _downloader.indexPath = indexPath;
+        [[NTESMBServer getInstance] addRequest:_downloader];
+        [allIconDownloaders setValue:_downloader forKey:goodsItem.imageURL];
+        [_downloader release];
+    }
+    [self setImageData:image withIndexPath:indexPath];
+}
+
+- (void)setImageData:(UIImage*)imageData withIndexPath:(NSIndexPath*)indexPath {
+    
+    //GoodsCatagoryItem *item = self.goodsListArray[indexPath.section][indexPath.row];
+    FoodItemCell *vendorCell = [tweetieTableView cellForRowAtIndexPath:indexPath];
+    [vendorCell.foodIconImageView setImage:imageData];
+}
+
+-(void)updatesegmentTitle:(NSInteger)icount
+{
+    
+}
+- (void) cancelAllIconDownloads
+{
+    //NE_LOG(@"warning not emplementation icon downloads cancell");
+    for(NTESMBIconDownloader *_downloader in allIconDownloaders){
+        
+        [_downloader setDelegate:nil];
+    }
+    [allIconDownloaders removeAllObjects];
+}
+
+
+- (void) requestCompleted:(NTESMBIconDownloader *) request{
+    //if (request == _downloader)
+    {
+        if(request.receiveData){
+            [[NTESMBLocalImageStorage getInstance] saveImageDataToSmallDir:request.receiveData
+                                                                 urlString:request.urlString];
+        }
+        
+        NSIndexPath *indexPath= request.indexPath;
+        
+        UIImage *image = [[NTESMBLocalImageStorage getInstance] getSmallImageWithUrl:request.urlString];
+        //if([self.scrollViewPreview.getPageControl currentPage] == request.cellIndex)
+        {
+            [self setImageData:image withIndexPath:indexPath];
+        }
+    }
+    [allIconDownloaders removeObjectForKey:request.urlString];
+    request.delegate = nil;
+    request = nil;
+}
+
+- (void) requestFailed:(NTESMBIconDownloader *) request{
+    
+}
+
+
 @end

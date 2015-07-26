@@ -76,4 +76,21 @@
     return [value boolValue];
 }
 
++ (BOOL)pushEnable {
+    
+    NSUserDefaults *udf = [NSUserDefaults standardUserDefaults];
+    id value =  [udf valueForKey:@"push"];
+    if(value == nil){
+        return YES;
+    }
+    return [value boolValue];
+}
+
++ (void)setPushEnable:(BOOL)status {
+    
+    NSUserDefaults *udf = [NSUserDefaults standardUserDefaults];
+    [udf setValue:[NSNumber numberWithBool:status] forKey:@"push"];
+    [udf synchronize];
+}
+
 @end

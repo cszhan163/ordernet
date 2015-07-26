@@ -10,6 +10,8 @@
 
 @interface UserDinnerWatingMgr : NSObject
 
++ (instancetype)sharedInstance;
+
 - (void)startCheckDinnerWaitingByOrderId:(NSString*)orderId;
 
 @end

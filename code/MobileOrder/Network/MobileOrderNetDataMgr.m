@@ -75,6 +75,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
                                                @"product/list", @"getgoodslist",
                                                @"dining/list",    @"getdinglist",
                                                @"user", @"getuserInfo",
+                                               @"order",@"neworder",
                                                
                                                @"search_goodDetail",@"getGoodDetail",
                                                @"search_orders_old",@"search_orders_old",
@@ -191,7 +192,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     NSLog(@"%@",[data description]);
     id dataDict = [data objectForKey:@"data"];
     //id data = [dataDict objectForKey:@"data"];
-    if([[dataDict objectForKey:@"code"]isEqualToString:@"-2"])//need to relogin
+    //if([[dataDict objectForKey:@"code"]isEqualToString:@"-2"])//need to relogin
     {
         //[request reloadRequest];
         /*
@@ -531,6 +532,25 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
                                        withMethod:@"GET"
                                          withData:NO];
     
+}
+
+- (id)newOrder:(NSDictionary*)param {
+
+    if(param == nil)
+        return nil;
+    NSError *error = nil;
+    NSData *postData = [NSJSONSerialization  dataWithJSONObject:param options:NSJSONWritingPrettyPrinted error:&error];
+    
+    if(error){
+        NSAssert(nil, @"json error!!");
+        return nil;
+    }
+    
+    return [dressMemoInterfaceMgr startAnRequestByResKey:@"neworder"
+                                               needLogIn:YES
+                                               withParam:param
+                                              withMethod:@"POST"
+                                                withData:YES withRawData:postData];
 }
 - (id)getDingList:(NSDictionary*)param {
     

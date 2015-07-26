@@ -8,7 +8,17 @@
 
 #import "UserDinnerWatingMgr.h"
 
+static UserDinnerWatingMgr *staticInstance = nil;
+
 @implementation UserDinnerWatingMgr
+
++ (instancetype)sharedInstance {
+    if(staticInstance == nil){
+    
+        staticInstance = [[self alloc]init];
+    }
+    return staticInstance;
+}
 
 - (void)startCheckDinnerWaitingByOrderId:(NSString*)orderId {
 

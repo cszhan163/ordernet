@@ -29,6 +29,8 @@
 
 #import "OrderPayViewController.h"
 
+#import "UserDinnerWatingMgr.h"
+
 #define  kIphone4ImageSize  CGSizeMake(kDeviceScreenWidth, 200.f)
 
 #define  kIphone5ImageSize  CGSizeMake(kDeviceScreenWidth, 200.f+100.f)
@@ -67,6 +69,7 @@
     
         [self setNavgationBarTitle:kMenuTitle];
         [ZCSNotficationMgr addObserver:self call:@selector(needPresentLogin:) msgName:kPresentModelViewController];
+        [ZCSNotficationMgr addObserver:self call:@selector(didOrderPayOK:) msgName:kOrderFoodDidSuccessMSG];
     }
     return self;
 };
@@ -176,9 +179,18 @@
 
 }
 
+- (void)didOrderPayOK:(NSNotification*)ntf {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    OrderItem *orderItem = [ntf object];
+    self.orderItem = orderItem;
+    [[UserDinnerWatingMgr sharedInstance] startCheckDinnerWaitingByOrderId:orderItem.orderId];
+    [self didStartDinner:nil];
+}
 
-- (void)didStartDinner {
 
+- (void)didStartDinner:(id)data {
+
+    
     DinnerWaitingViewController *waitingViewCtrl = [[DinnerWaitingViewController alloc]init];
     waitingViewCtrl.orderItem = self.orderItem;
     [self.navigationController pushViewController:waitingViewCtrl animated:YES];
@@ -236,7 +248,7 @@
             } else {
             
                 
-                [self didStartDinner];
+                [self didStartDinner:nil];
             }
 #endif
             }
@@ -261,16 +273,16 @@
 #else
 
 #if 1
-            OrderPayViewController *orderPayVCtrl = [[OrderPayViewController alloc]init];
+            OrderConfirmViewController *orderPayVCtrl = [[OrderConfirmViewController alloc]init];
             
             [self.navigationController pushViewController:orderPayVCtrl animated:YES];
             SafeRelease(orderPayVCtrl);
             return;
             
 #endif
+            
             MeViewController *meVCtl = [[MeViewController alloc]init];
             [self.navigationController pushViewController:meVCtl animated:YES];
-            
             SafeRelease(meVCtl);
 #endif
         
@@ -383,8 +395,6 @@
 
         /*
         UIImage *image = [UIImage imageWithData:request.receiveData];
-   
-
         */
         //if([self.scrollViewPreview.getPageControl currentPage] == request.cellIndex)
         {

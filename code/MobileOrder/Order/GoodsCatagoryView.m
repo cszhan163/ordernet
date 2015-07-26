@@ -29,13 +29,19 @@
     SuperDealloc;
 }
 
+- (void)setFrame:(CGRect)frame {
+    [super setFrame:frame];
+    CGPoint origin = _tableView.frame.origin;
+    _tableView.frame = CGRectMake(origin.x, origin.y,frame.size.width, frame.size.height);
+}
+
 - (id)initWithFrame:(CGRect)frame {
     
     if(self = [super initWithFrame:frame]){
     _tableView  = [[UITableView alloc]initWithFrame:CGRectMake(0.f, 0.f, frame.size.width, frame.size.height) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-        _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+        _tableView.separatorStyle = UITableViewCellSelectionStyleGray;
         _tableView.separatorColor = nil;
     //[_tableView registerClass:[GoodsCatagoryTableViewCell class] forCellReuseIdentifier:cellId];
     [self addSubview:_tableView];

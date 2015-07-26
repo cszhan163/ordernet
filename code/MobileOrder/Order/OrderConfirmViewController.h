@@ -10,9 +10,14 @@
 
 #import "OrderItem.h"
 
-@interface OrderConfirmViewController : BSTellBaseViewController
+@interface OrderConfirmViewController : BSTellBaseViewController {
+
+      
+}
 
 @property (nonatomic, strong) NSArray *dataArray;
 @property (nonatomic,strong)  OrderItem *orderItem;
+
+- (void)initUIView ;
 
 @end
