@@ -43,9 +43,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    CGFloat currY = 0.f;
-    if(kIsIOS7Check){
-        currY = kMBAppStatusBar+ kMBAppTopToolBarHeight;
+    CGFloat currY = kMBAppTopToolBarHeight;
+    if(kIsIOS7Check)
+    {
+        currY += kMBAppStatusBar;
     }
     
     _tableView  = [[UITableView alloc]initWithFrame:CGRectMake(0.f,currY,kDeviceScreenWidth,kDeviceScreenHeight-kMBAppStatusBar-kMBAppTopToolBarHeight) style:UITableViewStylePlain];

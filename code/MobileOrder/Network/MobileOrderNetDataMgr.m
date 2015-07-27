@@ -548,7 +548,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     
     return [dressMemoInterfaceMgr startAnRequestByResKey:@"neworder"
                                                needLogIn:YES
-                                               withParam:param
+                                               withParam:nil
                                               withMethod:@"POST"
                                                 withData:YES withRawData:postData];
 }

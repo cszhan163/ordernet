@@ -63,6 +63,7 @@
             [dataArray addObject:@{
                                    @"num":[NSString stringWithFormat:@"%ld",item.number],
                                    @"productId":[NSString stringWithFormat:@"%ld",item.itemId],
+                                   @"catagoryId":[NSString stringWithFormat:@"%ld",item.catagoryId],
                                    @"status":@"1",
                                    @"tasteId":[NSString stringWithFormat:@"%ld",item.tasteId]}
              ];

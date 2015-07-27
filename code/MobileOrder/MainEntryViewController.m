@@ -272,7 +272,7 @@
             SafeRelease(orderConfirmCtlr);
 #else
 
-#if 1
+#if 0
             OrderConfirmViewController *orderPayVCtrl = [[OrderConfirmViewController alloc]init];
             
             [self.navigationController pushViewController:orderPayVCtrl animated:YES];
