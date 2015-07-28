@@ -28,6 +28,7 @@
 #import "GoodsCatagoryTableViewCell.h"
 
 #import "LeveyPopListView.h"
+#import "ZCSNetClient.h"
 
 #import "OrderConfirmViewController.h"
 
@@ -839,7 +840,7 @@
     
     
     id obj = [ntf object];
-    id respRequest = [obj objectForKey:@"request"];
+    ZCSNetClient *respRequest = [obj objectForKey:@"request"];
     id objData = [obj objectForKey:@"data"];
     NSString *resKey = [respRequest resourceKey];
     //NSString *resKey = [respRequest resourceKey];
@@ -923,7 +924,7 @@
 }
 - (void)didUserLogout:(NSNotification*)ntf{
     //isLogin = NO;
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    //[self.navigationController popToRootViewControllerAnimated:YES];
     [self.dataArray removeAllObjects];
     self.pageNum = 1;
     [AppSetting setLogoutUser];
@@ -931,7 +932,7 @@
 }
 - (void)didUserLogin:(NSNotification*)ntf{
 
-  [self.navigationController popToRootViewControllerAnimated:YES];
+  //[self.navigationController popToRootViewControllerAnimated:YES];
 }
 - (void)didUserLoginCancel:(NSNotification*)ntf{
 
@@ -963,7 +964,7 @@
         _downloader.indexPath = indexPath;
         [[NTESMBServer getInstance] addRequest:_downloader];
         [allIconDownloaders setValue:_downloader forKey:goodsItem.imageURL];
-        [_downloader release];
+        SafeRelease(_downloader);
     }
     [self setImageData:image withIndexPath:indexPath];
 }

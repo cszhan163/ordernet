@@ -11,7 +11,10 @@
 #import "AppConfig.h"
 #import "ZCSNetClient.h"
 #import "AppSetting.h"
+
 #define  kRequestApiRoot                @"http://121.40.239.155/1.0/"
+
+#define  kNeedLoginCode      101
 
 #import <CommonCrypto/CommonDigest.h> // Need to import for CC_MD5 access
 
@@ -192,16 +195,18 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     NSLog(@"%@",[data description]);
     id dataDict = [data objectForKey:@"data"];
     //id data = [dataDict objectForKey:@"data"];
-    //if([[dataDict objectForKey:@"code"]isEqualToString:@"-2"])//need to relogin
+    id value = [dataDict objectForKey:@"code"];
+    if([value intValue] == kNeedLoginCode)//need to relogin
     {
         //[request reloadRequest];
         /*
         [dressMemoInterfaceMgr setLogin:NO];
         ZCSNetClient *newRequest = [self startAnRequestByResKey:sender.resourceKey needLogIn:YES withParam:sender.requestParam withMethod:sender.request.httpMethod withData:sender.isPostData];
         [ZCSNotficationMgr postMSG:kZCSNetWorkReloadRequest obj:newRequest];
-         */
-        //[self startRequest:newRequest];
+         
+        [self startRequest:newRequest];
         return;
+        */
     }
     if(dataDict == nil)
     {

@@ -41,7 +41,7 @@
     _tableView  = [[UITableView alloc]initWithFrame:CGRectMake(0.f, 0.f, frame.size.width, frame.size.height) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-        _tableView.separatorStyle = UITableViewCellSelectionStyleGray;
+        _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
         _tableView.separatorColor = nil;
     //[_tableView registerClass:[GoodsCatagoryTableViewCell class] forCellReuseIdentifier:cellId];
     [self addSubview:_tableView];

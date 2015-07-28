@@ -8,6 +8,7 @@
 
 #import "BSTellNetListBaseViewController.h"
 #import "CardShopLoginViewController.h"
+#import "ZCSNetClient.h"
 @interface BSTellNetListBaseViewController ()
 
 @end

@@ -51,6 +51,11 @@
     //[self setLeftNavigationBarItem];
 
 }
+- (void)startNetWork {
+    
+
+
+}
 
 - (void)initUIView {
 

@@ -11,6 +11,7 @@
 #import "FoodOrderListViewController.h"
 #import "UserInfoViewController.h"
 #import "SettingViewController.h"
+#import "ZCSNetClient.h"
 
 #define kPendingY    20.f
 
@@ -188,7 +189,7 @@
     //NE_LOG(@"warning not implemetation net respond");
     //self.view.userInteractionEnabled = YES;
     id obj = [ntf object];
-    id respRequest = [obj objectForKey:@"request"];
+    ZCSNetClient *respRequest = [obj objectForKey:@"request"];
     id _data = [obj objectForKey:@"data"];
     NSString *resKey = [respRequest resourceKey];
     if(resKey == @"userInfo")
