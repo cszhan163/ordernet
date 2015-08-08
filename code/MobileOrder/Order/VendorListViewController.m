@@ -196,7 +196,7 @@
         _downloader.indexPath = indexPath;
         [[NTESMBServer getInstance] addRequest:_downloader];
         [allIconDownloaders setValue:_downloader forKey:shopItem.imageURL];
-        [_downloader release];
+        SafeRelease(_downloader);
     }
     [self setImageData:image withIndexPath:indexPath];
 }

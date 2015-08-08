@@ -8,7 +8,7 @@
 
 #import "CardShopResignViewController.h"
 //#import "AppDelegate.h"
-//#import "AppSetting.h"
+#import "AppConfig.h"
 @interface CardShopResignViewController ()
 
 @end
@@ -178,11 +178,11 @@
 {
     //if([self check])
     if(type == 0){
-        kNetStartShow(@"注册中...",self.view);
+        //kNetStartShow(@"注册中...",self.view);
     }
     else
     {
-        kNetStartShow(@"发送中...",self.view);
+        //kNetStartShow(@"发送中...",self.view);
     }
     MobileOrderNetDataMgr *cardShopMgr = [MobileOrderNetDataMgr getSingleTone];
     
@@ -199,7 +199,7 @@
             [dict setValue:self.radomCodeTextFied.text forKey:@"phoneNumber"];
          }
         //self.radomCodeTextFied.text,@"phoneNumber",
-         self.request = [cardShopMgr  carUserRegister:dict];
+         //self.request = [cardShopMgr  carUserRegister:dict];
     }
     else
     {

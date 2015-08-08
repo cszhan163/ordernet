@@ -13,7 +13,7 @@
 #import "GoodsCatagoryItem.h"
 
 
-#define  kOrderMenuCellHeight      44.f
+#define  kOrderMenuCellHeight      50.f
 
 
 
@@ -92,7 +92,8 @@
 - (id)initWithFrame:(CGRect)frame  {
 
     if(self = [super initWithFrame:frame]) {
-        
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        self.tableView.separatorColor = kNavBarColor;
         //self.tableView.center = CGPointMake(frame.size.width/2.f, frame.size.height/2.f);
         //[self.tableView registerClass:[FoodMenuCell class] forCellReuseIdentifier:cellId];
     }

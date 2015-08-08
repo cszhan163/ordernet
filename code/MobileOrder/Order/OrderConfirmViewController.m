@@ -78,6 +78,11 @@
     contentView =[[UIScrollView alloc]initWithFrame:CGRectMake(0.f, 0.f, kDeviceScreenWidth, kDeviceScreenHeight)];
     [self.view addSubview:contentView];
     [self initUIView];
+    [self startNetWork];
+}
+
+- (void)startNetWork {
+
     [self startNewOrder];
 }
 

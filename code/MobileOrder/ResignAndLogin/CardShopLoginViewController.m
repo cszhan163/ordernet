@@ -272,15 +272,15 @@
 
 - (void)setCompleteAction:(BlockWithSender) block {
 
-    Block_release(_doneBlock);
-    _doneBlock = Block_copy(block);
+    Block_release((__bridge  const void *) _doneBlock);
+    _doneBlock =  [block copy];
     
 }
 
 - (void)setCancelAction:(BlockWithSender) block {
     
-    Block_release(_cancelBlock);
-    _cancelBlock = Block_copy(block);
+    Block_release((__bridge  const void *)_cancelBlock);
+    _cancelBlock = [block copy];
     
 }
 
@@ -317,7 +317,7 @@
                                    self.useId,@"bspCompanyCode",
                                    nil];
            
-            [cardShopMgr  getUserAccountInfo:param];
+            //[cardShopMgr  getUserAccountInfo:param];
             
             
         }

@@ -338,7 +338,7 @@
             _downloader.delegate = self;
             _downloader.cellIndex = index;
             [[NTESMBServer getInstance] addRequest:_downloader];
-            [_downloader release];
+            SafeRelease(_downloader);
             image = UIImageWithFileName(image ,@"uhuo_default_m.png");
         }
     }
