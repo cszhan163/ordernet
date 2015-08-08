@@ -235,10 +235,15 @@
     CGSize size = CGSizeMake(60,25);
     
     UIImage *image = nil;
+    UIColor *bgColor  = nil;
     UIButton *orderBtn = [UIComUtil createButtonWithNormalBGImage:nil withHightBGImage:nil withTitle:@"确认下单" withTag:1 withTarget:self  withTouchEvent:@selector(didButtonPress:)];
     orderBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     orderBtn.frame = CGRectMake(orderPanel.frame.size.width-size.width-kLeftPendingX,kPendingY+5,size.width,size.height);
+#if 1 || TEST_UI
+    bgColor = kCommonButtonBgColor;
+#else
     orderBtn.backgroundColor = [UIColor redColor];
+#endif
     [orderPanel addSubview:orderBtn];
     
     //UIImageAutoScaleWithFileName(image, @"book_arrow_up@2x");
@@ -246,7 +251,7 @@
     //for order
     UIButton *showOrderBtn = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"加菜" withTag:0 withTarget:self  withTouchEvent:@selector(didButtonPress:)];
 #if 1 || TEST_UI
-    UIColor *bgColor = kCommonButtonBgColor;
+    bgColor = kCommonButtonBgColor;
     showOrderBtn.backgroundColor = bgColor;//[UIColor redColor];
 #endif
     [orderPanel addSubview:showOrderBtn];
@@ -255,6 +260,7 @@
     [orderPanel addSubview:showOrderBtn];
     
 #if 1
+    bgColor = kCommonButtonBgColor;
     [self.view addSubview:orderPanel];
 #else
     [_tableView setTableFooterView:orderPanel];
