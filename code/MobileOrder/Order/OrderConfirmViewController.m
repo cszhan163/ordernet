@@ -22,6 +22,8 @@
 
 #define kCellHeight  44.f
 
+#define kCellHeaderHeight 44.f
+
 #define kOrderPanelHeight  50.f
 
 #define kArriveTimeFormat  @"到店时间:%ld 分"
@@ -161,8 +163,11 @@
     _tableView.layer.cornerRadius = 5.f;
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
-    _tableView.separatorColor = nil;
+    _tableView.separatorStyle = UITableViewCellSelectionStyleGray;
+    _tableView.backgroundColor = [UIColor whiteColor];
+    _tableView.alwaysBounceVertical = NO;
+    _tableView.bounces = NO;
+    //_tableView.separatorColor = ;
     //[_tableView registerClass:[OrderListItemCell class] forCellReuseIdentifier:cellId];
     [contentView addSubview:_tableView];
     
@@ -236,7 +241,8 @@
     //for order
     UIButton *showOrderBtn = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"加菜" withTag:0 withTarget:self  withTouchEvent:@selector(didButtonPress:)];
 #if 1 || TEST_UI
-    showOrderBtn.backgroundColor = [UIColor redColor];
+    UIColor *bgColor = kCommonButtonBgColor;
+    showOrderBtn.backgroundColor = bgColor;//[UIColor redColor];
 #endif
     [orderPanel addSubview:showOrderBtn];
     
@@ -315,7 +321,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 
-    return  44.f;
+    return  kCellHeaderHeight;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -335,7 +341,11 @@
         index = 5;
     }
     UIView *sectionView = nibArr[index];
-   
+    //CGRect rect = CGRectMake(0.f, 0.f, kDeviceScreenWidth, 1);
+    UIView *splitView = [[UIView alloc]initWithFrame:CGRectMake(0.f,kCellHeaderHeight-1,kDeviceScreenWidth, 1)];
+    splitView.backgroundColor = [UIColor grayColor];
+    [sectionView addSubview:splitView];
+    SafeRelease(splitView);
     return sectionView;
 }
 

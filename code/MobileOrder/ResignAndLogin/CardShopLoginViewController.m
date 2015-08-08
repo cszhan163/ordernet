@@ -61,6 +61,7 @@
     if (self) {
         
                 // Custom initialization
+        
     }
     return self;
 }
@@ -291,19 +292,18 @@
     id obj = [ntf object];
     id respRequest = [obj objectForKey:@"request"];
     id data = [obj objectForKey:@"data"];
-    NSString *resKey = [obj objectForKey:@"key"];//[respRequest resourceKey];
+    NSString *resKey = [respRequest resourceKey];
     if([resKey isEqualToString:kNetLoginRes])
     {
       
         self.request = nil;
         NE_LOG(@"%@",[data description]);
+#if 1
         //[self stopShowLoadingView];
         //[Ap]
         NSString *useDataString = [data objectForKey:@"dataString"];
         NSError *error = nil;
-        
         //kNetEnd(self.view);
-#if 1
         //[AppSetting setCurrentLoginUser:self.txtusername.text];
         NSDictionary *userReturnData = [NSJSONSerialization JSONObjectWithData:[useDataString dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:&error];; //[kUserDataDict objectForKey:self.txtusername.text];
         if([[userReturnData objectForKey:@"isSuccess"] isEqualToString:@"1"]){

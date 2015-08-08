@@ -235,7 +235,7 @@
     
     orderPanel = [[UIView alloc]initWithFrame:CGRectMake(0.f,currY,kDeviceScreenWidth,kOrderPanelHeight)];
 //#if TEST_UI
-    orderPanel.backgroundColor = [UIColor grayColor];
+    orderPanel.backgroundColor = kOrderPanelColor;
 //#endif
     UIImage *image = nil;
     UIButton *orderBtn = [UIComUtil createButtonWithNormalBGImage:nil withHightBGImage:nil withTitle:@"下单" withTag:0 withTarget:self  withTouchEvent:@selector(didOrderPress:)];
@@ -252,7 +252,7 @@
     showOrderBtn.backgroundColor = [UIColor redColor];
 #endif
     [orderPanel addSubview:showOrderBtn];
-    CGSize size = CGSizeMake(22,22);
+    CGSize size = showOrderBtn.frame.size;//CGSizeMake(22,22);
     showOrderBtn.frame = CGRectMake(orderPanel.frame.size.width-size.width-kLeftPendingX,kTopPendingY,size.width,size.height);
     [orderPanel addSubview:showOrderBtn];
     
@@ -931,7 +931,7 @@
 }
 - (void)didUserLogin:(NSNotification*)ntf{
 
-  [self.navigationController popToRootViewControllerAnimated:YES];
+  //[self.navigationController popToRootViewControllerAnimated:YES];
 }
 - (void)didUserLoginCancel:(NSNotification*)ntf{
 

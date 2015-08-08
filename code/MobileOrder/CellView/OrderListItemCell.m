@@ -20,6 +20,10 @@
 
 - (void)awakeFromNib {
 
+    UIView *splitView = [[UIView alloc]initWithFrame:CGRectMake(0.f, self.frame.size.height-1,self.frame.size.width, 1)];
+    splitView.backgroundColor = [UIColor grayColor];
+    [self addSubview:splitView];
+    SafeRelease(splitView);
 }
 
 - (void)setCellItem:(SubCatagoryItem*)item {
