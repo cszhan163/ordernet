@@ -192,7 +192,7 @@
     
     if(cell == nil){
         
-        cell = [[FoodMenuCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+        cell = [[FoodMenuCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId withFrame:CGRectMake(0.f, 0.f,kDeviceScreenWidth,50 )];
         SafeAutoRelease(cell);
         
     }

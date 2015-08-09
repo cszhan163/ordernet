@@ -16,6 +16,8 @@
 
 #import "OrderStatusView.h"
 
+#import "ZHPickView.h"
+
 #define kLeftPendingX           10.f
 
 #define kItemPendingY           20.f
@@ -24,12 +26,13 @@
 
 @interface DinnerWaitingViewController () {
 
-    UIView      *orderStatusView;
+    OrderStatusView      *orderStatusView;
     UILabel     *_orderIDLabel;
     UILabel     *_orderTimeLabel;
     UITableView *_tableView;
+    NSInteger   _timerCount;
 }
-
+@property (nonatomic, strong)NSTimer *timer;
 @end
 
 @implementation DinnerWaitingViewController
@@ -57,6 +60,31 @@
 
 }
 
+- (void)startTimerByWaitingTime {
+    [self stopTimer];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(updateWatingTimer:) userInfo:nil repeats:YES];
+    
+}
+
+- (void)stopTimer{
+
+    [self.timer invalidate];
+    self.timer = nil;
+}
+
+- (void)updateWatingTimer:(id)userInfo {
+
+    _timerCount = _timerCount-1;
+    if(_timerCount <=0 ){
+        _timerCount = 0.f;
+        [self stopTimer];
+    } else {
+    
+        
+    }
+     [orderStatusView.timerLabel setText:[NSString stringWithFormat:@"%02ld:%02ld",_timerCount/60,_timerCount%60]];
+}
+
 - (void)initUIView {
 
     CGFloat currY = offsetY+kItemPendingY;
@@ -67,6 +95,7 @@
     orderStatusView =  [[OrderStatusView alloc]initWithFrame:CGRectMake(kLeftPendingX,currY,kDeviceScreenWidth-2*kLeftPendingX,orderStarusHeight)];
     orderStatusView.backgroundColor = [UIColor whiteColor];
     [contentView addSubview:orderStatusView];
+    orderStatusView.delegate = self;
     orderStatusView.layer.cornerRadius = 5.f;
     SafeRelease(orderStatusView);
 
@@ -141,7 +170,10 @@
     self.dataArray = self.orderItem.menuData;
     _orderTimeLabel.text = self.orderItem.orderTime;
     _orderIDLabel.text = self.orderItem.orderId;
+    _timerCount = self.orderItem.arriveTime*60.f;
+    [self startTimerByWaitingTime];
     [_tableView reloadData];
+
 }
 
 - (void)didButtonPress:(id)sender {
@@ -286,6 +318,51 @@
         //        [self.navigationController pushViewController:bidMainVc animated:YES];
         //        SafeRelease(bidMainVc);
     }
+}
+
+- (void)didPressActionButton:(id)sender withType:(ActionType)type {
+
+    if(type == ActionTimer){
+
+        [self startChooseArriveTime];
+        
+    } else {
+    
+        
+    }
+
+}
+
+
+- (void)startChooseArriveTime {
+
+    NSMutableArray *totalCountArray = [NSMutableArray array];
+    for (int i = 0;i<120;i++){
+        
+        [totalCountArray addObject:[NSString stringWithFormat:@"%d 分",i]];
+    }
+    //if(_pickview == nil)
+    {
+        ZHPickView *_pickview=[[ZHPickView alloc] initPickviewWithArray:totalCountArray isHaveNavControler:NO];
+        [_pickview  setDelegate:self];
+        [_pickview setSelectorRow:0];
+        [_pickview setToolbarTitle:@"到店时间" withColor:[UIColor blackColor]];
+        [_pickview show];
+    }
+}
+
+-(void)toobarDonBtnHaveClick:(ZHPickView *)pickView resultString:(NSString *)resultString {
+    resultString = [resultString stringByReplacingOccurrencesOfString:@"分" withString:@""];
+    self.orderItem.arriveTime = [resultString integerValue];
+    
+    _timerCount = self.orderItem.arriveTime*60.f;
+    /*
+    _arriveTimeLabel.text = [NSString stringWithFormat:kArriveTimeFormat,self.orderItem.arriveTime];
+    */
+    //    if(self.orderItem.arriveTime == 0) {
+    //        _totalPersonNumLabel.text = @"已经到店";
+    //    }
+    [self startTimerByWaitingTime];
 }
 
 

@@ -58,6 +58,11 @@
 
 - (void)didButtonPress:(id)sender {
 
+    if(self.delegate && [self.delegate respondsToSelector:@selector(didPressActionButton:withType:)]){
+    
+        [self.delegate didPressActionButton:sender withType:[sender tag]];
+        
+    }
     
 }
 /*

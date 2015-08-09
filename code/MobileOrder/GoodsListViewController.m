@@ -171,6 +171,7 @@
     //[self setRightTextContent:NSLocalizedString(@"Done", @"")];
 	// Do any additional setup after loading the view.
     CGRect originRect = tweetieTableView.frame;
+    tweetieTableView.hasDownDragEffect = NO;
     originRect.origin.x = originRect.origin.x+(kDeviceScreenWidth)/4;
     originRect.size.height = originRect.size.height - kOrderPanelHeight;
     tweetieTableView.frame = originRect;
@@ -297,7 +298,7 @@
     
     [_goodsOrderMenuView setOrderDelegate:self];
     
-    [self shouldLoadOlderData:tweetieTableView];
+    [self shouldLoadNewerData:tweetieTableView];
 
     
 }
@@ -372,6 +373,10 @@
              [self.navigationController pushViewController:orderPayVCtrl animated:YES];
              SafeRelease(orderPayVCtrl);
              */
+            
+            [cardLoginVCtl dismissViewControllerAnimated:YES completion:^(){
+            }];
+            SafeRelease(navCtl);
             [self startToConfirmOrder:nil];
             
         }];
@@ -421,6 +426,11 @@
     orderItem.shopItem = shopItem;
     orderItem.consumePoints = 51.f;
     orderItem.totalPrice = _totalPrice;
+    
+    if(orderItem.personNum == 0){
+    
+        orderItem.personNum = 1;
+    }
     
     [orderConfirmCtlr setOrderItem:orderItem];
     
@@ -795,7 +805,9 @@
 #pragma mark -network
 - (void) shouldLoadNewerData:(NTESMBTweetieTableView *) tweetieTableView{
     self.pageNum = 1;
-    [self shouldLoadOlderData:tweetieTableView];
+    //[self shouldLoadOlderData:tweetieTableView];
+    MobileOrderNetDataMgr *mbNetMgr = [MobileOrderNetDataMgr getSingleTone];
+    self.request = [mbNetMgr  getProductsList:@{}];
 }
 - (void) shouldLoadOlderData:(NTESMBTweetieTableView *) tweetieTableView{
 
@@ -824,8 +836,7 @@
                            nil];
      */
     
-    MobileOrderNetDataMgr *mbNetMgr = [MobileOrderNetDataMgr getSingleTone];
-    self.request = [mbNetMgr  getProductsList:@{}];
+
 }
 - (NSString*)formartDateTime:(NSDate*)date withFormat:(NSString*)formart{
 

@@ -175,16 +175,27 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
 {
     NSLog(@"%@",[data description]);
     NSDictionary *dataDict = [data objectForKey:@"data"];
-    id userid = [dataDict objectForKey:@"userName"];
+    id userid = [dataDict objectForKey:@"mobile"];
     if([userid isKindOfClass:[NSNumber class]])
     {
         userid = [NSString stringWithFormat:@"%lld",[userid longLongValue]];
     }
+    NSMutableDictionary *finalDict = [NSMutableDictionary dictionary];
+    for(id key in dataDict) {
+        id value = [dataDict objectForKey:key];
+        if([value isKindOfClass:[NSNull class]]){
+        
+            continue;
+        } else {
+        
+            [finalDict setValue:value forKey:key];
+        }
+    }
     [AppSetting setLoginUserId:userid];
     NSString *loginUserId = [AppSetting getLoginUserId];
     //[AppSetting setLoginUserInfo:[sender requestParam]];
-    if(0){
-        [AppSetting setLoginUserDetailInfo:dataDict userId:loginUserId];
+    if(1){
+        [AppSetting setLoginUserDetailInfo:finalDict userId:loginUserId];
     }
     [ZCSNotficationMgr postMSG:kUserDidLoginOk obj:nil];
 

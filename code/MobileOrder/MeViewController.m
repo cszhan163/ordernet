@@ -13,11 +13,13 @@
 #import "SettingViewController.h"
 #import "ZCSNetClient.h"
 
+#import "CardShopLoginViewController.h"
+
 #define kPendingY    20.f
 
 #define kMeCellHeight    44.f
 
-#define kUserHeaderViewHeight   120.f
+#define kUserHeaderViewHeight   140.f
 
 #define kTableIconArray      @[@"",@"",@"",@"",@"user_setting.png"]
 
@@ -29,6 +31,7 @@
     UILabel         *_userMobileLabel;
     UIButton        *_userImageIconButton;
     UIButton        *_userLogStatusBtn;
+    BOOL            isOffset;
 }
 
 
@@ -42,6 +45,7 @@
     if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]){
         
         [self setNavgationBarTitle:kMeCenterTitle];
+        //[ZCSNotficationMgr addObserver:self call:@selector(didUserLogin:) msgName:kUserDidLoginOk];
     }
     return self;
 }
@@ -73,18 +77,21 @@
     _userImageIconButton.frame = CGRectMake((kDeviceScreenWidth-image.size.width)/2.f,kPendingY,image.size.width,image.size.height);
     [headerView addSubview:_userImageIconButton];
     [_userImageIconButton addTarget:self action:@selector(didPressUserIconAction:) forControlEvents:UIControlEventTouchUpInside];
-    UIImageAutoScaleWithFileName(image,@"user_img_default");
-    _userLogStatusBtn = [UIComUtil createButtonWithNormalBGImage:nil withHightBGImage:image withTitle:@"" withTag:1];
-    _userLogStatusBtn.frame = CGRectMake((kDeviceScreenWidth-image.size.width)/2.f,kPendingY,image.size.width,image.size.height);
-    [headerView addSubview:_userImageIconButton];
-    [_userLogStatusBtn addTarget:self action:@selector(didPressUserIconAction:) forControlEvents:UIControlEventTouchUpInside];
     
+    UIImageAutoScaleWithFileName(image,@"user_btn_h");
+    _userLogStatusBtn = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"" withTag:1];
+    _userLogStatusBtn.frame = CGRectMake((kDeviceScreenWidth-_userImageIconButton.frame.size.width)/2.f,2*kPendingY+_userImageIconButton.frame.size.height,60,20);
+    [headerView addSubview:_userLogStatusBtn];
+    [_userLogStatusBtn addTarget:self action:@selector(didPressUserLogincAction:) forControlEvents:UIControlEventTouchUpInside];
+
+    currY = currY -60.f;
     currY = currY +20.f;
-    _userNameLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:kNavBarColor withText:@"" withFrame:CGRectMake(kDeviceScreenWidth/2.f, currY, kDeviceScreenWidth/2.f, 20.f)];
+    _userNameLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:13] withTextColor:kNavBarColor withText:@"" withFrame:CGRectMake(kDeviceScreenWidth/2.f, currY, kDeviceScreenWidth/2.f, 20.f)];
     [headerView addSubview:_userNameLabel];
+    _userNameLabel.textAlignment = NSTextAlignmentLeft;
     currY = currY +20.f;
-    _userMobileLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:kNavBarColor withText:@"" withFrame:CGRectMake(kDeviceScreenWidth/2.f, currY, kDeviceScreenWidth/2.f, 20.f)];
-    
+    _userMobileLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:13] withTextColor:kNavBarColor withText:@"" withFrame:CGRectMake(kDeviceScreenWidth/2.f, currY, kDeviceScreenWidth/2.f, 20.f)];
+    _userMobileLabel.textAlignment = NSTextAlignmentLeft;
     [headerView addSubview:_userMobileLabel];
     
     
@@ -106,7 +113,10 @@
    
     if([AppSetting getLoginUserId]){
     
-        
+        NSDictionary *userData = [AppSetting getLoginUserData:[AppSetting getLoginUserId]];
+        [_userLogStatusBtn setTitle:@"注销" forState:UIControlStateNormal];
+        _userNameLabel.text = [userData objectForKey:@"userName"];
+        _userMobileLabel.text = [userData objectForKey:@"mobile"];
         [UIView animateWithDuration:0.3 animations:^(){
         
             CGRect newRect = CGRectOffset(_userImageIconButton.frame, -_userImageIconButton.frame.size.width, 0);
@@ -114,11 +124,25 @@
             _userNameLabel.hidden = NO;
             _userMobileLabel.hidden = NO;
             
+            isOffset = YES;
+            
         }];
         
     } else {
     
-        
+        [_userLogStatusBtn setTitle:@"登录" forState:UIControlStateNormal];
+        [UIView animateWithDuration:0.3 animations:^(){
+            CGFloat offset = 0.f;
+            if(isOffset){
+                offset = _userImageIconButton.frame.size.width;
+            }
+            CGRect newRect = CGRectOffset(_userImageIconButton.frame,offset, 0);
+            _userImageIconButton.frame = newRect;
+            _userNameLabel.hidden = YES;
+            _userMobileLabel.hidden = YES;
+            isOffset = NO;
+            
+        }];
     }
 }
 
@@ -139,7 +163,57 @@
 
 - (void)didPressUserIconAction:(id)sender {
 
-    [[MobileOrderNetDataMgr getSingleTone] userLogin:nil];
+    
+}
+
+- (void)didPressUserLogincAction:(id)sener {
+    if(isOffset){
+        
+        [AppSetting setLogoutUser];
+        [self updateUIByUserInfoStatus];
+        
+    } else {
+        /*
+       [[MobileOrderNetDataMgr getSingleTone] userLogin:nil];
+        kNetStartShow(@"注销中...",self.view);
+        */
+         __block UINavigationController *navCtl = nil;
+        CardShopLoginViewController *cardLoginVCtl = [[CardShopLoginViewController alloc]init];
+        
+        [cardLoginVCtl setCompleteAction:^(id sender){
+            
+            SafeRelease(navCtl);
+            /*
+             OrderPayViewController *orderPayVCtrl = [[OrderPayViewController alloc]init];
+             
+             [self.navigationController pushViewController:orderPayVCtrl animated:YES];
+             SafeRelease(orderPayVCtrl);
+             */
+            //[self startToConfirmOrder:nil];
+            [cardLoginVCtl dismissViewControllerAnimated:YES completion:^(){
+                  [self updateUIByUserInfoStatus];
+            }];
+          
+            
+        }];
+        
+        [cardLoginVCtl setCancelAction:^(id sender){
+            
+            [cardLoginVCtl dismissViewControllerAnimated:YES completion:^(){
+            }];
+            SafeRelease(navCtl);
+        }];
+        
+        navCtl = [[UINavigationController alloc]initWithRootViewController:cardLoginVCtl];
+        [navCtl setNavigationBarHidden:YES];
+        //[ZCSNotficationMgr postMSG:kPresentModelViewController obj:cardLoginVCtl];
+        [self presentViewController:navCtl animated:YES completion:^(){
+            
+        }];
+        
+        SafeRelease(cardLoginVCtl);
+
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -224,7 +298,7 @@
 
 -(void)didNetDataOK:(NSNotification*)ntf
 {
-    //kNetEnd(self.view);
+    kNetEnd(self.view);
     //NE_LOG(@"warning not implemetation net respond");
     //self.view.userInteractionEnabled = YES;
     id obj = [ntf object];
@@ -235,6 +309,18 @@
     {
         
     }
+    
+}
+/*
+- (void)didUserLogin:(NSNotification*) ntf {
+
+    [self updateUIByUserInfoStatus];
+}
+*/
+-(void)didNetDataFailed:(NSNotification*)ntf
+{
+    //NE_LOG(@"warning not implemetation net respond");
+    kNetEnd(self.view);
 }
 
 @end

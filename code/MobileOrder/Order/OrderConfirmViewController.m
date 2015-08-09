@@ -186,13 +186,13 @@
     CGFloat footerY = kLeftPendingX;
     UIView *orderFootView = [[UIView alloc]initWithFrame:CGRectMake(0.f, currY,kDeviceScreenWidth,orderHeaderHeight)];
     
-    _totalPersonNumLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX,footerY,(orderHeaderView.frame.size.width-2*kLeftPendingX)/2.f,labelHeight)];
+    _totalPersonNumLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendingX*2,footerY+kLeftPendingX/2.f,(orderHeaderView.frame.size.width-4*kLeftPendingX)/2.f,labelHeight)];
 #if TEST_UI
     _totalPersonNumLabel.backgroundColor = [UIColor redColor];
 #endif
     _totalPersonNumLabel.textAlignment = NSTextAlignmentLeft;
     
-    CGRect timeRect = CGRectOffset(_totalPersonNumLabel.frame,orderHeaderView.frame.size.width/2.f-kLeftPendingX, 0.f);
+    CGRect timeRect = CGRectOffset(_totalPersonNumLabel.frame,orderHeaderView.frame.size.width/2.f-2*kLeftPendingX, 0.f);
     _arriveTimeLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:timeRect];
 #if TEST_UI
     _arriveTimeLabel.backgroundColor = [UIColor redColor];
@@ -200,19 +200,36 @@
     _arriveTimeLabel.textAlignment = NSTextAlignmentRight;
     _arriveTimeLabel.text  = [NSString stringWithFormat:kArriveTimeFormat,self.orderItem.arriveTime];
     
-    [orderFootView addSubview:_arriveTimeLabel];
+   
     
     UIButton *personChooseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     
     [personChooseBtn addTarget:self action:@selector(personChooseAction:) forControlEvents:UIControlEventTouchUpInside];
+    personChooseBtn.backgroundColor = [UIColor whiteColor];
+    personChooseBtn.layer.borderWidth = 1.f;
+    personChooseBtn.layer.borderColor =kCommonButtonBgColor.CGColor;
+    personChooseBtn.layer.cornerRadius = 3.f;
     
-    [personChooseBtn setFrame:CGRectMake(_totalPersonNumLabel.frame.origin.x, _totalPersonNumLabel.frame.origin.y, _totalPersonNumLabel.frame.size.width*2, _totalPersonNumLabel.frame.size.height)];
+    //personChooseBtn.backgroundColor
+    [personChooseBtn setFrame:CGRectMake(_totalPersonNumLabel.frame.origin.x-kLeftPendingX, _totalPersonNumLabel.frame.origin.y-kLeftPendingX/2.f,( _totalPersonNumLabel.frame.size.width+kLeftPendingX)*2, _totalPersonNumLabel.frame.size.height+kPendingY)];
+    UIImage *image = nil;
+    UIImageAutoScaleWithFileName(image, @"title_arrow_down@2x");
+    
+    UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
+    
+    [imageView sizeToFit];
+    
+    imageView.center = personChooseBtn.center;
     
     [orderFootView addSubview:personChooseBtn];
+    [orderFootView addSubview:imageView];
+    
+    SafeRelease(imageView);
     
     //[orderHeaderView addSubview:_totalPersonNumLabel];
     
     [orderFootView addSubview:_totalPersonNumLabel];
+    [orderFootView addSubview:_arriveTimeLabel];
     
     [contentView addSubview:orderFootView];
     //[_tableView setTableFooterView:orderFootView];
@@ -234,7 +251,8 @@
     
     CGSize size = CGSizeMake(60,25);
     
-    UIImage *image = nil;
+    image = nil;
+    
     UIColor *bgColor  = nil;
     UIButton *orderBtn = [UIComUtil createButtonWithNormalBGImage:nil withHightBGImage:nil withTitle:@"确认下单" withTag:1 withTarget:self  withTouchEvent:@selector(didButtonPress:)];
     orderBtn.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -267,6 +285,7 @@
     [_tableView setTableFooterView:orderPanel];
 #endif
     SafeRelease(orderPanel);
+    
     
     _totalPersonNumLabel.text = [NSString stringWithFormat:@"就餐人数:%ld 人",self.orderItem.personNum];
     _arriveTimeLabel.text = [NSString stringWithFormat:kArriveTimeFormat,self.orderItem.arriveTime];
@@ -506,6 +525,7 @@
     {
         _pickview=[[ZHPickView alloc] initPickviewWithArray:finalArray isHaveNavControler:NO];
         [_pickview  setDelegate:self];
+        [_pickview setToolbarTitle:@"到店时间和人数" withColor:[UIColor blackColor]];
         [_pickview selectComponets:0 withRow:self.orderItem.personNum];
         [_pickview selectComponets:1 withRow:self.orderItem.arriveTime];
         [_pickview show];
@@ -547,6 +567,7 @@
     self.orderItem.orderId = [NSString stringWithFormat:@"SD12346789110%02d",rand()%100];
     self.orderItem.orderTime = @"2015年5月1日19时20分";
     self.orderItem.userItem.name = @"王某某";
+    self.orderItem.personNum = 1;
     
     [[MobileOrderNetDataMgr getSingleTone] newOrder:[self.orderItem getOrderDictionaryData]];
     

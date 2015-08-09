@@ -298,7 +298,7 @@
       
         self.request = nil;
         NE_LOG(@"%@",[data description]);
-#if 1
+#if 0
         //[self stopShowLoadingView];
         //[Ap]
         NSString *useDataString = [data objectForKey:@"dataString"];
@@ -328,6 +328,11 @@
         }
         
               //[self findpw_click:nil];
+#else
+        if(_doneBlock) {
+            
+            _doneBlock(data);
+        }
 #endif
         
     }

@@ -7,10 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef enum {
+   ActionArrived,
+   ActionTimer,
+}ActionType;
+
+
+@protocol OrderStatusActionDelegate <NSObject>
+
+- (void)didPressActionButton:(id)sender withType:(ActionType)type;
+
+@end
 
 @interface OrderStatusView : UIView
 
 
 @property (nonatomic, strong)UILabel *timerLabel;
+
+@property (nonatomic, assign)id<OrderStatusActionDelegate>       delegate;
 
 @end

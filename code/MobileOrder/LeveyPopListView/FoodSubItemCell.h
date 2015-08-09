@@ -12,14 +12,18 @@
 
 @interface FoodSubItemCell : UIBaseTableViewCell {
 
+    UILabel     *_foodNameLabel;
     UILabel     *_numberLabel;
     UILabel     *_priceLabel;
     UIButton    *_addBtn;
     UIButton    *_subBtn;
+    
 }
 
 
 @property (nonatomic, strong) NSString *foodName;
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withFrame:(CGRect)rect;
 
 - (void)setCellItem:(SubCatagoryItem*)item;
 

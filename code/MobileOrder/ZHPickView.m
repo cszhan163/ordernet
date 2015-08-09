@@ -141,7 +141,7 @@
 -(void)setUpPickView{
     
     UIPickerView *pickView=[[UIPickerView alloc] init];
-    pickView.backgroundColor=[UIColor lightGrayColor];
+    pickView.backgroundColor=[UIColor whiteColor];
     _pickerView=pickView;
     pickView.delegate=self;
     pickView.dataSource=self;
@@ -165,10 +165,10 @@
     [self addSubview:datePicker];
 }
 
-- (void)setToolbarTitle:(NSString*)text {
+- (void)setToolbarTitle:(NSString*)text  withColor:(UIColor*)color{
 
     _titleLabel.text = text;
-    
+    _titleLabel.tintColor = color;
 }
 
 -(void)setUpToolBar{

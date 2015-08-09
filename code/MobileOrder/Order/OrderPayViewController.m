@@ -197,7 +197,7 @@
         _pickview=[[ZHPickView alloc] initPickviewWithArray:totalCountArray isHaveNavControler:NO];
         [_pickview  setDelegate:self];
         [_pickview setSelectorRow:self.orderItem.arriveTime];
-        [_pickview setToolbarTitle:[NSString stringWithFormat:kArriveTimeFormat,self.orderItem.arriveTime]];
+        //[_pickview setToolbarTitle:[NSString stringWithFormat:kArriveTimeFormat,self.orderItem.arriveTime]];
         [_pickview show];
     }
     

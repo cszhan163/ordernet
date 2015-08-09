@@ -93,12 +93,14 @@
         
         CGFloat currY = 20.f;
         
-        UIButton *leftBtn = [UIComUtil createButtonWithNormalBGImageName:nil withHightBGImageName:nil withTitle:@"确定" withTag:1];
+        UIButton *leftBtn = [UIComUtil createButtonWithNormalBGImageName:@"user_btn_h" withHightBGImageName:@"user_btn_h" withTitle:@"确定" withTag:1];
+        leftBtn.backgroundColor = kCommonButtonBgColor;
         leftBtn.frame = CGRectMake(kPendingX,currY,kButtonWidth, kButtonHeight);
         [view addSubview:leftBtn];
         [leftBtn addTarget:self action:@selector(didPressButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-         UIButton *rightBtn = [UIComUtil createButtonWithNormalBGImageName:nil withHightBGImageName:nil withTitle:@"取消" withTag:0];
+         UIButton *rightBtn = [UIComUtil createButtonWithNormalBGImageName:@"user_btn_h" withHightBGImageName:@"user_btn_h" withTitle:@"取消" withTag:0];
         [rightBtn addTarget:self action:@selector(didPressButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        rightBtn.backgroundColor = kCommonButtonBgColor;
         rightBtn.frame = CGRectMake(view.frame.size.width-kPendingX-kButtonWidth,currY,kButtonWidth,kButtonHeight);
         [view addSubview:rightBtn];
         
@@ -175,11 +177,12 @@
     _bgView = [[UIView alloc]initWithFrame:rect];
     _bgView.backgroundColor = HexRGBA(0, 0, 0, 0.7);
     [_bgView addSubview:self];
+    /*
     UITapGestureRecognizer *tapGuesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
     [_bgView addGestureRecognizer:tapGuesture];
     
     SafeRelease(tapGuesture);
-    
+    */
     [keyWnd addSubview:_bgView];
     
     if (animated) {
@@ -203,8 +206,13 @@
     static NSString *cellIdentity = @"PopListViewCell";
     
     FoodSubItemCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentity];
+    CGFloat offsetY = 20.f;
+    if(kDeviceCheckIphone6){
+    
+        offsetY = 75.f;
+    }
     if (cell ==  nil) {
-        cell = SafeAutoRelease([[FoodSubItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentity]);
+        cell = SafeAutoRelease([[FoodSubItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentity withFrame:CGRectMake(0.f, 0.f,kDeviceScreenWidth-offsetY,50)]);
     }
     int row = [indexPath row];
     //cell.imageView.image = [[_options objectAtIndex:row] objectForKey:@"img"];
@@ -226,6 +234,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+#if 0
     // tell the delegate the selection
     if (self.delegate && [self.delegate respondsToSelector:@selector(leveyPopListView:didSelectedIndex:)]) {
         [self.delegate leveyPopListView:self didSelectedIndex:[indexPath row]];
@@ -233,6 +242,8 @@
     
     // dismiss self
     [self fadeOut];
+#endif
+    
 }
 
 - (void)cellDidClickOrderAddBtn:(id)sender  withNumber:(NSInteger)number {
@@ -259,7 +270,17 @@
 #pragma mark - TouchTouchTouch
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    // tell the delegate the cancellation
+    if([touches count] >=1){
+    
+        UITouch *touch = [touches allObjects][0];
+        
+        CGPoint touchPoint = [touch locationInView:self];
+        if(CGRectContainsPoint( _tableView.frame,touchPoint)){
+        
+            return;
+        }
+        
+    }
     if (self.delegate && [self.delegate respondsToSelector:@selector(leveyPopListViewDidCancel)]) {
         [self.delegate leveyPopListViewDidCancel];
     }
