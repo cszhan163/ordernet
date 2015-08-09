@@ -236,13 +236,17 @@
     
     orderPanel = [[UIView alloc]initWithFrame:CGRectMake(0.f,currY,kDeviceScreenWidth,kOrderPanelHeight)];
 //#if TEST_UI
-    orderPanel.backgroundColor = [UIColor grayColor];
+    orderPanel.backgroundColor = kOrderPanelColor;
 //#endif
     UIImage *image = nil;
     UIButton *orderBtn = [UIComUtil createButtonWithNormalBGImage:nil withHightBGImage:nil withTitle:@"下单" withTag:0 withTarget:self  withTouchEvent:@selector(didOrderPress:)];
     
     orderBtn.frame = CGRectMake(orderPanel.frame.size.width-40.f-kLeftPendingX,kOrderPanelHeight- kTopPendingY-25.f,40.f,25.f);
+#if TEST_UI
     orderBtn.backgroundColor = [UIColor redColor];
+#else
+    orderBtn.backgroundColor  = kCommonButtonBgColor;
+#endif
     [orderPanel addSubview:orderBtn];
     
     UIImageAutoScaleWithFileName(image, @"book_arrow_up@2x");
@@ -251,9 +255,10 @@
     showOrderBtn = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"" withTag:0 withTarget:self  withTouchEvent:@selector(showOrderMenu:)];
 #if TEST_UI
     showOrderBtn.backgroundColor = [UIColor redColor];
+
 #endif
     [orderPanel addSubview:showOrderBtn];
-    CGSize size = CGSizeMake(22,22);
+    CGSize size = showOrderBtn.frame.size;//CGSizeMake(22,22);
     showOrderBtn.frame = CGRectMake(orderPanel.frame.size.width-size.width-kLeftPendingX,kTopPendingY,size.width,size.height);
     [orderPanel addSubview:showOrderBtn];
     

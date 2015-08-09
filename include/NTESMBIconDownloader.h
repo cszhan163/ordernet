@@ -23,6 +23,7 @@
 
 @property (nonatomic, retain) NSIndexPath *indexPath;
 @property (nonatomic, copy) NSString *identifier;
+@property (nonatomic,assign) NSInteger cellIndex;
 
 #ifdef USE_MODEL
 @property (nonatomic, retain) NTESMBUserModel *user;

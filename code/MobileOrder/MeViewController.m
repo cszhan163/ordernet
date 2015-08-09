@@ -24,6 +24,10 @@
 @interface MeViewController () {
 
     UITableView     *_tableView;
+    
+    UILabel         *_userNameLabel;
+    UILabel         *_userMobileLabel;
+    UIButton        *_userImageIconButton;
 }
 
 
@@ -64,10 +68,19 @@
     UIImageAutoScaleWithFileName(image,@"user_img_default");
     assert(image);
     //
-    UIButton *leftBtn = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"" withTag:1];
-    leftBtn.frame = CGRectMake((kDeviceScreenWidth-image.size.width)/2.f,kPendingY,image.size.width,image.size.height);
-    [headerView addSubview:leftBtn];
-    [leftBtn addTarget:self action:@selector(didPressUserIconAction:) forControlEvents:UIControlEventTouchUpInside];
+    _userImageIconButton = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"" withTag:1];
+    _userImageIconButton.frame = CGRectMake((kDeviceScreenWidth-image.size.width)/2.f,kPendingY,image.size.width,image.size.height);
+    [headerView addSubview:_userImageIconButton];
+    [_userImageIconButton addTarget:self action:@selector(didPressUserIconAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    currY = currY +20.f;
+    _userNameLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:kNavBarColor withText:@"" withFrame:CGRectMake(kDeviceScreenWidth/2.f, currY, kDeviceScreenWidth/2.f, 20.f)];
+    [headerView addSubview:_userNameLabel];
+    currY = currY +20.f;
+    _userMobileLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:kNavBarColor withText:@"" withFrame:CGRectMake(kDeviceScreenWidth/2.f, currY, kDeviceScreenWidth/2.f, 20.f)];
+    
+    [headerView addSubview:_userMobileLabel];
+    
     
     UIImageAutoScaleWithFileName(image,@"user_head_bg");
     assert(image);
@@ -79,8 +92,28 @@
     
     self.dataArray =  [meData objectForKey:@"data"];
     
+    [self updateUIByUserInfoStatus];
     
+}
+
+- (void)updateUIByUserInfoStatus {
+   
+    if([AppSetting getLoginUserId]){
     
+        
+        [UIView animateWithDuration:0.3 animations:^(){
+        
+            CGRect newRect = CGRectOffset(_userImageIconButton.frame, -_userImageIconButton.frame.size.width, 0);
+            _userImageIconButton.frame = newRect;
+            _userNameLabel.hidden = NO;
+            _userMobileLabel.hidden = NO;
+            
+        }];
+        
+    } else {
+    
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning {

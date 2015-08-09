@@ -18,14 +18,18 @@
  3 background (212,212,212)
  */
 
-#define  kViewBGColor                   HexRGB(212, 212,212)
+#define  kViewBGColor                       HexRGB(212, 212,212)
 
-#define  kNavBarColor                  HexRGB(241,241,241)
+#define  kNavBarColor                       HexRGB(241,241,241)
 
-#define  kNavBarTextColor              HexRGB(251,53,29)
+#define  kOrderPanelColor                   HexRGB(239,239,239)
 
-#define  kGoodCatagoryTextColor         HexRGB(0,0,0)
-#define  kGoodCatagorySelectedTextColor  HexRGB(251,53,29)
+#define  kNavBarTextColor                   HexRGB(251,53,29)
+
+#define  kGoodCatagoryTextColor             HexRGB(0,0,0)
+#define  kGoodCatagorySelectedTextColor     HexRGB(251,53,29)
+
+#define  kCommonButtonBgColor               HexRGB(205, 86, 55)
 
 
 #define  kGoodCatagoryTextFont          [UIFont systemFontOfSize:12]

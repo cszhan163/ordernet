@@ -14,7 +14,7 @@ typedef  void (^BlockWithSender)(id sender);
 @protocol UserLoginViewControllerDelegate
 
 @end
-@interface CardShopLoginViewController :UIViewController
+@interface CardShopLoginViewController :UISimpleNetBaseViewController
 {
 //    IBOutlet UITextField *txtusername;
 //    IBOutlet UITextField *txtpassword;
