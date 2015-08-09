@@ -12,7 +12,7 @@
 #import "ZCSNetClient.h"
 #import "AppSetting.h"
 
-#define  kRequestApiRoot                @"http://121.40.239.155/1.0/"
+#define  kRequestApiRoot                @"http://121.40.239.155/pxdc/1.0/"
 
 #define  kNeedLoginCode      101
 
