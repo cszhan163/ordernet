@@ -227,7 +227,7 @@
     
     
     UIView *orderPanel = [[UIView alloc]initWithFrame:CGRectMake(0.f,currY,kDeviceScreenWidth,kOrderPanelHeight)];
-    orderPanel.backgroundColor = [UIColor grayColor];
+    orderPanel.backgroundColor = kOrderPanelColor;
 #if TEST_UI
     orderPanel.backgroundColor = [UIColor greenColor];
 #endif
@@ -241,6 +241,7 @@
     orderBtn.frame = CGRectMake(orderPanel.frame.size.width-size.width-kLeftPendingX,kPendingY+5,size.width,size.height);
 #if 1 || TEST_UI
     bgColor = kCommonButtonBgColor;
+    orderBtn.backgroundColor = bgColor;
 #else
     orderBtn.backgroundColor = [UIColor redColor];
 #endif

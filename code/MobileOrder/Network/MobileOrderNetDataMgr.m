@@ -11,8 +11,8 @@
 #import "AppConfig.h"
 #import "ZCSNetClient.h"
 #import "AppSetting.h"
-#define  kRequestApiRoot                @"http://127.0.0.1:8081/1.0/"//@"http://121.40.239.155/1.0/"
-
+//#define  kRequestApiRoot                @"http://192.168.10.119:8081/pxdc/1.0/"//@"http://121.40.239.155/1.0/"
+#define  kRequestApiRoot                           @"http://121.40.239.155/pxdc/1.0/"
 #define  kNeedLoginCode      101
 
 #import <CommonCrypto/CommonDigest.h> // Need to import for CC_MD5 access

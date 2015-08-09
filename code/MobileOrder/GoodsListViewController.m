@@ -258,8 +258,8 @@
 
 #endif
     [orderPanel addSubview:showOrderBtn];
-    CGSize size = showOrderBtn.frame.size;//CGSizeMake(22,22);
-    showOrderBtn.frame = CGRectMake(orderPanel.frame.size.width-size.width-kLeftPendingX,kTopPendingY,size.width,size.height);
+    CGSize size = CGSizeMake(22,14);
+    showOrderBtn.frame = CGRectMake(orderPanel.frame.size.width-size.width-2*kLeftPendingX,kTopPendingY,size.width,size.height);
     [orderPanel addSubview:showOrderBtn];
     
     
@@ -872,7 +872,7 @@
             [goodsTitleArray addObject:[item objectForKey:@"name"]];
             NSArray *catagoryArray = [item objectForKey:@"products"];
             if(catagoryArray == nil || [catagoryArray isKindOfClass:[NSNull class]])
-                return;
+                continue;
             NSMutableArray *catagoryItemsArray = [NSMutableArray array];
             for(int i = 0;i<[catagoryArray count]; i++){
                 

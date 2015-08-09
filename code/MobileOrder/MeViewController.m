@@ -28,6 +28,7 @@
     UILabel         *_userNameLabel;
     UILabel         *_userMobileLabel;
     UIButton        *_userImageIconButton;
+    UIButton        *_userLogStatusBtn;
 }
 
 
@@ -72,6 +73,11 @@
     _userImageIconButton.frame = CGRectMake((kDeviceScreenWidth-image.size.width)/2.f,kPendingY,image.size.width,image.size.height);
     [headerView addSubview:_userImageIconButton];
     [_userImageIconButton addTarget:self action:@selector(didPressUserIconAction:) forControlEvents:UIControlEventTouchUpInside];
+    UIImageAutoScaleWithFileName(image,@"user_img_default");
+    _userLogStatusBtn = [UIComUtil createButtonWithNormalBGImage:nil withHightBGImage:image withTitle:@"" withTag:1];
+    _userLogStatusBtn.frame = CGRectMake((kDeviceScreenWidth-image.size.width)/2.f,kPendingY,image.size.width,image.size.height);
+    [headerView addSubview:_userImageIconButton];
+    [_userLogStatusBtn addTarget:self action:@selector(didPressUserIconAction:) forControlEvents:UIControlEventTouchUpInside];
     
     currY = currY +20.f;
     _userNameLabel = [UIComUtil createLabelWithFont:[UIFont systemFontOfSize:14] withTextColor:kNavBarColor withText:@"" withFrame:CGRectMake(kDeviceScreenWidth/2.f, currY, kDeviceScreenWidth/2.f, 20.f)];
