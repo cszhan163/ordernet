@@ -19,6 +19,7 @@
 #import "MeViewController.h"
 
 #import "DinnerWaitingViewController.h"
+#import "FoodOrderListViewController.h"
 
 #import "OrderItem.h"
 
@@ -191,13 +192,41 @@
 - (void)didStartDinner:(id)data {
 
     
+    kNetStartShow(@"获取等餐信息中", self.view);
     
     
-    DinnerWaitingViewController *waitingViewCtrl = [[DinnerWaitingViewController alloc]init];
-    waitingViewCtrl.orderItem = self.orderItem;
-    [self.navigationController pushViewController:waitingViewCtrl animated:YES];
-    SafeRelease(waitingViewCtrl);
+    [[UserDinnerWatingMgr sharedInstance] startGetOrderListByStatus:Order_Pay];
+    [[UserDinnerWatingMgr sharedInstance] setNetDoneBlock:^(id data){
+        id dataArray = [data objectForKey:@"data"];
     
+        if([dataArray count]){
+            kNetEnd(self.view);
+            NSDictionary *orderDict = dataArray[0];
+#if 1
+            OrderItem *item = [[OrderItem alloc]initWithDictionary:orderDict];
+            self.orderItem = item;
+            SafeRelease(item);
+#endif
+            DinnerWaitingViewController *waitingViewCtrl = [[DinnerWaitingViewController alloc]init];
+            waitingViewCtrl.orderItem = self.orderItem;
+            [self.navigationController pushViewController:waitingViewCtrl animated:YES];
+            SafeRelease(waitingViewCtrl);
+        } else {
+        
+#if 0
+            kNetEndSuccStr(@"您还没有等餐信息，获取订单列表中",self.view);
+            
+            FoodOrderListViewController *foodOrderListVCtrl = [[FoodOrderListViewController alloc]init];
+            [self.navigationController pushViewController:foodOrderListVCtrl animated:YES];
+            SafeRelease(foodOrderListVCtrl);
+#else
+            kUIAlertViewNoDelegate(@"提示", @"您还没有定餐!!");
+#endif
+            
+        }
+        
+    }];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {

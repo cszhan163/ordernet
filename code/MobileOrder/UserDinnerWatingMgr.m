@@ -25,6 +25,12 @@ static UserDinnerWatingMgr *staticInstance = nil;
     return staticInstance;
 }
 
+- (void)dealloc {
+    self.netDoneBlock = nil;
+    self.netFailedBlcok = nil;
+    SuperDealloc;
+}
+
 - (id)init {
 
     if(self = [super init]){
@@ -45,7 +51,7 @@ static UserDinnerWatingMgr *staticInstance = nil;
     [[MobileOrderNetDataMgr getSingleTone] getWaitingOrderList:@{@"status":[NSString stringWithFormat:@"%ld",status]}];
 }
 
-- (void)startCheckDinnerWaitingByOrderId:(NSString*)orderId {
+- (void)startCheckDinnerWaitingByOrderId:(long long)orderId {
 
     
 }
@@ -53,6 +59,10 @@ static UserDinnerWatingMgr *staticInstance = nil;
 
 -(void)didNetDataOK:(NSNotification*)ntf
 {
+    
+}
+
+- (void)didNetWorkOK:(NSNotification*) ntf {
 
     id obj = [ntf object];
     id respRequest = [obj objectForKey:@"request"];
@@ -81,9 +91,30 @@ static UserDinnerWatingMgr *staticInstance = nil;
         //            self.pageNum = self.pageNum +1;
         //[self performSelectorOnMainThread:@selector(updateUIData:) withObject:data waitUntilDone:NO];
         
+        if(self.netDoneBlock) {
+            
+            self.netDoneBlock(data);
+        }
+
     }
 }
 
+- (void)didNetWorkFailed:(NSNotification*) ntf {
+
+    id obj = [ntf object];
+    id respRequest = [obj objectForKey:@"request"];
+    id objData = [obj objectForKey:@"data"];
+    NSString *resKey = [respRequest resourceKey];
+    //NSString *resKey = [respRequest resourceKey];
+    if([resKey isEqualToString:@"waitingOrderList"]){
+    
+        if(self.netFailedBlcok) {
+        
+            self.netFailedBlcok(nil);
+        }
+    }
+    
+}
 
 
 @end

@@ -8,8 +8,6 @@
 
 #import "OrderConfirmViewController.h"
 
-
-
 @interface DinnerWaitingViewController : OrderConfirmViewController
 
 @end

@@ -10,18 +10,20 @@
 
 #import "OrderItem.h"
 
-typedef void (^CompleteBlock)(BOOL isOk);
+typedef void (^CompleteBlock)(id data);
 
 @interface UserDinnerWatingMgr : NSObject
 
 
-@property (nonatomic ,copy) CompleteBlock doneBlock;
+@property (nonatomic ,copy) CompleteBlock netDoneBlock;
+
+@property (nonatomic, copy) CompleteBlock netFailedBlcok;
 
 + (instancetype)sharedInstance;
 
 
 - (void)startGetOrderListByStatus:(OrderStatus) status;
 
-- (void)startCheckDinnerWaitingByOrderId:(NSString*)orderId;
+- (void)startCheckDinnerWaitingByOrderId:(long long)orderId;
 
 @end

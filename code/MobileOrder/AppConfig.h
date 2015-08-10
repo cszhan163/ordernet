@@ -40,8 +40,8 @@
 
 #define  kUIAlertView(y,x)  UIAlertView *alertErr = [[UIAlertView alloc]initWithTitle:y message:x delegate:nil cancelButtonTitle:NSLocalizedString(@"确定",nil) otherButtonTitles:nil, nil];[alertErr show];alertErr.tag=9900;SafeAutoRelease(alertErr);
 
-#define kUIAlertViewNoDelegate(y,x) UIAlertView *alertErr = [[[UIAlertView alloc]initWithTitle:y message:x delegate:nil cancelButtonTitle:NSLocalizedString(@"确定",nil) otherButtonTitles:nil, nil]autorelease];[alertErr show];alertErr.tag=9900;
-#define  kUIAlertConfirmView(title,msg,left,right)  UIAlertView *alertErr = [[[UIAlertView alloc]initWithTitle:title message:msg delegate:self cancelButtonTitle:left otherButtonTitles:right,nil]autorelease];[alertErr show];
+#define kUIAlertViewNoDelegate(y,x) UIAlertView *alertErr = [[UIAlertView alloc]initWithTitle:y message:x delegate:nil cancelButtonTitle:NSLocalizedString(@"确定",nil) otherButtonTitles:nil, nil];[alertErr show];alertErr.tag=9900;SafeAutoRelease(alertErr);
+#define  kUIAlertConfirmView(title,msg,left,right)  UIAlertView *alertErr = [[UIAlertView alloc]initWithTitle:title message:msg delegate:self cancelButtonTitle:left otherButtonTitles:right,nil];[alertErr show];SafeAutoRelease(alertErr);
 
 ////if all the button is the same ,the offset should be all 0
 //#define kTabAllItemTextCenterXOffset    @"3,-1,-3"

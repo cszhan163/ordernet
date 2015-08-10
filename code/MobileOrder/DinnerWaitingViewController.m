@@ -169,7 +169,7 @@
     
     self.dataArray = self.orderItem.menuData;
     _orderTimeLabel.text = self.orderItem.orderTime;
-    _orderIDLabel.text = self.orderItem.orderId;
+    _orderIDLabel.text = self.orderItem.orderIdName;
     _timerCount = self.orderItem.arriveTime*60.f;
     [self startTimerByWaitingTime];
     [_tableView reloadData];

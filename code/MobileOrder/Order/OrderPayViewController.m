@@ -246,7 +246,7 @@
     Order *order = [[Order alloc] init];
     order.partner = partner;
     order.seller = seller;
-    order.tradeNO = self.orderItem.orderId; //订单ID（由商家自行制定）
+    order.tradeNO = self.orderItem.orderIdName; //订单ID（由商家自行制定）
     order.productName = self.orderItem.shopItem.name; //商品标题
     order.productDescription = self.orderItem.shopItem.description; //商品描述
     order.amount = [NSString stringWithFormat:@"%.2f",self.orderItem.payPrice]; //商品价格

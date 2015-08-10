@@ -40,7 +40,7 @@ typedef NS_ENUM(NSInteger,OrderStatus){
 
 @property (nonatomic, strong) UserItem *userItem;
 
-@property (nonatomic, strong) NSString  *orderId;
+@property (nonatomic, strong) NSString  *orderIdName;
 
 @property (nonatomic, strong) NSString  *orderTime;
 
@@ -50,9 +50,13 @@ typedef NS_ENUM(NSInteger,OrderStatus){
 
 @property (nonatomic, assign) CGFloat payPrice;
 
+@property (nonatomic, assign) long long  orderId;
+
 @property (nonatomic, assign) NSInteger arriveTime;
 
 @property (nonatomic, assign) OrderStatus status;
+
+- (id)initWithDictionary:(NSDictionary*)orderDict;
 
 - (NSDictionary*)getOrderDictionaryData;
 

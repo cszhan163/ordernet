@@ -8,6 +8,11 @@
 
 #import "OrderItem.h"
 #import "GoodsCatagoryItem.h"
+
+#import "NSDate+Ex.h"
+
+
+#define  kOrderDateFormat @"YYYY年MM月dd日hh时mm分"
 @implementation ShopItem
 
 - (id)initWithDictonary:(NSDictionary*)item {
@@ -33,6 +38,123 @@
 
 @implementation OrderItem
 
+- (id)initWithDictionary:(NSDictionary*)orderDict {
+
+    /*
+     *arriveTime = 1439606879000;
+     arriveTimes = "<null>";
+     comment = "<null>";
+     createTime = 1439210461000;
+     diningId = 1;
+     id = 1;
+     integral = 0;
+     modifyTime = 1439210461000;
+     orderDetail =             (
+     {
+     createTime = 1439210461000;
+     id = 1;
+     integration = 0;
+     modifyTime = 1439210461000;
+     num = 1;
+     orderId = 1;
+     product = "<null>";
+     productId = 7;
+     productPrice = 20;
+     queuNum = "<null>";
+     status = 1;
+     taste = "<null>";
+     tasteId = 1;
+     tastePrice = 2;
+     totalPrice = 22;
+     },
+     {
+     createTime = 1439210461000;
+     id = 2;
+     integration = 0;
+     modifyTime = 1439210461000;
+     num = 1;
+     orderId = 1;
+     product = "<null>";
+     productId = 7;
+     productPrice = 20;
+     queuNum = "<null>";
+     status = 1;
+     taste = "<null>";
+     tasteId = 2;
+     tastePrice = 2;
+     totalPrice = 22;
+     },
+     {
+     createTime = 1439210461000;
+     id = 3;
+     integration = 0;
+     modifyTime = 1439210461000;
+     num = 1;
+     orderId = 1;
+     product = "<null>";
+     productId = 7;
+     productPrice = 20;
+     queuNum = "<null>";
+     status = 1;
+     taste = "<null>";
+     tasteId = 3;
+     tastePrice = 2;
+     totalPrice = 22;
+     },
+     {
+     createTime = 1439210461000;
+     id = 4;
+     integration = 0;
+     modifyTime = 1439210461000;
+     num = 1;
+     orderId = 1;
+     product = "<null>";
+     productId = 7;
+     productPrice = 20;
+     queuNum = "<null>";
+     status = 1;
+     taste = "<null>";
+     tasteId = 4;
+     tastePrice = 6;
+     totalPrice = 26;
+     }
+     );
+     paySerialNum = alibabaSn1111;
+     payType = 1;
+     peopleCount = 1;
+     queueNum = 1;
+     rate = "<null>";
+     serialNum = O2015810201439210461801v;
+     status = 1;
+     totalPrice = 92;
+     userId = 1;
+     },
+     */
+    
+    if(self = [super init]) {
+    
+        self.orderId = [[orderDict objectForKey:@"id"] longLongValue];
+        self.orderIdName = @"O20158102014";//[orderDict objectForKey:@"serialNum"];
+        long long timeInterval = [[orderDict objectForKey:@"createTime"] longLongValue];
+        NSDate *orderDate = [NSDate dateWithTimeIntervalSince1970:timeInterval/1000];
+        self.orderTime = [NSDate formartDateTime:orderDate  withFormat:kOrderDateFormat];
+        
+        NSArray *orderProductArray = [orderDict objectForKey:@"orderDetail"];
+        
+        NSMutableArray *goodsOrderItemArray = [NSMutableArray array];
+#if 0
+        for (NSDictionary *item in orderProductArray){
+            GoodsName *goodName = [orderDict objectForKey:@""]
+            GoodsOrderItem = [[GoodsOrderItem alloc]initWithGoodsName:];
+            
+        }
+#endif
+        self.menuData = goodsOrderItemArray;
+        self.personNum = [[orderDict objectForKey:@"peopleCount"] integerValue];
+        self.totalPrice =[[orderDict objectForKey:@"totalPrice"]floatValue];
+    }
+    return self;
+}
 
 - (NSDictionary*)getOrderDictionaryData {
 
