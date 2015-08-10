@@ -46,13 +46,29 @@
      "paySerialNum": "2",
      "orderDetail":[{"price":5,"totalPrice":10,"num":2,"status":1,"productId":1}]
      }
+     {
+     "arriveTimes": 3600000,
+     "peopleCount": 2,
+     "orderDetail": [
+     {
+     "productId": "3",
+     "tasteId": "",
+     "num": "2"
+     },
+     {
+     "productId": "4",
+     "tasteId": "",
+     "num": "1"
+     }
+     ]
+     }
      */
     NSMutableDictionary *postDict = [NSMutableDictionary dictionary];
-    [postDict setValue:self.orderId forKey:@"serialNum"];
-    [postDict setValue:[NSString stringWithFormat:@"%0.2lf",self.totalPrice]  forKey:@"totalPrice"];
-    [postDict setValue:@"1" forKey:@"status"];
-    [postDict setValue:@"1" forKey:@"payType"];
-    [postDict setValue:@"3" forKey:@"paySerialNum"];
+    //[postDict setValue:self.orderId forKey:@"serialNum"];
+    //[postDict setValue:[NSString stringWithFormat:@"%0.2lf",self.totalPrice]  forKey:@"totalPrice"];
+    [postDict setValue:@"1" forKey:@"peopleCount"];
+    [postDict setValue:@"0" forKey:@"arriveTimes"];
+    //[postDict setValue:@"3" forKey:@"paySerialNum"];
 
     NSMutableArray *dataArray = [NSMutableArray array];
     for(GoodsOrderItem *orderItem in self.menuData){
@@ -63,8 +79,8 @@
             [dataArray addObject:@{
                                    @"num":[NSString stringWithFormat:@"%ld",item.number],
                                    @"productId":[NSString stringWithFormat:@"%ld",item.itemId],
-                                   @"catagoryId":[NSString stringWithFormat:@"%ld",item.catagoryId],
-                                   @"status":@"1",
+                                   //@"catagoryId":[NSString stringWithFormat:@"%ld",item.catagoryId],
+                                   //@"status":@"1",
                                    @"tasteId":[NSString stringWithFormat:@"%ld",item.tasteId]}
              ];
         }

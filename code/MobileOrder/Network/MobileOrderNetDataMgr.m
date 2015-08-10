@@ -11,8 +11,7 @@
 #import "AppConfig.h"
 #import "ZCSNetClient.h"
 #import "AppSetting.h"
-//#define  kRequestApiRoot                @"http://192.168.10.119:8081/pxdc/1.0/"//@"http://121.40.239.155/1.0/"
-#define  kRequestApiRoot                           @"http://121.40.239.155/pxdc/1.0/"
+
 #define  kNeedLoginCode      101
 
 #import <CommonCrypto/CommonDigest.h> // Need to import for CC_MD5 access
@@ -77,42 +76,10 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
                                                @"product/list", @"getgoodslist",
                                                @"dining/list",    @"getdinglist",
                                                @"user", @"getuserInfo",
-                                               @"order",@"neworder",
-                                               
-                                               @"search_goodDetail",@"getGoodDetail",
-                                               @"search_orders_old",@"search_orders_old",
-                                               @"search_orders_month",@"search_orders_month",
-                                               @"search_good_ad",@"getGoodAd",
-                                               @"search_good_ad",@"getGoodMap",
-                                               @"search_category",@"search_category",
-                                               @"search_orders",@"search_orders",
-                                               @"search_ordergoods",@"search_ordergoods",
-                                               @"search_orderDetail",@"search_orderDetail",
-                                               @"search_fav",@"search_fav",
-                                               @"search_delivery",@"search_delivery",
-                                               @"pay",@"pay",
-                                               @"search_address",@"search_address",
-                                               @"add_address",@"add_address",
-                                               @"edit_address",@"edit_address",
-                                               
-                                               @"search_province",@"search_province",
-                                               @"search_city",@"search_city",
-                                               @"search_good_map",@"search_good_map",
-                                               
-                                               @"delete_order",@"delete_order",
-                                               @"update",       @"update",
-                                               @"getsms",       @"getsms",
-                                               @"update_contacts",@"update_contacts",
-                                               @"getsmsfindpassword",@"getsmsfindpassword",
-                                               @"findpassword",@"findpassword",
-                                               
-                                               @"new_order",    @"new_order",
-                                               @"search_ad",@"search_ad",
-                                               @"search_good_ad",@"search_good_ad",
-                                               @"search_good_map",@"search_good_map",
-                                               @"update_userico",@"update_userico",
-                                              @"search_deliveryDetail",@"search_deliveryDetail",
-                                               @"",@"opensession",
+                                               @"neworder",@"neworder",
+                                               @"realtime",@"realtime",
+                                               @"order/list",@"orderList",
+                                               @"order/list",@"waitingOrderList",
                                                
                                                nil];
         dressMemoInterfaceMgr.requestResourceDict = requestResouceMapDict;
@@ -567,6 +534,35 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
                                               withMethod:@"POST"
                                                 withData:YES withRawData:postData];
 }
+
+- (id)getRealTimeOrder:(NSDictionary*) param {
+
+    return [dressMemoInterfaceMgr startAnRequestByResKey:@"realtime"
+                                               needLogIn:YES
+                                               withParam:nil
+                                              withMethod:@"GET"
+                                                withData:NO];
+    
+}
+
+- (id)getOrderList:(NSDictionary*) param {
+
+    return [dressMemoInterfaceMgr startAnRequestByResKey:@"orderList"
+                                               needLogIn:YES
+                                               withParam:nil
+                                              withMethod:@"GET"
+                                                withData:NO];
+}
+
+- (id)getWaitingOrderList:(NSDictionary*)param {
+    
+    return [dressMemoInterfaceMgr startAnRequestByResKey:@"waitingOrderList"
+                                               needLogIn:YES
+                                               withParam:param
+                                              withMethod:@"GET"
+                                                withData:NO];
+}
+
 - (id)getDingList:(NSDictionary*)param {
     
     return [dressMemoInterfaceMgr startAnRequestByResKey:@"getdinglist"

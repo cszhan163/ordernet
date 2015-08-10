@@ -210,6 +210,8 @@
     if(kDeviceCheckIphone6){
     
         offsetY = 75.f;
+    }else if(kDeviceCheckIphone6Plus) {
+        offsetY = 125.f;
     }
     if (cell ==  nil) {
         cell = SafeAutoRelease([[FoodSubItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentity withFrame:CGRectMake(0.f, 0.f,kDeviceScreenWidth-offsetY,50)]);

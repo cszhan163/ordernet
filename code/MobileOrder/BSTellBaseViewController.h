@@ -35,4 +35,6 @@
 
 - (void)setLeftNavigationBarItem;
 
+- (void)didNetDataOK:(NSNotification*) ntf;
+
 @end

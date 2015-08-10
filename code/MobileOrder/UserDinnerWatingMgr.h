@@ -8,9 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+#import "OrderItem.h"
+
+typedef void (^CompleteBlock)(BOOL isOk);
+
 @interface UserDinnerWatingMgr : NSObject
 
+
+@property (nonatomic ,copy) CompleteBlock doneBlock;
+
 + (instancetype)sharedInstance;
+
+
+- (void)startGetOrderListByStatus:(OrderStatus) status;
 
 - (void)startCheckDinnerWaitingByOrderId:(NSString*)orderId;
 

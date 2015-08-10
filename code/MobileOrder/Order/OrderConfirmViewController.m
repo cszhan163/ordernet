@@ -569,7 +569,28 @@
     self.orderItem.userItem.name = @"王某某";
     self.orderItem.personNum = 1;
     
+#if 0
     [[MobileOrderNetDataMgr getSingleTone] newOrder:[self.orderItem getOrderDictionaryData]];
+#else 
+    NSError *error = nil;
+    NSData *data = [NSJSONSerialization dataWithJSONObject:[self.orderItem getOrderDictionaryData] options:NSJSONWritingPrettyPrinted error:&error];
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kRequestApiRoot,@"order"]];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
+    [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [urlRequest setHTTPMethod:@"POST"];
+    [urlRequest setHTTPBody:data];
+    
+    //NSURLConnection *connet = [NSURLConnection connectionWithRequest:urlRequest delegate:self];
+    //[connet start];
+     NSURLResponse *respond = nil;
+    data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&respond error:&error];
+    NSString *respondStr = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+    //[self didNetDataOK:<#(NSNotification *)#>]
+    NSLog(@"%@",respondStr);
+    NSDictionary *retDictData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves error:&error];
+    [ZCSNotficationMgr postMSG:kZCSNetWorkOK obj:retDictData];
+#endif
     
 }
 
