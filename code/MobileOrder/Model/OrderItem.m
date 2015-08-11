@@ -145,12 +145,23 @@
 #if 1
         for (NSDictionary *itemDict in orderProductArray){
             
-            NSString *goodName = [itemDict objectForKey:@"product"];
+            id product = [itemDict objectForKey:@"product"];
+            NSString *goodName = nil;
+            if([product isKindOfClass:[NSDictionary class]]){
+            
+                goodName = [product objectForKey:@"name"];
+            }
             if(goodName ==nil || [goodName isKindOfClass:[NSNull class]]){
                 goodName = @"菜品名";
             }
             SubCatagoryItem *subItem = [[SubCatagoryItem alloc]init];
-            NSString *tasteName = [itemDict objectForKey:@"taste"];
+            id taste = [itemDict objectForKey:@"taste"];
+            
+            NSString *tasteName = nil;
+            if([taste isKindOfClass:[NSDictionary class]]){
+                
+                tasteName = [taste objectForKey:@"name"];
+            }
             if(tasteName ==nil || [tasteName isKindOfClass:[NSNull class]]){
                 tasteName = @"口味名";
             }
