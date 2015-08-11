@@ -56,7 +56,7 @@
 
 - (void)startLoadListData {
 
-    [[MobileOrderNetDataMgr getSingleTone] getOrderList:@{@"status":@"1"}];
+    [[MobileOrderNetDataMgr getSingleTone] getOrderList:nil];
 }
 
 - (void)didReceiveMemoryWarning {
