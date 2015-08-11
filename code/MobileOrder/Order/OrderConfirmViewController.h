@@ -12,6 +12,7 @@
 
 @interface OrderConfirmViewController : BSTellBaseViewController {
 
+      UITableView *_tableView;
       
 }
 

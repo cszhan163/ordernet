@@ -18,6 +18,8 @@
 
 #import "ZHPickView.h"
 
+#import "UserDinnerWatingMgr.h"
+
 #define kLeftPendingX           10.f
 
 #define kItemPendingY           20.f
@@ -54,16 +56,24 @@
     //[self setLeftNavigationBarItem];
 
 }
+
+
+
+#pragma mark -
+#pragma mark - waitingTime check
+
 - (void)startNetWork {
     
-
-
+    [self startDinnerWaitingCheck];
 }
 
 - (void)startTimerByWaitingTime {
+    if(self.orderItem.status != Order_Pay){
+        NE_LOG(@"no need to checker Order status !!");
+        return;
+    }
     [self stopTimer];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(updateWatingTimer:) userInfo:nil repeats:YES];
-    
 }
 
 - (void)stopTimer{
@@ -85,6 +95,46 @@
      [orderStatusView.timerLabel setText:[NSString stringWithFormat:@"%02ld:%02ld",_timerCount/60,_timerCount%60]];
 }
 
+- (void)startDinnerWaitingCheck {
+    
+    if(self.orderItem.status == Order_Pay){
+        
+        __block typeof(self)  weakSelf = self;
+        [[UserDinnerWatingMgr  sharedInstance] startDinnerWaitingCheck:self.orderItem];
+        [[UserDinnerWatingMgr  sharedInstance] setNetDoneBlock:^(id data){
+        
+            [weakSelf updateUIData:[data objectForKey:@"data"]];
+        }];
+    }
+}
+
+
+#pragma mark -
+#pragma mark - UI
+
+- (void)updateUIData:(id)netData{
+     kNetEnd(self.view);
+    //NSMutableArray *resultData = [NSMutableArray array];
+    //for(id orderItem in netData)
+    id data = nil;
+    if([netData isKindOfClass:[NSArray class]])
+    {
+        if([netData count]){
+            data = netData[0];
+        }
+        //[resultData addObject:item];
+    } else {
+        data = netData;
+    }
+    OrderItem *item = [[OrderItem alloc]initWithDictionary:data];
+    self.orderItem = item;
+    SafeRelease(item);
+    [self updateUIView];
+   
+}
+
+
+
 - (void)initUIView {
 
     CGFloat currY = offsetY+kItemPendingY;
@@ -99,8 +149,6 @@
     orderStatusView.layer.cornerRadius = 5.f;
     SafeRelease(orderStatusView);
 
-    
-    
     CGFloat orderHeaderHeight = 80.f;
     
     UIView *orderHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0.f, 0,kDeviceScreenWidth-2*kLeftPendingX,orderHeaderHeight)];
@@ -179,7 +227,7 @@
 - (void)didButtonPress:(id)sender {
 
     UserFeedBackViewController *feedBackCtrl = [[UserFeedBackViewController alloc]init];
-    
+    feedBackCtrl.orderItem = self.orderItem;
     [self.navigationController pushViewController:feedBackCtrl animated:YES];
     SafeRelease(feedBackCtrl);
     
@@ -308,7 +356,8 @@
 -(void)didSelectorTopNavigationBarItem:(id)sender{
     
     if([sender tag] == 0) {
-        
+        [self stopTimer];
+        [[UserDinnerWatingMgr sharedInstance] stopTimer];
         [self.navigationController popViewControllerAnimated:YES];
     }
     
@@ -333,6 +382,8 @@
 
 }
 
+#pragma mark -
+#pragma mark - UI ChooseArrive
 
 - (void)startChooseArriveTime {
 

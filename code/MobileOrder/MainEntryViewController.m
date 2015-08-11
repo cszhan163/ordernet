@@ -225,6 +225,10 @@
             
         }
         
+    } ];
+    
+    [[UserDinnerWatingMgr sharedInstance] setNetFailedBlcok:^(id data){
+        kNetEnd(self.view);
     }];
 
 }

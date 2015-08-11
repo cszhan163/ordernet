@@ -10,7 +10,19 @@
 
 #define kLeftPendingX   10.f
 
+@interface UserFeedBackViewController(){
+
+    UITextView *textView;
+}
+@end
+
 @implementation UserFeedBackViewController
+
+- (void)dealloc {
+
+    self.orderItem = nil;
+    SuperDealloc;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     
@@ -35,7 +47,7 @@
     UIImage *image = nil;
     CGFloat textViewHeight = 200.f;
     
-    UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake(kLeftPendingX, currY, kDeviceScreenWidth-2*kLeftPendingX,textViewHeight)];
+    textView = [[UITextView alloc]initWithFrame:CGRectMake(kLeftPendingX, currY, kDeviceScreenWidth-2*kLeftPendingX,textViewHeight)];
     
     textView.editable = YES;
     textView.text = @"";
@@ -61,6 +73,58 @@
 
 - (void)didButtonPress:(id)sender {
 
-    
+    if([textView.text isEqualToString:@""] ){
+        kUIAlertViewNoDelegate(@"提示", @"评论不许为空!!");
+        return;
+    }
+    kNetStartShow(@"发送中...", self.view);
+    [[MobileOrderNetDataMgr getSingleTone] newOrderCommnent:@{@"orderId":[NSString stringWithFormat:@"%lld",self.orderItem.orderId],@"comment":textView.text}];
 }
+
+
+-(void)didNetDataOK:(NSNotification*)ntf
+{
+    //return;
+    [super didNetDataOK:ntf];
+    
+    id obj = [ntf object];
+    id respRequest = [obj objectForKey:@"request"];
+    id objData = [obj objectForKey:@"data"];
+    NSString *resKey = [respRequest resourceKey];
+    //NSString *resKey = [respRequest resourceKey];
+    if([resKey isEqualToString:@"newComment"])
+    {
+        //        if ([self.externDelegate respondsToSelector:@selector(commentDidSendOK:)]) {
+        //            [self.externDelegate commentDidSendOK:self];
+        //        }
+                  kNetEndSuccStr(@"评论成功",self.view);
+        //        [self dismissModalViewControllerAnimated:YES];
+#if 0
+        [self reloadNetData:data];
+#else
+        //        if([[data objectForKey:@"data"] count]<10.f){
+        //            isRefreshing = YES;
+        //        }
+        
+        NSDictionary *data = objData;
+#endif
+        //self.dataArray = [data objectForKey:@"data"];
+        //        if([[data objectForKey:@"data"]count])
+        //            self.pageNum = self.pageNum +1;
+        [self performSelectorOnMainThread:@selector(updateUIData:) withObject:data waitUntilDone:NO];
+        
+    }
+}
+
+- (void)updateUIData:(NSDictionary*)netData{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    kNetEnd(self.view);
+}
+-(void)didNetDataFailed:(NSNotification*)ntf
+{
+    //kNetEndWithErrorAutoDismiss
+}
+
+
 @end

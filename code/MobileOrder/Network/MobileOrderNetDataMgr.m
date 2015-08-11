@@ -76,10 +76,11 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
                                                @"product/list", @"getgoodslist",
                                                @"dining/list",    @"getdinglist",
                                                @"user", @"getuserInfo",
-                                               @"neworder",@"neworder",
+                                               @"order",@"neworder",
                                                @"realtime",@"realtime",
                                                @"order/list",@"orderList",
                                                @"order/list",@"waitingOrderList",
+                                               @"order",@"newComment",
                                                
                                                nil];
         dressMemoInterfaceMgr.requestResourceDict = requestResouceMapDict;
@@ -549,7 +550,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
 
     return [dressMemoInterfaceMgr startAnRequestByResKey:@"orderList"
                                                needLogIn:YES
-                                               withParam:nil
+                                               withParam:param
                                               withMethod:@"GET"
                                                 withData:NO];
 }
@@ -561,6 +562,16 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
                                                withParam:param
                                               withMethod:@"GET"
                                                 withData:NO];
+}
+
+- (id)newOrderCommnent:(NSDictionary*) param  {
+
+    return [dressMemoInterfaceMgr startAnRequestByResKey:@"newComment"
+                                               needLogIn:YES
+                                               withParam:param
+                                              withMethod:@"PUT"
+                                                withData:NO];
+    
 }
 
 - (id)getDingList:(NSDictionary*)param {

@@ -50,8 +50,13 @@
     }
     self.dataArray = data;
 #endif
-    
+    [self startLoadListData];
     // Do any additional setup after loading the view.
+}
+
+- (void)startLoadListData {
+
+    [[MobileOrderNetDataMgr getSingleTone] getOrderList:@{@"status":@"1"}];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -179,6 +184,55 @@
         //        [self.navigationController pushViewController:bidMainVc animated:YES];
         //        SafeRelease(bidMainVc);
     }
+}
+
+-(void)didNetDataOK:(NSNotification*)ntf
+{
+    kNetEnd(self.view);
+    //NE_LOG(@"warning not implemetation net respond");
+    //self.view.userInteractionEnabled = YES;
+    id obj = [ntf object];
+    ZCSNetClient *respRequest = [obj objectForKey:@"request"];
+    id resultData = [obj objectForKey:@"data"];
+    NSString *resKey = [respRequest resourceKey];
+    if(resKey == @"orderList")
+    {
+        NE_LOG(@"orderList:%@",[resultData description]);
+        
+        id itemDict = [resultData objectForKey:@"data"];
+        
+        [self updateUIData:itemDict];
+    }
+    
+}
+
+- (void)updateUIData:(NSDictionary*)netData{
+    
+    NSMutableArray *resultData = [NSMutableArray array];
+    for(id orderItem in netData) {
+        
+        OrderItem *item = [[OrderItem alloc]initWithDictionary:orderItem];
+        SafeRelease(item);
+        
+        [resultData addObject:item];
+        
+    }
+    self.dataArray = resultData;
+    
+    [tweetieTableView reloadData];
+    
+    kNetEnd(self.view);
+}
+/*
+ - (void)didUserLogin:(NSNotification*) ntf {
+ 
+ [self updateUIByUserInfoStatus];
+ }
+ */
+-(void)didNetDataFailed:(NSNotification*)ntf
+{
+    //NE_LOG(@"warning not implemetation net respond");
+    kNetEnd(self.view);
 }
 
 

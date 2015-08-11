@@ -54,5 +54,7 @@
 #define kMeCenterTitle      @"个人中心"
 #define kOrderListTitle     @"我的订单"
 
+#define kConfirmOrderNetIndicText   @"订单生成中..."
+
 
 #endif

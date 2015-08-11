@@ -44,8 +44,7 @@
     
     UILabel *_totalPersonNumLabel;
     UILabel *_arriveTimeLabel;
-    
-    UITableView *_tableView;
+
     ZHPickView*  _pickview;
 }
 
@@ -83,7 +82,7 @@
 
 - (void)startNetWork {
 
-    [self startNewOrder];
+    //[self startNewOrder];
 }
 
 - (void)initUIView {
@@ -304,13 +303,8 @@
         case 1: {
             
 #if 1
+            [self startNewOrder];
             
-            OrderPayViewController *orderPayVCtrl = [[OrderPayViewController alloc]init];
-            orderPayVCtrl.orderItem = self.orderItem;
-            [self.navigationController pushViewController:orderPayVCtrl animated:YES];
-            SafeRelease(orderPayVCtrl);
-            
-            return;
 #endif
             
         }
@@ -479,6 +473,14 @@
     }
 }
 
+- (void)didMoveToOrderPay{
+
+    OrderPayViewController *orderPayVCtrl = [[OrderPayViewController alloc]init];
+    orderPayVCtrl.orderItem = self.orderItem;
+    [self.navigationController pushViewController:orderPayVCtrl animated:YES];
+    SafeRelease(orderPayVCtrl);
+}
+
 #pragma mark -
 
 #pragma mark - Order Menu
@@ -564,12 +566,22 @@
         "orderDetail":[{"price":5,"totalPrice":10,"num":2,"status":1,"productId":1}]
     }
     */
+    if(self.orderItem.arriveTime == 0){
+    
+        kUIAlertConfirmView(@"提示", @"您还未选择到点时间,是否已到店?",@"没有", @"到店");
+        return;
+    }
+    
+    kNetStartShow(kConfirmOrderNetIndicText, self.view);
+    
+#if 0
     self.orderItem.orderId = [NSString stringWithFormat:@"SD12346789110%02d",rand()%100];
     self.orderItem.orderTime = @"2015年5月1日19时20分";
     self.orderItem.userItem.name = @"王某某";
     self.orderItem.personNum = 1;
+#endif
     
-#if 0
+#if 1
     [[MobileOrderNetDataMgr getSingleTone] newOrder:[self.orderItem getOrderDictionaryData]];
 #else 
     NSError *error = nil;
@@ -599,7 +611,6 @@
     //return;
     [super didNetDataOK:ntf];
     
-    
     id obj = [ntf object];
     id respRequest = [obj objectForKey:@"request"];
     id objData = [obj objectForKey:@"data"];
@@ -627,6 +638,16 @@
         [self performSelectorOnMainThread:@selector(updateUIData:) withObject:data waitUntilDone:NO];
         
     }
+    
+    if([resKey isEqualToString:@"neworder"])
+    {
+        kNetEnd(self.view);
+        NSLog(@"order data:%@",[objData objectForKey:@"data"]);
+        self.orderItem.orderId = [[objData objectForKey:@"id"] longLongValue];
+        //self.orderItem.
+        
+    }
+
 }
 
 - (void)updateUIData:(NSDictionary*)netData{
@@ -634,6 +655,7 @@
 }
 -(void)didNetDataFailed:(NSNotification*)ntf
 {
+    kNetEnd(self.view);
     //kNetEndWithErrorAutoDismiss
 }
 

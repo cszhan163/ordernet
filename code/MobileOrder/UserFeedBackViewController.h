@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 
 #import "BSTellBaseViewController.h"
+#import "OrderItem.h"
 
 @interface UserFeedBackViewController :BSTellBaseViewController
 
+@property (nonatomic, strong)OrderItem *orderItem;
 
 @end

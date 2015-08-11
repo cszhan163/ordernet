@@ -13,12 +13,12 @@
 @interface OrderListItemCell : UIBaseTableViewCell
 
 @property(nonatomic,strong)IBOutlet UILabel *foodNameLabel;
-
 @property(nonatomic,strong)IBOutlet UILabel *numberLabel;
 @property(nonatomic,strong)IBOutlet UILabel *priceLabel;
 
 @property (nonatomic, strong) NSString *foodName;
 
+@property (nonatomic, strong) SubCatagoryItem *item;
 
 
 - (void)setCellItem:(SubCatagoryItem*)item;

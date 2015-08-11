@@ -13,8 +13,8 @@
 
 
 //#define  kRequestApiRoot                @"http://192.168.10.119:8081/pxdc/1.0/"//@"http://121.40.239.155/1.0/"
-#define  kRequestApiRoot                           @"http://121.40.239.155/pxdc/1.0/"
-//#define  kRequestApiRoot                           @"http://192.168.15.119:8081/pxdc/1.0/"
+//#define  kRequestApiRoot                           @"http://121.40.239.155/pxdc/1.0/"
+#define  kRequestApiRoot                           @"http://192.168.15.119:8081/pxdc/1.0/"
 
 
 @interface MobileOrderNetDataMgr : NSObject<ZCSNetClientNetInterfaceMgrDataSource,
@@ -36,6 +36,8 @@ ZCSNetClientNetInterfaceMgrDelegate>
 
 - (id)getOrderList:(NSDictionary*) param ;
 - (id)getWaitingOrderList:(NSDictionary*)param;
+
+- (id)newOrderCommnent:(NSDictionary*) param ;
 
 -(id)userInfoUpdate:(NSDictionary*)param;
 -(id)userResignRandomCode:(NSDictionary*)param;

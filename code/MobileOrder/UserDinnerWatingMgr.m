@@ -8,8 +8,17 @@
 
 #import "UserDinnerWatingMgr.h"
 
+#define kDinnerWaitingCheck   10.f
 
+@interface UserDinnerWatingMgr(){
 
+}
+
+@property (nonatomic ,strong) NSTimer *timer;
+
+@property (nonatomic, strong) OrderItem *orderItem;
+
+@end
 
 static UserDinnerWatingMgr *staticInstance = nil;
 
@@ -28,6 +37,8 @@ static UserDinnerWatingMgr *staticInstance = nil;
 - (void)dealloc {
     self.netDoneBlock = nil;
     self.netFailedBlcok = nil;
+    [self stopTimer];
+    self.orderItem = nil;
     SuperDealloc;
 }
 
@@ -38,6 +49,8 @@ static UserDinnerWatingMgr *staticInstance = nil;
         [ZCSNotficationMgr addObserver:self call:@selector(didNetWorkOK:) msgName:kZCSNetWorkOK];
         [ZCSNotficationMgr addObserver:self call:@selector(didNetWorkFailed:) msgName:
          kZCSNetWorkRespondFailed];
+        [ZCSNotficationMgr addObserver:self call:@selector(didNetWorkFailed:) msgName:kZCSNetWorkConnectionFailed];
+        [ZCSNotficationMgr addObserver:self call:@selector(didNetWorkFailed:) msgName:kZCSNetWorkRequestFailed];
 
     }
     return self;
@@ -51,14 +64,34 @@ static UserDinnerWatingMgr *staticInstance = nil;
     [[MobileOrderNetDataMgr getSingleTone] getWaitingOrderList:@{@"status":[NSString stringWithFormat:@"%ld",status]}];
 }
 
-- (void)startCheckDinnerWaitingByOrderId:(long long)orderId {
 
+- (void)dinnerWaitingTimer:(id)userInfo{
+
+    [self startCheckDinnerWaitingByOrderId:0];
     
 }
 
+- (void)stopTimer {
 
--(void)didNetDataOK:(NSNotification*)ntf
-{
+    [self.timer invalidate];
+    self.timer = nil;
+}
+
+- (void)startDinnerWaitingCheck:(OrderItem*) orderItem {
+
+    self.orderItem = orderItem;
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:kDinnerWaitingCheck target:self selector:@selector(dinnerWaitingTimer:) userInfo:nil repeats:YES];
+}
+
+- (void)startCheckDinnerWaitingByOrderId:(long long)orderId {
+
+    [[MobileOrderNetDataMgr getSingleTone] getRealTimeOrder:nil];
+}
+
+
+
+-(void)didNetDataOK:(NSNotification*)ntf {
     
 }
 
@@ -94,6 +127,21 @@ static UserDinnerWatingMgr *staticInstance = nil;
         if(self.netDoneBlock) {
             
             self.netDoneBlock(data);
+            self.netFailedBlcok = nil;
+            //self.netDoneBlock = nil;
+        }
+        
+
+    }
+    if([resKey isEqualToString:@"realtime"]) {
+    
+        NSDictionary *data = objData;
+        NSLog(@"realTimer OrderData:%@",[data description]);
+        
+        if(self.netDoneBlock) {
+            
+            self.netDoneBlock(data);
+            self.netFailedBlcok = nil;
         }
 
     }
@@ -106,11 +154,13 @@ static UserDinnerWatingMgr *staticInstance = nil;
     id objData = [obj objectForKey:@"data"];
     NSString *resKey = [respRequest resourceKey];
     //NSString *resKey = [respRequest resourceKey];
-    if([resKey isEqualToString:@"waitingOrderList"]){
+    //if([resKey isEqualToString:@"waitingOrderList"])
+    {
     
         if(self.netFailedBlcok) {
         
             self.netFailedBlcok(nil);
+            self.netDoneBlock = nil;
         }
     }
     

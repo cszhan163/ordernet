@@ -7,9 +7,7 @@
 //
 
 #import "UIBaseTableViewCell.h"
-@class SubCatagoryItem;
-
-
+#import "GoodsCatagoryItem.h"
 @interface FoodSubItemCell : UIBaseTableViewCell {
 
     UILabel     *_foodNameLabel;

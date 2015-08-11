@@ -56,6 +56,8 @@ typedef NS_ENUM(NSInteger,OrderStatus){
 
 @property (nonatomic, assign) OrderStatus status;
 
+@property (nonatomic, assign) NSInteger  queueNum;
+
 - (id)initWithDictionary:(NSDictionary*)orderDict;
 
 - (NSDictionary*)getOrderDictionaryData;

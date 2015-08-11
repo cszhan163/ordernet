@@ -11,7 +11,7 @@
 
 @interface OrderListItemCell()
 
-@property (nonatomic, strong) SubCatagoryItem *item;
+
 
 @end
 

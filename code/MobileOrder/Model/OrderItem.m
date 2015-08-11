@@ -142,17 +142,36 @@
         NSArray *orderProductArray = [orderDict objectForKey:@"orderDetail"];
         
         NSMutableArray *goodsOrderItemArray = [NSMutableArray array];
-#if 0
-        for (NSDictionary *item in orderProductArray){
-            GoodsName *goodName = [orderDict objectForKey:@""]
-            GoodsOrderItem = [[GoodsOrderItem alloc]initWithGoodsName:];
+#if 1
+        for (NSDictionary *itemDict in orderProductArray){
             
+            NSString *goodName = [itemDict objectForKey:@"product"];
+            if(goodName ==nil || [goodName isKindOfClass:[NSNull class]]){
+                goodName = @"菜品名";
+            }
+            SubCatagoryItem *subItem = [[SubCatagoryItem alloc]init];
+            NSString *tasteName = [itemDict objectForKey:@"taste"];
+            if(tasteName ==nil || [tasteName isKindOfClass:[NSNull class]]){
+                tasteName = @"口味名";
+            }
+            subItem.name =  tasteName;
+            subItem.price = [[itemDict objectForKey:@"tastePrice"] floatValue];
+            subItem.basePrice = [[itemDict objectForKey:@"productPrice"] floatValue];
+            id value = [itemDict objectForKey:@"queuNum"];
+            if(![value isKindOfClass:[NSNull class]]){
+                subItem.queueNum = [value integerValue];
+            }
+            subItem.number = [[itemDict objectForKey:@"num"]integerValue];
+            GoodsOrderItem *goodOrderItem = [[GoodsOrderItem alloc]initWithGoodsName:goodName withCatagoryItem:subItem];
+            [goodsOrderItemArray addObject:goodOrderItem];
         }
 #endif
         self.menuData = goodsOrderItemArray;
         self.personNum = [[orderDict objectForKey:@"peopleCount"] integerValue];
-        self.totalPrice =[[orderDict objectForKey:@"totalPrice"]floatValue];
-    }
+        self.payPrice =[[orderDict objectForKey:@"totalPrice"]floatValue];
+        self.status = [[orderDict objectForKey:@"status"]integerValue];
+        self.queueNum = [[orderDict objectForKey:@"queueNum"]integerValue];
+            }
     return self;
 }
 

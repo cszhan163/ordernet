@@ -21,6 +21,9 @@ typedef void (^CompleteBlock)(id data);
 
 + (instancetype)sharedInstance;
 
+- (void)stopTimer;
+
+- (void)startDinnerWaitingCheck:(OrderItem*) orderItem;
 
 - (void)startGetOrderListByStatus:(OrderStatus) status;
 
