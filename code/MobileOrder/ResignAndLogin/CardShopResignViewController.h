@@ -16,5 +16,11 @@
 @property(nonatomic,retain)IBOutlet UITextField *passwordTextFied;
 @property(nonatomic,retain)IBOutlet UITextField *confirmPasswordTextFied;
 @property(nonatomic,retain)NSString *mobilePhoneNumStr;
+
+@property (nonatomic,strong) IBOutlet UIButton *radomCodeBtn;
+
 -(IBAction)goBack:(id)sender;
+
+- (IBAction)reflushRandomCodeImage:(id)sender;
+
 @end

@@ -9,6 +9,8 @@
 #import "CardShopResignViewController.h"
 //#import "AppDelegate.h"
 #import "AppConfig.h"
+#import "DressMemoPhotoCache.h"
+#import "MemoPhotoDownloader.h"
 @interface CardShopResignViewController ()
 
 @end
@@ -61,8 +63,6 @@
     self.view = nibArray[index];
     }
 
-    
-    
     self.view.backgroundColor = kViewBGColor;
     UIScrollView *bgScrollerView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.f,0.f, kDeviceScreenWidth, kDeviceScreenHeight-kMBAppStatusBar)];
     for(id item in [self.view subviews]){
@@ -110,6 +110,7 @@
     self.radomCodeTextFied.inputAccessoryView = bgView;
     mobilePhoneTextFied.delegate = self;
     // Do any additional setup after loading the view from its nib.
+    [self startLoadRandomCodeImage];
 }
 - (void)doneInput{
     [self.radomCodeTextFied resignFirstResponder];
@@ -138,9 +139,14 @@
     int count=[delegate.navi.viewControllers  count ]-1;
 	[delegate.navi popToViewController: [self.navigationController.viewControllers objectAtIndex: count-1] animated:YES];
     */
-    
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (IBAction)reflushRandomCodeImage:(id)sender {
+
+    [self startLoadRandomCodeImage];
+}
+
 -(IBAction)login_click:(id)sender
 {
     
@@ -148,8 +154,9 @@
     [self.radomCodeTextFied resignFirstResponder];
     [self.passwordTextFied resignFirstResponder];
     [self.confirmPasswordTextFied resignFirstResponder];
-    if([self.mobilePhoneTextFied.text isEqualToString:@""]){
-        kUIAlertView(@"提示", @"用户名不能为空");
+    if([self.mobilePhoneTextFied.text isEqualToString:@""] || [self.mobilePhoneTextFied.text length] <11){
+        
+        kUIAlertView(@"提示", @"手机号码输入不对");
         [self.mobilePhoneTextFied becomeFirstResponder];
         return;
     }
@@ -158,9 +165,9 @@
         [self.passwordTextFied becomeFirstResponder];
         return;
     }
-    if(![self.radomCodeTextFied.text isEqualToString:@""]&&[self.radomCodeTextFied.text length]<11)
+    if([self.radomCodeTextFied.text isEqualToString:@""])
     {
-        kUIAlertView(@"提示", @"手机号码输入不对");
+       kUIAlertView(@"提示", @"验证码不能为空");
         [self.radomCodeTextFied becomeFirstResponder];
         return;
     }
@@ -178,11 +185,11 @@
 {
     //if([self check])
     if(type == 0){
-        //kNetStartShow(@"注册中...",self.view);
+        kNetStartShow(@"注册中...",self.view);
     }
     else
     {
-        //kNetStartShow(@"发送中...",self.view);
+        kNetStartShow(@"发送中...",self.view);
     }
     MobileOrderNetDataMgr *cardShopMgr = [MobileOrderNetDataMgr getSingleTone];
     
@@ -190,16 +197,20 @@
     if(type == 0)
     {
         param = [NSDictionary dictionaryWithObjectsAndKeys:
-                           self.mobilePhoneTextFied.text,@"name",
+                           self.mobilePhoneTextFied.text,@"mobile",
                            self.passwordTextFied.text,@"password",
-                           self.confirmPasswordTextFied.text,@"repassword",
+                           //self.confirmPasswordTextFied.text,@"repassword",
                            nil];
         NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:param];
-        if(![self.radomCodeTextFied.text isEqualToString:@""]&&[self.radomCodeTextFied.text length] == 11){
-            [dict setValue:self.radomCodeTextFied.text forKey:@"phoneNumber"];
+        if(![self.radomCodeTextFied.text isEqualToString:@""]){
+            [dict setValue:self.radomCodeTextFied.text forKey:@"captcha"];
          }
+        /**
+         userName, String password, String mobile
+         */
         //self.radomCodeTextFied.text,@"phoneNumber",
-         //self.request = [cardShopMgr  carUserRegister:dict];
+         self.request = [cardShopMgr  userResign:dict];
+        
     }
     else
     {
@@ -225,25 +236,28 @@
     id obj = [ntf object];
     id respRequest = [obj objectForKey:@"request"];
     id _data = [obj objectForKey:@"data"];
-    NSString *resKey = [obj objectForKey:@"key"];//[respRequest resourceKey];
-    if(self.request == respRequest&&([resKey isEqualToString:kCarUserRegister]|| [resKey isEqualToString:@"findpassword"]))
+    NSString *resKey = [respRequest resourceKey];
+    if(self.request == respRequest&&([resKey isEqualToString:kNetResignRes]|| [resKey isEqualToString:@"findpassword"]))
     {
         self.request = nil;
         kNetEnd(self.view);
-        if([[_data objectForKey:@"retType"]intValue] == 0){
+        //if([[_data objectForKey:@"retType"]intValue] == 0)
+        {
             //[AppSetting setLoginUserInfo:param];
-#if 0
+#if 1
             [AppSetting setLoginUserId:self.mobilePhoneTextFied.text];
             [AppSetting setLoginUserPassword:self.passwordTextFied.text];
 #endif
             NE_LOG(@"%@",[_data description]);
             //[self stopShowLoadingView];
             //[Ap]
-            
+            /*
             [ZCSNotficationMgr postMSG:kCheckCardRecentRun obj:nil];
             [ZCSNotficationMgr postMSG:kDisMissModelViewController obj:nil];
+            */
         }
-        else{
+        //else
+        {
             kUIAlertView(@"提示", @"注册失败,用户名已存在");
         }
     }
@@ -254,8 +268,8 @@
       id obj = [ntf object];
     id respRequest = [obj objectForKey:@"request"];
     id _data = [obj objectForKey:@"data"];
-    NSString *resKey = [obj objectForKey:@"key"];//[respRequest resourceKey];
-    if([resKey isEqualToString:kCarUserRegister]){
+    NSString *resKey = [respRequest resourceKey];
+    if([resKey isEqualToString:kNetResignRes]){
         kNetEnd(self.view);
         kUIAlertView(@"提示",@"网络错误");
     }
@@ -277,4 +291,40 @@
     [textField resignFirstResponder];
     return YES;
 }
+
+- (void)startLoadRandomCodeImage {
+
+    NSString *randURLStr = [NSString stringWithFormat:@"%@/account/captcha.html",kRequestApiRoot];
+    NTESMBIconDownloader *_downloader = [[NTESMBIconDownloader alloc]initWithUrlString:randURLStr];
+    _downloader.delegate = self;
+    _downloader.cellIndex = index;
+    [[NTESMBServer getInstance] addRequest:_downloader];
+    SafeRelease(_downloader);
+}
+
+#pragma mark -
+#pragma mark -
+
+- (void) requestCompleted:(MemoPhotoDownloader *) request{
+    //if (request == _downloader)
+    {
+        if(request.receiveData){
+            //[[NTESMBLocalImageStorage getInstance] saveImageDataToOriginalDir:request.receiveData urlString:request.urlString];
+        }
+        
+        UIImage *image = [UIImage imageWithData:request.receiveData];
+        
+        [self.radomCodeBtn setImage:image forState:UIControlStateNormal];
+        [self.radomCodeBtn setImage:image forState:UIControlStateSelected];
+        
+    }
+    request.delegate = nil;
+    request = nil;
+}
+
+- (void) requestFailed:(MemoPhotoDownloader *) request{
+    
+    
+}
+
 @end

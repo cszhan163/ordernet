@@ -7,10 +7,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardShopResignViewController">
             <connections>
-                <outlet property="mobilePhoneTextFied" destination="16" id="21"/>
+                <outlet property="mobilePhoneTextFied" destination="1ci-xi-RCX" id="eYs-hN-LWm"/>
                 <outlet property="navTitleLabel" destination="14" id="27"/>
-                <outlet property="passwordTextFied" destination="18" id="22"/>
-                <outlet property="radomCodeTextFied" destination="17" id="23"/>
+                <outlet property="passwordTextFied" destination="euQ-9H-MO0" id="vAy-wu-4Po"/>
+                <outlet property="radomCodeBtn" destination="Ms0-l1-yKc" id="cwh-tv-Ffy"/>
+                <outlet property="radomCodeTextFied" destination="QXg-yJ-tJX" id="sfO-ZM-tie"/>
                 <outlet property="view" destination="1" id="tQH-Oo-xpa"/>
             </connections>
         </placeholder>
@@ -119,7 +120,7 @@
                     <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uRx-hQ-1S5">
-                    <rect key="frame" x="209" y="198" width="81" height="30"/>
+                    <rect key="frame" x="209" y="198" width="90" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                     <state key="normal" title="点击获取验证码">
@@ -130,7 +131,7 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="goBack:" destination="-1" eventType="touchUpInside" id="N65-xa-rmr"/>
+                        <action selector="reflushRandomCodeImage:" destination="-1" eventType="touchUpInside" id="59N-hN-sem"/>
                     </connections>
                 </button>
             </subviews>
@@ -194,7 +195,7 @@
                     <textInputTraits key="textInputTraits" returnKeyType="done"/>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入验证码" minimumFontSize="17" id="QXg-yJ-tJX" userLabel="RandomCode">
-                    <rect key="frame" x="29" y="198" width="159" height="31"/>
+                    <rect key="frame" x="29" y="198" width="204" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -209,7 +210,7 @@
                     </connections>
                 </textField>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="用户注册" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="Bix-X9-2tr">
-                    <rect key="frame" x="74" y="11" width="172" height="21"/>
+                    <rect key="frame" x="21" y="11" width="335" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -224,21 +225,6 @@
                     <nil key="highlightedColor"/>
                     <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ms0-l1-yKc">
-                    <rect key="frame" x="273" y="206" width="81" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
-                    <state key="normal" title="点击获取验证码">
-                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <state key="highlighted">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="goBack:" destination="-1" eventType="touchUpInside" id="Dkt-PL-eg9"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="T1D-WK-k5J">
                     <rect key="frame" x="21" y="360" width="335" height="42"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -252,6 +238,21 @@
                     </state>
                     <connections>
                         <action selector="login_click:" destination="-1" eventType="touchUpInside" id="iz3-Re-YDO"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ms0-l1-yKc">
+                    <rect key="frame" x="266" y="206" width="90" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                    <state key="normal" title="点击获取验证码">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="reflushRandomCodeImage:" destination="-1" eventType="touchUpInside" id="Mxa-1j-t2Z"/>
                     </connections>
                 </button>
             </subviews>

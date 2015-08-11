@@ -88,6 +88,8 @@
     
     self.view = loginView;
     
+    self.view.backgroundColor = kViewBGColor;
+    
 
     
     NSString  *username=@"";
@@ -230,7 +232,7 @@
     [self.navigationController pushViewController:frmobj animated:YES];
     SafeRelease(frmobj);
     
-    [ZCSNotficationMgr postMSG:kUserDidLoginCancel obj:nil];
+    //[ZCSNotficationMgr postMSG:kUserDidLoginCancel obj:nil];
 }
 
 -(void)startLogin

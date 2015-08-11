@@ -38,7 +38,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <state key="normal" title="登录" backgroundImage="user_btn_h.png">
-                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <state key="highlighted">
@@ -57,7 +57,7 @@
                         <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="findpw_click:" destination="-1" eventType="touchUpInside" id="4Sw-fO-Vh1"/>
+                        <action selector="findpw_click:" destination="-1" eventType="touchUpInside" id="Wt6-nH-QT1"/>
                     </connections>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入帐号" minimumFontSize="17" id="1Mb-Ms-qaz">
@@ -97,8 +97,8 @@
                     <rect key="frame" x="0.0" y="16" width="320" height="49"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="1" green="0.35496319068116067" blue="0.18248098201943752" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自动登录" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Hqb-YE-dJa">
@@ -174,24 +174,20 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" red="1" green="0.35496319069999999" blue="0.18248098200000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <color key="backgroundColor" red="0.001273030877" green="0.60563979570000004" blue="0.92741593069999995" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="tintColor" red="0.001273030877" green="0.60563979570000004" blue="0.92741593069999995" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="logo.png" id="34">
-                    <rect key="frame" x="121" y="86" width="112" height="39"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="14">
                     <rect key="frame" x="241" y="328" width="100" height="41"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <state key="normal" title="登录" backgroundImage="user_btn_h.png">
-                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <state key="highlighted">
@@ -283,6 +279,7 @@
                     </state>
                     <connections>
                         <action selector="findpw_click:" destination="1" eventType="touchUpInside" id="Srf-2e-DU6"/>
+                        <action selector="findpw_click:" destination="-1" eventType="touchUpInside" id="UWa-ln-H3w"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="16" userLabel="return">
@@ -300,6 +297,10 @@
                         <action selector="cancelLogin:" destination="-1" eventType="touchUpInside" id="oi0-RR-wug"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="logo.png" id="34">
+                    <rect key="frame" x="131" y="86" width="112" height="39"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -314,42 +315,38 @@
             <point key="canvasLocation" x="-91.5" y="656.5"/>
         </view>
         <view contentMode="scaleToFill" id="l4F-n1-z0v" userLabel="view_Iphone6PLus" customClass="LoginView">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" id="Xlg-To-JNI">
-                    <rect key="frame" x="0.0" y="17" width="375" height="49"/>
+                    <rect key="frame" x="0.0" y="17" width="414" height="49"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.001273030877" green="0.60563979570000004" blue="0.92741593069999995" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="tintColor" red="0.001273030877" green="0.60563979570000004" blue="0.92741593069999995" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="logo.png" id="iWC-8b-phb">
-                    <rect key="frame" x="121" y="86" width="112" height="39"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="54Q-hz-0eU">
-                    <rect key="frame" x="0.0" y="17" width="375" height="49"/>
+                    <rect key="frame" x="0.0" y="17" width="414" height="49"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="1" green="0.35496319069999999" blue="0.18248098200000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="login_bg.png" id="874-G5-kLq">
-                    <rect key="frame" x="68" y="199" width="273" height="40"/>
+                    <rect key="frame" x="88" y="199" width="273" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="login_bg.png" id="Lls-Yz-NYz">
-                    <rect key="frame" x="68" y="262" width="273" height="38"/>
+                    <rect key="frame" x="88" y="262" width="273" height="38"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="elf-iV-9ey">
-                    <rect key="frame" x="241" y="328" width="100" height="41"/>
+                    <rect key="frame" x="261" y="328" width="100" height="41"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <state key="normal" title="登录" backgroundImage="user_btn_h.png">
-                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <state key="highlighted">
@@ -360,8 +357,8 @@
                         <action selector="login_click:" destination="l4F-n1-z0v" eventType="touchUpInside" id="f4O-WQ-hsP"/>
                     </connections>
                 </button>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Oq4-Ne-mGH">
-                    <rect key="frame" x="99" y="401" width="78" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Oq4-Ne-mGH">
+                    <rect key="frame" x="119" y="401" width="78" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" title="忘记密码?">
@@ -369,12 +366,13 @@
                         <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
+                        <action selector="findpw_click:" destination="-1" eventType="touchUpInside" id="L8x-eo-IvO"/>
                         <action selector="findpw_click:" destination="l4F-n1-z0v" eventType="touchUpInside" id="NFP-9O-I7o"/>
                         <action selector="regist_click:" destination="-1" eventType="touchUpInside" id="fuT-9D-RUL"/>
                     </connections>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入帐号" minimumFontSize="17" id="G4u-mF-aYQ">
-                    <rect key="frame" x="71" y="200" width="283" height="38"/>
+                    <rect key="frame" x="91" y="200" width="283" height="38"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -384,7 +382,7 @@
                     </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" minimumFontSize="17" id="sS4-2m-kcS">
-                    <rect key="frame" x="70" y="266" width="221" height="31"/>
+                    <rect key="frame" x="90" y="266" width="221" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -395,26 +393,26 @@
                     </connections>
                 </textField>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="账号" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Fr0-QB-ZC8">
-                    <rect key="frame" x="21" y="205" width="42" height="21"/>
+                    <rect key="frame" x="41" y="205" width="42" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="密码" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="afc-F4-2Gu">
-                    <rect key="frame" x="21" y="271" width="42" height="21"/>
+                    <rect key="frame" x="41" y="271" width="42" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自动登录" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zpE-gj-2Hy">
-                    <rect key="frame" x="115" y="338" width="68" height="21"/>
+                    <rect key="frame" x="135" y="338" width="68" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fL9-s7-efz" userLabel="user_auto">
-                    <rect key="frame" x="93" y="342" width="16" height="13"/>
+                    <rect key="frame" x="113" y="342" width="16" height="13"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" title="Button" image="user_auto_no.png" backgroundImage="user_auto_no.png">
@@ -424,8 +422,8 @@
                         <action selector="autoLoginClick:" destination="l4F-n1-z0v" eventType="touchUpInside" id="I15-A5-SBQ"/>
                     </connections>
                 </button>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mZD-uS-A7I">
-                    <rect key="frame" x="239" y="405" width="100" height="21"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mZD-uS-A7I">
+                    <rect key="frame" x="259" y="405" width="100" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" title="注册">
@@ -453,10 +451,14 @@
                         <action selector="cancelLogin:" destination="l4F-n1-z0v" eventType="touchUpInside" id="Y2k-91-cij"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="logo.png" id="iWC-8b-phb">
+                    <rect key="frame" x="156" y="88" width="112" height="39"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
             <inset key="insetFor6xAndEarlier" minX="0.0" minY="-20" maxX="0.0" maxY="20"/>
             <connections>
                 <outlet property="autoLoginBtn" destination="fL9-s7-efz" id="gI1-KO-TBC"/>
@@ -464,7 +466,7 @@
                 <outlet property="txtpassword" destination="sS4-2m-kcS" id="T8c-79-tfx"/>
                 <outlet property="txtusername" destination="G4u-mF-aYQ" id="S9P-8g-vXH"/>
             </connections>
-            <point key="canvasLocation" x="-91.5" y="656.5"/>
+            <point key="canvasLocation" x="-92" y="656"/>
         </view>
         <view contentMode="scaleToFill" id="9Zt-co-DOy">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -475,7 +477,7 @@
     </objects>
     <resources>
         <image name="login_bg.png" width="640" height="960"/>
-        <image name="logo.png" width="58" height="58"/>
+        <image name="logo.png" width="555" height="91"/>
         <image name="user_auto_no.png" width="32" height="26"/>
         <image name="user_auto_yes.png" width="32" height="26"/>
         <image name="user_btn_h.png" width="502" height="82"/>
