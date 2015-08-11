@@ -218,8 +218,8 @@
     NSMutableDictionary *postDict = [NSMutableDictionary dictionary];
     //[postDict setValue:self.orderId forKey:@"serialNum"];
     //[postDict setValue:[NSString stringWithFormat:@"%0.2lf",self.totalPrice]  forKey:@"totalPrice"];
-    [postDict setValue:@"1" forKey:@"peopleCount"];
-    [postDict setValue:@"0" forKey:@"arriveTimes"];
+    [postDict setValue:[NSNumber numberWithInteger:self.personNum] forKey:@"peopleCount"];
+    [postDict setValue:[NSNumber numberWithInteger:self.arriveTime*60] forKey:@"arriveTimes"];
     //[postDict setValue:@"3" forKey:@"paySerialNum"];
 
     NSMutableArray *dataArray = [NSMutableArray array];

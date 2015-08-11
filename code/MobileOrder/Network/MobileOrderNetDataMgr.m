@@ -264,7 +264,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
         isHasData  = YES;
         
     }
-    return [dressMemoInterfaceMgr startAnRequestByResKey:@"register"
+    return [dressMemoInterfaceMgr startAnRequestByResKey:kNetResignRes
                                                needLogIn:NO
                                                withParam:param
                                               withMethod:@"POST"

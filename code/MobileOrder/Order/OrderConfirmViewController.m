@@ -644,14 +644,15 @@
         kNetEnd(self.view);
         NSLog(@"order data:%@",[objData objectForKey:@"data"]);
         self.orderItem.orderId = [[objData objectForKey:@"id"] longLongValue];
-        //self.orderItem.
-        
+        self.orderItem.orderIdName = [objData objectForKey:@"serialNum"];
+        [self didMoveToOrderPay];
     }
 
 }
 
 - (void)updateUIData:(NSDictionary*)netData{
     kNetEnd(self.view);
+    
 }
 -(void)didNetDataFailed:(NSNotification*)ntf
 {

@@ -31,6 +31,8 @@
 
 #define  kCommonButtonBgColor               HexRGB(205, 86, 55)
 
+#define  kOrderPayAndWaitingColor           HexRGB(144,200,144)
+
 
 #define  kGoodCatagoryTextFont          [UIFont systemFontOfSize:12]
 #define  kGoodsSubCatagoryTextFont          [UIFont systemFontOfSize:10]

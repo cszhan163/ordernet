@@ -182,10 +182,13 @@
 
 - (void)didOrderPayOK:(NSNotification*)ntf {
     [self.navigationController popToRootViewControllerAnimated:YES];
+#if 0
     OrderItem *orderItem = [ntf object];
     self.orderItem = orderItem;
     [[UserDinnerWatingMgr sharedInstance] startCheckDinnerWaitingByOrderId:orderItem.orderId];
+#else
     [self didStartDinner:nil];
+#endif
 }
 
 

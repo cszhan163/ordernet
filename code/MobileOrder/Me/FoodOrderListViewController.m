@@ -133,9 +133,9 @@
     
     OrderItem *item = self.dataArray[indexPath.row];
     if(item.status == Order_Pay){
-        cell.contentView.backgroundColor = [UIColor redColor];
+        cell.contentView.backgroundColor = kOrderPayAndWaitingColor;
     } else if(item.status == Order_Done){
-        cell.contentView.backgroundColor = [UIColor greenColor];
+        cell.contentView.backgroundColor = [UIColor whiteColor];
     }
     //for time
     [cell setCellItemValue:item.orderTime withRow:0 withCol:0];
