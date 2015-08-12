@@ -99,6 +99,30 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
 }
 
 #pragma mark login user data source
+
+- (NSDictionary*)getEncryptLoginData:(NSDictionary*)loginData{
+    
+    NSString *userName = @"";
+    NSString *userPassword = @"";
+    
+#if 1
+    userName = [loginData objectForKey:@"mobile"];
+    userPassword = [loginData objectForKey:@"password"];
+#else
+    userName = @"admin";
+    userPassword = @"1";
+#endif
+    
+    NSString *pasMd5Str = [userPassword getMd5String];
+    NSString *finalMd5Str = [[NSString stringWithFormat:@"%@%@",pasMd5Str,pasMd5Str] getMd5String];
+    NSDictionary *userData = [NSDictionary dictionaryWithObjectsAndKeys:
+                              userName,@"mobile",
+                              finalMd5Str,@"password",
+                              pasMd5Str,@"salt",
+                              nil]; //[
+    return userData;
+}
+
 -(NSDictionary*)getUserLoginData
 {
     
@@ -110,18 +134,18 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     
 #if 0
     NSString *loginUser = [AppSetting getLoginUserId];
-    NSDictionary *loginData = [AppSetting getLoginUserInfo];                       
-    userName = [loginData objectForKey:@"username"];
+    NSDictionary *loginData = [AppSetting getLoginUserData:loginUser];
+    userName = [loginData objectForKey:@"mobile"];
     userPassword = [loginData objectForKey:@"password"];
 #else
-    userName = @"admin";
+    userName = @"18964598396";
     userPassword = @"1";
 #endif
     
     NSString *pasMd5Str = [userPassword getMd5String];
     NSString *finalMd5Str = [[NSString stringWithFormat:@"%@%@",pasMd5Str,pasMd5Str] getMd5String];
     NSDictionary *userData = [NSDictionary dictionaryWithObjectsAndKeys:
-                              userName,@"user",
+                              userName,@"mobile",
                               finalMd5Str,@"password",
                                 pasMd5Str,@"salt",
                               nil]; //[AppSetting getLoginUserInfo:loginUser];
@@ -246,10 +270,17 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
 
 -(id)userLogin:(NSDictionary*)param
 {
+    NSDictionary *finalDict = nil;
+#if 1
     param = [self getUserLoginData];
+    finalDict = param;
+#else
+    finalDict = [self getEncryptLoginData:param];
+    
+#endif
     return [dressMemoInterfaceMgr startAnRequestByResKey:kNetLoginRes
                                         needLogIn:NO
-                                        withParam:param
+                                        withParam:finalDict
                                        withMethod:@"POST"
                                          withData:NO];
     

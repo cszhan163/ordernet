@@ -198,7 +198,7 @@
     {
         param = [NSDictionary dictionaryWithObjectsAndKeys:
                            self.mobilePhoneTextFied.text,@"mobile",
-                           self.passwordTextFied.text,@"password",
+                           [self.passwordTextFied.text getMd5String],@"password",
                            //self.confirmPasswordTextFied.text,@"repassword",
                            nil];
         NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:param];
@@ -295,15 +295,40 @@
 - (void)startLoadRandomCodeImage {
 
     NSString *randURLStr = [NSString stringWithFormat:@"%@/account/captcha.html",kRequestApiRoot];
+#if 0
     NTESMBIconDownloader *_downloader = [[NTESMBIconDownloader alloc]initWithUrlString:randURLStr];
     _downloader.delegate = self;
     _downloader.cellIndex = index;
     [[NTESMBServer getInstance] addRequest:_downloader];
     SafeRelease(_downloader);
+#else
+    NSError *error = nil;
+    NSData *data =  nil;
+    
+    NSURL *url = [NSURL URLWithString:randURLStr];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
+    //NSURLConnection *connet = [NSURLConnection connectionWithRequest:urlRequest delegate:self];
+    //[connet start];
+    NSURLResponse *respond = nil;
+    data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&respond error:&error];
+    if(respond){
+    
+        [self setImageWithData:data];
+    }
+#endif
+    
 }
 
 #pragma mark -
 #pragma mark -
+
+- (void) setImageWithData:(NSData*)receiveData {
+
+    UIImage *image = [UIImage imageWithData:receiveData];
+    
+    [self.radomCodeBtn setImage:image forState:UIControlStateNormal];
+    [self.radomCodeBtn setImage:image forState:UIControlStateSelected];
+}
 
 - (void) requestCompleted:(MemoPhotoDownloader *) request{
     //if (request == _downloader)

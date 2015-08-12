@@ -250,10 +250,10 @@
     MobileOrderNetDataMgr *cardShopMgr = [MobileOrderNetDataMgr getSingleTone];
     
     NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:
-                              loginView.txtusername.text,@"umcLoginName",
-                              loginView.txtpassword.text,@"loginPassword",
+                              loginView.txtusername.text,@"mobile",
+                              loginView.txtpassword.text,@"password",
                               nil];
-   
+    
     self.request = [cardShopMgr  userLogin:param];
 #else
     [self didNetDataOK:[NSNotification notificationWithName:kNetLoginRes object:[NSDictionary  dictionaryWithObjectsAndKeys:kNetLoginRes,@"key",nil]]];
