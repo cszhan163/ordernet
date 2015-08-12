@@ -116,7 +116,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     NSString *pasMd5Str = [userPassword getMd5String];
     NSString *finalMd5Str = [[NSString stringWithFormat:@"%@%@",pasMd5Str,pasMd5Str] getMd5String];
     NSDictionary *userData = [NSDictionary dictionaryWithObjectsAndKeys:
-                              userName,@"mobile",
+                              userName,@"user",
                               finalMd5Str,@"password",
                               pasMd5Str,@"salt",
                               nil]; //[
@@ -132,20 +132,24 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     NSString *userName = @"";
     NSString *userPassword = @"";
     
-#if 0
+#if 1
     NSString *loginUser = [AppSetting getLoginUserId];
     NSDictionary *loginData = [AppSetting getLoginUserData:loginUser];
     userName = [loginData objectForKey:@"mobile"];
     userPassword = [loginData objectForKey:@"password"];
 #else
-    userName = @"18964598396";
+    userName = @"13918647631";
     userPassword = @"1";
 #endif
     
-    NSString *pasMd5Str = [userPassword getMd5String];
+#if 0
+    NSString *pasMd5Str =  [userPassword getMd5String];
+#else
+    NSString *pasMd5Str =  [AppSetting getLoginUserPassword];
+#endif
     NSString *finalMd5Str = [[NSString stringWithFormat:@"%@%@",pasMd5Str,pasMd5Str] getMd5String];
     NSDictionary *userData = [NSDictionary dictionaryWithObjectsAndKeys:
-                              userName,@"mobile",
+                              userName,@"user",
                               finalMd5Str,@"password",
                                 pasMd5Str,@"salt",
                               nil]; //[AppSetting getLoginUserInfo:loginUser];
@@ -271,7 +275,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
 -(id)userLogin:(NSDictionary*)param
 {
     NSDictionary *finalDict = nil;
-#if 1
+#if 0
     param = [self getUserLoginData];
     finalDict = param;
 #else

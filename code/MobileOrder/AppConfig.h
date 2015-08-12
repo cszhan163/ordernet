@@ -120,6 +120,7 @@
 #define kUploadActionSheetViewAlertMSG @"uploadActionSheetViewAlertMSG"
 
 #define kOrderFoodDidSuccessMSG            @"OrderFoodDidSuccessMSG"
+#define kOrderDetailShowMSG                @"OrderDetailShowMSG"
 
 #define kBidReflushTimer       30
 #define OneLine                 1

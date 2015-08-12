@@ -161,12 +161,12 @@
             if([taste isKindOfClass:[NSDictionary class]]){
                 
                 tasteName = [taste objectForKey:@"name"];
-            }
-            if(tasteName ==nil || [tasteName isKindOfClass:[NSNull class]]){
-                tasteName = @"口味名";
+                if(tasteName ==nil || [tasteName isKindOfClass:[NSNull class]]){
+                    tasteName = @"口味名";
+                }
+                subItem.price = [[itemDict objectForKey:@"tastePrice"] floatValue];
             }
             subItem.name =  tasteName;
-            subItem.price = [[itemDict objectForKey:@"tastePrice"] floatValue];
             subItem.basePrice = [[itemDict objectForKey:@"productPrice"] floatValue];
             id value = [itemDict objectForKey:@"queuNum"];
             if(![value isKindOfClass:[NSNull class]]){
@@ -227,14 +227,25 @@
         SubCatagoryItem *item = orderItem.subCatagoryItem;
         //if([item isKindOfClass:[SubCatagoryItem class]])
         {
+            if(item.tasteId != -1){
             
-            [dataArray addObject:@{
-                                   @"num":[NSString stringWithFormat:@"%ld",item.number],
-                                   @"productId":[NSString stringWithFormat:@"%ld",item.itemId],
-                                   //@"catagoryId":[NSString stringWithFormat:@"%ld",item.catagoryId],
-                                   //@"status":@"1",
-                                   @"tasteId":[NSString stringWithFormat:@"%ld",item.tasteId]}
-             ];
+                NSString *tasteId = [NSString stringWithFormat:@"%lld",item.tasteId];
+                [dataArray addObject:@{
+                                       @"num":[NSString stringWithFormat:@"%ld",item.number],
+                                       @"productId":[NSString stringWithFormat:@"%lld",item.itemId],
+                                       //@"catagoryId":[NSString stringWithFormat:@"%ld",item.catagoryId],
+                                       //@"status":@"1",
+                                       @"tasteId":tasteId}
+                 ];
+            } else {
+            
+                [dataArray addObject:@{
+                                       @"num":[NSString stringWithFormat:@"%ld",item.number],
+                                       @"productId":[NSString stringWithFormat:@"%lld",item.itemId],
+                                       }
+                 ];
+            }
+            
         }
         
     }

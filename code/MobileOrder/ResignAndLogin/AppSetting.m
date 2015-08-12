@@ -55,6 +55,13 @@
     [udf synchronize];
     
 }
+
++(NSString*)getLoginUserPassword {
+    NSUserDefaults *udf = [NSUserDefaults standardUserDefaults];
+    return [udf objectForKey:@"userPassword"];
+    
+}
+
 +(void)setLogoutUser{
     NSUserDefaults *udf = [NSUserDefaults standardUserDefaults];
     [udf removeObjectForKey:@"userId"];
@@ -65,6 +72,7 @@
     [udf setValue:[NSNumber numberWithBool:isAuto] forKey:@"userLoginAuto"];
     [udf synchronize];
 }
+
 
 + (BOOL)userAutoLogin {
 

@@ -8,6 +8,10 @@
 
 #import "OrderConfirmViewController.h"
 
+
+
 @interface DinnerWaitingViewController : OrderConfirmViewController
+
+@property (nonatomic ,assign) ViewEntryType entryType;
 
 @end

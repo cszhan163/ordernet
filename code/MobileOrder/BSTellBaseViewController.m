@@ -172,6 +172,36 @@
     //[navLeftItem release];
 }
 
+- (void)setRightNavigationBarItemWithImage:(UIImage*)image withTitle:(NSString*)title{
+    
+    //if(kIsIOS7Check)
+    //UINavigationItem *navLeftItem = [[UINavigationItem alloc]initWithTitle:self.title];
+    
+    {
+        //UIImageAutoScaleWithFileName(image, @"btn-back");
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setImage:image forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(didSelectorTopNavRightItem:) forControlEvents:UIControlEventTouchUpInside];
+        //UIBarButtonItem *navItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(didSelectorTopNavItem:)];
+         btn.font = kGoodsOrderMenuTextFont;
+        [btn setTitle:title forState:UIControlStateNormal];
+        [btn setTitleColor:kCommonButtonBgColor forState:UIControlStateNormal];
+        [btn sizeToFit];
+        UIBarButtonItem *navItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
+        [self.navigationItem setRightBarButtonItems:@[navItem]];
+    
+        //[self.navigationController.navigationBar.topItem setTitle:self.title];
+        //[self.navigationController.navigationBar.topItem set]
+    }
+    //[self.navigationController.navigationBar setItems:@[navLeftItem] animated:NO];
+    //[navLeftItem release];
+}
+
+- (void)didSelectorTopNavRightItem:(id)item {
+
+    
+}
+
 - (void)shouldLoadData{
    
     NSString *usrId = [AppSetting getLoginUserId];

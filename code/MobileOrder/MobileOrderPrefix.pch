@@ -46,4 +46,10 @@ typedef enum noteType{
     Note_Info,
 }NoteType;
 
+typedef enum viewEntryType{
+    viewWaiting,
+    viewOrder,
+    viewSetting,
+}ViewEntryType;
+
 #endif

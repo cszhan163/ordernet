@@ -37,4 +37,8 @@
 
 - (void)didNetDataOK:(NSNotification*) ntf;
 
+- (void)didSelectorTopNavRightItem:(id)item;
+
+- (void)setRightNavigationBarItemWithImage:(UIImage*)image withTitle:(NSString*)title;
+
 @end

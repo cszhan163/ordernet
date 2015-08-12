@@ -8,6 +8,8 @@
 
 #import "BSTellNetListBaseViewController.h"
 
+
 @interface FoodOrderListViewController : BSTellNetListBaseViewController
 
+@property (nonatomic, assign) ViewEntryType entryType;
 @end

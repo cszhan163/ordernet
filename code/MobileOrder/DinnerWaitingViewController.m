@@ -20,6 +20,8 @@
 
 #import "UserDinnerWatingMgr.h"
 
+#import "FoodOrderListViewController.h"
+
 #define kLeftPendingX           10.f
 
 #define kItemPendingY           20.f
@@ -51,10 +53,41 @@
 }
 
 - (void)viewDidLoad {
+    if(self.entryType == viewWaiting){
+        [self setRightNavigationBarItemWithImage:nil withTitle:@"历史订单"];
+    } else {
+        //[self.navigationController.navigationBar setTitle:kOrderDetail];
+        [self setNavgationBarTitle:kOrderDetail];
+    }
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //[self setLeftNavigationBarItem];
+   
+}
 
+- (void)viewWillAppear:(BOOL)animated {
+
+    //[self startTimerByWaitingTime];
+    if(self.orderItem.status == Order_Done)
+        return;
+    [self startDinnerWaitingCheck];
+}
+- (void)viewWillDisappear:(BOOL)animated {
+
+    [self stopTimer];
+    
+}
+- (void)didSelectorTopNavRightItem:(id)item {
+    
+    [self showOrderList:nil];
+}
+
+- (void)showOrderList:(id)sender {
+
+    
+    FoodOrderListViewController *foodOrderListVCtrl = [[FoodOrderListViewController alloc]init];
+    foodOrderListVCtrl.entryType = viewWaiting;
+    [self.navigationController pushViewController:foodOrderListVCtrl animated:YES];
+    SafeRelease(foodOrderListVCtrl);
 }
 
 
@@ -64,20 +97,23 @@
 
 - (void)startNetWork {
     
-    [self startDinnerWaitingCheck];
+    //[self startDinnerWaitingCheck];
 }
 
 - (void)startTimerByWaitingTime {
     if(self.orderItem.status != Order_Pay){
         NE_LOG(@"no need to checker Order status !!");
+        [self stopTimer];
         return;
     }
     [self stopTimer];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(updateWatingTimer:) userInfo:nil repeats:YES];
+    [self.timer fire];
 }
 
 - (void)stopTimer{
 
+    [[UserDinnerWatingMgr sharedInstance] stopTimer];
     [self.timer invalidate];
     self.timer = nil;
 }
@@ -120,7 +156,8 @@
     if([netData isKindOfClass:[NSArray class]])
     {
         if([netData count]){
-            data = netData[0];
+           // data = netData[0];
+            data = [netData lastObject];
         }
         //[resultData addObject:item];
     } else {

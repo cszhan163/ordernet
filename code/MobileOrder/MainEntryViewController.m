@@ -71,6 +71,7 @@
         [self setNavgationBarTitle:kMenuTitle];
         [ZCSNotficationMgr addObserver:self call:@selector(needPresentLogin:) msgName:kPresentModelViewController];
         [ZCSNotficationMgr addObserver:self call:@selector(didOrderPayOK:) msgName:kOrderFoodDidSuccessMSG];
+        [ZCSNotficationMgr addObserver:self call:@selector(showOrderDetail:) msgName:kOrderDetailShowMSG];
     }
     return self;
 };
@@ -183,13 +184,11 @@
 - (void)didOrderPayOK:(NSNotification*)ntf {
     [self.navigationController popToRootViewControllerAnimated:YES];
 #if 0
-    OrderItem *orderItem = [ntf object];
-    self.orderItem = orderItem;
-    [[UserDinnerWatingMgr sharedInstance] startCheckDinnerWaitingByOrderId:orderItem.orderId];
 #else
     [self didStartDinner:nil];
 #endif
 }
+
 
 
 - (void)didStartDinner:(id)data {

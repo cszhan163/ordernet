@@ -331,8 +331,8 @@
         
               //[self findpw_click:nil];
 #else
+        [AppSetting setLoginUserPassword:[loginView.txtpassword.text getMd5String]];
         if(_doneBlock) {
-            
             _doneBlock(data);
         }
 #endif

@@ -23,6 +23,8 @@
 
 +(void)setLoginUserPassword:(NSString*)password;
 
++(NSString*)getLoginUserPassword;
+
 +(void)setUserAutoLogin:(BOOL)isAuto;
 
 + (BOOL)userAutoLogin;

@@ -9,6 +9,7 @@
 #import "FoodOrderListViewController.h"
 
 #import "FoodsOrderListCell.h"
+#import "DinnerWaitingViewController.h"
 
 #import "OrderItem.h"
 
@@ -28,6 +29,7 @@
     if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]){
         
         [self setNavgationBarTitle:kOrderListTitle];
+        self.entryType = viewSetting;
     }
     return self;
 }
@@ -171,8 +173,44 @@
     [self.navigationController pushViewController:goodLisVCtrl animated:YES];
     SafeRelease(goodLisVCtrl);
     */
+
+    if(self.entryType == viewSetting){
+    
+        OrderItem *item = [self.dataArray objectAtIndex:indexPath.row];
+        if(item.status == Order_Pay) {
+            [ZCSNotficationMgr postMSG:kOrderFoodDidSuccessMSG obj:item];
+        }
+        if(item.status == Order_Done) {
+            
+            [self showOrderDetail:item];
+        }
+
+    }
+    if(self.entryType == viewWaiting){
+        
+        OrderItem *item = [self.dataArray objectAtIndex:indexPath.row];
+        if(item.status == Order_Pay) {
+            [ZCSNotficationMgr postMSG:kOrderFoodDidSuccessMSG obj:item];
+        }
+        if(item.status == Order_Done) {
+
+            [self showOrderDetail:item];
+        }
+    }
+    
     
 }
+
+- (void)showOrderDetail:(OrderItem *) orderItem {
+
+    DinnerWaitingViewController *waitingViewCtrl = [[DinnerWaitingViewController alloc]init];
+    waitingViewCtrl.entryType = viewOrder;
+    waitingViewCtrl.orderItem = orderItem;
+    [self.navigationController pushViewController:waitingViewCtrl animated:YES];
+    SafeRelease(waitingViewCtrl);
+}
+
+
 -(void)didSelectorTopNavigationBarItem:(id)sender{
     
     if([sender tag] == 0){

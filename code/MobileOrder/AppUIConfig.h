@@ -46,6 +46,7 @@
 
 #define kMenuTitle        @"私人厨房"
 #define kMenuTitleArray   @[@"候餐",@"点餐",@"我"]
+#define kOrderDetail      @"订单详情"
 #define kVendorTitle      @"餐馆选择"
 #define kOrderMenuTitle   @"点餐"
 #define kOrderFeedBackTitle  @"意见反馈"

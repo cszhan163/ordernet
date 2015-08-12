@@ -38,7 +38,10 @@
     
     NSString *titleName = _item.name;
     if(self.foodName && ![self.foodName isEqualToString:@""]) {
-        titleName = [NSString stringWithFormat:@"%@+%@",self.foodName,_item.name];
+        if(_item.name)
+            titleName = [NSString stringWithFormat:@"%@+%@",self.foodName,_item.name];
+        else
+            titleName = self.foodName;
     }
     //titleName= @"很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长";
     //self.textLabel.text =titleName;
