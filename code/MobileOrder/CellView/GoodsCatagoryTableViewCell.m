@@ -8,6 +8,7 @@
 
 #import "GoodsCatagoryTableViewCell.h"
 #import "NSString+Ex.h"
+#import "JSBadgeView.h"
 
 #define kGoodCatagoryPendingY     15.f
 #define kGoodCatagoryPendingX     5.f
@@ -25,6 +26,8 @@
 }
 
 @property (nonatomic, strong) UIView   *selLineLabel;
+
+@property (nonatomic, strong) JSBadgeView *bandageView;
 
 @end
 
@@ -57,6 +60,11 @@
                                                     withColor:kGoodCatagorySelectedTextColor];
         [self.contentView addSubview:selLine];
         
+        
+        self.bandageView = SafeAutoRelease([[JSBadgeView alloc]initWithParentView:self  alignment:JSBadgeViewAlignmentCenterRight]);
+        //self.bandageView.frame = CGRectMake(, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
+        self.bandageView.hidden = YES;
+        self.bandageView.badgeBackgroundColor = kNavBarTextColor;
         self.selLineLabel = selLine;
     }
     return self;
@@ -119,6 +127,17 @@
     }
 }
 
+- (void)setCellBandgeWithNumber:(NSInteger)num {
+
+    if(num>0){
+        self.bandageView.hidden = NO;
+        [self.bandageView setBadgeText:[NSString stringWithFormat:@"%ld",num]];
+    } else {
+    
+        self.bandageView.hidden = YES;
+    }
+}
+
 - (void)layoutSubviews {
     [super layoutSubviews];
     if(_cellHeight == 0)
@@ -126,6 +145,10 @@
     self.titleLable.frame = CGRectMake(kGoodCatagoryPendingX,kGoodCatagoryPendingY,self.frame.size.width-2*kGoodCatagoryPendingX,self.frame.size.height-2*kGoodCatagoryPendingY);
     //self.titleLable.backgroundColor = [UIColor blueColor];
     self.selLineLabel.center = CGPointMake(self.selLineLabel.center.x, self.frame.size.height/2.f);
+    CGSize size = self.bandageView.frame.size ;
+    CGPoint origin = CGPointMake(self.frame.size.width-self.bandageView.frame.size.width-5.f, (self.frame.size.height-size.height)/2.f);
+    
+    self.bandageView.frame = CGRectMake(origin.x, origin.y, size.width, size.height);
     
 }
 

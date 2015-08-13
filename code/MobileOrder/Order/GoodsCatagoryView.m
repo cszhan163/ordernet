@@ -18,6 +18,7 @@
   
 }
 
+@property (nonatomic, strong)NSDictionary *bandgeDictData;
 
 @end
 
@@ -105,7 +106,15 @@
     }
 #if 1
     GoodsCatagoryItem *item = [self.dataArray objectAtIndex:indexPath.row];
-    cell.titleLable.text =  item.name;
+    cell.titleLable.text =  item.cataName;
+    id badgeValue = [self.bandgeDictData objectForKey:item.cataName];
+    if(badgeValue){
+        
+        [cell setCellBandgeWithNumber:[badgeValue intValue]];
+    } else {
+    
+        [cell setCellBandgeWithNumber:0];
+    }
    
 #else
     cell.titleLable.text =  [self.dataArray objectAtIndex:indexPath.row];
@@ -113,6 +122,33 @@
     return cell;
 }
 
+- (void)updateCellBandgeWithData:(NSDictionary*)data {
+    
+    self.bandgeDictData = data;
+    /*
+    for(id key in data){
+        NSInteger value = [[data objectForKey:key]integerValue];
+        NSInteger index = [self getCataIndexByName:key];
+        if(index != -1){
+            GoodsCatagoryTableViewCell *cellItem = (GoodsCatagoryTableViewCell*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+            [cellItem setCellBandgeWithNumber:value];
+        }
+    }
+    */
+    [_tableView reloadData];
+}
+
+- (NSInteger)getCataIndexByName:(NSString*)name {
+
+    for(int i = 0;i<[self.dataArray count];i++){
+        GoodsCatagoryItem *item = self.dataArray[i];
+        if([item.cataName isEqualToString:name]){
+        
+            return i;
+        }
+    }
+    return -1;
+}
 
 + (CGFloat) getCatagoryCellHeight:(NSString*)txt {
 

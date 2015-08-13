@@ -81,6 +81,8 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
                                                @"order/list",@"orderList",
                                                @"order/list",@"waitingOrderList",
                                                @"order",@"newComment",
+                                               @"order",@"updateorder",
+                                               @"ads",@"search_ad",
                                                
                                                nil];
         dressMemoInterfaceMgr.requestResourceDict = requestResouceMapDict;
@@ -132,7 +134,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     NSString *userName = @"";
     NSString *userPassword = @"";
     
-#if 1
+#if 0
     NSString *loginUser = [AppSetting getLoginUserId];
     NSDictionary *loginData = [AppSetting getLoginUserData:loginUser];
     userName = [loginData objectForKey:@"mobile"];
@@ -569,6 +571,26 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
                                                withParam:nil
                                               withMethod:@"POST"
                                                 withData:YES withRawData:postData];
+}
+
+- (id)updateOrder:(NSDictionary*)param {
+    
+    if(param == nil)
+        return nil;
+    NSError *error = nil;
+    NSData *postData = [NSJSONSerialization  dataWithJSONObject:param options:NSJSONWritingPrettyPrinted error:&error];
+    
+    if(error){
+        NSAssert(nil, @"json error!!");
+        return nil;
+    }
+    
+    return [dressMemoInterfaceMgr startAnRequestByResKey:@"updateorder"
+                                               needLogIn:YES
+                                               withParam:nil
+                                              withMethod:@"PUT"
+                                                withData:YES withRawData:postData];
+    
 }
 
 - (id)getRealTimeOrder:(NSDictionary*) param {

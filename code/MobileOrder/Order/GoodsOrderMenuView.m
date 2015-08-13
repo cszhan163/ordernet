@@ -47,6 +47,7 @@
                 //only not zero number
                 subItem.catagoryId = item.catagoryId;
                 subItem.itemId = item.itemId;
+                subItem.cataName = item.cataName;
                 if(subItem.number){
                     GoodsOrderItem *goodOrderItem = [[GoodsOrderItem alloc]initWithGoodsName:foodName withCatagoryItem:subItem];
                     [orderArray addObject:goodOrderItem];

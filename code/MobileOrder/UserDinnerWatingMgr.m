@@ -18,6 +18,8 @@
 
 @property (nonatomic, strong) OrderItem *orderItem;
 
+@property (nonatomic, strong) OrderItem *userOrderItem;
+
 @end
 
 static UserDinnerWatingMgr *staticInstance = nil;
@@ -40,6 +42,16 @@ static UserDinnerWatingMgr *staticInstance = nil;
     [self stopTimer];
     self.orderItem = nil;
     SuperDealloc;
+}
+
+- (OrderItem*)getUserCurrentOrderItem {
+
+    if(self.userOrderItem == nil){
+    
+        self.userOrderItem = [[OrderItem alloc]initWithDictionary:nil];
+        
+    }
+    return self.userOrderItem;
 }
 
 - (id)init {

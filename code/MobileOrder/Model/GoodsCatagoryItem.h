@@ -30,6 +30,8 @@
 
 @property (nonatomic, assign) NSInteger  queueNum;
 
+@property (nonatomic, strong) NSString *cataName;
+
 @end
 
 

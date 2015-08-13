@@ -27,9 +27,12 @@
 
 @property (nonatomic,strong)NSArray *dataArray;
 
+
 - (void)scrollViewToIndex:(NSInteger)index;
 
 - (void)setNeedsLayout;
+
+- (void)updateCellBandgeWithData:(NSDictionary*)data;
 
 + (CGFloat) getCatagoryCellHeight:(NSString*)txt ;
 

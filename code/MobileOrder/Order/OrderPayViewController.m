@@ -64,7 +64,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    NSDictionary *userData = [AppSetting getLoginUserData:[AppSetting getLoginUserId]];
+    self.orderItem.userItem.name = [userData objectForKey:@"userName"];
     contentView =[[UIScrollView alloc]initWithFrame:CGRectMake(0.f, 0.f, kDeviceScreenWidth, kDeviceScreenHeight)];
     
     [self.view addSubview:contentView];

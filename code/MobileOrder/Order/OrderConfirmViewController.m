@@ -16,6 +16,8 @@
 
 #import "CardShopLoginViewController.h"
 
+#import "UserDinnerWatingMgr.h"
+
 #define kPendingY    10.f
 
 #define kLeftPendingX  10.f
@@ -580,10 +582,16 @@
     self.orderItem.userItem.name = @"王某某";
     self.orderItem.personNum = 1;
 #endif
-    
 #if 1
-    [[MobileOrderNetDataMgr getSingleTone] newOrder:[self.orderItem getOrderDictionaryData]];
-#else 
+    if(self.orderItem.orderId == -1){
+        
+        [[MobileOrderNetDataMgr getSingleTone] newOrder:[self.orderItem getOrderDictionaryData]];
+        
+    } else {
+    
+        [[MobileOrderNetDataMgr getSingleTone] updateOrder:[self.orderItem getOrderDictionaryData]];
+    }
+#else
     NSError *error = nil;
     NSData *data = [NSJSONSerialization dataWithJSONObject:[self.orderItem getOrderDictionaryData] options:NSJSONWritingPrettyPrinted error:&error];
     

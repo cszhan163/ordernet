@@ -43,6 +43,7 @@ ZCSNetClientNetInterfaceMgrDelegate>
 - (id)getDingList:(NSDictionary*) param;
 - (id)getProductsList:(NSDictionary*) param;
 - (id)newOrder:(NSDictionary*) param;
+- (id)updateOrder:(NSDictionary*)param;
 - (id)getRealTimeOrder:(NSDictionary*) data;
 
 - (id)getOrderList:(NSDictionary*) param ;

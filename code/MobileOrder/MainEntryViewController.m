@@ -197,13 +197,13 @@
     kNetStartShow(@"获取等餐信息中", self.view);
     
     
-    [[UserDinnerWatingMgr sharedInstance] startGetOrderListByStatus:Order_Pay];
+    [[UserDinnerWatingMgr sharedInstance] startCheckDinnerWaitingByOrderId:0];
     [[UserDinnerWatingMgr sharedInstance] setNetDoneBlock:^(id data){
         id dataArray = [data objectForKey:@"data"];
     
         if([dataArray count]){
             kNetEnd(self.view);
-            NSDictionary *orderDict = dataArray[0];
+            NSDictionary *orderDict = [dataArray lastObject];
 #if 1
             OrderItem *item = [[OrderItem alloc]initWithDictionary:orderDict];
             self.orderItem = item;
@@ -358,7 +358,7 @@
     NSString *fileName  = [NSString stringWithFormat:fileFormart,type,index+1];
     UIImageWithFileName(image ,fileName);
 #else
-    fileName = [self.dataArray[index] objectForKey:@"imgpath"];
+    fileName = [self.dataArray[index] objectForKey:@"url"];
     assert(fileName);
 #endif
     CGSize size = kIphone4ImageSize;
@@ -382,7 +382,12 @@
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.f, 0.f,size.width,size.height)];
     //imageView.backgroundColor = [UIColor greenColor];
+    imageView.tag = index;
     imageView.image = image;
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapImageView:)];
+    [imageView addGestureRecognizer:tapGesture];
+    SafeRelease(tapGesture);
    
     
     return  SafeAutoRelease(imageView);
@@ -398,7 +403,7 @@
 
 - (void)startRequstAdData {
 
-#if 0
+#if 1
     self.request = [[MobileOrderNetDataMgr getSingleTone] getHomePageAd:nil];
 #else
     NSString *path = [[NSBundle mainBundle] pathForResource:@"adTest" ofType:@"json"];
@@ -414,10 +419,42 @@
     
 }
 
+- (void)tapImageView:(UIGestureRecognizer*)gesture {
+
+    NSInteger index =  gesture.view.tag;
+    
+    if(index<[self.dataArray count]){
+    
+        
+    }
+
+}
+
 - (void)didProcessRespondAdData:(NSDictionary*)data {
-    self.dataArray = [data objectForKey:@"body"];
+    self.dataArray = [data objectForKey:@"data"];
     [self.scrollViewPreview reloadData];
 }
+
+-(void)didNetDataOK:(NSNotification*)ntf
+{
+    //return;
+    [super didNetDataOK:ntf];
+    
+    id obj = [ntf object];
+    id respRequest = [obj objectForKey:@"request"];
+    id objData = [obj objectForKey:@"data"];
+    NSString *resKey = [respRequest resourceKey];
+    //NSString *resKey = [respRequest resourceKey];
+    
+    if([resKey isEqualToString:@"search_ad"])
+    {
+        //kNetEnd(self.view);
+        NSLog(@"ad data:%@",[objData objectForKey:@"data"]);
+        [self didProcessRespondAdData:objData];//
+    }
+    
+}
+
 
 #pragma mark -
 #pragma mark - 

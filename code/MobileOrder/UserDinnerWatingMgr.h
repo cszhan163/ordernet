@@ -19,6 +19,9 @@ typedef void (^CompleteBlock)(id data);
 
 @property (nonatomic, copy) CompleteBlock netFailedBlcok;
 
+
+- (OrderItem*)getUserCurrentOrderItem;
+
 + (instancetype)sharedInstance;
 
 - (void)stopTimer;

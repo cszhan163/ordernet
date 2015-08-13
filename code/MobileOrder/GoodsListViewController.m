@@ -35,6 +35,8 @@
 #import "CardShopLoginViewController.h"
 #import "OrderPayViewController.h"
 
+#import "UserDinnerWatingMgr.h"
+
 
 //#import "BidDetailViewController.h"
 
@@ -182,7 +184,7 @@
     tweetieTableView.clipsToBounds = YES;
     
     
-#if 1
+#if 0
     
     
     self.titleArray = @[@"面",@"凉菜",@"肉夹馍",@"肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍",@"肉夹馍肉夹馍",@"肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍肉夹馍",@"肉夹馍",@"面",@"凉菜"];
@@ -197,6 +199,7 @@
                 goodItem.name = @"特色菜";
                 goodItem.number = 0;
                 goodItem.price = 10.f;
+                goodItem.cataName = self.titleArray[i];
                 NSMutableArray *subArray = [NSMutableArray array];
                 for(id key in  @[@"红烧",@"水煮",@"油炸",@"乱炖"]){
                     
@@ -212,7 +215,7 @@
                 
                 
             }else{
-                
+                goodItem.cataName = self.titleArray[i];
                 goodItem.name = @"特色肉夹馍";
                 goodItem.number = 0;
                 goodItem.price = 20.f;
@@ -408,7 +411,12 @@
     
     OrderConfirmViewController *orderConfirmCtlr =  [[OrderConfirmViewController alloc]init];
     
-    OrderItem *orderItem = [[OrderItem alloc]init];
+#if 0
+    OrderItem *orderItem = [[OrderItem alloc]initWithDictionary:nil];
+#else
+    
+    OrderItem *orderItem = [[UserDinnerWatingMgr sharedInstance] getUserCurrentOrderItem];
+#endif
     
     orderItem.menuData = [_goodsOrderMenuView dataArray];
     
@@ -487,7 +495,7 @@
         } else if([item isKindOfClass:[NSString class]]){
             
             GoodsCatagoryItem *modelItem = [[GoodsCatagoryItem alloc]init];
-            modelItem.name = item;
+            modelItem.cataName = item;
             modelItem.cellHeight = [GoodsCatagoryView getCatagoryCellHeight:item];
             [result addObject:modelItem];
             SafeRelease(modelItem);
@@ -693,6 +701,7 @@
 - (NSArray *)filertOrderData {
 
     NSMutableArray *filterArray = [NSMutableArray array];
+   
     for (NSArray *sectionArray in self.goodsListArray) {
         
         for(GoodsCatagoryItem *item in sectionArray) {
@@ -701,6 +710,7 @@
                 if(item.number >0){
                     
                     [filterArray addObject:item];
+                    
                     continue;
                 }
             } else {
@@ -734,8 +744,27 @@
 }
 
 - (void)updateOrderMenu {
-    [_goodsOrderMenuView updateDataByOrderListArray:[self filertOrderData]];
     
+    NSArray *filterOrderArray = [self filertOrderData];
+    [_goodsOrderMenuView updateDataByOrderListArray:filterOrderArray];
+    
+#if 1
+    
+     NSMutableDictionary *cataggoryNumberDict = [NSMutableDictionary dictionary];
+    for(GoodsOrderItem *item  in _goodsOrderMenuView.dataArray) {
+        NSInteger number = item.subCatagoryItem.number;
+        NSString *key = item.subCatagoryItem.cataName;
+        id value = [cataggoryNumberDict objectForKey:key];
+        if(value){
+            number = [value integerValue]+number;
+            [cataggoryNumberDict setValue:[NSString stringWithFormat:@"%ld",number] forKey:item.subCatagoryItem.cataName];
+        }else {
+            [cataggoryNumberDict setValue:[NSString stringWithFormat:@"%ld",number] forKey:item.subCatagoryItem.cataName];
+        }
+    }
+    [_catogoryView updateCellBandgeWithData:cataggoryNumberDict];
+#endif
+        
     [tweetieTableView reloadData];
     
     NSInteger totalNumber = 0;
@@ -880,7 +909,9 @@
         NSMutableArray *goodsTitleArray = [NSMutableArray array];
         for(NSDictionary *item in data) {
             long long  catagoryId = [[item objectForKey:@"id"]longLongValue];
+            
             [goodsTitleArray addObject:[item objectForKey:@"name"]];
+            
             NSArray *catagoryArray = [item objectForKey:@"products"];
             if(catagoryArray == nil || [catagoryArray isKindOfClass:[NSNull class]])
                 continue;
@@ -890,6 +921,8 @@
                 NSDictionary *cataItem = catagoryArray[i];
                 GoodsCatagoryItem *goodItem = [[GoodsCatagoryItem alloc]init];
                 goodItem.catagoryId = catagoryId;
+                goodItem.cataName = [item objectForKey:@"name"];
+                //goodItem.cellHeight = [GoodsCatagoryView getCatagoryCellHeight:goodItem.cataName];
                 goodItem.name = [cataItem objectForKey:@"name"];
                 goodItem.number = 0.f;
                 goodItem.itemId = [[cataItem objectForKey:@"id"]longLongValue];

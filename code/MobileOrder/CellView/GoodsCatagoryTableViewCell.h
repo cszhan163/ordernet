@@ -21,4 +21,6 @@
 
 - (void)setCellSelectedStatus:(BOOL)status;
 
+- (void)setCellBandgeWithNumber:(NSInteger)num;
+
 @end

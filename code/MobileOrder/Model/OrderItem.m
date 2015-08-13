@@ -133,7 +133,7 @@
     
     if(self = [super init]) {
     
-        self.orderId = [[orderDict objectForKey:@"id"] longLongValue];
+        self.orderId = -1;
         self.orderIdName = @"O20158102014";//[orderDict objectForKey:@"serialNum"];
         long long timeInterval = [[orderDict objectForKey:@"createTime"] longLongValue];
         NSDate *orderDate = [NSDate dateWithTimeIntervalSince1970:timeInterval/1000];
@@ -220,7 +220,7 @@
     //[postDict setValue:[NSString stringWithFormat:@"%0.2lf",self.totalPrice]  forKey:@"totalPrice"];
     [postDict setValue:[NSNumber numberWithInteger:self.personNum] forKey:@"peopleCount"];
     [postDict setValue:[NSNumber numberWithInteger:self.arriveTime*60] forKey:@"arriveTimes"];
-    //[postDict setValue:@"3" forKey:@"paySerialNum"];
+    [postDict setValue:[NSString stringWithFormat:@"%lld",self.orderId] forKey:@"orderId"];
 
     NSMutableArray *dataArray = [NSMutableArray array];
     for(GoodsOrderItem *orderItem in self.menuData){
