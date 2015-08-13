@@ -582,6 +582,7 @@
     self.orderItem.userItem.name = @"王某某";
     self.orderItem.personNum = 1;
 #endif
+
 #if 1
     if(self.orderItem.orderId == -1){
         
@@ -650,9 +651,10 @@
     if([resKey isEqualToString:@"neworder"])
     {
         kNetEnd(self.view);
-        NSLog(@"order data:%@",[objData objectForKey:@"data"]);
-        self.orderItem.orderId = [[objData objectForKey:@"id"] longLongValue];
-        self.orderItem.orderIdName = [objData objectForKey:@"serialNum"];
+        NSDictionary *data = [objData objectForKey:@"data"];
+        NSLog(@"order data:%@",[data description]);
+        self.orderItem.orderId = [[data objectForKey:@"id"] longLongValue];
+        self.orderItem.orderIdName = [data objectForKey:@"serialNum"];
         [self didMoveToOrderPay];
     }
 

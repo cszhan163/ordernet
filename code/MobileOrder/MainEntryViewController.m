@@ -132,7 +132,12 @@
         currX = currX+btnBgView.frame.size.width+step;
         
     }
+    NSDictionary *data = [NSDictionary dictionaryWithContentsOfFile:[self adSaveFilePath]];
+    if(data){
+        self.dataArray = [data objectForKey:@"data"];
+    }
     [self initFocusImageView];
+    
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -222,6 +227,7 @@
             [self.navigationController pushViewController:foodOrderListVCtrl animated:YES];
             SafeRelease(foodOrderListVCtrl);
 #else
+            kNetEnd(self.view);
             kUIAlertViewNoDelegate(@"提示", @"您还没有定餐!!");
 #endif
             
@@ -451,8 +457,14 @@
         //kNetEnd(self.view);
         NSLog(@"ad data:%@",[objData objectForKey:@"data"]);
         [self didProcessRespondAdData:objData];//
+        [(NSDictionary*)objData writeToFile:[self adSaveFilePath] atomically:YES];
     }
     
+}
+
+- (NSString*)adSaveFilePath{
+
+    return [NSString stringWithFormat:@"%@/Documents/ad.data",NSHomeDirectory()];
 }
 
 

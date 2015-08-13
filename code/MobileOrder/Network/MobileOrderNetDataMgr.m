@@ -134,7 +134,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     NSString *userName = @"";
     NSString *userPassword = @"";
     
-#if 0
+#if 1
     NSString *loginUser = [AppSetting getLoginUserId];
     NSDictionary *loginData = [AppSetting getLoginUserData:loginUser];
     userName = [loginData objectForKey:@"mobile"];
