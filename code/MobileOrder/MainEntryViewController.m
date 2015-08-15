@@ -32,6 +32,8 @@
 
 #import "UserDinnerWatingMgr.h"
 
+#import "UIAdWebViewController.h"
+
 #define  kIphone4ImageSize  CGSizeMake(kDeviceScreenWidth, 200.f)
 
 #define  kIphone5ImageSize  CGSizeMake(kDeviceScreenWidth, 200.f+100.f)
@@ -266,7 +268,10 @@
                 
                 [cardLoginVCtl setCompleteAction:^(id sender){
                     
+                    [self dismissViewControllerAnimated:YES completion:^(){
                     
+                        [self didStartDinner:nil];
+                    }];
                 }];
                 
                 [cardLoginVCtl setCancelAction:^(id sender){
@@ -390,6 +395,7 @@
     //imageView.backgroundColor = [UIColor greenColor];
     imageView.tag = index;
     imageView.image = image;
+    imageView.userInteractionEnabled  = YES;
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapImageView:)];
     [imageView addGestureRecognizer:tapGesture];
@@ -431,7 +437,10 @@
     
     if(index<[self.dataArray count]){
     
-        
+        UIAdWebViewController *adVctrl = [[UIAdWebViewController alloc]init];
+        adVctrl.adDataItem = self.dataArray[index];
+        [self.navigationController pushViewController:adVctrl animated:YES];
+        SafeRelease(adVctrl);
     }
 
 }

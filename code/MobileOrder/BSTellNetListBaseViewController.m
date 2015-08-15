@@ -54,6 +54,8 @@
 - (void)didUserLogout:(NSNotification*)ntf{
     
 }
+
+
 - (void)didUserLoginCancel:(NSNotification*)ntf{
 
     //[ZCSNotficationMgr postMSG:kNavTabItemMSG obj:[NSNumber numberWithInt:2]];

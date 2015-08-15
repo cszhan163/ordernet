@@ -61,6 +61,7 @@
     if (self) {
         
                 // Custom initialization
+        [ZCSNotficationMgr addObserver:self call:@selector(didUserRegister:) msgName:kUserDidResignOK];
         
     }
     return self;
@@ -88,7 +89,7 @@
     
     self.view = loginView;
     
-    self.view.backgroundColor = kViewBGColor;
+    self.view.backgroundColor = kNavBarColor;
     
 
     
@@ -121,7 +122,7 @@
 //    UIImage *bgImage = nil;
 //    UIImageWithFileName(bgImage, @"login_bg.png");
 //    self.view.layer.contents = (id)bgImage.CGImage;
-    self.view.backgroundColor = HexRGB(239, 239, 241);
+    //self.view.backgroundColor = HexRGB(239, 239, 241);
     //self.txtpassword
     /*
     NSString   *filename=[self GetTempPath:@"username.txt"];
@@ -271,6 +272,17 @@
     [self setCompleteAction:nil];
 }
 
+- (void)didUserRegister:(NSNotification*)ntf {
+
+    //[self startAutoLogin:[ntf object]];
+    NSDictionary *loginData = [ntf object];
+    loginView.txtpassword.text = [loginData objectForKey:@"password"];
+    loginView.txtusername.text = [loginData objectForKey:@"mobile"];
+    [[MobileOrderNetDataMgr getSingleTone] userLogin:nil];
+    [self.navigationController popViewControllerAnimated:NO];
+    
+}
+
 
 - (void)setCompleteAction:(BlockWithSender) block {
 
@@ -360,6 +372,16 @@
     }
     
 }
+
+- (void)startAutoLogin:(NSDictionary*)loginData{
+    
+    loginView.txtpassword.text = [loginData objectForKey:@"password"];
+    loginView.txtusername.text = [loginData objectForKey:@"mobile"];
+    
+    [self login_click:nil];
+
+}
+
 -(void)didNetDataFailed:(NSNotification*)ntf
 {
     id obj = [ntf object];

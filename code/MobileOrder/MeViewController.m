@@ -40,12 +40,18 @@
 
 @implementation MeViewController
 
+- (void)dealloc {
+
+    SuperDealloc;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     
     if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]){
         
         [self setNavgationBarTitle:kMeCenterTitle];
-        //[ZCSNotficationMgr addObserver:self call:@selector(didUserLogin:) msgName:kUserDidLoginOk];
+        //
+        [ZCSNotficationMgr addObserver:self call:@selector(didUserLogin:) msgName:kUserDidLoginOk];
     }
     return self;
 }
@@ -113,8 +119,10 @@
    
     if([AppSetting getLoginUserId]){
     
-        NSDictionary *userData = [AppSetting getLoginUserData:[AppSetting getLoginUserId]];
         [_userLogStatusBtn setTitle:@"注销" forState:UIControlStateNormal];
+        if(isOffset == YES)
+            return;
+        NSDictionary *userData = [AppSetting getLoginUserData:[AppSetting getLoginUserId]];
         _userNameLabel.text = [userData objectForKey:@"userName"];
         _userMobileLabel.text = [userData objectForKey:@"mobile"];
         [UIView animateWithDuration:0.3 animations:^(){
@@ -131,6 +139,8 @@
     } else {
     
         [_userLogStatusBtn setTitle:@"登录" forState:UIControlStateNormal];
+        if(isOffset == NO)
+            return;
         [UIView animateWithDuration:0.3 animations:^(){
             CGFloat offset = 0.f;
             if(isOffset){
@@ -258,6 +268,55 @@
     return cell;
 }
 
+- (void)neeUserLoginUserAction:(BlockWithSender) block {
+
+    if([AppSetting getLoginUserId] == nil){
+        
+        
+        UINavigationController *navCtl = nil;
+        
+        CardShopLoginViewController *cardLoginVCtl = [[CardShopLoginViewController alloc]init];
+        
+        [cardLoginVCtl setCompleteAction:^(id sender){
+            
+            [self dismissViewControllerAnimated:YES completion:^(){
+                
+                if(block){
+                    block(nil);
+                }
+            }];
+        }];
+        
+        [cardLoginVCtl setCancelAction:^(id sender){
+            
+            [cardLoginVCtl dismissViewControllerAnimated:YES completion:^(){
+            }];
+            SafeRelease(navCtl);
+        }];
+        
+        navCtl = [[UINavigationController alloc]initWithRootViewController:cardLoginVCtl];
+        [navCtl setNavigationBarHidden:YES];
+        //[ZCSNotficationMgr postMSG:kPresentModelViewController obj:cardLoginVCtl];
+        [self presentViewController:navCtl animated:YES completion:^(){
+            
+        }];
+        
+        
+        SafeRelease(cardLoginVCtl);
+        
+        
+        return;
+    } else {
+        
+        
+        if(block){
+            block(nil);
+        }
+
+    }
+
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
@@ -267,21 +326,33 @@
      //NSDictionary *data = [item objectForKey:@"DayDetailInfo"];
      vc.mData = item;
      */
-     NSDictionary *item = self.dataArray[indexPath.row];
+    NSDictionary *item = self.dataArray[indexPath.row];
+    
+    
     
     NSString *key = [item objectForKey:@"key"];
     if([key isEqualToString:@"order"]){
         
-        FoodOrderListViewController *foodOrderListVCtrl = [[FoodOrderListViewController alloc]init];
-        [self.navigationController pushViewController:foodOrderListVCtrl animated:YES];
-        SafeRelease(foodOrderListVCtrl);
+        [self neeUserLoginUserAction:^(id sender){
+            
+            FoodOrderListViewController *foodOrderListVCtrl = [[FoodOrderListViewController alloc]init];
+            [self.navigationController pushViewController:foodOrderListVCtrl animated:YES];
+            SafeRelease(foodOrderListVCtrl);
+        
+        }];
+        
     }
     if([key isEqualToString:@"userInfo"]) {
     
-        UserInfoViewController *userVctl = [[UserInfoViewController alloc]init];
+        [self neeUserLoginUserAction:^(id sender){
+            
+            UserInfoViewController *userVctl = [[UserInfoViewController alloc]init];
+            
+            [self.navigationController pushViewController:userVctl animated:YES];
+            SafeRelease(userVctl);
+            
+        }];
         
-        [self.navigationController pushViewController:userVctl animated:YES];
-        SafeRelease(userVctl);
         
         
     }
@@ -311,16 +382,24 @@
     }
     
 }
-/*
+
 - (void)didUserLogin:(NSNotification*) ntf {
 
     [self updateUIByUserInfoStatus];
 }
-*/
+
 -(void)didNetDataFailed:(NSNotification*)ntf
 {
     //NE_LOG(@"warning not implemetation net respond");
     kNetEnd(self.view);
 }
+
+- (void)didUserRegister:(NSNotificationCenter*)ntf {
+    
+    [self dismissViewControllerAnimated:YES completion:^(){
+        
+    }];
+}
+
 
 @end

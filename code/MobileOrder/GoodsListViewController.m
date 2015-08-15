@@ -427,11 +427,8 @@
     
     orderItem.userItem = useItem;
     
-    ShopItem *shopItem = [[ShopItem alloc]init];
-    shopItem.name = @"xx肉夹馍软件园店";
-    shopItem.position = @"上海张江高科汇智商务中心广场5楼";
     
-    orderItem.shopItem = shopItem;
+    orderItem.shopItem = self.shopItem;
     orderItem.consumePoints = 51.f;
     orderItem.totalPrice = _totalPrice;
     

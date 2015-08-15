@@ -27,12 +27,15 @@
     NSString  *password=@"";
     
     self.autoLoginBtn.selected = [AppSetting userAutoLogin];
-    
+#if 0
     //    UIImage *bgImage = nil;
     //    UIImageWithFileName(bgImage, @"login_bg.png");
     //    self.view.layer.contents = (id)bgImage.CGImage;
-    _navBarView.backgroundColor = HexRGB(1, 159, 233);
+    //UIImageWithFileName(bgImage, @"login_bg.png");
+#else
+    _navBarView.backgroundColor = kNavBarColor;
     
+#endif
     
     self.txtpassword.text = @"";
     self.txtusername.text = @"";

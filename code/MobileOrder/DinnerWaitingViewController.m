@@ -30,11 +30,13 @@
 
 @interface DinnerWaitingViewController () {
 
-    OrderStatusView      *orderStatusView;
-    UILabel     *_orderIDLabel;
-    UILabel     *_orderTimeLabel;
-    UITableView *_tableView;
-    NSInteger   _timerCount;
+    OrderStatusView         *orderStatusView;
+    UILabel                 *_orderIDLabel;
+    UILabel                 *_orderTimeLabel;
+    UITableView             *_tableView;
+    UIButton                *_feedBackBtn;
+    NSInteger               _timerCount;
+    BOOL                    _isStatusHidden;
 }
 @property (nonatomic, strong)NSTimer *timer;
 @end
@@ -67,15 +69,20 @@
 - (void)viewWillAppear:(BOOL)animated {
 
     //[self startTimerByWaitingTime];
-    if(self.orderItem.status == Order_Done)
+    if(self.orderItem.status == Order_Done){
+        
+        [self setOrderStatusViewHidden:YES];
+        
         return;
-    [self startDinnerWaitingCheck];
+    }
+    [self startUserWaitingTimer];
 }
 - (void)viewWillDisappear:(BOOL)animated {
 
-    [self stopTimer];
+    [self stopUserWaitingTimer];
     
 }
+
 - (void)didSelectorTopNavRightItem:(id)item {
     
     [self showOrderList:nil];
@@ -112,10 +119,14 @@
 }
 
 - (void)stopTimer{
-
-    [[UserDinnerWatingMgr sharedInstance] stopTimer];
+    
     [self.timer invalidate];
     self.timer = nil;
+}
+
+- (void)stopUserWaitingTimer {
+
+    [[UserDinnerWatingMgr sharedInstance] stopTimer];
 }
 
 - (void)updateWatingTimer:(id)userInfo {
@@ -131,8 +142,8 @@
      [orderStatusView.timerLabel setText:[NSString stringWithFormat:@"%02ld:%02ld",_timerCount/60,_timerCount%60]];
 }
 
-- (void)startDinnerWaitingCheck {
-    
+- (void)startUserWaitingTimer{
+    [self stopUserWaitingTimer];
     if(self.orderItem.status == Order_Pay){
         
         __block typeof(self)  weakSelf = self;
@@ -170,7 +181,49 @@
    
 }
 
+- (void)setOrderStatusViewHidden:(BOOL) hidden {
 
+    if(hidden){
+    
+        if(_isStatusHidden == YES)
+            
+            return;
+        
+        [UIView animateWithDuration:0.3 animations:^(){
+        
+            orderStatusView.hidden = YES;
+            /*
+            CGRect rect = _tableView.frame;
+            
+            _tableView.frame = CGRectMake(rect.origin.x, offsetY+kItemPendingY,rect.size.width, rect.size.height);
+            */
+            CGSize size = contentView.contentSize;
+            _tableView.frame = CGRectOffset(_tableView.frame, 0, -orderStatusView.frame.size.height+kItemPendingY);
+            _feedBackBtn.frame = CGRectOffset(_feedBackBtn.frame, 0, -orderStatusView.frame.size.height+kItemPendingY);
+            contentView.contentSize = CGSizeMake(size.width, size.height-orderStatusView.frame.size.height+kItemPendingY);
+            _isStatusHidden = YES;
+            
+        }];
+        
+    } else {
+    
+        if(_isStatusHidden == NO)
+            
+            return;
+        
+        [UIView animateWithDuration:0.3 animations:^(){
+            
+            orderStatusView.hidden = NO;
+            CGSize size = contentView.contentSize;
+            _tableView.frame = CGRectOffset(_tableView.frame, 0, orderStatusView.frame.size.height+kItemPendingY);
+            _feedBackBtn.frame = CGRectOffset(_feedBackBtn.frame, 0, orderStatusView.frame.size.height+kItemPendingY);
+            contentView.contentSize = CGSizeMake(size.width, size.height+orderStatusView.frame.size.height+kItemPendingY);
+            _isStatusHidden = NO;
+            
+        }];
+        
+    }
+}
 
 - (void)initUIView {
 
@@ -235,14 +288,14 @@
     
     UIImageAutoScaleWithFileName(image, @"user_btn_h");
     
-    UIButton *feedBackBtn = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"意见反馈" withTag:0 withTarget:self  withTouchEvent:@selector(didButtonPress:)];
+    _feedBackBtn = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"意见反馈" withTag:0 withTarget:self  withTouchEvent:@selector(didButtonPress:)];
     //showOrderBtn.backgroundColor = [UIColor redColor];
-    [contentView addSubview:feedBackBtn];
+    [contentView addSubview:_feedBackBtn];
     
-    feedBackBtn.frame = CGRectMake(40.f,currY,kDeviceScreenWidth-40*2,40);
-    [contentView addSubview:feedBackBtn];
+    _feedBackBtn.frame = CGRectMake(40.f,currY,kDeviceScreenWidth-40*2,40);
+    [contentView addSubview:_feedBackBtn];
     
-    currY = currY+feedBackBtn.frame.size.height+kItemPendingY;
+    currY = currY+_feedBackBtn.frame.size.height+kItemPendingY;
     
     contentView.contentSize = CGSizeMake(kDeviceScreenWidth,currY);
     
@@ -255,7 +308,7 @@
     self.dataArray = self.orderItem.menuData;
     _orderTimeLabel.text = self.orderItem.orderTime;
     _orderIDLabel.text = self.orderItem.orderIdName;
-    _timerCount = self.orderItem.arriveTime*60.f;
+    _timerCount = self.orderItem.arriveTime/1000;
     [self startTimerByWaitingTime];
     [_tableView reloadData];
 
@@ -451,6 +504,9 @@
     //        _totalPersonNumLabel.text = @"已经到店";
     //    }
     [self startTimerByWaitingTime];
+    NSString *timerStr = [NSString  stringWithFormat:@"%ld", _timerCount*1000];
+    NSString *orderIdStr = [NSString stringWithFormat:@"%lld",self.orderItem.orderId];
+    [[MobileOrderNetDataMgr getSingleTone] updateOrderArriveTime:@{@"arriveTimes":timerStr,@"orderId":orderIdStr}];
 }
 
 

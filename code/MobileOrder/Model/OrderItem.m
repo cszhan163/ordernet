@@ -22,6 +22,7 @@
     self.position = [item objectForKey:@"location"];
         self.avPrice = [[item objectForKey:@"averagePrice"]floatValue];
         self.imageURL = [item objectForKey:@"url"];
+        self.shopId = [[item objectForKey:@"id"] longLongValue];
     }
     return self;
 }
@@ -133,11 +134,12 @@
     
     if(self = [super init]) {
     
-        self.orderId = -1;
-        self.orderIdName = @"O20158102014";//[orderDict objectForKey:@"serialNum"];
+        self.orderId = [[orderDict objectForKey:@"id"] longLongValue];
+        self.orderIdName = [orderDict objectForKey:@"serialNum"];
         long long timeInterval = [[orderDict objectForKey:@"createTime"] longLongValue];
         NSDate *orderDate = [NSDate dateWithTimeIntervalSince1970:timeInterval/1000];
         self.orderTime = [NSDate formartDateTime:orderDate  withFormat:kOrderDateFormat];
+        self.arriveTime = [[orderDict objectForKey:@"arriveTimes"]longLongValue];
         
         NSArray *orderProductArray = [orderDict objectForKey:@"orderDetail"];
         
@@ -219,8 +221,9 @@
     //[postDict setValue:self.orderId forKey:@"serialNum"];
     //[postDict setValue:[NSString stringWithFormat:@"%0.2lf",self.totalPrice]  forKey:@"totalPrice"];
     [postDict setValue:[NSNumber numberWithInteger:self.personNum] forKey:@"peopleCount"];
-    [postDict setValue:[NSNumber numberWithInteger:self.arriveTime*60] forKey:@"arriveTimes"];
-    [postDict setValue:[NSString stringWithFormat:@"%lld",self.orderId] forKey:@"orderId"];
+    [postDict setValue:[NSNumber numberWithInteger:self.arriveTime*60*1000] forKey:@"arriveTimes"];
+    //[postDict setValue:[NSString stringWithFormat:@"%lld",self.orderId] forKey:@"orderId"];
+    [postDict setValue:[NSString stringWithFormat:@"%lld",self.shopItem.shopId] forKey:@"diningId"];
 
     NSMutableArray *dataArray = [NSMutableArray array];
     for(GoodsOrderItem *orderItem in self.menuData){

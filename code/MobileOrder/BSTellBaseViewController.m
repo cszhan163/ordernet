@@ -121,6 +121,7 @@
     [super viewDidLoad];
     //[self.mainView.topBarView ]
     [self setLeftNavigationBarItem];
+    
 	// Do any additional setup after loading the view.
     if(kIsIOS7Check){
         
@@ -130,6 +131,12 @@
         //[self.mainView.topBarView setTranslucent:YES];
         //self.mainView.topBarView.frame = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width,rect.si);
         [self.navigationController.navigationBar setBarTintColor:kNavBarColor];
+        
+        if(kIsIOS7Check){
+            
+            offsetY =  kMBAppTopToolBarHeight+kMBAppStatusBar;
+        }
+        
     }else {
         CGRect rect = self.mainView.frame;
         self.mainView.frame = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height-kMBAppStatusBar);

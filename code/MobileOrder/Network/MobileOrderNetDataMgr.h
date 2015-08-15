@@ -16,8 +16,8 @@
 @protocol ZCSNetClientNetInterfaceMgrDelegate;
 
 
-//#define  kRequestApiRoot                @"http://192.168.10.119:8081/pxdc/1.0/"//@"http://121.40.239.155/1.0/"
-#define  kRequestApiRoot                           @"http://121.40.239.155/pxdc/1.0/"
+#define  kRequestApiRoot                @"http://localhost:8081/pxdc/1.0/"//@"http://121.40.239.155/1.0/"
+//#define  kRequestApiRoot                           @"http://121.40.239.155/pxdc/1.0/"
 //#define  kRequestApiRoot                           @"http://192.168.15.119:8081/pxdc/1.0/"
 
 
@@ -51,6 +51,9 @@ ZCSNetClientNetInterfaceMgrDelegate>
 
 - (id)newOrderCommnent:(NSDictionary*) param ;
 
+- (id)updateOrderArriveTime:(NSDictionary *)param;
+
+
 -(id)userInfoUpdate:(NSDictionary*)param;
 -(id)userResignRandomCode:(NSDictionary*)param;
 -(id)userFavProducts:(NSDictionary*)param;
@@ -77,6 +80,7 @@ ZCSNetClientNetInterfaceMgrDelegate>
 -(id)getOrderDelivery:(NSDictionary*)param;
 -(id)newProductOrder:(NSDictionary*)param;
 -(id)getOrderDeliveryDetail:(NSDictionary *)param;
+
 
 /*ad*/
 -(id)getHomePageAd:(NSDictionary*)param;

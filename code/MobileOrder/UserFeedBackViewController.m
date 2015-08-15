@@ -123,7 +123,7 @@
 }
 -(void)didNetDataFailed:(NSNotification*)ntf
 {
-    //kNetEndWithErrorAutoDismiss
+    kNetEnd(self.view);
 }
 
 

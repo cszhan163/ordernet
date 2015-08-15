@@ -72,10 +72,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setNavgationBarTitle:kOrderConfirmTitle];
-    if(kIsIOS7Check){
     
-        offsetY =  kMBAppTopToolBarHeight+kMBAppStatusBar;
-    }
     contentView =[[UIScrollView alloc]initWithFrame:CGRectMake(0.f, 0.f, kDeviceScreenWidth, kDeviceScreenHeight)];
     [self.view addSubview:contentView];
     [self initUIView];
@@ -570,7 +567,7 @@
     */
     if(self.orderItem.arriveTime == 0){
     
-        kUIAlertConfirmView(@"提示", @"您还未选择到点时间,是否已到店?",@"没有", @"到店");
+        kUIAlertConfirmView(@"提示", @"您还未选择到店时间,是否已到店?",@"没有", @"到店");
         return;
     }
     
@@ -584,7 +581,8 @@
 #endif
 
 #if 1
-    if(self.orderItem.orderId == -1){
+    if(1 || self.orderItem.orderId == -1)
+    {
         
         [[MobileOrderNetDataMgr getSingleTone] newOrder:[self.orderItem getOrderDictionaryData]];
         

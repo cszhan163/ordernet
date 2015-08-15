@@ -11,6 +11,9 @@
 #import "BSTellNetListBaseViewController.h"
 //@class UIImageNetBaseViewController;
 //@protocol UIBaseViewControllerDelegate;
+#import "OrderItem.h"
 @interface GoodsListViewController:BSTellNetListBaseViewController
+
+@property (nonatomic, strong) ShopItem *shopItem;
 
 @end

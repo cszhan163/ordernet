@@ -14,6 +14,8 @@
 
 #define  kNeedLoginCode      101
 
+#define  kRetunJasonMSG      @"msg"
+
 #import <CommonCrypto/CommonDigest.h> // Need to import for CC_MD5 access
 
 @implementation NSString (MyExtensions)
@@ -82,6 +84,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
                                                @"order/list",@"waitingOrderList",
                                                @"order",@"newComment",
                                                @"order",@"updateorder",
+                                               @"order",@"updateorderTimer",
                                                @"ads",@"search_ad",
                                                
                                                nil];
@@ -147,6 +150,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
 #if 0
     NSString *pasMd5Str =  [userPassword getMd5String];
 #else
+    userName =             [AppSetting getLoginUserId];
     NSString *pasMd5Str =  [AppSetting getLoginUserPassword];
 #endif
     NSString *finalMd5Str = [[NSString stringWithFormat:@"%@%@",pasMd5Str,pasMd5Str] getMd5String];
@@ -222,7 +226,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     }
     else
     {
-        id inforStr = [dataDict objectForKey:@"info"];
+        id inforStr = [dataDict objectForKey:kRetunJasonMSG];
         if([inforStr isKindOfClass:[NSString class]])
         {
             kUIAlertView(@"提示",inforStr);
@@ -277,13 +281,12 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
 -(id)userLogin:(NSDictionary*)param
 {
     NSDictionary *finalDict = nil;
-#if 0
-    param = [self getUserLoginData];
-    finalDict = param;
-#else
-    finalDict = [self getEncryptLoginData:param];
-    
-#endif
+    if(param == nil){
+        param = [self getUserLoginData];
+        finalDict = param;
+    } else {
+        finalDict = [self getEncryptLoginData:param];
+    }
     return [dressMemoInterfaceMgr startAnRequestByResKey:kNetLoginRes
                                         needLogIn:NO
                                         withParam:finalDict
@@ -590,6 +593,16 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
                                                withParam:nil
                                               withMethod:@"PUT"
                                                 withData:YES withRawData:postData];
+    
+}
+
+- (id)updateOrderArriveTime:(NSDictionary *)param {
+
+    return [dressMemoInterfaceMgr startAnRequestByResKey:@"updateorderTimer"
+                                               needLogIn:YES
+                                               withParam:param
+                                              withMethod:@"PUT"
+                                                withData:NO];
     
 }
 

@@ -136,6 +136,8 @@
     
     GoodsListViewController *goodLisVCtrl = [[GoodsListViewController alloc]init];
     
+    goodLisVCtrl.shopItem = self.dataArray[indexPath.row];
+    
     [self.navigationController pushViewController:goodLisVCtrl animated:YES];
     SafeRelease(goodLisVCtrl);
     

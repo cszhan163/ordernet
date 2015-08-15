@@ -110,7 +110,9 @@
     self.radomCodeTextFied.inputAccessoryView = bgView;
     mobilePhoneTextFied.delegate = self;
     // Do any additional setup after loading the view from its nib.
-    [self startLoadRandomCodeImage];
+    [self reflushRandomCodeImage:nil];
+    
+    self.view.backgroundColor = kNavBarColor;
 }
 - (void)doneInput{
     [self.radomCodeTextFied resignFirstResponder];
@@ -144,7 +146,12 @@
 
 - (IBAction)reflushRandomCodeImage:(id)sender {
 
-    [self startLoadRandomCodeImage];
+    if(self.type == 1) {
+    
+    
+    } else {
+        [self startLoadRandomCodeImage];
+    }
 }
 
 -(IBAction)login_click:(id)sender
@@ -246,32 +253,33 @@
             //[AppSetting setLoginUserInfo:param];
 #if 1
             [AppSetting setLoginUserId:self.mobilePhoneTextFied.text];
-            [AppSetting setLoginUserPassword:self.passwordTextFied.text];
+            [AppSetting setLoginUserPassword:[self.passwordTextFied.text getMd5String]];
 #endif
             NE_LOG(@"%@",[_data description]);
             //[self stopShowLoadingView];
             //[Ap]
-            /*
-            [ZCSNotficationMgr postMSG:kCheckCardRecentRun obj:nil];
-            [ZCSNotficationMgr postMSG:kDisMissModelViewController obj:nil];
-            */
+            
+            //[ZCSNotficationMgr postMSG:kCheckCardRecentRun obj:nil];
+            
+        }
+        {
+            kUIAlertView(@"提示", @"注册成功");
         }
         //else
-        {
-            kUIAlertView(@"提示", @"注册失败,用户名已存在");
-        }
+        [ZCSNotficationMgr postMSG:kUserDidResignOK obj:@{@"mobile":self.mobilePhoneTextFied.text,
+                                                          @"password":self.passwordTextFied.text,}];
     }
     
 }
 -(void)didNetDataFailed:(NSNotification*)ntf
 {
-      id obj = [ntf object];
+    id obj = [ntf object];
     id respRequest = [obj objectForKey:@"request"];
     id _data = [obj objectForKey:@"data"];
     NSString *resKey = [respRequest resourceKey];
     if([resKey isEqualToString:kNetResignRes]){
         kNetEnd(self.view);
-        kUIAlertView(@"提示",@"网络错误");
+        //kUIAlertView(@"提示",@"网络错误");
     }
     //NE_LOG(@"warning not implemetation net respond");
 }

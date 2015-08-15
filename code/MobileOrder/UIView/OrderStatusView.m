@@ -20,7 +20,7 @@
         UILabel *arriveTitleLabel = [UIComUtil createLabelWithFont:kGoodsOrderMenuTextFont withTextColor:[UIColor blackColor] withText:@"" withFrame:CGRectMake(kLeftPendinX,headerCurrY,frame.size.width/2.f-kLeftPendinX*2,labelHeight)];
         //_totalPayLabel.backgroundColor = [UIColor clearColor];
         arriveTitleLabel.textAlignment = NSTextAlignmentCenter;
-        arriveTitleLabel.text  = @"到点倒计时";
+        arriveTitleLabel.text  = @"到店倒计时";
         [self addSubview:arriveTitleLabel];
         UIImage *image = nil;
         UIImageAutoScaleWithFileName(image, @"act_time");

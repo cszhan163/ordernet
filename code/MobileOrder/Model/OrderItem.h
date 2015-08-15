@@ -19,6 +19,8 @@
 
 @property (nonatomic, strong) NSString *imageURL;
 
+@property (nonatomic, assign) long long shopId;
+
 - (id)initWithDictonary:(NSDictionary*)item;
 
 @end
@@ -26,8 +28,8 @@
 typedef NS_ENUM(NSInteger,OrderStatus){
     Order_Init,
     Order_Pay,
-    Order_Cancel,
     Order_Done,
+    Order_Cancel,
 };
 
 @interface OrderItem : NSObject
