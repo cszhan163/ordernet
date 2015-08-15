@@ -8,6 +8,6 @@
 
 #import "BSTellBaseViewController.h"
 #import "MeViewController.h"
-@interface SettingViewController : MeViewController
+@interface SettingViewController : BSTellBaseViewController
 
 @end

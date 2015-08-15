@@ -205,7 +205,7 @@
     BOOL isSelected = loginView.autoLoginBtn.selected;
     loginView.autoLoginBtn.selected = !isSelected;
     
-    [AppSetting setUserAutoLogin:isSelected];
+    [AppSetting setUserAutoLogin:!isSelected];
 }
 
 -(IBAction)findpw_click:(id)sender

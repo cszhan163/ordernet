@@ -139,8 +139,10 @@
         long long timeInterval = [[orderDict objectForKey:@"createTime"] longLongValue];
         NSDate *orderDate = [NSDate dateWithTimeIntervalSince1970:timeInterval/1000];
         self.orderTime = [NSDate formartDateTime:orderDate  withFormat:kOrderDateFormat];
-        self.arriveTime = [[orderDict objectForKey:@"arriveTimes"]longLongValue];
-        
+        id value = [orderDict objectForKey:@"arriveTimes"];
+        if(![value isKindOfClass:[NSNull class]]){
+            self.arriveTime = [value longLongValue];
+        }
         NSArray *orderProductArray = [orderDict objectForKey:@"orderDetail"];
         
         NSMutableArray *goodsOrderItemArray = [NSMutableArray array];

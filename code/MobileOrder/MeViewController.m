@@ -59,12 +59,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    CGFloat currY = kMBAppTopToolBarHeight;
-    if(kIsIOS7Check)
-    {
-        currY += kMBAppStatusBar;
-    }
-    
+    CGFloat currY = offsetY;
     _tableView  = [[UITableView alloc]initWithFrame:CGRectMake(0.f,currY,kDeviceScreenWidth,kDeviceScreenHeight-kMBAppStatusBar-kMBAppTopToolBarHeight) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -356,9 +351,9 @@
         
         
     }
-    if([key isEqualToString:@""]) {
+    if([key isEqualToString:@"setting"]) {
     
-        SettingViewController *setVctl = [[UserInfoViewController alloc]init];
+        SettingViewController *setVctl = [[SettingViewController alloc]init];
         
         [self.navigationController pushViewController:setVctl animated:YES];
         SafeRelease(setVctl);

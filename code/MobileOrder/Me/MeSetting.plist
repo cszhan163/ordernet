@@ -20,6 +20,14 @@
 			<key>iconName</key>
 			<string>user_Info</string>
 		</dict>
+		<dict>
+			<key>key</key>
+			<string>about</string>
+			<key>text</key>
+			<string>关于我们</string>
+			<key>iconName</key>
+			<string>user_Info</string>
+		</dict>
 	</array>
 </dict>
 </plist>

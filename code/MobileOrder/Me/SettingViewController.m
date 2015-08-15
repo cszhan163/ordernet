@@ -8,20 +8,59 @@
 
 #import "SettingViewController.h"
 
+
+@interface SetTableCell : UITableViewCell
+
+@property (nonatomic, strong)   UISwitch    *swBtn;
+
+@end
+
+@implementation SetTableCell
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+
+    if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+    
+        UISwitch *sw = [[UISwitch alloc]init];
+        self.accessoryView = sw;
+        SafeRelease(sw);
+        self.swBtn = sw;
+    }
+    return self;
+}
+
+@end
+
 #define kMeSettingCellHeight    44
 
 @interface SettingViewController () {
 
-    UISwitch *sw;
+    UITableView *_tableView;
 }
+
+@property (nonatomic, strong) NSArray *dataArray;
 
 @end
 
 @implementation SettingViewController
 
+- (void)dealloc {
+    self.dataArray = nil;
+    SuperDealloc;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    CGFloat currY = offsetY;
+    _tableView  = [[UITableView alloc]initWithFrame:CGRectMake(0.f,currY,kDeviceScreenWidth,kDeviceScreenHeight-kMBAppStatusBar-kMBAppTopToolBarHeight) style:UITableViewStylePlain];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    _tableView.separatorColor = nil;
+    //[_tableView registerClass:[GoodsCatagoryTableViewCell class] forCellReuseIdentifier:cellId];
+    [self.view addSubview:_tableView];
+    SafeRelease(_tableView);
+
     NSString *path = [[NSBundle mainBundle] pathForResource:@"MeSetting" ofType:@"plist"];
     NSDictionary *meData = [NSDictionary dictionaryWithContentsOfFile:path];
     
@@ -53,15 +92,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *cellId = @"resumeMenuCellId";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    SetTableCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
     if(cell == nil){
         
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:cellId];
-        sw = [[UISwitch alloc]init];
-        [sw addTarget:self action:@selector(valueDidChange:) forControlEvents:UIControlEventValueChanged];
-        cell.accessoryView = sw;
-        SafeAutoRelease(sw);
+        cell = [[SetTableCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
+        
+        [cell.swBtn addTarget:self action:@selector(valueDidChange:) forControlEvents:UIControlEventValueChanged];
+    
         SafeAutoRelease(cell);
         
     }
@@ -72,6 +110,36 @@
 #else
     cell.accessoryView.tag = indexPath.row;
     cell.textLabel.text = [item objectForKey:@"text"];
+    if(indexPath.row == 2){
+        cell.accessoryView = nil;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else {
+    
+        switch (indexPath.row) {
+            case 0 :
+                if([AppSetting pushEnable]){
+                    [cell.swBtn setOn:YES];
+                    
+                }else {
+                    
+                    [cell.swBtn setOn:NO];
+                
+                }
+                break;
+            case 1 :
+                if([AppSetting userAutoLogin]){
+                    [cell.swBtn setOn:YES];
+                    
+                }else {
+                    
+                    [cell.swBtn setOn:NO];
+                    
+                }
+                break;
+            default:
+                break;
+        }
+    }
 #endif
     return cell;
 }

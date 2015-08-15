@@ -18,7 +18,7 @@
 			<key>text</key>
 			<string>我的信息</string>
 			<key>iconName</key>
-			<string>user_Info</string>
+			<string>user_info</string>
 		</dict>
 		<dict>
 			<key>key</key>
@@ -43,14 +43,6 @@
 			<string>设置</string>
 			<key>iconName</key>
 			<string>user_setting</string>
-		</dict>
-		<dict>
-			<key>key</key>
-			<string>about</string>
-			<key>text</key>
-			<string>关于我们</string>
-			<key>iconName</key>
-			<string>user_ about</string>
 		</dict>
 	</array>
 </dict>
