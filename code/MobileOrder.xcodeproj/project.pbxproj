@@ -158,9 +158,14 @@
 		04A354221B13A510003A80AA /* user_order.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A353E21B13A510003A80AA /* user_order.png */; };
 		04AD9EC31B444533003A0F46 /* libZCSUIFrameWork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04AD9EC21B444524003A0F46 /* libZCSUIFrameWork.a */; };
 		04C15C191B23460E0031E3CF /* GoodsOrderMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C15C181B23460E0031E3CF /* GoodsOrderMenuView.m */; };
+		04E5C6091B80B02E00BAB4E5 /* JSBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E5C6081B80B02E00BAB4E5 /* JSBadgeView.m */; };
+		04E5C60D1B80B09D00BAB4E5 /* UIAdWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E5C60C1B80B09D00BAB4E5 /* UIAdWebViewController.m */; };
+		04E5C60F1B80B0E700BAB4E5 /* user_info.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5C60E1B80B0E700BAB4E5 /* user_info.png */; };
+		04E5C6151B80C24D00BAB4E5 /* SMS_SDKLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04E5C6111B80C24D00BAB4E5 /* SMS_SDKLocalizable.strings */; };
+		04E5C6161B80C24D00BAB4E5 /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E5C6131B80C24D00BAB4E5 /* SMS_SDK.framework */; };
+		04E5C6191B80ED8900BAB4E5 /* RegisterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E5C6181B80ED8900BAB4E5 /* RegisterView.m */; };
 		04F082041B4993BB005F97EB /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F082031B4993BB005F97EB /* UserInfoViewController.m */; };
 		04F22B891B516F0F0069C184 /* user_resetpwd.png in Resources */ = {isa = PBXBuildFile; fileRef = 04F22B881B516F0F0069C184 /* user_resetpwd.png */; };
-		04F22B8B1B5170680069C184 /* user_Info.png in Resources */ = {isa = PBXBuildFile; fileRef = 04F22B8A1B5170680069C184 /* user_Info.png */; };
 		04FDFA9C1B2C20FD00920C07 /* OrderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FDFA9B1B2C20FD00920C07 /* OrderItem.m */; };
 		04FDFA9F1B2C25C100920C07 /* UserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FDFA9E1B2C25C100920C07 /* UserItem.m */; };
 		04FDFAA11B2C2E8C00920C07 /* OrderListItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FDFAA01B2C2E8C00920C07 /* OrderListItemCell.xib */; };
@@ -483,10 +488,19 @@
 		04AD9EBD1B444524003A0F46 /* ZCSUIFrameWork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZCSUIFrameWork.xcodeproj; path = ../BaseLib/UIFramework/ZCSUIFrameWork/ZCSUIFrameWork.xcodeproj; sourceTree = "<group>"; };
 		04C15C171B23460E0031E3CF /* GoodsOrderMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoodsOrderMenuView.h; path = Order/GoodsOrderMenuView.h; sourceTree = "<group>"; };
 		04C15C181B23460E0031E3CF /* GoodsOrderMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoodsOrderMenuView.m; path = Order/GoodsOrderMenuView.m; sourceTree = "<group>"; };
+		04E5C6071B80B02E00BAB4E5 /* JSBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBadgeView.h; sourceTree = "<group>"; };
+		04E5C6081B80B02E00BAB4E5 /* JSBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSBadgeView.m; sourceTree = "<group>"; };
+		04E5C60B1B80B09D00BAB4E5 /* UIAdWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIAdWebViewController.h; path = Me/UIAdWebViewController.h; sourceTree = "<group>"; };
+		04E5C60C1B80B09D00BAB4E5 /* UIAdWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIAdWebViewController.m; path = Me/UIAdWebViewController.m; sourceTree = "<group>"; };
+		04E5C60E1B80B0E700BAB4E5 /* user_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_info.png; sourceTree = "<group>"; };
+		04E5C6121B80C24D00BAB4E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SMS_SDKLocalizable.strings; sourceTree = "<group>"; };
+		04E5C6131B80C24D00BAB4E5 /* SMS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMS_SDK.framework; sourceTree = "<group>"; };
+		04E5C6141B80C24D00BAB4E5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SMS_SDKLocalizable.strings"; sourceTree = "<group>"; };
+		04E5C6171B80ED8900BAB4E5 /* RegisterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterView.h; sourceTree = "<group>"; };
+		04E5C6181B80ED8900BAB4E5 /* RegisterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterView.m; sourceTree = "<group>"; };
 		04F082021B4993BB005F97EB /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserInfoViewController.h; path = Me/UserInfoViewController.h; sourceTree = "<group>"; };
 		04F082031B4993BB005F97EB /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInfoViewController.m; path = Me/UserInfoViewController.m; sourceTree = "<group>"; };
 		04F22B881B516F0F0069C184 /* user_resetpwd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_resetpwd.png; sourceTree = "<group>"; };
-		04F22B8A1B5170680069C184 /* user_Info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = user_Info.png; path = MobileOrder/images/common/user_Info.png; sourceTree = SOURCE_ROOT; };
 		04FDFA9A1B2C20FD00920C07 /* OrderItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderItem.h; path = Model/OrderItem.h; sourceTree = "<group>"; };
 		04FDFA9B1B2C20FD00920C07 /* OrderItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderItem.m; path = Model/OrderItem.m; sourceTree = "<group>"; };
 		04FDFA9D1B2C25C100920C07 /* UserItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserItem.h; path = Model/UserItem.h; sourceTree = "<group>"; };
@@ -508,6 +522,7 @@
 				042C7DBC1B19BBEB00E8A53C /* AudioToolbox.framework in Frameworks */,
 				04A3539E1B139243003A80AA /* MobileCoreServices.framework in Frameworks */,
 				04A3539A1B139220003A80AA /* SystemConfiguration.framework in Frameworks */,
+				04E5C6161B80C24D00BAB4E5 /* SMS_SDK.framework in Frameworks */,
 				04A353971B1391C3003A80AA /* libz.dylib in Frameworks */,
 				04A353951B1391AE003A80AA /* CFNetwork.framework in Frameworks */,
 			);
@@ -619,6 +634,8 @@
 		048BE39C1B3AF8A900997846 /* me */ = {
 			isa = PBXGroup;
 			children = (
+				04E5C60B1B80B09D00BAB4E5 /* UIAdWebViewController.h */,
+				04E5C60C1B80B09D00BAB4E5 /* UIAdWebViewController.m */,
 				044DB17B1B62A02B00DD617C /* UserFeedBackViewController.h */,
 				044DB17C1B62A02B00DD617C /* UserFeedBackViewController.m */,
 				048BE39D1B3AF8D600997846 /* FoodOrderListViewController.h */,
@@ -636,6 +653,8 @@
 		048CE61E1B3FE9B60021C5EC /* UIView */ = {
 			isa = PBXGroup;
 			children = (
+				04E5C6071B80B02E00BAB4E5 /* JSBadgeView.h */,
+				04E5C6081B80B02E00BAB4E5 /* JSBadgeView.m */,
 				048CE61F1B3FE9E50021C5EC /* ZHPickView.h */,
 				048CE6201B3FE9E50021C5EC /* ZHPickView.m */,
 				04164BDB1B64CC3300200FDA /* OrderStatusView.h */,
@@ -809,6 +828,7 @@
 		04A353371B1381B6003A80AA = {
 			isa = PBXGroup;
 			children = (
+				04E5C6101B80C24D00BAB4E5 /* SMS_SDK */,
 				04AD9EBD1B444524003A0F46 /* ZCSUIFrameWork.xcodeproj */,
 				042C7DBB1B19BBEB00E8A53C /* AudioToolbox.framework */,
 				042C7DB91B19BBE100E8A53C /* CoreAudio.framework */,
@@ -900,6 +920,8 @@
 			children = (
 				04689A3E1B38509800D6CD55 /* LoginView.h */,
 				04689A3F1B38509800D6CD55 /* LoginView.m */,
+				04E5C6171B80ED8900BAB4E5 /* RegisterView.h */,
+				04E5C6181B80ED8900BAB4E5 /* RegisterView.m */,
 				04A353771B138801003A80AA /* CardShopLoginViewController.xib */,
 				04A353751B138801003A80AA /* CardShopLoginViewController.h */,
 				04A353761B138801003A80AA /* CardShopLoginViewController.m */,
@@ -1039,7 +1061,7 @@
 		04A353D21B13A510003A80AA /* user */ = {
 			isa = PBXGroup;
 			children = (
-				04F22B8A1B5170680069C184 /* user_Info.png */,
+				04E5C60E1B80B0E700BAB4E5 /* user_info.png */,
 				04F22B881B516F0F0069C184 /* user_resetpwd.png */,
 				04A353D31B13A510003A80AA /* user_setting.png */,
 				04A353D41B13A510003A80AA /* user_address@2x.png */,
@@ -1060,6 +1082,15 @@
 				04AD9EC21B444524003A0F46 /* libZCSUIFrameWork.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		04E5C6101B80C24D00BAB4E5 /* SMS_SDK */ = {
+			isa = PBXGroup;
+			children = (
+				04E5C6111B80C24D00BAB4E5 /* SMS_SDKLocalizable.strings */,
+				04E5C6131B80C24D00BAB4E5 /* SMS_SDK.framework */,
+			);
+			path = SMS_SDK;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1125,6 +1156,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 04A353371B1381B6003A80AA;
 			productRefGroup = 04A353411B1381B6003A80AA /* Products */;
@@ -1196,6 +1228,7 @@
 				04A353F61B13A510003A80AA /* btn-back.png in Resources */,
 				04689A541B38534A00D6CD55 /* userBg-568h.png in Resources */,
 				04A354071B13A510003A80AA /* shop_address.png in Resources */,
+				04E5C60F1B80B0E700BAB4E5 /* user_info.png in Resources */,
 				04A3540B1B13A510003A80AA /* shop_com@2x.png in Resources */,
 				04A354081B13A510003A80AA /* shop_address_dis@2x.png in Resources */,
 				04A354021B13A510003A80AA /* pay_cell_sel_n@2x.png in Resources */,
@@ -1209,7 +1242,6 @@
 				04A353801B138801003A80AA /* CardShopResignViewController.xib in Resources */,
 				04A3540E1B13A510003A80AA /* shop_full@2x.png in Resources */,
 				04A353FE1B13A510003A80AA /* alert_rmb@2x.png in Resources */,
-				04F22B8B1B5170680069C184 /* user_Info.png in Resources */,
 				04A354131B13A510003A80AA /* user_setting.png in Resources */,
 				04689A511B38534A00D6CD55 /* user_close.png in Resources */,
 				042C7DCE1B1B73CF00E8A53C /* food_default_fang@2x.png in Resources */,
@@ -1235,6 +1267,7 @@
 				04A353F51B13A510003A80AA /* title_arrow_down@2x.png in Resources */,
 				04A354121B13A510003A80AA /* shop_time_bus@2x.png in Resources */,
 				04689A551B38534A00D6CD55 /* userBg.png in Resources */,
+				04E5C6151B80C24D00BAB4E5 /* SMS_SDKLocalizable.strings in Resources */,
 				04A353FA1B13A510003A80AA /* main_collview_4.png in Resources */,
 				04A353EE1B13A510003A80AA /* auto_arrow@2x.png in Resources */,
 				04A353F81B13A510003A80AA /* main_collview_2.png in Resources */,
@@ -1259,11 +1292,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04E5C60D1B80B09D00BAB4E5 /* UIAdWebViewController.m in Sources */,
 				044AC5391B1648F900F7D196 /* ExcellLikeCellBase.m in Sources */,
 				044AC5351B1648F900F7D196 /* GoodsItemCell.m in Sources */,
 				04911D761B5BA5190032F5E0 /* openssl_wrapper.m in Sources */,
 				04913EA91B196F7400179567 /* GoodsCatagoryView.m in Sources */,
 				04689A401B38509800D6CD55 /* LoginView.m in Sources */,
+				04E5C6191B80ED8900BAB4E5 /* RegisterView.m in Sources */,
 				04A353811B138801003A80AA /* ResetPasswordViewController.m in Sources */,
 				044AC5141B16472E00F7D196 /* BSTellNetListBaseViewController.m in Sources */,
 				04A353851B138898003A80AA /* BaoCarNetBaseViewController.m in Sources */,
@@ -1322,6 +1357,7 @@
 				044AC53C1B1648F900F7D196 /* NoteItemCell.m in Sources */,
 				04164BDD1B64CC3300200FDA /* OrderStatusView.m in Sources */,
 				04FDFAA41B2C313900920C07 /* OrderListItemCell.m in Sources */,
+				04E5C6091B80B02E00BAB4E5 /* JSBadgeView.m in Sources */,
 				04913EB41B199D1E00179567 /* GoodsCatagoryItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1343,6 +1379,18 @@
 			targetProxy = 04A3535A1B1381B6003A80AA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		04E5C6111B80C24D00BAB4E5 /* SMS_SDKLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				04E5C6121B80C24D00BAB4E5 /* en */,
+				04E5C6141B80C24D00BAB4E5 /* zh-Hans */,
+			);
+			name = SMS_SDKLocalizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		04A353611B1381B6003A80AA /* Debug */ = {
@@ -1429,6 +1477,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MobileOrder/alipay",
+					"$(PROJECT_DIR)/SMS_SDK",
 				);
 				GCC_PREFIX_HEADER = MobileOrder/MobileOrderPrefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
@@ -1447,7 +1496,10 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/MobileOrder/alipay",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-licucore",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1460,6 +1512,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MobileOrder/alipay",
+					"$(PROJECT_DIR)/SMS_SDK",
 				);
 				GCC_PREFIX_HEADER = MobileOrder/MobileOrderPrefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
@@ -1478,7 +1531,10 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/MobileOrder/alipay",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-licucore",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
