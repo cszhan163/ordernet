@@ -157,22 +157,18 @@
 		04A354201B13A510003A80AA /* user_protocol.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A353E01B13A510003A80AA /* user_protocol.png */; };
 		04A354221B13A510003A80AA /* user_order.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A353E21B13A510003A80AA /* user_order.png */; };
 		04C15C191B23460E0031E3CF /* GoodsOrderMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C15C181B23460E0031E3CF /* GoodsOrderMenuView.m */; };
-		04E5C6091B80B02E00BAB4E5 /* JSBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E5C6081B80B02E00BAB4E5 /* JSBadgeView.m */; };
 		04E5C60D1B80B09D00BAB4E5 /* UIAdWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E5C60C1B80B09D00BAB4E5 /* UIAdWebViewController.m */; };
 		04E5C60F1B80B0E700BAB4E5 /* user_info.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5C60E1B80B0E700BAB4E5 /* user_info.png */; };
 		04E5C6151B80C24D00BAB4E5 /* SMS_SDKLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04E5C6111B80C24D00BAB4E5 /* SMS_SDKLocalizable.strings */; };
 		04E5C6161B80C24D00BAB4E5 /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E5C6131B80C24D00BAB4E5 /* SMS_SDK.framework */; };
 		04E5C6191B80ED8900BAB4E5 /* RegisterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E5C6181B80ED8900BAB4E5 /* RegisterView.m */; };
 		04F082041B4993BB005F97EB /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F082031B4993BB005F97EB /* UserInfoViewController.m */; };
-		04F22B891B516F0F0069C184 /* user_resetpwd.png in Resources */ = {isa = PBXBuildFile; fileRef = 04F22B881B516F0F0069C184 /* user_resetpwd.png */; };
 		04FDFA9C1B2C20FD00920C07 /* OrderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FDFA9B1B2C20FD00920C07 /* OrderItem.m */; };
 		04FDFA9F1B2C25C100920C07 /* UserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FDFA9E1B2C25C100920C07 /* UserItem.m */; };
 		04FDFAA11B2C2E8C00920C07 /* OrderListItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FDFAA01B2C2E8C00920C07 /* OrderListItemCell.xib */; };
 		04FDFAA41B2C313900920C07 /* OrderListItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FDFAA31B2C313900920C07 /* OrderListItemCell.m */; };
-		5E8C21621B7F4F30006458B5 /* UIAdWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8C21611B7F4F30006458B5 /* UIAdWebViewController.m */; };
 		5E8C216C1B7F9DA2006458B5 /* user_info.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E8C216A1B7F9DA2006458B5 /* user_info.png */; };
 		5E8C216D1B7F9DA2006458B5 /* user_resetpwd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E8C216B1B7F9DA2006458B5 /* user_resetpwd.png */; };
-		5E9970441B7C74BF00DCE8A2 /* JSBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9970431B7C74BF00DCE8A2 /* JSBadgeView.m */; };
 		5ED466CE1B799AF700B14ADC /* libZCSUIFrameWork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ED466CD1B799AF700B14ADC /* libZCSUIFrameWork.a */; };
 /* End PBXBuildFile section */
 
@@ -492,8 +488,6 @@
 		04AD9EBD1B444524003A0F46 /* ZCSUIFrameWork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZCSUIFrameWork.xcodeproj; path = ../BaseLib/UIFramework/ZCSUIFrameWork/ZCSUIFrameWork.xcodeproj; sourceTree = "<group>"; };
 		04C15C171B23460E0031E3CF /* GoodsOrderMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoodsOrderMenuView.h; path = Order/GoodsOrderMenuView.h; sourceTree = "<group>"; };
 		04C15C181B23460E0031E3CF /* GoodsOrderMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoodsOrderMenuView.m; path = Order/GoodsOrderMenuView.m; sourceTree = "<group>"; };
-		04E5C6071B80B02E00BAB4E5 /* JSBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBadgeView.h; sourceTree = "<group>"; };
-		04E5C6081B80B02E00BAB4E5 /* JSBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSBadgeView.m; sourceTree = "<group>"; };
 		04E5C60B1B80B09D00BAB4E5 /* UIAdWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIAdWebViewController.h; path = Me/UIAdWebViewController.h; sourceTree = "<group>"; };
 		04E5C60C1B80B09D00BAB4E5 /* UIAdWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIAdWebViewController.m; path = Me/UIAdWebViewController.m; sourceTree = "<group>"; };
 		04E5C60E1B80B0E700BAB4E5 /* user_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_info.png; sourceTree = "<group>"; };
@@ -666,8 +660,6 @@
 		048CE61E1B3FE9B60021C5EC /* UIView */ = {
 			isa = PBXGroup;
 			children = (
-				04E5C6071B80B02E00BAB4E5 /* JSBadgeView.h */,
-				04E5C6081B80B02E00BAB4E5 /* JSBadgeView.m */,
 				048CE61F1B3FE9E50021C5EC /* ZHPickView.h */,
 				048CE6201B3FE9E50021C5EC /* ZHPickView.m */,
 				04164BDB1B64CC3300200FDA /* OrderStatusView.h */,
@@ -1099,15 +1091,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5E9970411B7C74BF00DCE8A2 /* JSBadgeView */ = {
-			isa = PBXGroup;
-			children = (
-				5E9970421B7C74BF00DCE8A2 /* JSBadgeView.h */,
-				5E9970431B7C74BF00DCE8A2 /* JSBadgeView.m */,
-			);
-			path = JSBadgeView;
-			sourceTree = "<group>";
-		};
 		04E5C6101B80C24D00BAB4E5 /* SMS_SDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -1115,6 +1098,15 @@
 				04E5C6131B80C24D00BAB4E5 /* SMS_SDK.framework */,
 			);
 			path = SMS_SDK;
+			sourceTree = "<group>";
+		};
+		5E9970411B7C74BF00DCE8A2 /* JSBadgeView */ = {
+			isa = PBXGroup;
+			children = (
+				5E9970421B7C74BF00DCE8A2 /* JSBadgeView.h */,
+				5E9970431B7C74BF00DCE8A2 /* JSBadgeView.m */,
+			);
+			path = JSBadgeView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1382,7 +1374,6 @@
 				044AC53C1B1648F900F7D196 /* NoteItemCell.m in Sources */,
 				04164BDD1B64CC3300200FDA /* OrderStatusView.m in Sources */,
 				04FDFAA41B2C313900920C07 /* OrderListItemCell.m in Sources */,
-				04E5C6091B80B02E00BAB4E5 /* JSBadgeView.m in Sources */,
 				04913EB41B199D1E00179567 /* GoodsCatagoryItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
