@@ -33,4 +33,8 @@ typedef void (^CompleteBlock)(id data);
 
 - (void)startCheckDinnerWaitingByOrderId:(long long)orderId;
 
+- (void)startGetRegisterUserSMSWithDone:(CompleteBlock) done;
+
+- (void)startVeryRegisterUserSMS:(NSDictionary*)param withDone:(CompleteBlock) done withError:(CompleteBlock) errorDone;
+
 @end

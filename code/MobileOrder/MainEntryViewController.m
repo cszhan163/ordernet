@@ -43,6 +43,7 @@
 #define  kIphone6PlusImageSize  CGSizeMake(kDeviceScreenWidth, 200.f+100.f)
 
 
+
 @interface MainEntryViewController () {
 
 
@@ -140,7 +141,6 @@
     }
     [self initFocusImageView];
     
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 

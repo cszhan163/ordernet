@@ -8,6 +8,8 @@
 
 #import "UserDinnerWatingMgr.h"
 
+#import <SMS_SDK/SMS_SDK.h>
+
 #define kDinnerWaitingCheck   10.f
 
 @interface UserDinnerWatingMgr(){
@@ -176,6 +178,97 @@ static UserDinnerWatingMgr *staticInstance = nil;
         }
     }
     
+}
+
+- (void)startGetRegisterUserSMSWithDone:(CompleteBlock) done {
+
+    [SMS_SDK registerApp:@"98c5ef522a08" withSecret:@"8cc3b30270a8ad8c76f3fac4e6db5fe7"];
+    [SMS_SDK getVerificationCodeBySMSWithPhone:@"18721984648" zone:@"86" result:^(SMS_SDKError *smsError){
+       
+        NSError *error = nil;
+        if(smsError){
+            kUIAlertViewNoDelegate(@"提示", smsError.errorDescription);
+            error = [NSError errorWithDomain:@"" code:smsError.code userInfo:@{@"description":smsError.errorDescription}];
+        }
+        if(done){
+            
+            done(error);
+        }
+    }];
+    
+}
+
+- (void)startVeryRegisterUserSMS:(NSDictionary*)param withDone:(CompleteBlock) done withError:(CompleteBlock) errorDone{
+
+    NSMutableDictionary *finaParam = [NSMutableDictionary dictionaryWithDictionary:param];
+    
+    [finaParam setValue:@"98c5ef522a08" forKey:@"appkey"];
+    [finaParam setValue:@"86" forKey:@"zone"];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://api.sms.mob.com/sms/verify"]
+                                                cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:15];
+    //[urlRequest setValue:@"application/www-url" forHTTPHeaderField:@"Content-Type"];
+    [urlRequest setHTTPMethod:@"POST"];
+    NSMutableString *finalStr = [NSMutableString string];
+    for(id key in finaParam){
+        id value = [finaParam objectForKey:key];
+        [finalStr appendFormat:@"&%@=%@",key,value];
+        
+    }
+    [urlRequest setHTTPBody:[finalStr dataUsingEncoding:NSUTF8StringEncoding]];
+    
+#if 1
+    NSURLSession *urlSession = [NSURLSession sharedSession];
+    
+    NSURLSessionDataTask *sessionTask = [urlSession dataTaskWithRequest:urlRequest  completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if(error){
+        
+             NSError *error = [NSError errorWithDomain:@"Network" code:-100 userInfo:@{}];
+            if(error){
+                errorDone(error);
+            }
+            if(done){
+                done(nil);
+            }
+        }else {
+        
+            if([(NSHTTPURLResponse*)response statusCode]==200){
+            
+                if(error){
+                    
+                    errorDone(nil);
+                }
+                if(done){
+                    
+                    done(@1);
+                }
+                
+                
+            }else {
+            
+                NSError *error = [NSError errorWithDomain:@"Responde" code:100 userInfo:@{}];
+                if(error){
+                    
+                    errorDone(nil);
+                }
+                if(done){
+                    
+                    done(nil);
+                }
+            }
+            
+        }
+        
+        
+    }];
+    [sessionTask  resume];
+#else
+    
+    NSError *error = nil;
+    NSURLResponse *urlResp = nil;
+    [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&urlResp error:&error];
+    
+#endif
 }
 
 

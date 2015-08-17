@@ -138,6 +138,7 @@
         }
         
     }else {
+        offsetY = kMBAppTopToolBarHeight;
         CGRect rect = self.mainView.frame;
         self.mainView.frame = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height-kMBAppStatusBar);
     }

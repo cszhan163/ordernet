@@ -11,8 +11,22 @@
 #import "AppConfig.h"
 #import "DressMemoPhotoCache.h"
 #import "MemoPhotoDownloader.h"
-@interface CardShopResignViewController ()
 
+#import "UserDinnerWatingMgr.h"
+#import "RegisterView.h"
+
+typedef enum resetPasswStage{
+    ResetStageOne,
+    ResetStageTwo,
+}ResetPasswStage;
+
+@interface CardShopResignViewController () {
+
+    ResetPasswStage resetStage;
+    
+    RegisterView    *registerView;
+    
+}
 @end
 
 @implementation CardShopResignViewController
@@ -51,7 +65,8 @@
 - (void)viewDidLoad
 {
     //[super viewDidLoad];
-    if(kDeviceCheckIphone6 || kDeviceCheckIphone6Plus){
+    //if(kDeviceCheckIphone6 || kDeviceCheckIphone6Plus)
+    {
     NSArray *nibArray = [[NSBundle  mainBundle] loadNibNamed:@"CardShopResignViewController" owner:self options:nil];
     NSInteger index = 0;
     
@@ -60,10 +75,12 @@
     }else if(kDeviceCheckIphone6Plus){
         index = 2;
     }
-    self.view = nibArray[index];
+    registerView = nibArray[index];
     }
-
-    self.view.backgroundColor = kViewBGColor;
+    self.view = registerView;
+    
+    self.view.backgroundColor = kNavBarColor;
+    
     UIScrollView *bgScrollerView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.f,0.f, kDeviceScreenWidth, kDeviceScreenHeight-kMBAppStatusBar)];
     for(id item in [self.view subviews]){
         [item removeFromSuperview];
@@ -77,25 +94,28 @@
     self.view.layer.contents = (id)bgImage.CGImage;
     if(type ==0)
     {
-        navTitleLabel.text = @"注册";
+        registerView.navTitleLabel.text = @"注册";
     }
     else
     {
-        navTitleLabel.text = @"找回密码";
+        registerView.navTitleLabel.text = @"找回密码";
     }
-    mobilePhoneTextFied.text = self.mobilePhoneNumStr;
+    registerView.mobilePhoneTextFied.text = self.mobilePhoneNumStr;
+    if(mobilePhoneTextFied.placeholder)
+    {
+        registerView.mobilePhoneTextFied.attributedPlaceholder = [UIComUtil getCustomAttributeString:registerView.mobilePhoneTextFied.placeholder withFont:registerView.mobilePhoneTextFied.font withColor:HexRGB(137, 137, 137)];
+    }
+    registerView.mobilePhoneTextFied.textColor =  HexRGB(137, 137, 137);
     
-    mobilePhoneTextFied.attributedPlaceholder = [UIComUtil getCustomAttributeString:mobilePhoneTextFied.placeholder withFont:mobilePhoneTextFied.font withColor:HexRGB(137, 137, 137)];
-    
-    mobilePhoneTextFied.textColor =  HexRGB(137, 137, 137);
-    
-    radomCodeTextFied.attributedPlaceholder = [UIComUtil getCustomAttributeString:radomCodeTextFied.placeholder withFont:radomCodeTextFied.font withColor:HexRGB(137, 137, 137)];
-    self.radomCodeTextFied.textColor = HexRGB(137, 137, 137);
-    
-     passwordTextFied.attributedPlaceholder = [UIComUtil getCustomAttributeString:passwordTextFied.placeholder withFont:passwordTextFied.font withColor:HexRGB(137, 137, 137)];
-    
-    self.passwordTextFied.textColor =  HexRGB(137, 137, 137);
-    
+    if(registerView.radomCodeTextFied.attributedPlaceholder){
+        registerView.radomCodeTextFied.attributedPlaceholder = [UIComUtil getCustomAttributeString:registerView.radomCodeTextFied.placeholder withFont:registerView.radomCodeTextFied.font withColor:HexRGB(137, 137, 137)];
+        registerView.radomCodeTextFied.textColor = HexRGB(137, 137, 137);
+    }
+    if(registerView.passwordTextFied.attributedPlaceholder){
+        registerView.passwordTextFied.attributedPlaceholder = [UIComUtil getCustomAttributeString:registerView.passwordTextFied.placeholder withFont:registerView.passwordTextFied.font withColor:HexRGB(137, 137, 137)];
+        
+        registerView.passwordTextFied.textColor =  HexRGB(137, 137, 137);
+    }
     
     
     UIButton *btn = [UIComUtil createButtonWithNormalBGImageName:nil withHightBGImageName:nil withTitle:@"" withTag:0];
@@ -107,23 +127,27 @@
     
     [btn addTarget:self action:@selector(doneInput) forControlEvents:UIControlEventTouchUpInside];
     //[self.view addSubview:btn];
-    self.radomCodeTextFied.inputAccessoryView = bgView;
-    mobilePhoneTextFied.delegate = self;
+    registerView.radomCodeTextFied.inputAccessoryView = bgView;
+    registerView.mobilePhoneTextFied.delegate = self;
     // Do any additional setup after loading the view from its nib.
-    [self reflushRandomCodeImage:nil];
+    if(self.type == 1){
     
+    }else{
+    
+        [self reflushRandomCodeImage:nil];
+    }
     self.view.backgroundColor = kNavBarColor;
 }
 - (void)doneInput{
-    [self.radomCodeTextFied resignFirstResponder];
+    [registerView.radomCodeTextFied resignFirstResponder];
 }
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    self.mobilePhoneTextFied = nil;
-    self.passwordTextFied = nil;
-    self.confirmPasswordTextFied = nil;
-    self.radomCodeTextFied  = nil;
+    registerView.mobilePhoneTextFied = nil;
+    registerView.passwordTextFied = nil;
+    registerView.confirmPasswordTextFied = nil;
+    registerView.radomCodeTextFied  = nil;
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -148,34 +172,44 @@
 
     if(self.type == 1) {
     
+        [[UserDinnerWatingMgr sharedInstance] startGetRegisterUserSMSWithDone:^(id error){
+            if(error){
+            
+                
+            }
+        }];
     
     } else {
         [self startLoadRandomCodeImage];
     }
+
 }
+
+
+
 
 -(IBAction)login_click:(id)sender
 {
     
-    [self.mobilePhoneTextFied resignFirstResponder];
-    [self.radomCodeTextFied resignFirstResponder];
-    [self.passwordTextFied resignFirstResponder];
-    [self.confirmPasswordTextFied resignFirstResponder];
-    if([self.mobilePhoneTextFied.text isEqualToString:@""] || [self.mobilePhoneTextFied.text length] <11){
+    [registerView.mobilePhoneTextFied resignFirstResponder];
+    [registerView.radomCodeTextFied resignFirstResponder];
+    [registerView.passwordTextFied resignFirstResponder];
+    [registerView.confirmPasswordTextFied resignFirstResponder];
+    if([registerView.mobilePhoneTextFied.text isEqualToString:@""] || [registerView.mobilePhoneTextFied.text length] <11){
         
         kUIAlertView(@"提示", @"手机号码输入不对");
-        [self.mobilePhoneTextFied becomeFirstResponder];
+        [registerView.mobilePhoneTextFied becomeFirstResponder];
         return;
     }
-    if([self.passwordTextFied.text isEqualToString:@""]){
+    if([registerView.passwordTextFied.text isEqualToString:@""]){
         kUIAlertView(@"提示", @"密码不能为空");
-        [self.passwordTextFied becomeFirstResponder];
+        [registerView.passwordTextFied becomeFirstResponder];
         return;
     }
     if([self.radomCodeTextFied.text isEqualToString:@""])
     {
        kUIAlertView(@"提示", @"验证码不能为空");
-        [self.radomCodeTextFied becomeFirstResponder];
+        [registerView.radomCodeTextFied becomeFirstResponder];
         return;
     }
     [self startLogin];
@@ -196,6 +230,39 @@
     }
     else
     {
+        if(resetStage == ResetStageOne){
+        
+            kNetStartShow(@"短信验证中...",self.view);
+            
+            /*
+             appkey	string	应用appkey	必填
+             phone	string	电话号码	必填(不带区号电话号码 eg.13121222212)
+             zone	string	区号	必填(纯数字区号 eg.86)
+             code	string	需要验证的验证码
+             */
+            NSDictionary *verfyData = @{@"phone":registerView.mobilePhoneTextFied.text,
+                                        @"code":registerView.radomCodeTextFied.text};
+            
+            [[UserDinnerWatingMgr sharedInstance] startVeryRegisterUserSMS:verfyData
+                                                                  withDone:^(id data ){
+                                                                      if(data){
+                                                                          
+                                                                          [self startLogin];
+                                                                      }
+                                                                      
+                }
+                                                                 withError:^(id data){
+            
+                                                                     if(data){
+                                                                     
+                                                                         kUIAlertView(@"提示", @"请检查手机号和验证码是否正确!!");
+                                                                         
+                                                                     }
+                                                                    kNetEnd(self.view);
+                                                                 }];
+            
+        }
+        
         kNetStartShow(@"发送中...",self.view);
     }
     MobileOrderNetDataMgr *cardShopMgr = [MobileOrderNetDataMgr getSingleTone];
@@ -204,13 +271,13 @@
     if(type == 0)
     {
         param = [NSDictionary dictionaryWithObjectsAndKeys:
-                           self.mobilePhoneTextFied.text,@"mobile",
-                           [self.passwordTextFied.text getMd5String],@"password",
+                           registerView.mobilePhoneTextFied.text,@"mobile",
+                           [registerView.passwordTextFied.text getMd5String],@"password",
                            //self.confirmPasswordTextFied.text,@"repassword",
                            nil];
         NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:param];
-        if(![self.radomCodeTextFied.text isEqualToString:@""]){
-            [dict setValue:self.radomCodeTextFied.text forKey:@"captcha"];
+        if(![registerView.radomCodeTextFied.text isEqualToString:@""]){
+            [dict setValue:registerView.radomCodeTextFied.text forKey:@"captcha"];
          }
         /**
          userName, String password, String mobile
@@ -222,10 +289,10 @@
     else
     {
         param = [NSDictionary dictionaryWithObjectsAndKeys:
-                 self.mobilePhoneTextFied.text,@"username",
-                 self.passwordTextFied.text,@"password",
-                 self.confirmPasswordTextFied.text,@"repassword",
-                 self.radomCodeTextFied.text,@"sms",
+                 registerView.mobilePhoneTextFied.text,@"username",
+                 registerView.passwordTextFied.text,@"password",
+                 registerView.confirmPasswordTextFied.text,@"repassword",
+                 //registerView.radomCodeTextFied.text,@"sms",
                  nil];
         //self.request = [cardShopMgr userResetPassword:param];
     }
@@ -252,8 +319,8 @@
         {
             //[AppSetting setLoginUserInfo:param];
 #if 1
-            [AppSetting setLoginUserId:self.mobilePhoneTextFied.text];
-            [AppSetting setLoginUserPassword:[self.passwordTextFied.text getMd5String]];
+            [AppSetting setLoginUserId:registerView.mobilePhoneTextFied.text];
+            [AppSetting setLoginUserPassword:[registerView.passwordTextFied.text getMd5String]];
 #endif
             NE_LOG(@"%@",[_data description]);
             //[self stopShowLoadingView];
@@ -266,8 +333,8 @@
             kUIAlertView(@"提示", @"注册成功");
         }
         //else
-        [ZCSNotficationMgr postMSG:kUserDidResignOK obj:@{@"mobile":self.mobilePhoneTextFied.text,
-                                                          @"password":self.passwordTextFied.text,}];
+        [ZCSNotficationMgr postMSG:kUserDidResignOK obj:@{@"mobile":registerView.mobilePhoneTextFied.text,
+                                                          @"password":registerView.passwordTextFied.text,}];
     }
     
 }
@@ -334,8 +401,8 @@
 
     UIImage *image = [UIImage imageWithData:receiveData];
     
-    [self.radomCodeBtn setImage:image forState:UIControlStateNormal];
-    [self.radomCodeBtn setImage:image forState:UIControlStateSelected];
+    [registerView.radomCodeBtn setImage:image forState:UIControlStateNormal];
+    [registerView.radomCodeBtn setImage:image forState:UIControlStateSelected];
 }
 
 - (void) requestCompleted:(MemoPhotoDownloader *) request{
@@ -347,8 +414,8 @@
         
         UIImage *image = [UIImage imageWithData:request.receiveData];
         
-        [self.radomCodeBtn setImage:image forState:UIControlStateNormal];
-        [self.radomCodeBtn setImage:image forState:UIControlStateSelected];
+        [registerView.radomCodeBtn setImage:image forState:UIControlStateNormal];
+        [registerView.radomCodeBtn setImage:image forState:UIControlStateSelected];
         
     }
     request.delegate = nil;
