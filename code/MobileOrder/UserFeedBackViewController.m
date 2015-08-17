@@ -97,8 +97,10 @@
         //        if ([self.externDelegate respondsToSelector:@selector(commentDidSendOK:)]) {
         //            [self.externDelegate commentDidSendOK:self];
         //        }
-                  kNetEndSuccStr(@"评论成功",self.view);
+                  //kNetEnd(self.view);
+                  //kNetEndWithErrorAutoDismiss(@"评论成功",2);
         //        [self dismissModalViewControllerAnimated:YES];
+        kUIAlertViewNoDelegate(@"提示", @"评论成功");
 #if 0
         [self reloadNetData:data];
 #else
