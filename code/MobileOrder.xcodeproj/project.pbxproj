@@ -158,7 +158,6 @@
 		04A354221B13A510003A80AA /* user_order.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A353E21B13A510003A80AA /* user_order.png */; };
 		04C15C191B23460E0031E3CF /* GoodsOrderMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C15C181B23460E0031E3CF /* GoodsOrderMenuView.m */; };
 		04E5C60D1B80B09D00BAB4E5 /* UIAdWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E5C60C1B80B09D00BAB4E5 /* UIAdWebViewController.m */; };
-		04E5C60F1B80B0E700BAB4E5 /* user_info.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E5C60E1B80B0E700BAB4E5 /* user_info.png */; };
 		04E5C6151B80C24D00BAB4E5 /* SMS_SDKLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04E5C6111B80C24D00BAB4E5 /* SMS_SDKLocalizable.strings */; };
 		04E5C6161B80C24D00BAB4E5 /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E5C6131B80C24D00BAB4E5 /* SMS_SDK.framework */; };
 		04E5C6191B80ED8900BAB4E5 /* RegisterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E5C6181B80ED8900BAB4E5 /* RegisterView.m */; };
@@ -167,8 +166,9 @@
 		04FDFA9F1B2C25C100920C07 /* UserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FDFA9E1B2C25C100920C07 /* UserItem.m */; };
 		04FDFAA11B2C2E8C00920C07 /* OrderListItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FDFAA01B2C2E8C00920C07 /* OrderListItemCell.xib */; };
 		04FDFAA41B2C313900920C07 /* OrderListItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FDFAA31B2C313900920C07 /* OrderListItemCell.m */; };
-		5E8C216C1B7F9DA2006458B5 /* user_info.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E8C216A1B7F9DA2006458B5 /* user_info.png */; };
-		5E8C216D1B7F9DA2006458B5 /* user_resetpwd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E8C216B1B7F9DA2006458B5 /* user_resetpwd.png */; };
+		5E675F8F1B8178C500C4C7A0 /* JSBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9970431B7C74BF00DCE8A2 /* JSBadgeView.m */; };
+		5EBC76021B817F46004F2C1A /* user_info.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBC76011B817F46004F2C1A /* user_info.png */; };
+		5EBC76031B817FCF004F2C1A /* user_resetpwd.png in Resources */ = {isa = PBXBuildFile; fileRef = 04F22B881B516F0F0069C184 /* user_resetpwd.png */; };
 		5ED466CE1B799AF700B14ADC /* libZCSUIFrameWork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ED466CD1B799AF700B14ADC /* libZCSUIFrameWork.a */; };
 /* End PBXBuildFile section */
 
@@ -490,7 +490,6 @@
 		04C15C181B23460E0031E3CF /* GoodsOrderMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoodsOrderMenuView.m; path = Order/GoodsOrderMenuView.m; sourceTree = "<group>"; };
 		04E5C60B1B80B09D00BAB4E5 /* UIAdWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIAdWebViewController.h; path = Me/UIAdWebViewController.h; sourceTree = "<group>"; };
 		04E5C60C1B80B09D00BAB4E5 /* UIAdWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIAdWebViewController.m; path = Me/UIAdWebViewController.m; sourceTree = "<group>"; };
-		04E5C60E1B80B0E700BAB4E5 /* user_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_info.png; sourceTree = "<group>"; };
 		04E5C6121B80C24D00BAB4E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SMS_SDKLocalizable.strings; sourceTree = "<group>"; };
 		04E5C6131B80C24D00BAB4E5 /* SMS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMS_SDK.framework; sourceTree = "<group>"; };
 		04E5C6141B80C24D00BAB4E5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SMS_SDKLocalizable.strings"; sourceTree = "<group>"; };
@@ -508,10 +507,9 @@
 		04FDFAA31B2C313900920C07 /* OrderListItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderListItemCell.m; sourceTree = "<group>"; };
 		5E8C21601B7F4F30006458B5 /* UIAdWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIAdWebViewController.h; path = Me/UIAdWebViewController.h; sourceTree = "<group>"; };
 		5E8C21611B7F4F30006458B5 /* UIAdWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIAdWebViewController.m; path = Me/UIAdWebViewController.m; sourceTree = "<group>"; };
-		5E8C216A1B7F9DA2006458B5 /* user_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_info.png; sourceTree = "<group>"; };
-		5E8C216B1B7F9DA2006458B5 /* user_resetpwd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_resetpwd.png; sourceTree = "<group>"; };
 		5E9970421B7C74BF00DCE8A2 /* JSBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBadgeView.h; sourceTree = "<group>"; };
 		5E9970431B7C74BF00DCE8A2 /* JSBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSBadgeView.m; sourceTree = "<group>"; };
+		5EBC76011B817F46004F2C1A /* user_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_info.png; sourceTree = "<group>"; };
 		5ED466CD1B799AF700B14ADC /* libZCSUIFrameWork.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libZCSUIFrameWork.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1068,7 +1066,7 @@
 		04A353D21B13A510003A80AA /* user */ = {
 			isa = PBXGroup;
 			children = (
-				04E5C60E1B80B0E700BAB4E5 /* user_info.png */,
+				5EBC76011B817F46004F2C1A /* user_info.png */,
 				04F22B881B516F0F0069C184 /* user_resetpwd.png */,
 				04A353D31B13A510003A80AA /* user_setting.png */,
 				04A353D41B13A510003A80AA /* user_address@2x.png */,
@@ -1206,6 +1204,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EBC76031B817FCF004F2C1A /* user_resetpwd.png in Resources */,
 				04689A531B38534A00D6CD55 /* user_pwd.png in Resources */,
 				04689A4C1B38534A00D6CD55 /* user_auto_no.png in Resources */,
 				042C7DCF1B1B73CF00E8A53C /* order_img_bg@2x.png in Resources */,
@@ -1222,7 +1221,6 @@
 				04A353E81B13A510003A80AA /* act_back@2x.png in Resources */,
 				04A354001B13A510003A80AA /* auto_sub.png in Resources */,
 				04A354041B13A510003A80AA /* pay_wx@2x.png in Resources */,
-				5E8C216D1B7F9DA2006458B5 /* user_resetpwd.png in Resources */,
 				04689A4D1B38534A00D6CD55 /* user_auto_yes.png in Resources */,
 				04A3541D1B13A510003A80AA /* user_comment@2x.png in Resources */,
 				04689A4E1B38534A00D6CD55 /* user_btn_d.png in Resources */,
@@ -1232,7 +1230,6 @@
 				04A354201B13A510003A80AA /* user_protocol.png in Resources */,
 				042C7DD01B1B73CF00E8A53C /* uhuo_default_m.png in Resources */,
 				042C7DCD1B1B73CF00E8A53C /* food_default_s.png in Resources */,
-				5E8C216C1B7F9DA2006458B5 /* user_info.png in Resources */,
 				04A353F91B13A510003A80AA /* main_collview_3.png in Resources */,
 				04A354011B13A510003A80AA /* pay_cell_sel_h@2x.png in Resources */,
 				044AC5361B1648F900F7D196 /* FoodItemCell.xib in Resources */,
@@ -1243,10 +1240,10 @@
 				042C7DD31B1B73CF00E8A53C /* title_big@2x.png in Resources */,
 				04A3541F1B13A510003A80AA /* user_img_default.png in Resources */,
 				044AC53F1B1648F900F7D196 /* VendorTableViewCell.xib in Resources */,
+				5EBC76021B817F46004F2C1A /* user_info.png in Resources */,
 				04A353F61B13A510003A80AA /* btn-back.png in Resources */,
 				04689A541B38534A00D6CD55 /* userBg-568h.png in Resources */,
 				04A354071B13A510003A80AA /* shop_address.png in Resources */,
-				04E5C60F1B80B0E700BAB4E5 /* user_info.png in Resources */,
 				04A3540B1B13A510003A80AA /* shop_com@2x.png in Resources */,
 				04A354081B13A510003A80AA /* shop_address_dis@2x.png in Resources */,
 				04A354021B13A510003A80AA /* pay_cell_sel_n@2x.png in Resources */,
@@ -1309,6 +1306,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E675F8F1B8178C500C4C7A0 /* JSBadgeView.m in Sources */,
 				04E5C60D1B80B09D00BAB4E5 /* UIAdWebViewController.m in Sources */,
 				044AC5391B1648F900F7D196 /* ExcellLikeCellBase.m in Sources */,
 				044AC5351B1648F900F7D196 /* GoodsItemCell.m in Sources */,
