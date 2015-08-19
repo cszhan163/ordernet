@@ -86,6 +86,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
                                                @"order",@"updateorder",
                                                @"order",@"updateorderTimer",
                                                @"ads",@"search_ad",
+                                               @"preOrder",@"preOrder",
                                                
                                                nil];
         dressMemoInterfaceMgr.requestResourceDict = requestResouceMapDict;
@@ -596,6 +597,26 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     
 }
 
+- (id)preOrder:(NSDictionary*)param {
+
+    if(param == nil)
+        return nil;
+    NSError *error = nil;
+    NSData *postData = [NSJSONSerialization  dataWithJSONObject:param options:NSJSONWritingPrettyPrinted error:&error];
+    
+    if(error){
+        NSAssert(nil, @"json error!!");
+        return nil;
+    }
+    
+    return [dressMemoInterfaceMgr startAnRequestByResKey:@"preOrder"
+                                               needLogIn:YES
+                                               withParam:nil
+                                              withMethod:@"POST"
+                                                withData:YES withRawData:postData];
+    
+}
+
 - (id)updateOrderArriveTime:(NSDictionary *)param {
 
     return [dressMemoInterfaceMgr startAnRequestByResKey:@"updateorderTimer"
@@ -795,6 +816,8 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
                                               withMethod:@"GET"
                                                 withData:NO];
 }
+
+
 #pragma mark -
 #pragma mark pay
 -(id)orderPay:(NSDictionary*)param

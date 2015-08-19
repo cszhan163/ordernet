@@ -81,7 +81,7 @@
 
 - (void)startNetWork {
 
-    //[self startNewOrder];
+    [self startPreOrder];
 }
 
 - (void)initUIView {
@@ -581,14 +581,14 @@
 #endif
 
 #if 1
-    if(1 || self.orderItem.orderId == -1)
+    if(1|| self.orderItem.orderId == -1)
     {
         
         [[MobileOrderNetDataMgr getSingleTone] newOrder:[self.orderItem getOrderDictionaryData]];
         
     } else {
     
-        [[MobileOrderNetDataMgr getSingleTone] updateOrder:[self.orderItem getOrderDictionaryData]];
+        [[MobileOrderNetDataMgr getSingleTone] preOrder:[self.orderItem getOrderDictionaryData]];
     }
 #else
     NSError *error = nil;
@@ -611,6 +611,11 @@
     [ZCSNotficationMgr postMSG:kZCSNetWorkOK obj:retDictData];
 #endif
     
+}
+
+- (void)startPreOrder {
+
+    [[MobileOrderNetDataMgr getSingleTone] preOrder:[self.orderItem getOrderDictionaryData]];
 }
 
 -(void)didNetDataOK:(NSNotification*)ntf
@@ -654,6 +659,235 @@
         self.orderItem.orderId = [[data objectForKey:@"id"] longLongValue];
         self.orderItem.orderIdName = [data objectForKey:@"serialNum"];
         [self didMoveToOrderPay];
+    }
+    
+    if([resKey isEqualToString:@"preOrder"]){
+    
+        kNetEnd(self.view);
+        NSDictionary *data = [objData objectForKey:@"data"];
+        NSLog(@"order data:%@",[data description]);
+        /*
+         arriveTime = 1441171942090;
+         arriveTimes = 0;
+         comment = "<null>";
+         createTime = "<null>";
+         desktopNum = "<null>";
+         diningId = 1;
+         id = "<null>";
+         integral = 0;
+         modifyTime = "<null>";
+         orderDetail =     (
+         {
+         createTime = "<null>";
+         id = "<null>";
+         integration = 0;
+         modifyTime = "<null>";
+         num = 2;
+         orderId = "<null>";
+         product =             {
+         createTime = 1439044086000;
+         diningId = 1;
+         dirId = 1;
+         extra = "";
+         id = 2;
+         lastModTime = 1439044086000;
+         materialId = "<null>";
+         materials =                 (
+         );
+         name = "\U6cb9\U6cfc\U626f\U9762";
+         price = 13;
+         status = 1;
+         tasteString = "<null>";
+         tastes =                 (
+         );
+         };
+         productId = 2;
+         productPrice = 13;
+         queuNum = "<null>";
+         status = "<null>";
+         taste = "<null>";
+         tasteId = "<null>";
+         tastePrice = "<null>";
+         totalPrice = 26;
+         },
+         {
+         createTime = "<null>";
+         id = "<null>";
+         integration = 0;
+         modifyTime = "<null>";
+         num = 1;
+         orderId = "<null>";
+         product =             {
+         createTime = 1439045610000;
+         diningId = 1;
+         dirId = 1;
+         extra = "";
+         id = 4;
+         lastModTime = 1439045610000;
+         materialId = "<null>";
+         materials =                 (
+         );
+         name = "\U90a3\U4f60\U9762";
+         price = 15;
+         status = 1;
+         tasteString = "<null>";
+         tastes =                 (
+         );
+         };
+         productId = 4;
+         productPrice = 15;
+         queuNum = "<null>";
+         status = "<null>";
+         taste = "<null>";
+         tasteId = "<null>";
+         tastePrice = "<null>";
+         totalPrice = 15;
+         },
+         {
+         createTime = "<null>";
+         id = "<null>";
+         integration = 0;
+         modifyTime = "<null>";
+         num = 1;
+         orderId = "<null>";
+         product =             {
+         createTime = 1439092458000;
+         diningId = 1;
+         dirId = 3;
+         extra = "";
+         id = 6;
+         lastModTime = 1439092458000;
+         materialId = "<null>";
+         materials =                 (
+         );
+         name = "\U6d4b\U8bd5\U83dc";
+         price = 30;
+         status = 1;
+         tasteString = "<null>";
+         tastes =                 (
+         );
+         };
+         productId = 6;
+         productPrice = 30;
+         queuNum = "<null>";
+         status = "<null>";
+         taste =             {
+         createTime = 1439044043000;
+         diningId = 1;
+         extra = "";
+         id = 2;
+         lastModTime = 1439044043000;
+         name = "\U5fae\U8fa3";
+         price = 2;
+         status = 1;
+         };
+         tasteId = 2;
+         tastePrice = 2;
+         totalPrice = 32;
+         },
+         {
+         createTime = "<null>";
+         id = "<null>";
+         integration = 0;
+         modifyTime = "<null>";
+         num = 1;
+         orderId = "<null>";
+         product =             {
+         createTime = 1439092458000;
+         diningId = 1;
+         dirId = 3;
+         extra = "";
+         id = 6;
+         lastModTime = 1439092458000;
+         materialId = "<null>";
+         materials =                 (
+         );
+         name = "\U6d4b\U8bd5\U83dc";
+         price = 30;
+         status = 1;
+         tasteString = "<null>";
+         tastes =                 (
+         );
+         };
+         productId = 6;
+         productPrice = 30;
+         queuNum = "<null>";
+         status = "<null>";
+         taste =             {
+         createTime = 1439045622000;
+         diningId = 1;
+         extra = "";
+         id = 3;
+         lastModTime = 1439045622000;
+         name = "\U9178";
+         price = 2;
+         status = 1;
+         };
+         tasteId = 3;
+         tastePrice = 2;
+         totalPrice = 32;
+         },
+         {
+         createTime = "<null>";
+         id = "<null>";
+         integration = 0;
+         modifyTime = "<null>";
+         num = 1;
+         orderId = "<null>";
+         product =             {
+         createTime = 1439092458000;
+         diningId = 1;
+         dirId = 3;
+         extra = "";
+         id = 6;
+         lastModTime = 1439092458000;
+         materialId = "<null>";
+         materials =                 (
+         );
+         name = "\U6d4b\U8bd5\U83dc";
+         price = 30;
+         status = 1;
+         tasteString = "<null>";
+         tastes =                 (
+         );
+         };
+         productId = 6;
+         productPrice = 30;
+         queuNum = "<null>";
+         status = "<null>";
+         taste =             {
+         createTime = 1439045634000;
+         diningId = 1;
+         extra = "";
+         id = 4;
+         lastModTime = 1439045634000;
+         name = "\U82e6";
+         price = 6;
+         status = 1;
+         };
+         tasteId = 4;
+         tastePrice = 6;
+         totalPrice = 36;
+         }
+         );
+         paySerialNum = "<null>";
+         payType = 1;
+         peopleCount = 1;
+         queueNum = 3;
+         rate = "<null>";
+         serialNum = "<null>";
+         status = 1;
+         totalPrice = 141;
+         userId = 1;
+         */
+        //self.orderItem.payPrice = [[data objectForKey:@"payNumber"] longLongValue];
+        self.orderItem.consumePoints = [[data objectForKey:@"integral"] longLongValue];
+        /*
+        self.orderItem.totalPrice = totalPrice
+        self.orderItem.payPrice = 
+        */
+        [self upConfirmOrderView];
+    
     }
 
 }

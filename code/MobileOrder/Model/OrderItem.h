@@ -26,9 +26,10 @@
 @end
 
 typedef NS_ENUM(NSInteger,OrderStatus){
-    Order_Init,
-    Order_Pay,
-    Order_Done,
+    Order_Init, //0
+    Order_NoArrived, //1, pay
+    Order_Arrived ,   //2, pay
+    Order_Done,     // 3, done
     Order_Cancel,
 };
 

@@ -101,6 +101,9 @@
     cell.textLabel.text = kKeyMapArray[indexPath.row];
     if(![dataValue isKindOfClass:[NSNull class]]){
         cell.detailTextLabel.text = dataValue;
+    }else if ([dataValue isKindOfClass:[NSNumber class]]){
+    
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%lld",[dataValue longLongValue]];
     }
     
 #endif

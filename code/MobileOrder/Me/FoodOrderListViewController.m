@@ -37,7 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-#if 1
+#if 0
     NSMutableArray *data = [NSMutableArray array];
     for(int i = 0;i< 20;i++){
         
@@ -45,7 +45,7 @@
         item.orderTime = @"2015-06-19-09:50";
         item.payPrice = i+ 180.f;
         if(i ==0)
-            item.status = Order_Pay;
+            item.status = Order_NoArrived;
         else
             item.status = Order_Done;
         [data addObject:item];
@@ -134,7 +134,7 @@
     }
     
     OrderItem *item = self.dataArray[indexPath.row];
-    if(item.status == Order_Pay){
+    if(item.status == Order_NoArrived || item.status == Order_Arrived){
         cell.contentView.backgroundColor = kOrderPayAndWaitingColor;
     } else if(item.status == Order_Done){
         cell.contentView.backgroundColor = [UIColor whiteColor];
@@ -144,7 +144,7 @@
     [cell setCellItemValue:[NSString stringWithFormat:@"¥%0.2lf",item.payPrice] withRow:0 withCol:1];
     
     NSString *status = @"已完成";
-    if(item.status == Order_Pay){
+    if(item.status == Order_NoArrived || item.status == Order_Arrived){
         status =  @"已支付/未上菜";
     }
     
@@ -177,7 +177,7 @@
     if(self.entryType == viewSetting){
     
         OrderItem *item = [self.dataArray objectAtIndex:indexPath.row];
-        if(item.status == Order_Pay) {
+        if(item.status == Order_NoArrived || item.status == Order_Arrived) {
             [ZCSNotficationMgr postMSG:kOrderFoodDidSuccessMSG obj:item];
         }
         if(item.status == Order_Done) {
@@ -189,7 +189,7 @@
     if(self.entryType == viewWaiting){
         
         OrderItem *item = [self.dataArray objectAtIndex:indexPath.row];
-        if(item.status == Order_Pay) {
+        if(item.status == Order_NoArrived || item.status == Order_Arrived) {
             [ZCSNotficationMgr postMSG:kOrderFoodDidSuccessMSG obj:item];
         }
         if(item.status == Order_Done) {

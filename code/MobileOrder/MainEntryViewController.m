@@ -75,6 +75,7 @@
         [ZCSNotficationMgr addObserver:self call:@selector(needPresentLogin:) msgName:kPresentModelViewController];
         [ZCSNotficationMgr addObserver:self call:@selector(didOrderPayOK:) msgName:kOrderFoodDidSuccessMSG];
         [ZCSNotficationMgr addObserver:self call:@selector(showOrderDetail:) msgName:kOrderDetailShowMSG];
+        [ZCSNotficationMgr addObserver:self call:@selector(realTimeOrderDataGet:) msgName:kRealTimerOrderDataGetMSG];
     }
     return self;
 };
@@ -461,19 +462,38 @@
     NSString *resKey = [respRequest resourceKey];
     //NSString *resKey = [respRequest resourceKey];
     
-    if([resKey isEqualToString:@"search_ad"])
-    {
+    if([resKey isEqualToString:@"search_ad"]) {
         //kNetEnd(self.view);
         NSLog(@"ad data:%@",[objData objectForKey:@"data"]);
         [self didProcessRespondAdData:objData];//
         [(NSDictionary*)objData writeToFile:[self adSaveFilePath] atomically:YES];
     }
+    /*
+    if([resKey isEqualToString:@"realtime"]) {
     
+        if([[[objData objectForKey:@"data"] objectForKey:@"data"] count] == 0){
+        
+            UILocalNotification  *locaNotification = [[UILocalNotification alloc]init];
+            [locaNotification setAlertBody:@"你点的菜已经做好了!!!"];
+            [[UIApplication sharedApplication] presentLocalNotificationNow:locaNotification];
+            
+        }
+    }
+    */
 }
 
 - (NSString*)adSaveFilePath{
 
     return [NSString stringWithFormat:@"%@/Documents/ad.data",NSHomeDirectory()];
+}
+
+- (void)realTimeOrderDataGet: (NSNotification*) ntf {
+
+    id data = [ntf object];
+    if([data isKindOfClass:[NSArray class]]) {
+    
+        
+    }
 }
 
 

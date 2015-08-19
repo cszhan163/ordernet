@@ -108,7 +108,7 @@
 }
 
 - (void)startTimerByWaitingTime {
-    if(self.orderItem.status != Order_Pay){
+    if(self.orderItem.status  == Order_Init || self.orderItem.status == Order_Done){
         NE_LOG(@"no need to checker Order status !!");
         [self stopTimer];
         return;
@@ -144,7 +144,7 @@
 
 - (void)startUserWaitingTimer{
     [self stopUserWaitingTimer];
-    if(self.orderItem.status == Order_Pay){
+    if(self.orderItem.status == Order_Arrived || self.orderItem.status == Order_NoArrived){
         
         __block typeof(self)  weakSelf = self;
         [[UserDinnerWatingMgr  sharedInstance] startDinnerWaitingCheck:self.orderItem];

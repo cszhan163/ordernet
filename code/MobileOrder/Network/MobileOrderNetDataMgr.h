@@ -16,8 +16,8 @@
 @protocol ZCSNetClientNetInterfaceMgrDelegate;
 
 
-//#define  kRequestApiRoot                @"http://localhost:8081/pxdc/1.0/"//@"http://121.40.239.155/1.0/"
-#define  kRequestApiRoot                           @"http://121.40.239.155/pxdc/1.0/"
+#define  kRequestApiRoot                @"http://localhost:8081/pxdc/1.0/"//@"http://121.40.239.155/1.0/"
+//#define  kRequestApiRoot                           @"http://121.40.239.155/pxdc/1.0/"
 //#define  kRequestApiRoot                           @"http://192.168.15.119:8081/pxdc/1.0/"
 
 
@@ -50,6 +50,8 @@ ZCSNetClientNetInterfaceMgrDelegate>
 - (id)getWaitingOrderList:(NSDictionary*)param;
 
 - (id)newOrderCommnent:(NSDictionary*) param ;
+
+- (id)preOrder:(NSDictionary*) param;
 
 - (id)updateOrderArriveTime:(NSDictionary *)param;
 

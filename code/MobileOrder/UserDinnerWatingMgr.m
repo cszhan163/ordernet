@@ -141,6 +141,7 @@ static UserDinnerWatingMgr *staticInstance = nil;
         if(self.netDoneBlock) {
             
             self.netDoneBlock(data);
+            self.netDoneBlock = nil;
             self.netFailedBlcok = nil;
             //self.netDoneBlock = nil;
         }
@@ -152,9 +153,11 @@ static UserDinnerWatingMgr *staticInstance = nil;
         NSDictionary *data = objData;
         NSLog(@"realTimer OrderData:%@",[data description]);
         
+        [ZCSNotficationMgr postMSG:kRealTimerOrderDataGetMSG obj:data];
         if(self.netDoneBlock) {
             
             self.netDoneBlock(data);
+            self.netDoneBlock  = nil;
             self.netFailedBlcok = nil;
         }
 

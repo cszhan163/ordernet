@@ -60,4 +60,7 @@
 #define kConfirmOrderNetIndicText   @"订单生成中..."
 
 
+#define kRealTimerOrderDataGetMSG       @"RealTimerOrderDataGet"
+
+
 #endif
