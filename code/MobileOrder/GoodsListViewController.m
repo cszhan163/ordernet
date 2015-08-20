@@ -910,8 +910,10 @@
             [goodsTitleArray addObject:[item objectForKey:@"name"]];
             
             NSArray *catagoryArray = [item objectForKey:@"products"];
-            if(catagoryArray == nil || [catagoryArray isKindOfClass:[NSNull class]])
-                continue;
+            if(catagoryArray == nil || [catagoryArray isKindOfClass:[NSNull class]]){
+            
+                catagoryArray = nil;
+            }
             NSMutableArray *catagoryItemsArray = [NSMutableArray array];
             for(int i = 0;i<[catagoryArray count]; i++){
                 
