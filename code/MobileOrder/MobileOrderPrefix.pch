@@ -52,4 +52,6 @@ typedef enum viewEntryType{
     viewSetting,
 }ViewEntryType;
 
+typedef void (^CompleteBlock)(id data);
+
 #endif

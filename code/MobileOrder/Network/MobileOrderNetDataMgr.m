@@ -86,7 +86,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
                                                @"order",@"updateorder",
                                                @"order",@"updateorderTimer",
                                                @"ads",@"search_ad",
-                                               
+                                               @"user/register",@"resetpassword",
                                                nil];
         dressMemoInterfaceMgr.requestResourceDict = requestResouceMapDict;
         
@@ -316,9 +316,9 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
 {
     //search_category
     //param = [self addUserIdParam:param];
-    return [dressMemoInterfaceMgr startAnRequestByResKey:@"register"
+    return [dressMemoInterfaceMgr startAnRequestByResKey:@"resetpassword"
                                                needLogIn:NO
-                                               withParam:param
+                                               withParam:nil
                                               withMethod:@"PUT"
                                                 withData:NO];
 }

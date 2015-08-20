@@ -10,7 +10,7 @@
 
 #import "OrderItem.h"
 
-typedef void (^CompleteBlock)(id data);
+
 
 @interface UserDinnerWatingMgr : NSObject
 
