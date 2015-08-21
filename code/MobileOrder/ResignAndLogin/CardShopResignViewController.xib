@@ -30,7 +30,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9">
-                    <rect key="frame" x="21" y="291" width="279" height="42"/>
+                    <rect key="frame" x="21" y="339" width="279" height="42"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <state key="normal" title="提交" backgroundImage="user_btn_h.png">
@@ -45,7 +45,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="11">
-                    <rect key="frame" x="195" y="266" width="60" height="16"/>
+                    <rect key="frame" x="195" y="305" width="60" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <state key="normal" title="用户协议" backgroundImage="r_agreed.png">
@@ -73,20 +73,26 @@
                         <action selector="goBack:" destination="-1" eventType="touchUpInside" id="15"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入11位手机号" minimumFontSize="17" id="16" userLabel="MobilePhoe">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入11位手机号" minimumFontSize="17" clearButtonMode="whileEditing" id="16" userLabel="MobilePhoe">
                     <rect key="frame" x="29" y="76" width="266" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <accessibility key="accessibilityConfiguration" label=""/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <textInputTraits key="textInputTraits" returnKeyType="done"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入验证码" minimumFontSize="17" id="17" userLabel="RandomCode">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入验证码" minimumFontSize="17" clearButtonMode="unlessEditing" id="17" userLabel="RandomCode">
                     <rect key="frame" x="29" y="198" width="159" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入密码" minimumFontSize="17" id="18" userLabel="Password">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入手机验证码" minimumFontSize="17" id="7Ao-07-qod" userLabel="RandomCode">
+                    <rect key="frame" x="31" y="250" width="159" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入密码" minimumFontSize="17" clearButtonMode="whileEditing" id="18" userLabel="Password">
                     <rect key="frame" x="29" y="138" width="266" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -104,11 +110,10 @@
                     <color key="shadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="注册帐户，意味着您同意了" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="RKE-s9-ZeJ">
-                    <rect key="frame" x="22" y="264" width="172" height="21"/>
+                    <rect key="frame" x="22" y="303" width="172" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                     <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </label>
@@ -127,16 +132,35 @@
                         <action selector="reflushRandomCodeImage:" destination="-1" eventType="touchUpInside" id="59N-hN-sem"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="toE-0m-dQ1">
+                    <rect key="frame" x="212" y="251" width="90" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="9"/>
+                    <state key="normal" title="点击获取手机验证码" backgroundImage="user_btn_h.png">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="reflushPhoneRandomCode:" destination="-1" eventType="touchUpInside" id="i4D-CO-7Pr"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="mobilePhoneTextFied" destination="16" id="J6c-IZ-vwV"/>
                 <outlet property="navTitleLabel" destination="14" id="L2c-me-2h7"/>
                 <outlet property="passwordTextFied" destination="18" id="9F6-EM-dF2"/>
-                <outlet property="radomCodeBtn" destination="uRx-hQ-1S5" id="A49-ay-nZt"/>
-                <outlet property="radomCodeTextFied" destination="17" id="sln-cl-HjA"/>
+                <outlet property="phoneCodeBtn" destination="toE-0m-dQ1" id="Slv-xs-14k"/>
+                <outlet property="phoneCodeTextFied" destination="lIV-OO-veF" id="ZU3-9M-TIh"/>
+                <outlet property="radomCodeBtn" destination="uRx-hQ-1S5" id="aIx-eX-xB2"/>
+                <outlet property="radomCodeTextFied" destination="QXg-yJ-tJX" id="DTU-Bc-cgF"/>
             </connections>
+            <point key="canvasLocation" x="205" y="-150"/>
         </view>
         <view contentMode="scaleToFill" id="F00-4T-9bx" customClass="RegisterView">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -161,7 +185,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="onW-1v-89p">
-                    <rect key="frame" x="229" y="288" width="60" height="16"/>
+                    <rect key="frame" x="203" y="355" width="60" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <state key="normal" title="用户协议" backgroundImage="r_agreed.png">
@@ -219,7 +243,7 @@
                     <color key="shadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="注册帐户，意味着您同意了" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="bxk-fz-I4i">
-                    <rect key="frame" x="52" y="286" width="173" height="21"/>
+                    <rect key="frame" x="26" y="353" width="173" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -227,7 +251,7 @@
                     <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="T1D-WK-k5J">
-                    <rect key="frame" x="21" y="360" width="335" height="42"/>
+                    <rect key="frame" x="21" y="413" width="335" height="42"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <state key="normal" title="提交" backgroundImage="user_btn_h.png">
@@ -244,8 +268,8 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ms0-l1-yKc">
                     <rect key="frame" x="266" y="206" width="90" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
-                    <state key="normal" title="点击获取验证码" backgroundImage="user_btn_h.png">
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="9"/>
+                    <state key="normal" title="获取验证码" backgroundImage="user_btn_h.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -256,16 +280,39 @@
                         <action selector="reflushRandomCodeImage:" destination="-1" eventType="touchUpInside" id="Mxa-1j-t2Z"/>
                     </connections>
                 </button>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入手机验证码" minimumFontSize="17" id="lIV-OO-veF" userLabel="RandomCode">
+                    <rect key="frame" x="29" y="270" width="204" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rwv-j7-aol">
+                    <rect key="frame" x="266" y="278" width="90" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="9"/>
+                    <state key="normal" title="获取手机验证码" backgroundImage="user_btn_h.png">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="reflushPhoneRandomCode:" destination="-1" eventType="touchUpInside" id="jzj-jL-oyq"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <connections>
                 <outlet property="mobilePhoneTextFied" destination="1ci-xi-RCX" id="F0O-EP-s6k"/>
                 <outlet property="navTitleLabel" destination="Bix-X9-2tr" id="CCx-OQ-ujP"/>
                 <outlet property="passwordTextFied" destination="euQ-9H-MO0" id="DXT-LA-X6l"/>
+                <outlet property="phoneCodeBtn" destination="rwv-j7-aol" id="sxy-p0-D5q"/>
                 <outlet property="radomCodeBtn" destination="Ms0-l1-yKc" id="zFH-kZ-yLk"/>
             </connections>
-            <point key="canvasLocation" x="151.5" y="-391.5"/>
+            <point key="canvasLocation" x="205.5" y="565.5"/>
         </view>
     </objects>
     <resources>

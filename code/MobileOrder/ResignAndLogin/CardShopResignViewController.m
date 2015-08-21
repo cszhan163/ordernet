@@ -26,7 +26,12 @@ typedef enum resetPasswStage{
     
     RegisterView    *registerView;
     
+    NSInteger       count;
+    
 }
+
+@property (nonatomic, strong)  NSTimer         *timer;
+
 @end
 
 @implementation CardShopResignViewController
@@ -130,12 +135,14 @@ typedef enum resetPasswStage{
     registerView.radomCodeTextFied.inputAccessoryView = bgView;
     registerView.mobilePhoneTextFied.delegate = self;
     // Do any additional setup after loading the view from its nib.
+    /*
     if(self.type == 1){
     
-    }else{
+    }else {
     
-        [self reflushRandomCodeImage:nil];
-    }
+    }*/
+    [self reflushRandomCodeImage:nil];
+    
     self.view.backgroundColor = kNavBarColor;
 }
 - (void)doneInput{
@@ -165,27 +172,71 @@ typedef enum resetPasswStage{
     int count=[delegate.navi.viewControllers  count ]-1;
 	[delegate.navi popToViewController: [self.navigationController.viewControllers objectAtIndex: count-1] animated:YES];
     */
+    if(self.cancelBlock){
+    
+        self.cancelBlock(nil);
+        self.cancelBlock = nil;
+        self.doneBlock = nil;
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)reflushRandomCodeImage:(id)sender {
 
-    if(self.type == 1) {
+    if(self.type == 1)
+    {
     
-        [[UserDinnerWatingMgr sharedInstance] startGetRegisterUserSMSWithDone:^(id error){
-            if(error){
-            
-                
-            }
-        }];
+        
     
     } else {
-        [self startLoadRandomCodeImage];
+        
+       
     }
+    
+    [self startLoadRandomCodeImage];
 
 }
 
+- (IBAction)reflushPhoneRandomCode:(id)sender {
 
+    
+    [[UserDinnerWatingMgr sharedInstance] startGetRegisterUserSMSWithDone:^(id error){
+
+        if(error == nil) {
+            kUIAlertView(@"提示", @"短信已发送到手机");
+            [self startTimer];
+        }
+        
+    }];
+}
+
+- (void)startTimer {
+    registerView.phoneCodeBtn.enabled = NO;
+    count = 60.f;
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(scheduleTimer) userInfo:nil repeats:YES];
+    [self.timer fire];
+}
+
+- (void)scheduleTimer {
+
+    count = count -1;
+    if(count <= 0){
+    
+        [self  stopTimer];
+        return;
+    }
+    NSString *timerStr = [NSString stringWithFormat:@"(%d)秒后重新发送",count];
+    [registerView.phoneCodeBtn setTitle:timerStr forState:UIControlStateNormal];
+
+}
+
+- (void)stopTimer {
+
+    [self.timer invalidate];
+    self.timer = nil;
+    registerView.phoneCodeBtn.enabled = YES;
+    [registerView.phoneCodeBtn setTitle:@"获取手机验证码" forState:UIControlStateNormal];
+}
 
 
 -(IBAction)login_click:(id)sender
@@ -289,12 +340,16 @@ typedef enum resetPasswStage{
     else
     {
         param = [NSDictionary dictionaryWithObjectsAndKeys:
-                 registerView.mobilePhoneTextFied.text,@"username",
-                 registerView.passwordTextFied.text,@"password",
-                 registerView.confirmPasswordTextFied.text,@"repassword",
+                 registerView.mobilePhoneTextFied.text,@"mobile",
+                 [registerView.passwordTextFied.text getMd5String],@"password",
+                 //registerView.confirmPasswordTextFied.text,@"repassword",
                  //registerView.radomCodeTextFied.text,@"sms",
                  nil];
-        //self.request = [cardShopMgr userResetPassword:param];
+        NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:param];
+        if(![registerView.radomCodeTextFied.text isEqualToString:@""]){
+            [dict setValue:registerView.radomCodeTextFied.text forKey:@"captcha"];
+        }
+        self.request = [cardShopMgr userResetPassword:param];
     }
    
     
@@ -311,7 +366,7 @@ typedef enum resetPasswStage{
     id respRequest = [obj objectForKey:@"request"];
     id _data = [obj objectForKey:@"data"];
     NSString *resKey = [respRequest resourceKey];
-    if(self.request == respRequest&&([resKey isEqualToString:kNetResignRes]|| [resKey isEqualToString:@"findpassword"]))
+    if(self.request == respRequest&&([resKey isEqualToString:kNetResignRes]|| [resKey isEqualToString:@"resetpassword"]))
     {
         self.request = nil;
         kNetEnd(self.view);
@@ -329,12 +384,23 @@ typedef enum resetPasswStage{
             //[ZCSNotficationMgr postMSG:kCheckCardRecentRun obj:nil];
             
         }
+        if([resKey isEqualToString:kNetResignRes])
         {
             kUIAlertView(@"提示", @"注册成功");
+            [ZCSNotficationMgr postMSG:kUserDidResignOK obj:@{@"mobile":registerView.mobilePhoneTextFied.text,
+                                                              @"password":registerView.passwordTextFied.text,}];
+        } else {
+            kUIAlertView(@"提示", @"修改密码成功");
+            if(self.doneBlock){
+            
+                self.doneBlock(@{@"mobile":registerView.mobilePhoneTextFied.text,
+                                 @"password":registerView.passwordTextFied.text,});
+                self.doneBlock = nil;
+                self.cancelBlock = nil;
+            }
         }
         //else
-        [ZCSNotficationMgr postMSG:kUserDidResignOK obj:@{@"mobile":registerView.mobilePhoneTextFied.text,
-                                                          @"password":registerView.passwordTextFied.text,}];
+        
     }
     
 }

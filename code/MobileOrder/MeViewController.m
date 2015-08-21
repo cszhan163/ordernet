@@ -14,6 +14,7 @@
 #import "ZCSNetClient.h"
 
 #import "CardShopLoginViewController.h"
+#import "CardShopResignViewController.h"
 
 #define kPendingY    20.f
 
@@ -351,6 +352,44 @@
         
         
     }
+    
+    if([key isEqualToString:@"user_resetpwd"]) {
+        
+        [self neeUserLoginUserAction:^(id sender){
+            
+            CardShopResignViewController *frmobj=[[CardShopResignViewController alloc] init];
+            /*
+             frmobj.mobilePhoneNumStr = subClassInputTextField.text;
+             */
+            frmobj.type = 1;
+            MeViewController *weakSelf = self;
+            [frmobj setCancelBlock:^(id data ){
+            
+                [weakSelf.navigationController dismissViewControllerAnimated:YES completion:^(){
+                
+                    
+                }];
+            }];
+            
+            [frmobj setDoneBlock:^(id data ){
+                
+                
+                [weakSelf.navigationController dismissViewControllerAnimated:YES completion:^(){
+                    
+                    
+                }];
+            }];
+            
+            [self.navigationController presentViewController:frmobj animated:YES completion:^(){
+            
+            }];
+            SafeRelease(frmobj);
+        }];
+        
+        
+        
+    }
+    
     if([key isEqualToString:@"setting"]) {
     
         SettingViewController *setVctl = [[SettingViewController alloc]init];
