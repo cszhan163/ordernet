@@ -106,6 +106,7 @@ typedef enum resetPasswStage{
         registerView.navTitleLabel.text = @"找回密码";
     }
     registerView.mobilePhoneTextFied.text = self.mobilePhoneNumStr;
+#if 0
     if(mobilePhoneTextFied.placeholder)
     {
         registerView.mobilePhoneTextFied.attributedPlaceholder = [UIComUtil getCustomAttributeString:registerView.mobilePhoneTextFied.placeholder withFont:registerView.mobilePhoneTextFied.font withColor:HexRGB(137, 137, 137)];
@@ -121,7 +122,7 @@ typedef enum resetPasswStage{
         
         registerView.passwordTextFied.textColor =  HexRGB(137, 137, 137);
     }
-    
+#endif
     
     UIButton *btn = [UIComUtil createButtonWithNormalBGImageName:nil withHightBGImageName:nil withTitle:@"" withTag:0];
     

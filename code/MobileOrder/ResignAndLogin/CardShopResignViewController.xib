@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6724" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardShopResignViewController"/>
@@ -156,9 +156,9 @@
                 <outlet property="navTitleLabel" destination="14" id="L2c-me-2h7"/>
                 <outlet property="passwordTextFied" destination="18" id="9F6-EM-dF2"/>
                 <outlet property="phoneCodeBtn" destination="toE-0m-dQ1" id="Slv-xs-14k"/>
-                <outlet property="phoneCodeTextFied" destination="lIV-OO-veF" id="ZU3-9M-TIh"/>
+                <outlet property="phoneCodeTextFied" destination="7Ao-07-qod" id="jTg-pT-WuB"/>
                 <outlet property="radomCodeBtn" destination="uRx-hQ-1S5" id="aIx-eX-xB2"/>
-                <outlet property="radomCodeTextFied" destination="QXg-yJ-tJX" id="DTU-Bc-cgF"/>
+                <outlet property="radomCodeTextFied" destination="17" id="nmt-MP-Vp3"/>
             </connections>
             <point key="canvasLocation" x="205" y="-150"/>
         </view>
@@ -310,7 +310,9 @@
                 <outlet property="navTitleLabel" destination="Bix-X9-2tr" id="CCx-OQ-ujP"/>
                 <outlet property="passwordTextFied" destination="euQ-9H-MO0" id="DXT-LA-X6l"/>
                 <outlet property="phoneCodeBtn" destination="rwv-j7-aol" id="sxy-p0-D5q"/>
+                <outlet property="phoneCodeTextFied" destination="lIV-OO-veF" id="YUh-hu-6Yk"/>
                 <outlet property="radomCodeBtn" destination="Ms0-l1-yKc" id="zFH-kZ-yLk"/>
+                <outlet property="radomCodeTextFied" destination="QXg-yJ-tJX" id="CbB-pe-dHN"/>
             </connections>
             <point key="canvasLocation" x="205.5" y="565.5"/>
         </view>
