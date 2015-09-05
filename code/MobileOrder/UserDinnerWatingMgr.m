@@ -186,7 +186,7 @@ static UserDinnerWatingMgr *staticInstance = nil;
 - (void)startGetRegisterUserSMSWithDone:(CompleteBlock) done {
 
     [SMS_SDK registerApp:@"98c5ef522a08" withSecret:@"8cc3b30270a8ad8c76f3fac4e6db5fe7"];
-    [SMS_SDK getVerificationCodeBySMSWithPhone:@"18721984648" zone:@"86" result:^(SMS_SDKError *smsError){
+    [SMS_SDK getVerificationCodeBySMSWithPhone:@"18616643372" zone:@"86" result:^(SMS_SDKError *smsError){
        
         NSError *error = nil;
         if(smsError){

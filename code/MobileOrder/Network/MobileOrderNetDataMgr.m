@@ -85,6 +85,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
                                                @"order",@"newComment",
                                                @"order",@"updateorder",
                                                @"order",@"updateorderTimer",
+                                               @"order",@"updateorderDesk",
                                                @"ads",@"search_ad",
                                                @"preOrder",@"preOrder",
                                                
@@ -621,6 +622,16 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
 - (id)updateOrderArriveTime:(NSDictionary *)param {
 
     return [dressMemoInterfaceMgr startAnRequestByResKey:@"updateorderTimer"
+                                               needLogIn:YES
+                                               withParam:param
+                                              withMethod:@"PUT"
+                                                withData:NO];
+    
+}
+
+- (id)updateOrderDeskNumberTime:(NSDictionary *)param {
+    
+    return [dressMemoInterfaceMgr startAnRequestByResKey:@"updateorderDesk"
                                                needLogIn:YES
                                                withParam:param
                                               withMethod:@"PUT"

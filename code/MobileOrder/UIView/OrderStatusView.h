@@ -22,7 +22,9 @@ typedef enum {
 @interface OrderStatusView : UIView
 
 
-@property (nonatomic, strong)UILabel *timerLabel;
+@property (nonatomic, strong) UILabel *timerLabel;
+
+@property (nonatomic, strong) UIButton *arriveBtn;
 
 @property (nonatomic, assign)id<OrderStatusActionDelegate>       delegate;
 

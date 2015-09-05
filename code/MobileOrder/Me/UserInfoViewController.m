@@ -99,13 +99,15 @@
     NSString *keyValue =  kKeyArray[indexPath.row];
     id dataValue = [self.userDict objectForKey:keyValue];
     cell.textLabel.text = kKeyMapArray[indexPath.row];
-    if(![dataValue isKindOfClass:[NSNull class]]){
-        cell.detailTextLabel.text = dataValue;
-    }else if ([dataValue isKindOfClass:[NSNumber class]]){
-    
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%lld",[dataValue longLongValue]];
+    if(dataValue && ![dataValue isKindOfClass:[NSNull class]]){
+        
+        if ([dataValue isKindOfClass:[NSNumber class]]){
+            
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%lld",[dataValue longLongValue]];
+        }
+        if([dataValue isKindOfClass:[NSString class]])
+            cell.detailTextLabel.text = dataValue;
     }
-    
 #endif
     return cell;
 }

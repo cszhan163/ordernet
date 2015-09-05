@@ -309,6 +309,22 @@
     _orderTimeLabel.text = self.orderItem.orderTime;
     _orderIDLabel.text = self.orderItem.orderIdName;
     _timerCount = self.orderItem.arriveTime/1000;
+    
+    if(self.orderItem.status == Order_Done){
+    
+        [orderStatusView.arriveBtn setEnabled:NO];
+    }
+    /*
+    if(self.orderItem.status == Order_Arrived){
+        
+        [orderStatusView set]
+    
+    }else {
+    
+        
+    }
+    */
+    
     [self startTimerByWaitingTime];
     [_tableView reloadData];
 
@@ -467,6 +483,7 @@
         
     } else {
     
+        [self startChooseDeskNumStatus];
         
     }
 
@@ -485,6 +502,7 @@
     //if(_pickview == nil)
     {
         ZHPickView *_pickview=[[ZHPickView alloc] initPickviewWithArray:totalCountArray isHaveNavControler:NO];
+        _pickview.tag = 0;
         [_pickview  setDelegate:self];
         [_pickview setSelectorRow:0];
         [_pickview setToolbarTitle:@"到店时间" withColor:[UIColor blackColor]];
@@ -492,23 +510,89 @@
     }
 }
 
--(void)toobarDonBtnHaveClick:(ZHPickView *)pickView resultString:(NSString *)resultString {
-    resultString = [resultString stringByReplacingOccurrencesOfString:@"分" withString:@""];
-    self.orderItem.arriveTime = [resultString integerValue];
-    
-    _timerCount = self.orderItem.arriveTime*60.f;
-    /*
-    _arriveTimeLabel.text = [NSString stringWithFormat:kArriveTimeFormat,self.orderItem.arriveTime];
-    */
-    //    if(self.orderItem.arriveTime == 0) {
-    //        _totalPersonNumLabel.text = @"已经到店";
-    //    }
-    [self startTimerByWaitingTime];
-    NSString *timerStr = [NSString  stringWithFormat:@"%ld", _timerCount*1000];
-    NSString *orderIdStr = [NSString stringWithFormat:@"%lld",self.orderItem.orderId];
-    [[MobileOrderNetDataMgr getSingleTone] updateOrderArriveTime:@{@"arriveTimes":timerStr,@"orderId":orderIdStr}];
+- (void)startChooseDeskNumStatus {
+
+    NSMutableArray *totalCountArray = [NSMutableArray array];
+    for (int i = 0;i<120;i++){
+        
+        [totalCountArray addObject:[NSString stringWithFormat:@"%d 号",i]];
+    }
+    //if(_pickview == nil)
+    {
+        ZHPickView *_pickview=[[ZHPickView alloc] initPickviewWithArray:totalCountArray isHaveNavControler:NO];
+        _pickview.tag = 1;
+        [_pickview  setDelegate:self];
+        [_pickview setSelectorRow:0];
+        [_pickview setToolbarTitle:@"请选择桌号" withColor:[UIColor blackColor]];
+        [_pickview show];
+    }
+
 }
 
+
+-(void)toobarDonBtnHaveClick:(ZHPickView *)pickView resultString:(NSString *)resultString {
+    
+    if(pickView.tag == 0){
+        resultString = [resultString stringByReplacingOccurrencesOfString:@"分" withString:@""];
+        self.orderItem.arriveTime = [resultString integerValue];
+        
+        _timerCount = self.orderItem.arriveTime*60.f;
+        /*
+         _arriveTimeLabel.text = [NSString stringWithFormat:kArriveTimeFormat,self.orderItem.arriveTime];
+         */
+        //    if(self.orderItem.arriveTime == 0) {
+        //        _totalPersonNumLabel.text = @"已经到店";
+        //    }
+        [self startTimerByWaitingTime];
+        NSString *timerStr = [NSString  stringWithFormat:@"%ld", _timerCount*1000];
+        NSString *orderIdStr = [NSString stringWithFormat:@"%lld",self.orderItem.orderId];
+        [[MobileOrderNetDataMgr getSingleTone] updateOrderArriveTime:@{@"arriveTimes":timerStr,@"orderId":orderIdStr}];
+    }
+    if(pickView.tag == 1) {
+        /*
+        resultString = [resultString stringByReplacingOccurrencesOfString:@"分" withString:@""];
+        self.orderItem.arriveTime = [resultString integerValue];
+        
+        _timerCount = self.orderItem.arriveTime*60.f;
+        */
+        /*
+         _arriveTimeLabel.text = [NSString stringWithFormat:kArriveTimeFormat,self.orderItem.arriveTime];
+         */
+        //    if(self.orderItem.arriveTime == 0) {
+        //        _totalPersonNumLabel.text = @"已经到店";
+        //    }
+        /*
+        [self startTimerByWaitingTime];
+        NSString *timerStr = [NSString  stringWithFormat:@"%ld", _timerCount*1000];
+         */
+        NSString *orderIdStr = [NSString stringWithFormat:@"%lld",self.orderItem.orderId];
+       
+        [[MobileOrderNetDataMgr getSingleTone] updateOrderDeskNumberTime:@{@"desktopNum":resultString,@"orderId":orderIdStr}];
+        
+    }
+}
+
+- (void)didNetWorkOK:(NSNotification *) ntf {
+
+    //return;
+    [super didNetDataOK:ntf];
+    
+    id obj = [ntf object];
+    id respRequest = [obj objectForKey:@"request"];
+    id objData = [obj objectForKey:@"data"];
+    NSString *resKey = [respRequest resourceKey];
+    //NSString *resKey = [respRequest resourceKey];
+    
+    if([resKey isEqualToString:@"updateorderDesk"]) {
+        //kNetEnd(self.view);
+        NSLog(@"update data:%@",[objData objectForKey:@"data"]);
+        
+        kUIAlertViewNoDelegate(@"信息", @"提交成功!!");
+        
+    }
+
+    
+}
 
 
 @end

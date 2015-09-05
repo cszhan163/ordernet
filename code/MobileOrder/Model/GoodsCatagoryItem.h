@@ -40,6 +40,8 @@
 
 @property (nonatomic, strong) NSMutableArray *subCatogoryArray;
 
+@property (nonatomic, assign) 
+
 
 @end
 

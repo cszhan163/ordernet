@@ -468,10 +468,11 @@
         [self didProcessRespondAdData:objData];//
         [(NSDictionary*)objData writeToFile:[self adSaveFilePath] atomically:YES];
     }
-    /*
+    
     if([resKey isEqualToString:@"realtime"]) {
     
-        if([[[objData objectForKey:@"data"] objectForKey:@"data"] count] == 0){
+        //if([[[objData objectForKey:@"data"] objectForKey:@"data"] count] == 0)
+        {
         
             UILocalNotification  *locaNotification = [[UILocalNotification alloc]init];
             [locaNotification setAlertBody:@"你点的菜已经做好了!!!"];
@@ -479,7 +480,6 @@
             
         }
     }
-    */
 }
 
 - (NSString*)adSaveFilePath{

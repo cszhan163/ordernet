@@ -30,6 +30,7 @@
 @property(nonatomic,strong)IBOutlet UIButton *minNumBtn;
 @property(nonatomic,strong)IBOutlet UIButton *markBtn;
 
+
 @property(nonatomic, strong) NSIndexPath *indexPath;
 
 @property (nonatomic,assign) id<FoodItemCellDelegate> delegate;

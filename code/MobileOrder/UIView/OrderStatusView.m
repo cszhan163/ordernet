@@ -12,6 +12,10 @@
 
 @implementation OrderStatusView
 
+- (void)dealloc {
+    self.arriveBtn = nil;
+    SuperDealloc;
+}
 
 - (id)initWithFrame:(CGRect)frame {
     if([super initWithFrame:frame]) {
@@ -39,10 +43,10 @@
         
         UIImageAutoScaleWithFileName(image, @"user_btn_h");
         
-        UIButton *arriveBtn = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"已到店" withTag:0 withTarget:self  withTouchEvent:@selector(didButtonPress:)];
+        self.arriveBtn = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"已到店" withTag:0 withTarget:self  withTouchEvent:@selector(didButtonPress:)];
         //showOrderBtn.backgroundColor = [UIColor redColor];
-        arriveBtn.frame = CGRectMake(kLeftPendinX,headerCurrY+40.f,frame.size.width/2.f-kLeftPendinX*2,labelHeight);
-        [self  addSubview:arriveBtn];
+        _arriveBtn.frame = CGRectMake(kLeftPendinX,headerCurrY+40.f,frame.size.width/2.f-kLeftPendinX*2,labelHeight);
+        [self  addSubview:_arriveBtn];
         
         UIButton *changeBtn = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"更改时间" withTag:1 withTarget:self  withTouchEvent:@selector(didButtonPress:)];
         //showOrderBtn.backgroundColor = [UIColor redColor];

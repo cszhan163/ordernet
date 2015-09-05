@@ -25,11 +25,16 @@
     [self.minNumBtn addTarget:self action:@selector(numberBtnPress:) forControlEvents:UIControlEventTouchUpInside];
     [self.minNumBtn setTag:0];
     
+    [self.markBtn addTarget:self action:@selector(numberBtnPress:) forControlEvents:UIControlEventTouchUpInside];
+    [self.markBtn setTag:2];
 }
 
 - (void)numberBtnPress:(id)sender{
     //has sub
-    if([self.item.subCatogoryArray count]){
+    NSInteger index = [sender tag];
+    
+    if([self.item.subCatogoryArray count] && index == 2){
+        
         if(self.delegate && [self.delegate respondsToSelector:@selector(cellDidClickOrderDetailBtn:withIndexPath:)]){
         
             [self.delegate cellDidClickOrderDetailBtn:self.item withIndexPath:self.indexPath];

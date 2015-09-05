@@ -280,7 +280,7 @@
     loginView.txtusername.text = [loginData objectForKey:@"mobile"];
     [[MobileOrderNetDataMgr getSingleTone] userLogin:nil];
     [self.navigationController popViewControllerAnimated:NO];
-    
+
 }
 
 
