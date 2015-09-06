@@ -21,7 +21,7 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 
-@property (nonatomic, strong) id<GooodsCatagoryDeleagte> delegate;
+@property (nonatomic, assign) id<GooodsCatagoryDeleagte> delegate;
 
 - (id)initWithFrame:(CGRect)frame ;
 

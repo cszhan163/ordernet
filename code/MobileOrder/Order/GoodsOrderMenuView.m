@@ -43,6 +43,13 @@
     for(GoodsCatagoryItem *item in data) {
         if([item.subCatogoryArray count]){
             NSString *foodName = item.name;
+            if(item.number>0){
+            
+                GoodsOrderItem *goodOrderItem = [[GoodsOrderItem alloc]initWithGoodsName:@"" withCatagoryItem:item];
+                [orderArray addObject:goodOrderItem];
+                SafeRelease(goodOrderItem);
+                
+            }
             for(SubCatagoryItem *subItem in item.subCatogoryArray) {
                 //only not zero number
                 subItem.catagoryId = item.catagoryId;

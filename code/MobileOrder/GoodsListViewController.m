@@ -62,6 +62,7 @@
                                         
     
 }
+//@property (nonatomic, strong) UITableViewCell *reuseCell;
 @property (nonatomic, strong)  NSDictionary *locationDict;
 
 @property (nonatomic, strong) NSArray      *goodsListArray;
@@ -76,6 +77,12 @@
 
 - (void)dealloc {
     self.catogoryView = nil;
+    self.goodsListArray = nil;
+    self.locationDict = nil;
+    self.titleArray = nil;
+    self.goodsOrderMenuView = nil;
+    self.shopItem = nil;
+    //self.reuseCell = nil;
     SuperDealloc;
 }
 
@@ -595,6 +602,8 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor whiteColor];
         cell.clipsToBounds = YES;
+        //self.reuseCell = cell;
+        //[tableView  registerClass:[FoodItemCell  class] forCellReuseIdentifier:CellIdentifier];
         
     }
     
@@ -712,6 +721,9 @@
                 }
             } else {
                 BOOL hasOrder = NO;
+                if(item.number >0){
+                    hasOrder = YES;
+                }
                 for(SubCatagoryItem *subItem in item.subCatogoryArray) {
                     if(subItem.number>0){
                         
@@ -762,7 +774,7 @@
     [_catogoryView updateCellBandgeWithData:cataggoryNumberDict];
 #endif
         
-    [tweetieTableView reloadData];
+    //[tweetieTableView reloadData];
     
     NSInteger totalNumber = 0;
     _totalPrice = 0.f;
@@ -798,7 +810,11 @@
 - (void)cellDidClickOrderBtn:(id)sender  withIndexPath:(NSIndexPath*)indexPath {
 
     [self updateOrderMenu];
+#if 1
     [tweetieTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+#else
+    [tweetieTableView reloadData];
+#endif
 }
 // may choose mutiple kind
 
@@ -810,7 +826,12 @@
 #else
     goodItem = sender;
 #endif
-    LeveyPopListView *lplv = [[LeveyPopListView alloc] initWithTitle:goodItem.name options:goodItem.subCatogoryArray];
+    NSInteger total = 0;
+    for(SubCatagoryItem *item in goodItem.subCatogoryArray){
+    
+        total += item.number;
+    }
+    LeveyPopListView *lplv = [[LeveyPopListView alloc] initWithTitle:goodItem.name withNumber:total options:goodItem.subCatogoryArray];
     lplv.delegate = self;
     lplv.indexPath = indexPath;
    
@@ -926,7 +947,16 @@
                 goodItem.number = 0.f;
                 goodItem.itemId = [[cataItem objectForKey:@"id"]longLongValue];
                 goodItem.price = [[cataItem objectForKey:@"price"]floatValue];
-                goodItem.imageURL = [cataItem objectForKey:@"url"];
+                id meterials = [cataItem objectForKey:@"materials"];
+                if(meterials){
+                    if([meterials isKindOfClass:[NSArray class]]){
+                        meterials = meterials[0];
+                    }
+                    NSDictionary *imageItem = meterials;
+                    if(imageItem && ![imageItem isKindOfClass:[NSNull class]])
+                        goodItem.imageURL = [imageItem objectForKey:@"url"];
+                }
+                
                 NSMutableArray *subArray = [NSMutableArray array];
                 NSArray  *tastesArray  = [catagoryArray[i] objectForKey:@"tastes"];
                 for(int j = 0;j< [tastesArray count];j++){
@@ -1031,9 +1061,9 @@
 - (void) cancelAllIconDownloads
 {
     //NE_LOG(@"warning not emplementation icon downloads cancell");
-    for(NTESMBIconDownloader *_downloader in allIconDownloaders){
-        
+    for(NTESMBIconDownloader *_downloader in [allIconDownloaders allValues]){
         [_downloader setDelegate:nil];
+        [[NTESMBServer getInstance]cancelRequest:_downloader];
     }
     [allIconDownloaders removeAllObjects];
 }

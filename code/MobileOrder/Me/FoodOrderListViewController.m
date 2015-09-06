@@ -23,6 +23,10 @@
 
 @implementation FoodOrderListViewController
 
+- (void)dealloc {
+
+    SuperDealloc;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     

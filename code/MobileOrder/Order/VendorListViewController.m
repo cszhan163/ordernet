@@ -23,6 +23,11 @@
 
 @implementation VendorListViewController
 
+- (void) dealloc {
+
+    SuperDealloc;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     
     if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]){

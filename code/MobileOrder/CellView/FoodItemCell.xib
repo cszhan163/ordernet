@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8121.20" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.16"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FriendItemCell"/>
@@ -61,8 +61,15 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wiF-gT-Hyw">
+                        <rect key="frame" x="152" y="28" width="42" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="JRL-mq-FEd" userLabel="mark">
-                        <rect key="frame" x="77" y="50" width="44" height="40"/>
+                        <rect key="frame" x="120" y="19" width="44" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <state key="normal" title="btn" image="good_mark.png">
@@ -79,6 +86,7 @@
                 <outlet property="addNumBtn" destination="Vug-Vn-94g" id="j9S-lS-leu"/>
                 <outlet property="foodIconImageView" destination="BJk-MO-TXb" id="6Aj-y7-DHS"/>
                 <outlet property="foodNameLabel" destination="4" id="a8l-pv-NMF"/>
+                <outlet property="indictTextLabel" destination="wiF-gT-Hyw" id="aJ8-Eg-xJo"/>
                 <outlet property="markBtn" destination="JRL-mq-FEd" id="BV5-CO-MNS"/>
                 <outlet property="minNumBtn" destination="6" id="J5Q-YU-aGJ"/>
                 <outlet property="numberLabel" destination="vkw-Mf-ScM" id="DXA-P1-pNd"/>
@@ -122,18 +130,6 @@
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qNF-0u-Zaz" userLabel="mark">
-                        <rect key="frame" x="98" y="59" width="44" height="40"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                        <state key="normal" title="btn" image="good_mark.png">
-                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                        <state key="highlighted">
-                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                    </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="P4w-yw-Hut" userLabel="sub">
                         <rect key="frame" x="172" y="64" width="27" height="27"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
@@ -153,12 +149,32 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2Hl-YD-UTF">
+                        <rect key="frame" x="199" y="32" width="42" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qNF-0u-Zaz" userLabel="mark">
+                        <rect key="frame" x="163" y="21" width="44" height="40"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <state key="normal" title="btn" image="good_mark.png">
+                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
                 </subviews>
             </tableViewCellContentView>
             <connections>
                 <outlet property="addNumBtn" destination="orF-xe-nZQ" id="q1a-cI-3YG"/>
                 <outlet property="foodIconImageView" destination="V9V-kB-A8l" id="BbE-gJ-iuG"/>
                 <outlet property="foodNameLabel" destination="BPn-Rj-dQr" id="3lo-ZV-Y3b"/>
+                <outlet property="indictTextLabel" destination="2Hl-YD-UTF" id="XM4-7O-F5c"/>
                 <outlet property="markBtn" destination="qNF-0u-Zaz" id="hOF-LO-81M"/>
                 <outlet property="minNumBtn" destination="P4w-yw-Hut" id="Zsi-JR-tOA"/>
                 <outlet property="numberLabel" destination="YdH-32-VtC" id="xi3-PT-T1k"/>
@@ -221,8 +237,15 @@
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aLN-Ne-ab4" userLabel="mark">
-                        <rect key="frame" x="153" y="59" width="44" height="40"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aIM-o7-bDf">
+                        <rect key="frame" x="244" y="37" width="42" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aLN-Ne-ab4" userLabel="mark">
+                        <rect key="frame" x="215" y="24" width="44" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <state key="normal" title="btn" image="good_mark.png">
@@ -239,6 +262,7 @@
                 <outlet property="addNumBtn" destination="hud-3a-A0V" id="Yv2-o0-JoP"/>
                 <outlet property="foodIconImageView" destination="wTC-Tj-DaY" id="1bt-VI-W6s"/>
                 <outlet property="foodNameLabel" destination="96X-cj-Nas" id="2r7-kv-OCj"/>
+                <outlet property="indictTextLabel" destination="aIM-o7-bDf" id="hgM-AG-Ema"/>
                 <outlet property="markBtn" destination="aLN-Ne-ab4" id="hyf-8C-tAJ"/>
                 <outlet property="minNumBtn" destination="uam-D0-dhB" id="imn-KK-pqL"/>
                 <outlet property="numberLabel" destination="Pov-vs-PVU" id="h36-XH-qTn"/>
@@ -254,9 +278,4 @@
         <image name="food_default_s.png" width="180" height="110"/>
         <image name="good_mark.png" width="100" height="100"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

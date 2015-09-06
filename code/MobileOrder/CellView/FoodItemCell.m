@@ -76,19 +76,28 @@
     self.item = item;
     self.priceLabel.text = [NSString stringWithFormat:@"¥ %0.2lf",self.item.price];
     self.foodNameLabel.text = item.name;
-    NSInteger number = 0;
+    
     if([self.item.subCatogoryArray count]){
-        
+        NSInteger number = 0;
         for (SubCatagoryItem *item in self.item.subCatogoryArray){
             
             number = number+item.number;
         }
-        
+        if(number == 0)
+            [self.indictTextLabel setHidden:YES];
+        else{
+            [self.indictTextLabel setText:[NSString stringWithFormat:@"口味:%ld",number]];
+            [self.indictTextLabel setHidden:NO];
+        }
+        [self.markBtn setHidden:NO];
     }else {
         
-        number = self.item.number;
+        //number = self.item.number;
+        [self.markBtn setHidden:YES];
+        [self.indictTextLabel setHidden:YES];
+        
     }
-    self.numberLabel.text = [NSString stringWithFormat:@"%ld",number];
+    self.numberLabel.text = [NSString stringWithFormat:@"%ld",self.item.number];
 #endif
 }
 
