@@ -1035,7 +1035,7 @@
     if(indexPath.row >= [self.goodsListArray[indexPath.section] count])
         return;
     GoodsCatagoryItem *goodsItem = self.goodsListArray[indexPath.section][indexPath.row];
-    if(goodsItem.imageURL == nil){
+    if(1 || goodsItem.imageURL == nil){
         
         goodsItem.imageURL = @"http://picvideo.uhuocn.com:65102//Data/MenuImg/541704/l20150706/20150706041603408.jpg";
     }

@@ -674,7 +674,7 @@
 
     if(buttonIndex == 0){
     
-        [self personChooseAction:nil];
+        [self performSelector:@selector(personChooseAction:) withObject:nil afterDelay:0];
     }
 }
 

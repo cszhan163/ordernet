@@ -16,6 +16,8 @@
 #import <RSADataSigner.h>
 #import <AlipaySDK/AlipaySDK.h>
 
+#import "UserDinnerWatingMgr.h"
+
 #define kLeftPendingX    10.f
 
 
@@ -208,6 +210,9 @@
 
     
 #if 1
+    
+    [[UserDinnerWatingMgr sharedInstance] setArriveTime:0];
+    [[UserDinnerWatingMgr sharedInstance] setPersonNum:0];
     
     [ZCSNotficationMgr postMSG:kOrderFoodDidSuccessMSG obj:self.orderItem];
     

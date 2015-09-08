@@ -319,7 +319,7 @@
 }
 -(void)show{
     
-    [[UIApplication sharedApplication].keyWindow addSubview:self];
+    [[[[UIApplication sharedApplication] delegate]window] addSubview:self];
     
 }
 -(void)doneClick
