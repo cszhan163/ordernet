@@ -26,7 +26,7 @@
 
 #define kItemPendingY           20.f
 
-#define kCellHeight             40.f
+#define kCellHeight             44.f
 
 @interface DinnerWaitingViewController () {
 

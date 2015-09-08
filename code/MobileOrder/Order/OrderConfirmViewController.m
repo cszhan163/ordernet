@@ -134,6 +134,32 @@
 #endif
     _consumePointsLabel.textAlignment = NSTextAlignmentLeft;
     
+    UIButton *pointChooseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    [pointChooseBtn addTarget:self action:@selector(pointsChooseAction:) forControlEvents:UIControlEventTouchUpInside];
+    pointChooseBtn.backgroundColor = [UIColor whiteColor];
+    pointChooseBtn.layer.borderWidth = 1.f;
+    pointChooseBtn.layer.borderColor =kCommonButtonBgColor.CGColor;
+    pointChooseBtn.layer.cornerRadius = 3.f;
+    [pointChooseBtn setTitleColor:[UIColor blackColor]  forState:UIControlStateNormal] ;
+    [pointChooseBtn setTitle:@"选择积分" forState:UIControlStateNormal] ;
+    pointChooseBtn.titleLabel.font = [UIFont systemFontOfSize:10];
+    
+    //personChooseBtn.backgroundColor
+    [pointChooseBtn setFrame:CGRectMake(kDeviceScreenWidth-120.f-kPendingY, _consumePointsLabel.frame.origin.y-kLeftPendingX/2.f,120.f, _consumePointsLabel.frame.size.height+kPendingY)];
+    UIImage *image = nil;
+    
+    UIImageAutoScaleWithFileName(image, @"title_arrow_down@2x");
+    
+    UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
+    
+    [imageView sizeToFit];
+    imageView.center = CGPointMake(pointChooseBtn.frame.size.width-10.f, pointChooseBtn.frame.size.height/2.f);
+    
+    [pointChooseBtn addSubview:imageView];
+    
+    [orderHeaderView addSubview:pointChooseBtn];
+    
     [orderHeaderView addSubview:_consumePointsLabel];
     
     currHeightY = currHeightY+labelHeight;
@@ -209,11 +235,11 @@
     personChooseBtn.layer.cornerRadius = 3.f;
     
     //personChooseBtn.backgroundColor
-    [personChooseBtn setFrame:CGRectMake(_totalPersonNumLabel.frame.origin.x-kLeftPendingX, _totalPersonNumLabel.frame.origin.y-kLeftPendingX/2.f,( _totalPersonNumLabel.frame.size.width+kLeftPendingX)*2, _totalPersonNumLabel.frame.size.height+kPendingY)];
-    UIImage *image = nil;
+    [personChooseBtn setFrame:CGRectMake(_totalPersonNumLabel.frame.origin.x-kLeftPendingX/2.f, _totalPersonNumLabel.frame.origin.y-kLeftPendingX/2.f,( _totalPersonNumLabel.frame.size.width+kLeftPendingX)*2, _totalPersonNumLabel.frame.size.height+kPendingY)];
+    //UIImage *image = nil;
     UIImageAutoScaleWithFileName(image, @"title_arrow_down@2x");
     
-    UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
+    imageView = [[UIImageView alloc]initWithImage:image];
     
     [imageView sizeToFit];
     
@@ -316,7 +342,7 @@
 - (void)upConfirmOrderView {
 
     _shopLabel.text =  self.orderItem.shopItem.name; //[NSString stringWithFormat:@""]
-    _totalPersonNumLabel.text = [NSString stringWithFormat:@"%ld",self.orderItem.personNum];
+    _totalPersonNumLabel.text = [NSString stringWithFormat:@"就餐人数:%ld",self.orderItem.personNum];
     _pointsTotalLabel.text = [NSString stringWithFormat:@"可用积分:%ld",self.orderItem.userItem.totalPoints];
     _consumePointsLabel.text = [NSString stringWithFormat:@"抵扣积分: %ld",(NSInteger)self.orderItem.consumePoints];
     _priceLabel.text = [NSString stringWithFormat:@"订单金额: ¥ %0.2lf 元",self.orderItem.totalPrice];
@@ -535,17 +561,48 @@
     
 }
 
+- (void)pointsChooseAction:(id)sender {
+
+    NSMutableArray *finalArray = [NSMutableArray array];
+    
+    for (int i =0;i<50;i++){
+        
+        [finalArray addObject:[NSString stringWithFormat:@"%d元",i]];
+    }
+   
+    //if(_pickview == nil)
+    {
+        _pickview=[[ZHPickView alloc] initPickviewWithArray:finalArray isHaveNavControler:NO];
+        _pickview.tag = 1;
+        [_pickview  setDelegate:self];
+        [_pickview setToolbarTitle:@"选择使用积分" withColor:[UIColor blackColor]];
+        [_pickview selectComponets:0 withRow:self.orderItem.consumePoints];
+        [_pickview show];
+    }
+
+}
+
 -(void)toobarDonBtnHaveClick:(ZHPickView *)pickView resultString:(NSString *)resultString {
     
-    NSArray *num = [resultString componentsSeparatedByString:@"#"];
-    if([num count] == 2){
-        NSString *resultStr = num[0];
-        _totalPersonNumLabel.text = [NSString stringWithFormat:@"就餐人数:%@ 人",resultStr];
-        self.orderItem.personNum = [resultStr integerValue];
-        resultStr = num[1];
-        resultStr = [resultStr stringByReplacingOccurrencesOfString:@"分" withString:@""];
-        self.orderItem.arriveTime = [resultStr integerValue];
-        _arriveTimeLabel.text = [NSString stringWithFormat:kArriveTimeFormat,self.orderItem.arriveTime];
+    if(pickView.tag == 1){
+        NSString *pointStr =  [resultString stringByReplacingOccurrencesOfString:@"元" withString:@""];
+        NSInteger consumePoints = [pointStr integerValue];
+        self.orderItem.consumePoints = consumePoints;
+        [self upConfirmOrderView];
+    }else {
+        NSArray *num = [resultString componentsSeparatedByString:@"#"];
+        if([num count] == 2){
+            NSString *resultStr = num[0];
+            _totalPersonNumLabel.text = [NSString stringWithFormat:@"就餐人数:%@ 人",resultStr];
+            self.orderItem.personNum = [resultStr integerValue];
+            resultStr = num[1];
+            resultStr = [resultStr stringByReplacingOccurrencesOfString:@"分" withString:@""];
+            self.orderItem.arriveTime = [resultStr integerValue];
+            _arriveTimeLabel.text = [NSString stringWithFormat:kArriveTimeFormat,self.orderItem.arriveTime];
+            
+            [[UserDinnerWatingMgr sharedInstance] setPersonNum:self.orderItem.personNum];
+            [[UserDinnerWatingMgr sharedInstance] setArriveTime:self.orderItem.arriveTime];
+        }
     }
 }
 
@@ -565,9 +622,9 @@
         "orderDetail":[{"price":5,"totalPrice":10,"num":2,"status":1,"productId":1}]
     }
     */
-    if(self.orderItem.arriveTime == 0){
+    if(self.orderItem.arriveTime == 0 && self.orderItem.personNum == 0){
     
-        kUIAlertConfirmView(@"提示", @"您还未选择到店时间,是否已到店?",@"没有", @"到店");
+        kUIAlertConfirmView(@"提示", @"请选择到店时间和人数?",@"确定", @"取消");
         return;
     }
     
@@ -611,6 +668,14 @@
     [ZCSNotficationMgr postMSG:kZCSNetWorkOK obj:retDictData];
 #endif
     
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+
+    if(buttonIndex == 0){
+    
+        [self personChooseAction:nil];
+    }
 }
 
 - (void)startPreOrder {

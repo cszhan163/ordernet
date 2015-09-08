@@ -19,6 +19,10 @@
 
 @property (nonatomic, copy) CompleteBlock netFailedBlcok;
 
+@property (nonatomic, assign) NSInteger   personNum;
+
+@property (nonatomic, assign) NSInteger   arriveTime;
+
 
 
 - (OrderItem*)getUserCurrentOrderItem;
@@ -33,7 +37,7 @@
 
 - (void)startCheckDinnerWaitingByOrderId:(long long)orderId;
 
-- (void)startGetRegisterUserSMSWithDone:(CompleteBlock) done;
+- (void)startGetRegisterUserSMSWithPhoneNum:(NSString*)phoneNum withDone:(CompleteBlock) done;
 
 - (void)startVeryRegisterUserSMS:(NSDictionary*)param withDone:(CompleteBlock) done withError:(CompleteBlock) errorDone;
 

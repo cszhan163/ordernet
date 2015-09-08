@@ -201,7 +201,7 @@ typedef enum resetPasswStage{
 - (IBAction)reflushPhoneRandomCode:(id)sender {
 
     
-    [[UserDinnerWatingMgr sharedInstance] startGetRegisterUserSMSWithDone:^(id error){
+    [[UserDinnerWatingMgr sharedInstance] startGetRegisterUserSMSWithPhoneNum:registerView.mobilePhoneTextFied.text withDone:^(id error){
 
         if(error == nil) {
             kUIAlertView(@"提示", @"短信已发送到手机");

@@ -76,12 +76,14 @@
 @implementation GoodsListViewController
 
 - (void)dealloc {
+    [self cancelAllIconDownloads];
     self.catogoryView = nil;
     self.goodsListArray = nil;
     self.locationDict = nil;
     self.titleArray = nil;
     self.goodsOrderMenuView = nil;
     self.shopItem = nil;
+    
     //self.reuseCell = nil;
     SuperDealloc;
 }
@@ -438,12 +440,16 @@
     orderItem.shopItem = self.shopItem;
     orderItem.consumePoints = 51.f;
     orderItem.totalPrice = _totalPrice;
+    orderItem.personNum = [[UserDinnerWatingMgr sharedInstance]personNum];
+    orderItem.arriveTime = [[UserDinnerWatingMgr sharedInstance]personNum];
     
-    if(orderItem.personNum == 0){
+    /*
+    if(orderItem.personNum == 0)
+    {
     
         orderItem.personNum = 1;
     }
-    
+    */
     [orderConfirmCtlr setOrderItem:orderItem];
     
     [self.navigationController pushViewController:orderConfirmCtlr animated:YES];
