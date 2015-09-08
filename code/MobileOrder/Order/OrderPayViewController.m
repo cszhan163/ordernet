@@ -32,9 +32,9 @@
 
 
 
-#define kAliPayPartner             @"2088911644524097"
+#define kAliPayPartner             @"2088021531094405"//@"2088911644524097"
 
-#define kAliPaySaller              @"dashang@ximalaya.com"
+#define kAliPaySaller              @"403145040@qq.com"//@"dashang@ximalaya.com"
 
 #define kAliPayKey                 @"MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBANLcFE2Xcc7Meoja8x+FGdSnsiqBRqEUChfVN74LplEUvI7eT41zOpwg/mBOHcT0VfN4UwbL1znz0eCEaFdWL9iUy5lsaIKL+qm7iCOfpXMhbp3cLkbESXYtmoTQOhy1yFVXK0irh3d+QDym3A7e5HERq5DwE1t3RvNmDBxdk7ZPAgMBAAECgYAXiDwz1Jz86VEbiOPtNpuFYhm+KKNLQsNFmaQY74/mKJxKjYDvVlbKKdx5vv4Phv04qMsLTSB99ToNBnnmlVXNcCG0ujTzzwSGJOK8GH9AT6IfvVMsFY8GGP9wWbnPFz7K0MHxXGEDjCiaKFje+sO1Is2tPh0DHCpyaXZI62tpkQJBAOlz6Kda/Ok6RSZiJXT/KCQnJu0JrUK1dteCawjS0m8Y8a1Mj+uLzsxTmQLjdg3E0DKrGhwiZU0cZSXO/oupKEUCQQDnOY8r5eZhbWYksXlUC0dReisj9o767JAZ6HOfJXWAO0CtjblwTot2fJ+v59HhwpknJWyLesEPuIBA6hRzMN+DAkAI11zuSaHea1iHFZx5i9hHVjxBKean6htwGf5XvTQ/BODSQV4J+6d/UYMv+tFTwCpqYNSCUEMp4nNqNSaqv2NJAkAZhACIl5YUqj3bTrpUy+nS0+huz4Z3qiM8uKoJpdiRjfhVLo6IFiLNsHLutmYyw4ajCz4vJhyn33RHtY0MKRiBAkBGexJdyu5XuJSVCYYEEOqiPAdSw3gbb9abSslMBN6u2LVJsDk/mHQwH8QgBy9XDC3woD0sjeKmskMYS0psazIW"
 
@@ -209,7 +209,7 @@
 - (void)didButtonPress:(id)sender {
 
     
-#if 1
+#if 0
     
     [[UserDinnerWatingMgr sharedInstance] setArriveTime:0];
     [[UserDinnerWatingMgr sharedInstance] setPersonNum:0];

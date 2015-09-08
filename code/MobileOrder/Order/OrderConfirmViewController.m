@@ -235,7 +235,7 @@
     personChooseBtn.layer.cornerRadius = 3.f;
     
     //personChooseBtn.backgroundColor
-    [personChooseBtn setFrame:CGRectMake(_totalPersonNumLabel.frame.origin.x-kLeftPendingX/2.f, _totalPersonNumLabel.frame.origin.y-kLeftPendingX/2.f,( _totalPersonNumLabel.frame.size.width+kLeftPendingX)*2, _totalPersonNumLabel.frame.size.height+kPendingY)];
+    [personChooseBtn setFrame:CGRectMake(_totalPersonNumLabel.frame.origin.x-kLeftPendingX, _totalPersonNumLabel.frame.origin.y-kLeftPendingX/2.f,( _totalPersonNumLabel.frame.size.width+kLeftPendingX)*2, _totalPersonNumLabel.frame.size.height+kPendingY)];
     //UIImage *image = nil;
     UIImageAutoScaleWithFileName(image, @"title_arrow_down@2x");
     
