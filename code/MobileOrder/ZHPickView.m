@@ -168,7 +168,9 @@
 - (void)setToolbarTitle:(NSString*)text  withColor:(UIColor*)color{
 
     _titleLabel.text = text;
-    _titleLabel.tintColor = color;
+    if([_titleLabel respondsToSelector:@selector(tintColor)]){
+        _titleLabel.tintColor = color;
+    }
 }
 
 -(void)setUpToolBar{

@@ -188,7 +188,7 @@
     
     currY = currY+ orderHeaderView.frame.size.height;
     
-    _tableView  = [[UITableView alloc]initWithFrame:CGRectMake(kLeftPendingX,currY,orderSize.width,orderSize.height) style:UITableViewStyleGrouped];
+    _tableView  = [[UITableView alloc]initWithFrame:CGRectMake(kLeftPendingX,currY,orderSize.width,orderSize.height) style:UITableViewStylePlain];
     _tableView.layer.cornerRadius = 5.f;
     _tableView.delegate = self;
     _tableView.dataSource = self;
