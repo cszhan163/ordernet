@@ -88,7 +88,7 @@
     self.navigationController.navigationBar.backgroundColor = kNavBarColor;
 
     [self setHiddenLeftBtn:YES];
-    
+    [self.navigationController    ]
     UIImage *image = nil;
     CGFloat currY = self.view.bounds.size.height;
     
@@ -322,10 +322,17 @@
 #else
 
 #if 1
+            
+            OrderPayViewController *orderPayVCtrl = [[OrderPayViewController alloc]init];
+            
+            [self.navigationController pushViewController:orderPayVCtrl animated:YES];
+            SafeRelease(orderPayVCtrl);
+#if 0
             OrderConfirmViewController *orderPayVCtrl = [[OrderConfirmViewController alloc]init];
             
             [self.navigationController pushViewController:orderPayVCtrl animated:YES];
             SafeRelease(orderPayVCtrl);
+#endif
             return;
             
 #endif

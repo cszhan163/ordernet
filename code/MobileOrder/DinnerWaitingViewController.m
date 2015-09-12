@@ -270,8 +270,9 @@
     
     currY = currY+ orderStatusView.frame.size.height+kItemPendingY;
     
-    _tableView  = [[UITableView alloc]initWithFrame:CGRectMake(kLeftPendingX,currY,orderSize.width,orderSize.height) style:UITableViewStyleGrouped];
+    _tableView  = [[UITableView alloc]initWithFrame:CGRectMake(kLeftPendingX,currY,orderSize.width,orderSize.height) style:UITableViewStylePlain];
     _tableView.delegate = self;
+    _tableView.backgroundColor = [UIColor clearColor];
     _tableView.dataSource = self;
     _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     _tableView.separatorColor = nil;

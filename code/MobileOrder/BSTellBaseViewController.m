@@ -32,6 +32,7 @@
 - (void)setHiddenLeftBtn:(BOOL)hidden {
 
     [self.navigationItem setLeftBarButtonItems:nil];
+    
 }
 
 - (void)setNavgationBarRightButton:(NSString*)title
@@ -207,7 +208,17 @@
 
 - (void)didSelectorTopNavRightItem:(id)item {
 
+    if([item tag] == 0) {
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
     
+    if([item tag] == 1){
+        
+        //        BidMainViewController *bidMainVc = [[BidMainViewController alloc]init];
+        //        [self.navigationController pushViewController:bidMainVc animated:YES];
+        //        SafeRelease(bidMainVc);
+    }
 }
 
 - (void)shouldLoadData{

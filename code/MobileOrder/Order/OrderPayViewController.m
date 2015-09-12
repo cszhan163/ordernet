@@ -36,7 +36,21 @@
 
 #define kAliPaySaller              @"403145040@qq.com"//@"dashang@ximalaya.com"
 
-#define kAliPayKey                 @"nt74og4tn1orsxtfwi6bvtkynca0iax6"
+//#define kAliPayKey                 @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDnP/nAYreX+RNSiDqgMysmkC9YYJtpNq3pl8HwxPw9duY8H18juRUvCf42zmviiaAdth1KTozFE4Rtv170wF2u8+BVGUwL85hs9GJAQ8BHc8RNdA20sSHuZZNUUXw+oudr2ZyvZXD+jGWanfOVdsVj4Fq9Lq7q7WrfC/pZ4fPz2QIDAQAB"
+#define kAliPayKey                 @"MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAOc/+cBit5f5E1KI\
+OqAzKyaQL1hgm2k2remXwfDE/D125jwfXyO5FS8J/jbOa+KJoB22HUpOjMUThG2/\
+XvTAXa7z4FUZTAvzmGz0YkBDwEdzxE10DbSxIe5lk1RRfD6i52vZnK9lcP6MZZqd\
+85V2xWPgWr0ururtat8L+lnh8/PZAgMBAAECgYEAsO57CZ6+N/Hjvc7rhC0CQ/Qn\
+tWfdIKgsckChq7UcBW8Wg0PBiFSRB7eOoKJZWy/PqUvwpyzoedUQCuRUI9GXGtNV\
+50Hod0Ip2GzALBE4196UMdPzEuLDpzO77quj27aC42KoPmNInpVVanFrO4WyBVRK\
+xeVkxGovLuSPc84jnwECQQD+3avRskutJXeN44T9bz5UN7yBkSm0uhWLUQwF1KpD\
+OBu7BeZUxGGmS0CkecNildQFpws4yuIWceJdjtYribvhAkEA6EdnBIb7l3NmVsXA\
+8I0pVL88NlE8EpiX9gLcb5qn8N0s38d4Yw4QvuS7CLozMv/LsryBkMpPNStUuveg\
+DLL2+QJAMgjOrHI2TR2n5OEfwKlQMTRn+3/GEkbd5+XXWGWxr1SajRLRbx7GlOD9\
+Jc0JwJbtctaia1nZHNLqv7dE8HMvwQJBANPYq4BZjAUpXuEtIzdBx7xfXg88L8nW\
+GmJpYZr4NstbLZ47UvUk0ukHu/3NtPyCh8nQW2su2ObpSjHrvrFWWCECQALT/X0k\
+/yqq1TPAvoie/173o3pk4aaf+ZBSJQi+JMNd0vl6P72MIkNFysE2u7475DDwuKnb\
+c3pMFKL9Sr6bpjQ="
 
 @interface OrderPayViewController () {
 
@@ -88,6 +102,9 @@
     if(kIsIOS7Check){
     
         currY =  currY + kMBAppTopToolBarHeight + kMBAppStatusBar;
+    }else {
+    
+        currY =  currY + kMBAppTopToolBarHeight;
     }
 
     CGFloat labelHeight = 30.f;
@@ -255,7 +272,7 @@
     order.tradeNO = self.orderItem.orderIdName; //订单ID（由商家自行制定）
     order.productName = self.orderItem.shopItem.name; //商品标题
     order.productDescription = self.orderItem.shopItem.description; //商品描述
-    order.amount = [NSString stringWithFormat:@"%.2f",self.orderItem.payPrice]; //商品价格
+    order.amount = @"0.01";//[NSString stringWithFormat:@"%.2f",self.orderItem.payPrice]; //商品价格
     order.notifyURL =  @"http://www.xxx.com"; //回调URL
     
     order.service = @"mobile.securitypay.pay";
@@ -265,7 +282,7 @@
     order.showUrl = @"m.alipay.com";
     
     //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
-    NSString *appScheme = @"alisdkdemo";
+    NSString *appScheme = @"mobileOrder";
     
     //将商品信息拼接成字符串
     NSString *orderSpec = [order description];

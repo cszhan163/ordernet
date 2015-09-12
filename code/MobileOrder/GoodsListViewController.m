@@ -108,7 +108,7 @@
 - (void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:animated];
-    [self setNavgationBarRightButton];
+    //[self setNavgationBarRightButton];
     //self.pageNum = 1;
     //[self.dataArray removeAllObjects];
 }
@@ -135,17 +135,17 @@
     
 }
 
-- (void)setNavgationBarRightButton{
-
-    UIImageWithFileName(UIImage *bgImage, @"bid_btn.png");
-    CGRect newRect = CGRectMake(kDeviceScreenWidth-30.f-bgImage.size.width/2.f, 10.f, bgImage.size.width/kScale, bgImage.size.height/kScale);
-    self.rightBtn.frame = newRect;
-    [self.rightBtn setBackgroundImage:bgImage forState:UIControlStateNormal];
-    [self.rightBtn setBackgroundImage:bgImage forState:UIControlStateSelected];
-    [self.rightBtn setTitle:@"竞价大厅" forState:UIControlStateNormal];
-    [self.rightBtn setTitle:@"竞价大厅" forState:UIControlStateHighlighted];
-    self.rightBtn.titleLabel.font = [UIFont systemFontOfSize:13];
-}
+//- (void)setNavgationBarRightButton{
+//
+//    UIImageWithFileName(UIImage *bgImage, @"bid_btn.png");
+//    CGRect newRect = CGRectMake(kDeviceScreenWidth-30.f-bgImage.size.width/2.f, 10.f, bgImage.size.width/kScale, bgImage.size.height/kScale);
+//    self.rightBtn.frame = newRect;
+//    [self.rightBtn setBackgroundImage:bgImage forState:UIControlStateNormal];
+//    [self.rightBtn setBackgroundImage:bgImage forState:UIControlStateSelected];
+//    [self.rightBtn setTitle:@"竞价大厅" forState:UIControlStateNormal];
+//    [self.rightBtn setTitle:@"竞价大厅" forState:UIControlStateHighlighted];
+//    self.rightBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+//}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -177,8 +177,8 @@
         [self setNavgationBarTitle:NSLocalizedString(@"参加竞买", @""
                                                      )];
     [self setHiddenRightBtn:NO];
-    [self setHiddenLeftBtn:YES];
-    [self setNavgationBarRightButton];
+    //[self setHiddenLeftBtn:YES];
+    //[self setNavgationBarRightButton];
     //[self setRightTextContent:NSLocalizedString(@"Done", @"")];
 	// Do any additional setup after loading the view.
     CGRect originRect = tweetieTableView.frame;
