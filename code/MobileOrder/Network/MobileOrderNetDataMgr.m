@@ -321,7 +321,7 @@ static ZCSNetClientNetInterfaceMgr *dressMemoInterfaceMgr = nil;
     //param = [self addUserIdParam:param];
     return [dressMemoInterfaceMgr startAnRequestByResKey:@"resetpassword"
                                                needLogIn:NO
-                                               withParam:nil
+                                               withParam:param
                                               withMethod:@"PUT"
                                                 withData:NO];
 }

@@ -142,7 +142,7 @@
     pointChooseBtn.layer.borderColor =kCommonButtonBgColor.CGColor;
     pointChooseBtn.layer.cornerRadius = 3.f;
     [pointChooseBtn setTitleColor:[UIColor blackColor]  forState:UIControlStateNormal] ;
-    [pointChooseBtn setTitle:@"选择积分" forState:UIControlStateNormal] ;
+    [pointChooseBtn setTitle:@"选择抵扣积分" forState:UIControlStateNormal] ;
     pointChooseBtn.titleLabel.font = [UIFont systemFontOfSize:10];
     
     //personChooseBtn.backgroundColor
@@ -223,8 +223,6 @@
 #endif
     _arriveTimeLabel.textAlignment = NSTextAlignmentRight;
     _arriveTimeLabel.text  = [NSString stringWithFormat:kArriveTimeFormat,self.orderItem.arriveTime];
-    
-   
     
     UIButton *personChooseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     
@@ -310,14 +308,23 @@
 #endif
     SafeRelease(orderPanel);
     
+    [self updateArriveTimeLable];
     
     _totalPersonNumLabel.text = [NSString stringWithFormat:@"就餐人数:%ld 人",self.orderItem.personNum];
-    _arriveTimeLabel.text = [NSString stringWithFormat:kArriveTimeFormat,self.orderItem.arriveTime];
-    
     contentView.contentSize = CGSizeMake(kDeviceScreenWidth,offsetY+orderHeaderHeight+orderSize.height+orderFootView.frame.size.height);
 
 }
 
+
+- (void)updateArriveTimeLable {
+    
+    if(self.orderItem.arriveTime == 0){
+        _arriveTimeLabel.text = @"已到店";
+        
+    }else{
+        _arriveTimeLabel.text = [NSString stringWithFormat:kArriveTimeFormat,self.orderItem.arriveTime];
+    }
+}
 
 - (void)didButtonPress:(id)sender {
 
@@ -342,9 +349,9 @@
 - (void)upConfirmOrderView {
 
     _shopLabel.text =  self.orderItem.shopItem.name; //[NSString stringWithFormat:@""]
-    _totalPersonNumLabel.text = [NSString stringWithFormat:@"就餐人数:%ld",self.orderItem.personNum];
-    _pointsTotalLabel.text = [NSString stringWithFormat:@"可用积分:%ld",self.orderItem.userItem.totalPoints];
-    _consumePointsLabel.text = [NSString stringWithFormat:@"抵扣积分: %ld",(NSInteger)self.orderItem.consumePoints];
+    _totalPersonNumLabel.text = [NSString stringWithFormat:@"就餐人数:%ld 人",self.orderItem.personNum];
+    _pointsTotalLabel.text = [NSString stringWithFormat:@"可用积分: %ld 元",self.orderItem.userItem.totalPoints];
+    _consumePointsLabel.text = [NSString stringWithFormat:@"抵扣积分: %ld 元",(NSInteger)self.orderItem.consumePoints];
     _priceLabel.text = [NSString stringWithFormat:@"订单金额: ¥ %0.2lf 元",self.orderItem.totalPrice];
     CGFloat payPrice = self.orderItem.totalPrice - self.orderItem.consumePoints;
     self.orderItem.payPrice = payPrice;
@@ -544,8 +551,13 @@
      NSMutableArray *timeCountArray = [NSMutableArray array];
     
     for (int i = 0;i<120;i++){
-        
-        [timeCountArray addObject:[NSString stringWithFormat:@"%d 分",i]];
+        NSString *timeStr = nil;
+        if(i == 0){
+            timeStr = @"已到店";
+        }else {
+            timeStr = [NSString stringWithFormat:@"%d 分钟",i];
+        }
+        [timeCountArray addObject:timeStr];
     }
     [finalArray addObject:timeCountArray];
     //if(_pickview == nil)
@@ -565,7 +577,7 @@
 
     NSMutableArray *finalArray = [NSMutableArray array];
     
-    for (int i =0;i<50;i++){
+    for (int i =1;i<=50;i++){
         
         [finalArray addObject:[NSString stringWithFormat:@"%d元",i]];
     }
@@ -596,9 +608,14 @@
             _totalPersonNumLabel.text = [NSString stringWithFormat:@"就餐人数:%@ 人",resultStr];
             self.orderItem.personNum = [resultStr integerValue];
             resultStr = num[1];
-            resultStr = [resultStr stringByReplacingOccurrencesOfString:@"分" withString:@""];
+            if([resultStr isEqualToString:@"已到店"]){
+                resultStr = @"0 分钟";
+            }
+            resultStr = [resultStr stringByReplacingOccurrencesOfString:@"分钟" withString:@""];
+
             self.orderItem.arriveTime = [resultStr integerValue];
-            _arriveTimeLabel.text = [NSString stringWithFormat:kArriveTimeFormat,self.orderItem.arriveTime];
+            
+            [self updateArriveTimeLable];
             
             [[UserDinnerWatingMgr sharedInstance] setPersonNum:self.orderItem.personNum];
             [[UserDinnerWatingMgr sharedInstance] setArriveTime:self.orderItem.arriveTime];

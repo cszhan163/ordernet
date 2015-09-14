@@ -26,6 +26,8 @@ typedef enum {
 
 @property (nonatomic, strong) UIButton *arriveBtn;
 
+@property (nonatomic, strong) UIButton *changeBtn;
+
 @property (nonatomic, assign)id<OrderStatusActionDelegate>       delegate;
 
 @end

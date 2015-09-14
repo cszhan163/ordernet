@@ -14,6 +14,7 @@
 
 - (void)dealloc {
     self.arriveBtn = nil;
+    self.changeBtn = nil;
     SuperDealloc;
 }
 
@@ -40,18 +41,18 @@
         _timerLabel.text  = @"00:00";
         [self addSubview:_timerLabel];
 
-        
+        UIImage *highImage = nil;
         UIImageAutoScaleWithFileName(image, @"user_btn_h");
-        
-        self.arriveBtn = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"已到店" withTag:0 withTarget:self  withTouchEvent:@selector(didButtonPress:)];
+        UIImageAutoScaleWithFileName(highImage, @"user_btn_d");
+        self.arriveBtn = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:highImage withTitle:@"已到店" withTag:0 withTarget:self  withTouchEvent:@selector(didButtonPress:)];
         //showOrderBtn.backgroundColor = [UIColor redColor];
         _arriveBtn.frame = CGRectMake(kLeftPendinX,headerCurrY+40.f,frame.size.width/2.f-kLeftPendinX*2,labelHeight);
         [self  addSubview:_arriveBtn];
         
-        UIButton *changeBtn = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:image withTitle:@"更改时间" withTag:1 withTarget:self  withTouchEvent:@selector(didButtonPress:)];
+        self.changeBtn = [UIComUtil createButtonWithNormalBGImage:image withHightBGImage:highImage withTitle:@"更改时间" withTag:1 withTarget:self  withTouchEvent:@selector(didButtonPress:)];
         //showOrderBtn.backgroundColor = [UIColor redColor];
-        changeBtn.frame = CGRectMake(frame.size.width/2.f+kLeftPendinX,headerCurrY+40.f,frame.size.width/2.f-kLeftPendinX*2,labelHeight);
-        [self  addSubview:changeBtn];
+        _changeBtn.frame = CGRectMake(frame.size.width/2.f+kLeftPendinX,headerCurrY+40.f,frame.size.width/2.f-kLeftPendinX*2,labelHeight);
+        [self  addSubview:_changeBtn];
         
         
         //payBtn.frame = CGRectMake(40.f,payContentView.frame.size.height/3*2,image.size.width,image.size.height);

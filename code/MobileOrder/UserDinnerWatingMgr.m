@@ -242,7 +242,7 @@ static UserDinnerWatingMgr *staticInstance = nil;
                     
                     errorDone(nil);
                 }
-                if(done){
+                else if(done){
                     
                     done(@1);
                 }

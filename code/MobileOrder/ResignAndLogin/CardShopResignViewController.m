@@ -277,7 +277,7 @@ typedef enum resetPasswStage{
 -(void)startLogin
 {
     //if([self check])
-    if(type == 0){
+    if(0 && type == 0){
         kNetStartShow(@"注册中...",self.view);
     }
     else
@@ -297,22 +297,33 @@ typedef enum resetPasswStage{
             
             [[UserDinnerWatingMgr sharedInstance] startVeryRegisterUserSMS:verfyData
                                                                   withDone:^(id data ){
-                                                                      if(data){
-                                                                          
-                                                                          [self startLogin];
-                                                                      }
                                                                       
-                }
+                                                                          
+                                                                          dispatch_async(dispatch_get_main_queue(), ^(){
+                                                                              
+                                                                            if(data){
+                                                                              resetStage = ResetStageTwo;
+                                                                                [self startLogin];
+                                                                           
+                                                                            }
+                                                                            kNetEnd(self.view);
+                                                                          });
+                                                                        
+                                                                      }
+             
                                                                  withError:^(id data){
             
-                                                                     if(data){
                                                                      
-                                                                         kUIAlertView(@"提示", @"请检查手机号和验证码是否正确!!");
-                                                                         
-                                                                     }
-                                                                    kNetEnd(self.view);
+                                                                     dispatch_async(dispatch_get_main_queue(), ^(){
+                                                                         if(data){
+                                                                             
+                                                                             kUIAlertView(@"提示", @"请检查手机号和验证码是否正确!!");
+                                                                         }
+                                                                         kNetEnd(self.view);
+                                                                     });
+             
                                                                  }];
-            
+            return;
         }
         
         kNetStartShow(@"发送中...",self.view);
@@ -350,7 +361,7 @@ typedef enum resetPasswStage{
         if(![registerView.radomCodeTextFied.text isEqualToString:@""]){
             [dict setValue:registerView.radomCodeTextFied.text forKey:@"captcha"];
         }
-        self.request = [cardShopMgr userResetPassword:param];
+        self.request = [cardShopMgr userResetPassword:dict];
     }
    
     
@@ -412,9 +423,10 @@ typedef enum resetPasswStage{
     id _data = [obj objectForKey:@"data"];
     NSString *resKey = [respRequest resourceKey];
     if([resKey isEqualToString:kNetResignRes]){
-        kNetEnd(self.view);
+        
         //kUIAlertView(@"提示",@"网络错误");
     }
+    kNetEnd(self.view);
     //NE_LOG(@"warning not implemetation net respond");
 }
 -(void)textFieldDidEndEditing:(id)sender

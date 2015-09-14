@@ -272,7 +272,7 @@
     
     _tableView  = [[UITableView alloc]initWithFrame:CGRectMake(kLeftPendingX,currY,orderSize.width,orderSize.height) style:UITableViewStylePlain];
     _tableView.delegate = self;
-    _tableView.backgroundColor = [UIColor clearColor];
+    _tableView.backgroundColor = [UIColor whiteColor];
     _tableView.dataSource = self;
     _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     _tableView.separatorColor = nil;
@@ -513,19 +513,29 @@
 
 - (void)startChooseDeskNumStatus {
 
-    NSMutableArray *totalCountArray = [NSMutableArray array];
-    for (int i = 0;i<120;i++){
+    kUIAlertConfirmView(@"提示", @"你确认已到店？确认后不可修改!!", @"取消", @"确认");
+    
+   
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+
+    if(buttonIndex == 1){
         
-        [totalCountArray addObject:[NSString stringWithFormat:@"%d 号",i]];
-    }
-    //if(_pickview == nil)
-    {
-        ZHPickView *_pickview=[[ZHPickView alloc] initPickviewWithArray:totalCountArray isHaveNavControler:NO];
-        _pickview.tag = 1;
-        [_pickview  setDelegate:self];
-        [_pickview setSelectorRow:0];
-        [_pickview setToolbarTitle:@"请选择桌号" withColor:[UIColor blackColor]];
-        [_pickview show];
+        NSMutableArray *totalCountArray = [NSMutableArray array];
+        for (int i = 0;i<120;i++){
+            
+            [totalCountArray addObject:[NSString stringWithFormat:@"%d 号",i]];
+        }
+        //if(_pickview == nil)
+        {
+            ZHPickView *_pickview=[[ZHPickView alloc] initPickviewWithArray:totalCountArray isHaveNavControler:NO];
+            _pickview.tag = 1;
+            [_pickview  setDelegate:self];
+            [_pickview setSelectorRow:0];
+            [_pickview setToolbarTitle:@"请选择桌号" withColor:[UIColor blackColor]];
+            [_pickview show];
+        }
     }
 
 }
@@ -589,6 +599,11 @@
         NSLog(@"update data:%@",[objData objectForKey:@"data"]);
         
         kUIAlertViewNoDelegate(@"信息", @"提交成功!!");
+        
+        orderStatusView.backgroundColor = [UIColor grayColor];
+        orderStatusView.arriveBtn.highlighted = YES;
+        orderStatusView.changeBtn.highlighted = YES;
+        orderStatusView.userInteractionEnabled = NO;
         
     }
 
